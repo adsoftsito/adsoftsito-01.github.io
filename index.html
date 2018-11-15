@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="https://fonts.googleapis.com/css?family=Rubik:400,500,700" rel="stylesheet">
+
+  <title>Motumweb</title>
+  <style>
+    #login-skeleton {
+      z-index: 1003;
+      background: #2144d6;
+    }
+    /* #login-skeleton .flex-item:nth-child(1) .rectangle2 .rectangle2-1 {
+      background-color: #3b68e4;
+    }
+    #login-skeleton .flex-item:nth-child(1) .rectangle2 .rectangle2-2 .rectangle2-2-1 {
+      background-color: #3b68e4;
+    }
+    #login-skeleton .flex-item:nth-child(1) .rectangle2 .rectangle2-2 .rectangle2-2-2 {
+      background-color: #3b68e4;
+    }
+    #login-skeleton .flex-item:nth-child(1) .rectangle2 .rectangle2-2 .rectangle2-2-3 {
+      background-color: #3b68e4;
+    }
+    #login-skeleton .flex-item:nth-child(1) .rectangle2 .rectangle2-2 .circle2-2-1, #login-skeleton .flex-item:nth-child(1) .rectangle2 .rectangle2-2 .circle2-2-2 {
+      background-color: #3b68e4;
+    } */
+    #login-skeleton .flex-item:nth-child(1) .rectangle3 {
+      background-color: #3b68e4;
+    }
+    #login-skeleton .flex-item:nth-child(2) .rectangle1 {
+      background-color: #fff;
+    }
+    #login-skeleton .flex-item:nth-child(2) .rectangle1 .rectangle1-1 .rectangle1-1-1 {
+      background-color: #e1e1e1;
+    }
+    #login-skeleton .flex-item:nth-child(2) .rectangle1 .rectangle1-2 .rectangle1-2-1 {
+      background-color: #00d068;
+    }
+    #login-skeleton .flex-item:nth-child(3) .rectangle0 {
+      background-color: #3b68e4;
+    }
+    #login-skeleton .flex-item:nth-child(3) .rectangle1 .rectangle1-1 {
+      background-color: #3b68e4;
+    }
+    #login-skeleton .flex-item:nth-child(3) .rectangle1 .rectangle1-2 {
+      background-color: #3b68e4;
+    }
+    #login-skeleton .flex-item:nth-child(3) .rectangle1 .circle1-1 {
+      background-color: #3b68e4;
+    }
+    #login-skeleton .flex-item:nth-child(3) .rectangle2 .rectangle2-1 {
+      background-color: #3b68e4;
+    }
+    #login-skeleton .flex-item:nth-child(3) .rectangle2 .rectangle2-2 {
+      background-color: #3b68e4;
+    }
+    #login-skeleton .flex-item:nth-child(3) .rectangle2 .circle2-1 {
+      background-color: #3b68e4;
+    }
+
+    #login-admin-skeleton {
+      background: #fff;
+    }
+    /* #login-admin-skeleton .flex-item:nth-child(1) .rectangle2 .rectangle2-1 {
+      background-color: #e6e6e6;
+    }
+    #login-admin-skeleton .flex-item:nth-child(1) .rectangle2 .rectangle2-2 .rectangle2-2-1 {
+      background-color: #e6e6e6;
+    }
+    #login-admin-skeleton .flex-item:nth-child(1) .rectangle2 .rectangle2-2 .rectangle2-2-2 {
+      background-color: #e6e6e6;
+    }
+    #login-admin-skeleton .flex-item:nth-child(1) .rectangle2 .rectangle2-2 .rectangle2-2-3 {
+      background-color: #e6e6e6;
+    }
+    #login-admin-skeleton .flex-item:nth-child(1) .rectangle2 .rectangle2-2 .circle2-2-1, #login-admin-skeleton .flex-item:nth-child(1) .rectangle2 .rectangle2-2 .circle2-2-2 {
+      background-color: #e6e6e6;
+    } */
+    #login-admin-skeleton .flex-item:nth-child(1) .rectangle3 {
+      background-color: #e6e6e6;
+    }
+    #login-admin-skeleton .flex-item:nth-child(2) .rectangle1 {
+      background-color: #fff;
+      box-shadow: 2px 10px 25px #f5f3f3, 9px 6px 38px #D9D9D9, 22px 12px 38px #f5f3f3;
+    }
+    #login-admin-skeleton .flex-item:nth-child(2) .rectangle1 .rectangle1-1 .rectangle1-1-1 {
+      background-color: #e1e1e1;
+    }
+    #login-admin-skeleton .flex-item:nth-child(2) .rectangle1 .rectangle1-2 .rectangle1-2-1 {
+      background-color: #136df8;
+    }
+    #login-admin-skeleton .flex-item:nth-child(3) .rectangle0 {
+      background-color: #e6e6e6;
+    }
+    #login-admin-skeleton .flex-item:nth-child(3) .rectangle1 .rectangle1-1 {
+      background-color: #e6e6e6;
+    }
+    #login-admin-skeleton .flex-item:nth-child(3) .rectangle1 .rectangle1-2 {
+      background-color: #e6e6e6;
+    }
+    #login-admin-skeleton .flex-item:nth-child(3) .rectangle1 .circle1-1 {
+      background-color: #e6e6e6;
+    }
+    #login-admin-skeleton .flex-item:nth-child(3) .rectangle2 .rectangle2-1 {
+      background-color: #e6e6e6;
+    }
+    #login-admin-skeleton .flex-item:nth-child(3) .rectangle2 .rectangle2-2 {
+      background-color: #e6e6e6;
+    }
+    #login-admin-skeleton .flex-item:nth-child(3) .rectangle2 .circle2-1 {
+      background-color: #e6e6e6;
+    }
+
+    #login-skeleton, #login-admin-skeleton {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1003;
+    }
+    #login-skeleton .flex-item:nth-child(1), #login-admin-skeleton .flex-item:nth-child(1) {
+      -webkit-order: 0;
+      -ms-flex-order: 0;
+      order: 0;
+      -webkit-flex: 0 1 auto;
+      -ms-flex: 0 1 auto;
+      flex: 0 1 auto;
+      -webkit-align-self: auto;
+      -ms-flex-item-align: auto;
+      align-self: auto;
+      display: inline;
+      margin-top: 52px;
+    }
+    /* #login-skeleton .flex-item:nth-child(1) .rectangle1, #login-admin-skeleton .flex-item:nth-child(1) .rectangle1 {
+      display: inline-block;
+      width: 48px;
+      height: 45px;
+      border-radius: 2px;
+      * for effect
+      position: relative;
+      overflow: hidden;
+    }
+    #login-skeleton .flex-item:nth-child(1) .rectangle2, #login-admin-skeleton .flex-item:nth-child(1) .rectangle2 {
+      display: inline-block;
+      width: 136.6px;
+      height: 47px;
+    } */
+    #login-skeleton .flex-item:nth-child(1) .rectangle2 .rectangle2-1, #login-admin-skeleton .flex-item:nth-child(1) .rectangle2 .rectangle2-1 {
+      margin-bottom: 1px;
+      width: 100%;
+      height: 26px;
+      border-radius: 2px;
+      /** for effect */
+      position: relative;
+      overflow: hidden;
+    }
+    #login-skeleton .flex-item:nth-child(1) .rectangle2 .rectangle2-2, #login-admin-skeleton .flex-item:nth-child(1) .rectangle2 .rectangle2-2 {
+      line-height: 0.6;
+    }
+    #login-skeleton .flex-item:nth-child(1) .rectangle2 .rectangle2-2 .rectangle2-2-1, #login-admin-skeleton .flex-item:nth-child(1) .rectangle2 .rectangle2-2 .rectangle2-2-1 {
+      display: inline-block;
+      width: 25%;
+      height: 5px;
+      border-radius: 2px;
+    }
+    #login-skeleton .flex-item:nth-child(1) .rectangle2 .rectangle2-2 .rectangle2-2-2, #login-admin-skeleton .flex-item:nth-child(1) .rectangle2 .rectangle2-2 .rectangle2-2-2 {
+      display: inline-block;
+      width: 25%;
+      height: 5px;
+      border-radius: 2px;
+    }
+    #login-skeleton .flex-item:nth-child(1) .rectangle2 .rectangle2-2 .rectangle2-2-3, #login-admin-skeleton .flex-item:nth-child(1) .rectangle2 .rectangle2-2 .rectangle2-2-3 {
+      display: inline-block;
+      width: 25%;
+      height: 5px;
+      border-radius: 2px;
+    }
+    #login-skeleton .flex-item:nth-child(1) .rectangle2 .rectangle2-2 .circle2-2-1, #login-skeleton .flex-item:nth-child(1) .rectangle2 .rectangle2-2 .circle2-2-2, #login-admin-skeleton .flex-item:nth-child(1) .rectangle2 .rectangle2-2 .circle2-2-1, #login-admin-skeleton .flex-item:nth-child(1) .rectangle2 .rectangle2-2 .circle2-2-2 {
+      display: inline-block;
+      -moz-border-radius: 10px;
+      -webkit-border-radius: 10px;
+      width: 5px;
+      height: 5px;
+      border-radius: 10px;
+    }
+    #login-skeleton .flex-item:nth-child(1) .rectangle3, #login-admin-skeleton .flex-item:nth-child(1) .rectangle3 {
+      margin-top: 82.15px;
+      width: 195px;
+      height: 10px;
+      border-radius: 2px;
+      /** for effect */
+      position: relative;
+      overflow: hidden;
+    }
+    #login-skeleton .flex-item:nth-child(2), #login-admin-skeleton .flex-item:nth-child(2) {
+      -webkit-order: 0;
+      -ms-flex-order: 0;
+      order: 0;
+      -webkit-flex: 0 1 auto;
+      -ms-flex: 0 1 auto;
+      flex: 0 1 auto;
+      -webkit-align-self: auto;
+      -ms-flex-item-align: auto;
+      align-self: auto;
+    }
+    #login-skeleton .flex-item:nth-child(2) .rectangle1, #login-admin-skeleton .flex-item:nth-child(2) .rectangle1 {
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -webkit-flex-wrap: nowrap;
+      -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-align-content: stretch;
+      -ms-flex-line-pack: stretch;
+      align-content: stretch;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+      width: 288.24px;
+      height: 159.09px;
+      border-radius: 2px;
+      padding: 42.66px 25.86px 42.66px 25.86px;
+    }
+    #login-skeleton .flex-item:nth-child(2) .rectangle1 .rectangle1-1, #login-admin-skeleton .flex-item:nth-child(2) .rectangle1 .rectangle1-1 {
+      -webkit-order: 0;
+      -ms-flex-order: 0;
+      order: 0;
+      -webkit-flex: 1 1 auto;
+      -ms-flex: 1 1 auto;
+      flex: 1 1 auto;
+      -webkit-align-self: center;
+      -ms-flex-item-align: center;
+      align-self: center;
+      margin-bottom: 14.65px;
+    }
+    #login-skeleton .flex-item:nth-child(2) .rectangle1 .rectangle1-1 .rectangle1-1-1, #login-admin-skeleton .flex-item:nth-child(2) .rectangle1 .rectangle1-1 .rectangle1-1-1 {
+      border-radius: 2px;
+      /** for effect */
+      position: relative;
+      overflow: hidden;
+      width: 230px;
+      height: 28.15px;
+    }
+    #login-skeleton .flex-item:nth-child(2) .rectangle1 .rectangle1-2, #login-admin-skeleton .flex-item:nth-child(2) .rectangle1 .rectangle1-2 {
+      -webkit-order: 0;
+      -ms-flex-order: 0;
+      order: 0;
+      -webkit-flex: 1 1 auto;
+      -ms-flex: 1 1 auto;
+      flex: 1 1 auto;
+      -webkit-align-self: center;
+      -ms-flex-item-align: center;
+      align-self: center;
+    }
+    #login-skeleton .flex-item:nth-child(2) .rectangle1 .rectangle1-2 .rectangle1-2-1, #login-admin-skeleton .flex-item:nth-child(2) .rectangle1 .rectangle1-2 .rectangle1-2-1 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 2px;
+      /** for effect */
+      position: relative;
+      overflow: hidden;
+      width: 230px;
+      height: 28.15px;
+    }
+    #login-skeleton .flex-item:nth-child(3), #login-admin-skeleton .flex-item:nth-child(3) {
+      -webkit-order: 0;
+      -ms-flex-order: 0;
+      order: 0;
+      -webkit-flex: 0 1 auto;
+      -ms-flex: 0 1 auto;
+      flex: 0 1 auto;
+      -webkit-align-self: auto;
+      -ms-flex-item-align: auto;
+      align-self: auto;
+      margin-bottom: 33.5px;
+    }
+    #login-skeleton .flex-item:nth-child(3) .rectangle0, #login-admin-skeleton .flex-item:nth-child(3) .rectangle0 {
+      width: 190px;
+      height: 7px;
+      border-radius: 2px;
+      margin: 0 auto;
+      /** for effect */
+      position: relative;
+      overflow: hidden;
+    }
+    #login-skeleton .flex-item:nth-child(3) .rectangle1, #login-admin-skeleton .flex-item:nth-child(3) .rectangle1 {
+      margin-top: 80.74px;
+    }
+    #login-skeleton .flex-item:nth-child(3) .rectangle1 .rectangle1-1, #login-admin-skeleton .flex-item:nth-child(3) .rectangle1 .rectangle1-1 {
+      display: inline-block;
+      width: 105px;
+      height: 7px;
+      border-radius: 2px;
+      /** for effect */
+      position: relative;
+      overflow: hidden;
+    }
+    #login-skeleton .flex-item:nth-child(3) .rectangle1 .rectangle1-2, #login-admin-skeleton .flex-item:nth-child(3) .rectangle1 .rectangle1-2 {
+      display: inline-block;
+      width: 95px;
+      height: 7px;
+      border-radius: 2px;
+      /** for effect */
+      position: relative;
+      overflow: hidden;
+    }
+    #login-skeleton .flex-item:nth-child(3) .rectangle1 .circle1-1, #login-admin-skeleton .flex-item:nth-child(3) .rectangle1 .circle1-1 {
+      display: inline-block;
+      -moz-border-radius: 10px;
+      -webkit-border-radius: 10px;
+      width: 8px;
+      height: 8px;
+      border-radius: 10px;
+    }
+    #login-skeleton .flex-item:nth-child(3) .rectangle2 .rectangle2-1, #login-admin-skeleton .flex-item:nth-child(3) .rectangle2 .rectangle2-1 {
+      display: inline-block;
+      width: 95px;
+      height: 7px;
+      border-radius: 2px;
+      /** for effect */
+      position: relative;
+      overflow: hidden;
+    }
+    #login-skeleton .flex-item:nth-child(3) .rectangle2 .rectangle2-2, #login-admin-skeleton .flex-item:nth-child(3) .rectangle2 .rectangle2-2 {
+      display: inline-block;
+      width: 105px;
+      height: 7px;
+      border-radius: 2px;
+      /** for effect */
+      position: relative;
+      overflow: hidden;
+    }
+    #login-skeleton .flex-item:nth-child(3) .rectangle2 .circle2-1, #login-admin-skeleton .flex-item:nth-child(3) .rectangle2 .circle2-1 {
+      display: inline-block;
+      -moz-border-radius: 10px;
+      -webkit-border-radius: 10px;
+      width: 8px;
+      height: 8px;
+      border-radius: 10px;
+    }
+    #login-skeleton .motum-skeleton-container, #login-admin-skeleton .motum-skeleton-container {
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -webkit-flex-wrap: nowrap;
+      -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+      -webkit-justify-content: space-between;
+      -moz-justify-content: space-between;
+      -ms-justify-content: space-between;
+      justify-content: space-between;
+      -webkit-align-content: stretch;
+      -ms-flex-line-pack: stretch;
+      align-content: stretch;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+      height: 100%;
+    }
+    #login-skeleton .shining:after, #login-admin-skeleton .shining:after {
+      animation: shine 2s ease-in-out infinite;
+      animation-fill-mode: forwards;
+      content: "";
+      position: absolute;
+      top: -110%;
+      left: -210%;
+      width: 200%;
+      height: 200%;
+      opacity: 0;
+      transform: rotate(90deg);
+      background: rgba(255, 255, 255, 0);
+      background: linear-gradient(to right, rgba(255, 255, 255, 0.13) 0%, rgba(255, 255, 255, 0.13) 77%, rgba(255, 255, 255, 0.5) 92%, rgba(255, 255, 255, 0) 100%);
+    }
+    @keyframes shine {
+      10% {
+        opacity: 1;
+        top: -30%;
+        left: -30%;
+        transition-property: left, top, opacity;
+        transition-duration: 0.7s, 0.7s, 0.15s;
+        transition-timing-function: ease;
+      }
+      20% {
+        opacity: 0;
+        top: 100%;
+        left: 100%;
+        transition-property: left, top, opacity;
+      }
+    }
+  </style>
+  <script>
+    var loader = (function () {
+        var _showLoader = function () {
+            var urlSplited= window.location.href.split("/");
+            var lastEndPoint = urlSplited[urlSplited.length - 1];
+
+            switch (lastEndPoint) {
+                case "login":
+                    document.getElementById("login-skeleton").style.display = "block";
+                    break;
+                case "login-admin":
+                    document.getElementById("login-admin-skeleton").style.display = "block";
+                    break;
+                default:
+                    document.getElementById("preloader").style.display = "block";
+                    break;
+            }
+        };
+        return {
+            showLoader: _showLoader
+        }
+    })();
+    setTimeout(function () {
+        loader.showLoader();
+    }, 200);
+  </script>
+<link href="styles.ca0a8003d147a1272727.bundle.css" rel="stylesheet"/></head>
+
+<body>
+    
+  <app>
+  </app>
+
+  <div id="preloader" style="display: none;">
+    <div></div>
+  </div>
+
+  <div id="login-skeleton" style="display: none;">
+    <div class="motum-skeleton-container">
+      <div class="flex-item">
+        <div class="rectangle1">
+          <img width="130px" height="90px" style="margin-left: 10%;" src="assets/fonts/themeMotum/iconsFont/icons-svg/motum-logo-01.svg" />
+        </div>
+        <div class="rectangle2">
+          <div class="rectangle2-1 shining"></div>
+          <div class="rectangle2-2">
+            <div class="rectangle2-2-1"></div>
+            <div class="circle2-2-1"></div>
+            <div class="rectangle2-2-2"></div>
+            <div class="circle2-2-2"></div>
+            <div class="rectangle2-2-3"></div>
+          </div>
+        </div>
+        <div class="rectangle3 shining"></div>
+      </div>
+
+      <div class="flex-item">
+        <div class="rectangle1">
+          <div class="rectangle1-1">
+            <div class="rectangle1-1-1 shining"></div>
+          </div>
+
+          <div class="rectangle1-2">
+            <div class="rectangle1-2-1 shining"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex-item">
+        <div class="rectangle0 shining"></div>
+        <div class="rectangle1">
+          <div class="rectangle1-1 shining"></div>
+          <div class="circle1-1"></div>
+          <div class="rectangle1-2 shining"></div>
+        </div>
+        <div class="rectangle2">
+          <div class="rectangle2-1 shining"></div>
+          <div class="circle2-1"></div>
+          <div class="rectangle2-2 shining"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="login-admin-skeleton" style="display: none;">
+    <div class="motum-skeleton-container">
+      <div class="flex-item">
+        <div class="rectangle1">
+          <img width="130px" height="90px" style="margin-left: 10%;" src="assets/fonts/themeMotum/iconsFont/icons-svg/motum-logo-02.svg" />
+        </div>
+        <div class="rectangle2">
+          <div class="rectangle2-1 shining"></div>
+          <div class="rectangle2-2">
+            <div class="rectangle2-2-1"></div>
+            <div class="circle2-2-1"></div>
+            <div class="rectangle2-2-2"></div>
+            <div class="circle2-2-2"></div>
+            <div class="rectangle2-2-3"></div>
+          </div>
+        </div>
+        <div class="rectangle3 shining"></div>
+      </div>
+
+      <div class="flex-item">
+        <div class="rectangle1">
+          <div class="rectangle1-1">
+            <div class="rectangle1-1-1 shining"></div>
+          </div>
+
+          <div class="rectangle1-2">
+            <div class="rectangle1-2-1 shining"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex-item">
+        <div class="rectangle0 shining"></div>
+        <div class="rectangle1">
+          <div class="rectangle1-1 shining"></div>
+          <div class="circle1-1"></div>
+          <div class="rectangle1-2 shining"></div>
+        </div>
+        <div class="rectangle2">
+          <div class="rectangle2-1 shining"></div>
+          <div class="circle2-1"></div>
+          <div class="rectangle2-2 shining"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<script>
+(function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+ga('create', 'UA-118976742-1', 'auto');// add your tracking ID here.
+
+</script>
+<script type="text/javascript" src="inline.48395fee4bd9a881bf27.bundle.js"></script><script type="text/javascript" src="polyfills.18ccaa9b5ca1996a8c9c.bundle.js"></script><script type="text/javascript" src="scripts.46b39155298a64bb710f.bundle.js"></script><script type="text/javascript" src="vendor.ea6c96a9f997f18bd79c.bundle.js"></script><script type="text/javascript" src="main.df2733bdca8feff2b6d4.bundle.js"></script></body>
+
+</html>
