@@ -1,0 +1,153 @@
+{
+  "usuarios": [
+    {
+
+      "nombre": "Jesús Toscano ",
+      "usuario": "genericuser",
+      "productos": "MotumWeb",
+      "last_access": "07/06/2018",
+      "rol": "Admininstrador",
+      "status": true,
+      "email": "genericuser@email.com",
+      "telefono": "2702424247",
+      "apellidop": "userp",
+      "apellidom": "userm"
+    },
+    {
+
+      "nombre": "Jesús Toscano 2",
+      "usuario": "genericuser",
+      "productos": "RoadAdvisor",
+      "last_access": "07/06/2018",
+      "rol": "Admininstrador",
+      "status": true,
+      "email": "genericuser@email.com",
+      "telefono": "2702424247",
+      "apellidop": "userp",
+      "apellidom": "userm"
+    },
+    {
+
+      "nombre": "Jesús Toscano 3",
+      "usuario": "genericuser",
+      "productos": "Femsa",
+      "last_access": "07/06/2018",
+      "rol": "Admininstrador",
+      "status": true,
+      "email": "genericuser@email.com",
+      "telefono": "2702424247",
+      "apellidop": "userp",
+      "apellidom": "userm"
+    }
+  ],
+  "clients": [
+    {
+      "solicitante": "Nombre apellido",
+      "cliente": "Client A",
+      "pedido": 0,
+      "fecha_pedido": "07/06/2018",
+      "suscripciones": 9,
+      "integrantes": 35,
+      "last_access": "22/02/2018",
+      "rol": "Demo",
+      "status": 0,
+      "instaladas": "3 de 5"
+    },
+    {
+      "solicitante": "Nombre apellido",
+      "cliente": "Client B",
+      "pedido": 1,
+      "fecha_pedido": "07/06/2018",
+      "suscripciones": 9,
+      "integrantes": 35,
+      "last_access": "22/02/2018",
+      "rol": "Compra",
+      "status": 1,
+      "instaladas": "3 de 5"
+    },
+    {
+      "solicitante": "Nombre apellido",
+      "cliente": "Client C",
+      "pedido": 2,
+      "fecha_pedido": "07/06/2018",
+      "suscripciones": 9,
+      "integrantes": 35,
+      "last_access": "22/02/2018",
+      "rol": "Caducado",
+      "status": 2,
+      "instaladas": "3 de 5"
+    },
+    {
+      "solicitante": "Nombre apellido",
+      "cliente": "Client D",
+      "pedido": 7,
+      "fecha_pedido": "07/06/2018",
+      "suscripciones": 9,
+      "integrantes": 35,
+      "last_access": "22/02/2018",
+      "rol": "Demo",
+      "status": 0,
+      "instaladas": "3 de 5"
+    },
+    {
+      "solicitante": "Nombre apellido",
+      "cliente": "Client E",
+      "pedido": 6,
+      "fecha_pedido": "07/06/2018",
+      "suscripciones": 9,
+      "integrantes": 35,
+      "last_access": "22/02/2018",
+      "rol": "Compra",
+      "status": 1,
+      "instaladas": "3 de 5"
+    },
+    {
+      "solicitante": "Nombre apellido",
+      "cliente": "Client F",
+      "pedido": 9,
+      "fecha_pedido": "07/06/2018",
+      "suscripciones": 9,
+      "integrantes": 35,
+      "last_access": "22/02/2018",
+      "rol": "Caducado",
+      "status": 2,
+      "instaladas": "3 de 5"
+    },
+    {
+      "solicitante": "Nombre apellido",
+      "cliente": "Client D",
+      "pedido": 10,
+      "fecha_pedido": "07/06/2018",
+      "suscripciones": 9,
+      "integrantes": 35,
+      "last_access": "22/02/2018",
+      "rol": "Demo",
+      "status": 0,
+      "instaladas": "3 de 5"
+    },
+    {
+      "solicitante": "Nombre apellido",
+      "cliente": "Client E",
+      "pedido": 4,
+      "fecha_pedido": "07/06/2018",
+      "suscripciones": 9,
+      "integrantes": 35,
+      "last_access": "22/02/2018",
+      "rol": "Compra",
+      "status": 1,
+      "instaladas": "3 de 5"
+    },
+    {
+      "solicitante": "Nombre apellido",
+      "cliente": "Client F",
+      "pedido": 0,
+      "fecha_pedido": "07/06/2018",
+      "suscripciones": 9,
+      "integrantes": 35,
+      "last_access": "22/02/2018",
+      "rol": "Caducado",
+      "status": 2,
+      "instaladas": "3 de 5"
+    }
+  ]
+}
