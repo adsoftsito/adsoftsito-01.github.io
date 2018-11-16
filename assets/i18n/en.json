@@ -15,8 +15,11 @@
     "problems":"¿Problemas para ingresar?"
   },
   "general": {
+    "page":"Page",
+    "of": "of",
     "motum": "Tecnomotum S.A de C.V.",
     "home": "Home",
+	"year":"Year",
     "forms": {
       "option1": "Option 1"
     },
@@ -33,7 +36,13 @@
       "vehicles": "Vehículos"
     },
     "created_with": "Created with",
-    "vehicles": "Vehicles"
+    "vehicles": "Vehicles",
+    "numberEconomic":"Number economic",
+    "device":"device",
+    "cancel":"Cancel",
+    "password":"Password",
+    "recordsCount" : "Records Count",
+    "save": "Save"
   },
   "dashboard": {
     "acquisition_channels": "Acquisition Channels",
@@ -198,6 +207,7 @@
           "disabled": "Disabled"
         },
         "client_user": {
+          "search":"Name or username or role",
             "usersSection": "User",
             "editUsersSection": "Edit User",
             "createUsersSection": "Create User",
@@ -216,7 +226,23 @@
           "edit_section": "Edit clients",
           "new_client": "New client",
           "orders": "Create Order",
-          "createMember": "Create member"
+          "createMember": "Create member",
+          "search":"Account owner or business name or type",
+          "table":{
+            "accountOwner":"Account owner",
+            "businessName":"Business name",
+            "orders":"Orders",
+            "lastOrder":"Last order",
+            "subscriptions":"Subscriptions",
+            "installed":"Installed",
+            "members":"Members",
+            "type":"Type",
+            "engineStop":"Engine stop",
+            "access":"Access",
+            "expires":"Expires",
+            "lastAccess":"Last access",
+            "status":"Status"
+          }
         },
         "clientsOrders":{
             "section":"Pedidos",
@@ -310,7 +336,8 @@
             "sunday": "Sunday",
             "monday": "Monday",
             "saturday": "Saturday",
-            "save": "Save"
+            "save": "Save",
+            "accessExpires": "El acceso caduca"
           },
           "formOrders":{
             "createOrder": "CREATE ORDER",
@@ -343,7 +370,8 @@
             "installed": "Installed",
             "status": "Status",
             "seller": "Vendedor",
-            "dealer": "Dealer"
+            "dealer": "Dealer",
+            "type": "Tipo"
           },
           "search": "Search...",
           "newClient": "New client"
@@ -352,6 +380,7 @@
           "createUser": {
             "title": "New User",
             "newMember": "New Member",
+            "editMember": "EDIT MEMBER",
             "createMember": "CREATE MEMBER",
             "edit": "Edit",
             "users": "Users",
@@ -446,7 +475,82 @@
           "template": "Templates",
           "mytemplates": "My templates",
           "received": "Received"
+        },
+        "normalDashboard":{
+          "measurements":{
+            "art": "alerts",
+            "km": "km",
+            "l": "l",
+            "kmh": "km/h",
+            "kml": "km/l",
+            "h": "h",
+            "porcentaje": "percent",
+            "pesos": "pesos MXN",
+            "rpm": "rpm",
+            "grados": "ºC",
+            "gramos_CO2": "grams of CO2",
+            "falla": "failures",
+            "velocidad": "m/s",
+            "viajes": "Complete trips"
+          },
+          "indicators": {
+                        "i1": "Kilometers",
+                        "i2": "Speeding",
+                        "i3": "Sudden break",
+                        "i4": "Sudden acceleration",
+                        "i5": "Consumed gas",
+                        "i6": "Average speed",
+                        "i7": "Performance",
+                        "i8": "PTO gas",
+                        "i9": "PTO duration",
+                        "i10": "Ralenti gas",
+                        "i11": "Ralenti duration",
+                        "i12": "Engine on duration",
+                        "i13": "Stopped duration",
+                        "i14": "Stopped count",
+                        "i15": "Engine off duration",
+                        "i16": "Gas ralentí percentage",
+                        "i17": "Time ralentí percentage",
+                        "i18": "Time engine percentage",
+                        "i19": "Maximum charge factor",
+                        "i20": "Trips",
+                        "i21": "Time stopped and turned off",
+                        "i22": "Time Stopped On",
+                        "i23": "Engine Failures",
+                        "i24": "Transmission Failures",
+                        "i25": "Brake Failures",
+                        "i26": "Cabin Failures",
+                        "i27": "Consumed gas price",
+                        "i28": "Counting panic button",
+                        "i29": "Maximum RPM",
+                        "i30": "Average RPM",
+                        "i31": "Maximum Speed",
+                        "i32": "Open Door Sensor",
+                        "i33": "Black Point",
+                        "i34": "Maximun Temperature",
+                        "i35": "Filled Fuel Sensor",
+                        "i36": "Dump Fuel Sensor",
+                        "i37": "Out of Route",
+                        "i38": "Maintenance",
+                        "i39": "coupling sensor",
+                        "i40": "unhook sensor",
+                        "i41": "Door Opening Sensor Trailer",
+                        "i42": "CO2",
+                        "i43": "street time",
+                        "i44": "Time Stopped",
+                        "i45": "Ralenti",
+                        "146": "Idle fuel price",
+                        "i47": "Fuel price PTO",
+                        "i48": "Charge factor percentage",
+                        "i49": "Average temperature"
+            }
         }
+      },
+      "maintenance": {
+        "fleetHealth": "Fleet health",
+        "fleetHealthVehicle": "Fleet health by vehicle",
+        "fleetHealthComponent": "Fleet health by component",
+        "faultCodes": " Código de falla"
       },
       "confirmationwindow":{
           "header":"Restore password",
@@ -454,14 +558,28 @@
           "contents":"receive an email that will allow they to reset their password",
           "sendbutton":"Accept"
         },
+        "confirmationwindowClient":{
+            "header":"Restablecer contraseña",
+            "content":" El cliente",
+            "contents":"recibirá un correo que le permitirá restablecer su contraseña.",
+            "sendbutton":"Aceptar"
+        },
         "welcomewindow":{
           "header":"Welcome",
-          "contents": "Do you want to capture an order?",
-          "content":"Successful client creation will send you a welcome email",
+          "contents": "Do you want to continue with your order?",
+          "contentUser":"Successful user creation, a welcome message has been sent to your email",
+          "content":"Successful client creation, a welcome message has been sent to your email",
           "contentMember":"Successful member creation will send you a welcome email",
           "createorder":"Create order",
           "cancel": "Cancel",
           "accept": "Accept"
+        },
+        "modalClientDelete":{
+          "header":"Remove client",
+          "content": "Deleting the selected clients also deletes all their data",
+          "contents":"This action can not be undone",
+          "remove":"Remove",
+          "cancel": "Cancel"
         },
         "modalDelete":{
           "header":"Remove user",
@@ -486,12 +604,12 @@
       "forms":{},
       "login":{
         "login": "Log in with your account",
-        "email":"Email",
+        "email":"Email or user",
         "continuebutton": "Continue",
         "session": "Log in",
         "password" : "password",
         "problems": "Problems to enter?",
-        "warningemail":"Enter an email",
+        "warningemail":"Enter an email or user",
         "registry": "Register and request proof",
         "spanishlanguage": "Español",
         "englishlanguage" : "English",
@@ -502,6 +620,25 @@
         "dangerpass": "Please enter a valid password",
         "warningpass":"Enter a password",
         "admin": "Log in as Administrator"
+      },
+      "userRegister":{
+        "login": "Enter your data to register",
+        "signUp": "Sign Up",
+        "names": "Name(s)",
+        "surnames": "Surnames",
+        "phone": "Phone",
+        "email": "Email",
+        "username": "Create username",
+        "createPassword": "Create a password",
+        "confirmPassword": "Confirm password",
+        "characters": "Minimum of 7 characters",
+        "uppercase": "Include an uppercase",
+        "consecutive": "Do not use consecutive numbers",
+        "number": "Include a number",
+        "lowercase": "Include a lowercase",
+        "repeat": "Do not repeat characters",
+        "incorrectPass": "Passwords entered do not match",
+        "dangeremail": "Please enter a valid email"
       },
       "monitoringreaction":{
         "listUnits":{
@@ -586,17 +723,74 @@
           "route": "Route",
           "distance": "Distance",
           "traveltime": "Travel time",
-          "tea": "TEA"
+          "tea": "TEA",
+          "endoftrip":"The end of the trip",
+          "arrested":"Arrested",
+          "intravel":"In travel",
+          "plannedroute":"Planned route",
+          "routetraveled":"Route traveled",
+          "startoftrip":"Start of trip",
+          "of":"Off"
+        },
+        "mechanicalInformation":{
+          "brand":"Brand",
+          "model":"Model",
+          "plates":"Plates",
+          "brandMotor":"Motor brand",
+          "modelMotor":"Motor model",
+          "hoursMotor":"Motor hours",
+          "transmissionBrand":"Transmission Brand",
+          "transmissionModel":"Transmission Model",
+          "brakes":"Brakes",
+          "odometer":"Odometer",
+          "combustible":"Combustible",
+          "maint":"Maint",
+          "maintPreventive":"Maint preventive",
+          "carrier":"Carrier",
+          "operation":"Operation",
+          "diagnosticStatus":"Diagnostic status",
+          "vehicularHealth":"Vehicular health",
+          "probablyGreaterDamage":"Probably greater damage",
+          "nowMaint":"Now Maint.",
+          "soonMaint":"Soon Maint.",
+          "optimalMaint":"optimum",
+          "fleetHealth":"Fleet health",
+          "activeFaults":"ActiveFaults"
+        },
+        "alert-vehicle":{
+          "lastupdate":"Last update",
+          "solveall":"Solve all",
+          "attendall":"Attend all",
+          "solve":"Solver"
+        },
+        "vehicle-configuration":{
+          "device":"Device",
+          "brand":"Brand",
+          "model":"Model",
+          "maker":"Maker",
+          "serialnumber": "# serial",
+          "product":"Product",
+          "noticestothedriver": "Notices to the driver",
+          "devicebeep": "Device beep",
+          "reminderdriverid":"Reminder Driver ID",
+          "whistleidle":"Pitar realentí",
+          "speedWarning": "Speed ​​warning",
+          "beepindangerousdriving":"Beep in dangerous driving",
+          "seatbeltwhistle":"Seat belt whistle",
+          "drivingbeepingreversing":"Reversing driving beep",
+          "configuredevice":"Configure device",
+          "start":"Start",
+          "end":"End"
         },
         "chat":{
-          "mechanicalreport": "Reporte mecánico",
+          "mechanicalreport": "Mechanical report",
           "requestred": "Solicitud a Red Enlace",
-          "requestfreigthliner": "Solicitud a Enlace Freightliner",
-          "prereport": "Reportar Predenuncia"
+          "requestfreigthliner": "Request to Enlace Freightliner",
+          "prereport": "Report Pre-Denunciation"
         },
         "chatdetail": {
-          "members": "Integrantes",
-          "sharedphotos": "Fotos compartidas"
+          "members": "Members",
+          "sharedphotos": "Shared photos"
         },
         "toolMapControl": {
           "interestPoint": {
@@ -635,7 +829,69 @@
             "satelite": "Satelite",
             "3dView": "3D view"
           }
-        }
+        },
+        "patrimonial_security":{
+          "currentStateVehicle":"Current state of the vehicle",
+          "location":"Location",
+          "speed":"Speed",
+          "ignition":"Ignition",
+          "typeOfSygnal":"Type of signal",
+          "lastPosition":"Last position",
+          "state":"State",            
+          "vehicleInformation":"Vehicle information",
+          "carrier":"Carrrier",
+          "typeOfVehicle":"Type of vehicle",
+          "comment":"Comment",
+          "transmitter":"Transmitter",
+          "dateOfLastShipment":"Date of last shipment",
+          "dateOfLastApplication":"Date of last application",
+          "use":"Use",
+          "mobile":"Mobile",
+          "hybrid":"Hybrid",
+          "labelInputModal":"To proceed, it is necessary to enter your password",
+          "deactivateEngineStop":"Deactivate engine stop",
+          "activateEngineStop":"Activate engine stop",
+          "economic":"#Economic",
+          "risk":"Risk",
+          "dateOfPosition":"Date of position",
+          "motorStopStatus":"Motor stop status",
+          "WithoutMotorStop":"Without motor stop",
+          "WithMotorStop":"With motor stop",
+          "commandSent":"Command sent",
+          "shippingDate":"Shipping date",
+          "dateOfApplication":"Date of application",
+          "current":"Current",
+          "log":"Binnacle",
+          "comments":"Comments",
+          "motorStop":"Motor Stop",
+          "messageAlert":"Your account has not registered the responsive to send engine stop",
+          "messageDownloadAlert":"Download responsive here.",
+          "aware":"Aware",
+          "event": "Event",
+          "date": "Date",
+          "locationOrPointOfInterest": "Location or point of interest"
+         },
+         "configuringAlerts":{
+          "headerTable":{
+           "folio":"Folio",
+           "subfleet":"Subfleet",
+           "unit":"Unit",
+           "user":"User",
+           "center":"Center",
+           "process":"Process",
+           "dateAndTimeOfEvent":"Date and time of event",
+           "dateAndTimeOfAttention":"Date and time of attention",
+           "resolutiondateAndTime":"Resolution date and time",
+           "criticity":"Criticity",
+           "alert":"Alert",
+           "operator":"Operator",
+           "comment":"Comment"
+          },
+          "current":"Current"       ,
+          "binnacle":"Binnacle"
+
+         }
+
       },
       "titletable":{
         "usersSection": "Users",
@@ -651,7 +907,8 @@
           "status": "Status",
           "username": "Username",
           "products": "Products",
-          "plataforms": "Plataforms",
+          "platforms": "Plataforms",
+          "applications": "Applications",
           "last_access": "Last access",
           "expiration": "Expiration"
       },
@@ -678,11 +935,103 @@
           "delete": "Eliminar",
           "deleteMessage": "Al eliminar el grupo, los subgrupos serán eliminados y los vehículos quedarán desasignados.",
           "canBeUndone": "Esta acción no se puede deshacer."
+        },
+        "modifyVehicle": {
+          "title": "Modify vehicles",
+          "columnHeaders": {
+            "economicNumber": "Economic",
+            "businessName": "Business name",
+            "distributor": "Distributor",
+            "plates": "Plates",
+            "vin": "VIN",
+            "type": "Type",
+            "trademark": "Trademark",
+            "model": "Model",
+            "year": "Year"
+          }
+        },
+        "formModifyVehicle": {
+          "title": "Edit vehicle"
+        },
+        "vehiclesGroups": {
+          "title": "Vehicles and groups"
+        }
+      },
+    "ranking":{
+      "last": "Last ",
+      "days": "days",
+      "current": "Current",
+      "binnacle": "Binnacle",
+      "records" : "Records count:",
+      "users":{
+        "title": "Users",
+        "recordsCount" : "Records count",
+        "search" : "User or department or current ranking",
+        "cards":{
+          "serviceScore" : "Service score",
+          "platformKnowledge" : "Platform knowledge",
+          "lastUpdate" : "Last update",
+          "userSince" : "User since"
+        },
+        "tables":{
+          "currentRanking" : "Current ranking",
+          "user" : "User",
+          "serviceScore": "Service score",
+          "plaformKnowledge" : "Platform knowledge",
+          "generalScore" : "General score",
+          "department" : "Department",
+          "userSince" : "User since"
+        }
+      },
+      "drivers":{
+        "search":"Drivers",
+        "title":"Drivers",
+        "tables":{
+          "ranking":"Ranking",
+          "driver":"Driver",
+          "score":"Score",
+          "tripsAmount": "Trips amount",
+          "kms":"kilometers",
+          "performance":"performance"
+        }
+      },
+      "vehiclePerformance":{
+        "search":"Economic number or performance or brand",
+        "title": "Vehicle performance",
+        "performanceCurve":"Performance curve",
+        "fuelConsumption":"Fuel consumption",
+        "tables":{
+          "rankingNumber": "Ranking",
+          "economicNumber": "Economic number",
+          "performance": "Performance",
+          "kms": "Kilometers",
+          "comb": "Combined",
+          "ralenti":"Ralentí",
+          "loadFact": "% Load fact",
+          "rpmAvr":"AVR RPM",
+          "avgVol":"AVG Vol.",
+          "accelerations":"Accelerations",
+          "brakes":"Brakes",
+          "downloadsPercentaje":"% Downloads",
+          "brand":"Brand",
+          "model": "Model",
+          "year": "Year"
         }
       }
+    }
   },
   "theme": {
     "components": {
+      "motumModalDatePicker":{
+        "accept":"Accept",
+        "cancel":"Cancel",
+        "last":"Last ",
+        "days":"days",
+        "lastMonth": "Prev month",
+        "currentMonth": "This month",
+        "today":"Today",
+        "yesterday":"YD"
+      },
       "bapagetop":{
         "toSeeHow":"To see as",
         "state":"State:",
