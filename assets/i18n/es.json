@@ -21,8 +21,11 @@
     "error_01": "Error 404"
   },
   "general": {
+    "page":"Página",
+    "of": "de",
     "motum": "Tecnomotum S.A de C.V.",
     "home": "Home",
+    "year":"Año",
     "forms": {
       "option1": "Option 1"
     },
@@ -39,7 +42,13 @@
       "vehicles": "Vehicles"
     },
     "created_with": "Created with",
-    "vehicles": "Vehículos"
+    "vehicles": "Vehículos",
+    "numberEconomic":"Número económico",
+    "device":"Dispositivo",
+    "cancel":"Cancelar",
+    "password":"Contraseña",
+    "recordsCount" : "Total de registros",
+    "save": "Guardar"
   },
   "dashboard": {
     "acquisition_channels": "Acquisition Channels",
@@ -153,8 +162,6 @@
     "unitVolume": "l",
     "unitHours": "h"
   },
-
-
   "pages" :{
       "userControl": {
         "title": "Usuario",
@@ -164,6 +171,7 @@
         "telefono": "Telefono",
         "correo": "Correo electronico",
         "rol": "Rol",
+
         "status": "Status",
         "userStatus": {
           "locked": "Bloqueado",
@@ -171,6 +179,7 @@
           "disabled": "Inhabilitado"
         },
         "client_user": {
+            "search":"Nombre o usuario o rol",
             "usersSection": "Usuarios",
             "editUsersSection": "Editar Usuario",
             "createUsersSection": "Crear Usuario",
@@ -189,7 +198,23 @@
           "edit_section": "Editar cliente",
           "new_client": "Nuevo cliente",
           "orders": "Crear Pedido",
-          "createMember": "Crear integrante"
+          "createMember": "Crear integrante",
+          "search":"Dueño de la cuenta o razón social o tipo",
+          "table":{
+            "accountOwner":"Dueño de la cuenta",
+            "businessName":"Razón social",
+            "orders":"Pedidos",
+            "lastOrder":"Último pedido",
+            "subscriptions":"Suscripciones",
+            "installed":"Instaladas",
+            "members":"Integrantes",
+            "type":"Tipo",
+            "engineStop":"Paro de motor",
+            "access":"Accesos",
+            "expire":"Vencimiento",
+            "lastAccess":"Último acceso",
+            "status":"Estado"
+          }
         },
         "clientsOrders":{
             "section":"Pedidos",
@@ -283,7 +308,8 @@
             "sunday": "Domingo",
             "monday": "Lunes",
             "saturday": "Sábado",
-            "save": "Guardar"
+            "save": "Guardar",
+            "accessExpires": "El acceso caduca"
           },
           "formOrders":{
             "createOrder": "CREAR PEDIDO",
@@ -316,15 +342,17 @@
             "installed": "Instalados",
             "status": "Estado",
             "seller": "Vendedor",
-            "dealer": "Dealer"
+            "dealer": "Dealer",
+            "type": "Tipo"
           },
           "search": "Búsqueda...",
           "newClient": "Nuevo cliente"
         },
         "usersComponent": {
           "createUser": {
-            "title": "Nuevo Usuario",
+            "title": "Nuevo usuario",
             "newMember": "Nuevo Integrante",
+            "editMember": "EDITAR INTEGRANTE",
             "createMember": "CREAR INTEGRANTE",
             "edit": "Editar",
             "users": "Usuarios",
@@ -417,7 +445,82 @@
           "template": "Plantillas",
           "mytemplates": "Mis plantillas",
           "received": "Recibidas"
+        },
+        "normalDashboard":{
+          "measurements":{
+            "art": "alerts",
+            "km": "km",
+            "l": "l",
+            "kmh": "km/h",
+            "kml": "km/l",
+            "h": "h",
+            "porcentaje": "percent",
+            "pesos": "pesos MXN",
+            "rpm": "rpm",
+            "grados": "ºC",
+            "gramos_CO2": "grams of CO2",
+            "falla": "failures",
+            "velocidad": "m/s",
+            "viajes": "Complete trips"
+          },
+          "indicators": {
+                        "i1": "Kilometraje",
+                        "i2": "Excesos de velocidad",
+                        "i3": "Frenadas súbitas",
+                        "i4": "Aceleraciones súbitas",
+                        "i5": "Combustible consumido",
+                        "i6": "Velocidad promedio",
+                        "i7": "Rendimiento",
+                        "i8": "Combustible PTO",
+                        "i9": "Tiempo PTO",
+                        "i10": "Combustible ralentí",
+                        "i11": "Tiempo ralentí",
+                        "i12": "Tiempo encendido",
+                        "i13": "Tiempo detenido",
+                        "i14": "Detenidos",
+                        "i15": "Tiempo apagado",
+                        "i16": "Porcentaje combustible ralentí",
+                        "i17": "Porcentaje horas ralentí",
+                        "i18": "Porcentaje horas motor",
+                        "i19": "Factor de carga máxima",
+                        "i20": "Viajes",
+                        "i21": "Tiempo detenido y apagado",
+                        "i22": "Tiempo detenido y encendido",
+                        "i23": "Fallas motor",
+                        "i24": "Fallas transmisión",
+                        "i25": "Fallas frenos",
+                        "i26": "Fallas cabina",
+                        "i27": "Precio combustible consumido",
+                        "i28": "Conteo botón de pánico",
+                        "i29": "Máximo RPM",
+                        "i30": "Promedio RPM",
+                        "i31": "Velocidad máxima",
+                        "i32": "Sensor puertas abiertas",
+                        "i33": "Punto negro",
+                        "i34": "Temperatura máxima",
+                        "i35": "Sensor combustible llenado",
+                        "i36": "Sensor combustible vaciado",
+                        "i37": "Fuera de ruta",
+                        "i38": "Mantenimiento",
+                        "i39": "Sensor enganche",
+                        "i40": "Sensor desenganche",
+                        "i41": "Sensor de apertura de puertas remolque",
+                        "i42": "CO2",
+                        "i43": "Tiempo en calle",
+                        "i44": "Tiempo detenido",
+                        "i45": "Ralentí",
+                        "i46": "Precio Combustible Ralenti",
+                        "i47": "Precio combustible PTO",
+                        "i48": "Porcentaje factor carga",
+                        "i49": "Temperatura promedio"
+            }
         }
+      },
+      "maintenance": {
+        "fleetHealth": "Salud de flota",
+        "fleetHealthVehicle": "Salud de flota por vehículo",
+        "fleetHealthComponent": "Salud de flota por componente",
+        "faultCodes": " Código de falla"
       },
       "confirmationwindow":{
           "header":"Restablecer contraseña",
@@ -425,14 +528,28 @@
           "contents":"recibirá un correo que le permitirá restablecer su contraseña.",
           "sendbutton":"Aceptar"
         },
+        "confirmationwindowClient":{
+            "header":"Restablecer contraseña",
+            "content":" El cliente",
+            "contents":"recibirá un correo que le permitirá restablecer su contraseña.",
+            "sendbutton":"Aceptar"
+        },
         "welcomewindow":{
           "header":"Bienvenido",
-          "contents": "¿ Deseas capturar un pedido?",
+          "contents": "¿Desea continuar con tu pedido?",
+          "contentUser":"Creación de usuario exitosa se le enviará un correo electrónico de bienvenida",
           "content":"Creación de cliente exitosa se le enviará un correo electrónico de bienvenida",
           "contentMember":"Creación de integrante exitosa se le enviará un correo electrónico de bienvenida",
           "createorder":"Crear pedido",
           "cancel": "Cancelar",
           "accept": "Aceptar"
+        },
+        "modalClientDelete":{
+          "header":"Eliminar Cliente",
+          "content": "Al eliminar los clientes seleccionados también se eliminarán todos sus datos.",
+          "contents":"Esta acción no se puede deshacer",
+          "remove":"Eliminar",
+          "cancel": "Cancelar"
         },
         "modalDelete":{
           "header":"Eliminar usuario",
@@ -545,26 +662,55 @@
             "startoftrip":"Inicio de viaje",
             "of":"Apagado"
           },
+          "mechanicalInformation":{
+            "brand":"Marca",
+            "model":"Modelo",
+            "plates":"Placas",
+            "brandMotor":"Marca motor",
+            "modelMotor":"Modelo motor",
+            "hoursMotor":"Horas motor",
+            "transmissionBrand":"Marca Transmisión",
+            "transmissionModel": "Modelo Transmisión",
+            "brakes":"Frenos",
+            "odometer":"Odómetro",
+            "combustible":"Combustible",
+            "maint":"Mtto",
+            "maintPreventive":"Mtto. preventivo",
+            "carrier":"Transportista",
+            "operation":"Operación",
+            "diagnosticStatus":"Estado de diagnóstico",
+            "vehicularHealth":"Salud vehicular",
+            "probablyGreaterDamage":"Probable daño mayor",
+            "nowMaint":"Mtto. Ahora",
+            "soonMaint":"Mtto. Pronto",
+            "optimalMaint":"Óptimo",
+            "fleetHealth":"Salud de flota",
+            "activeFaults":"Fallas activas"
+          },
           "alert-vehicle":{
             "lastupdate":"Última actialización",
             "solveall":"Resolver todas",
-            "attendall":"Atender todas"
+            "attendall":"Atender todas",
+            "solve":"Resolver"
           },
           "vehicle-configuration":{
+            "device":"Dispositivo",
             "brand":"Marca",
             "model":"Modelo",
             "maker":"Fabricante",
             "serialnumber": "# de serie",
-            "serviceplan":"Plan de servicio",
-            "noticestothedriver": "Avisos al condutor",
+            "product":"Producto",
+            "noticestothedriver": "Avisos al conductor",
             "devicebeep": "Pitido de dispositivo",
             "reminderdriverid":"Recordatorio ID del conductor",
             "whistleidle":"Pitar realentí",
-            "securitywarning": "Advertencia de seguridad",
+            "speedWarning": "Advertencia de velocidad",
             "beepindangerousdriving":"Pitido en conducción peligrosa",
             "seatbeltwhistle":"Pitido de cinturón de seguridad",
-            "drivingbeepingreversing":"pitido de conducción marcha atrás",
-            "configuredevice":"Configurar dispositivo"
+            "drivingbeepingreversing":"Pitido de conducción marcha atrás",
+            "configuredevice":"Configurar dispositivo",
+            "start":"Comienzo",
+            "end":"Fin"
           },
           "chat":{
             "mechanicalreport": "Reporte mecánico",
@@ -613,19 +759,83 @@
               "satelite": "Satélite",
               "3dView": "Vista 3D"
             }
+          },
+          "patrimonial_security":{
+            "currentStateVehicle":"Estado actual del vehículo",
+            "location":"Ubicación",
+            "speed":"Velocidad",
+            "ignition":"Ignición",
+            "typeOfSygnal":"Tipo de señal",
+            "lastPosition":"Última posición",
+            "state":"Estado",            
+            "vehicleInformation":"Información del vehículo",
+            "carrier":"Transportista",
+            "typeOfVehicle":"Tipo de vehículo",
+            "comment":"Comentario",
+            "transmitter":"Emisor",
+            "dateOfLastShipment":"Fecha de último envío",
+            "dateOfLastApplication":"Fecha de última aplicación",
+            "use":"Usar",
+            "mobile":"Celular",
+            "hybrid":"Híbrido",
+            "labelInputModal":"Para proceder, es necesario ingresar su contraseña",
+            "deactivateEngineStop":"Desactivar paro de motor",
+            "activateEngineStop":"Activar paro de motor",
+            "economic":"#Económico",
+            "risk":"Riesgo",
+            "dateOfPosition":"Fecha de posición",
+            "motorStopStatus":"Estado de paro de motor",
+            "WithoutMotorStop":"Sin paro de motor",
+            "WithMotorStop":"Con paro de motor",
+            "commandSent":"Comando enviado",
+            "shippingDate":"Fecha de envío",
+            "dateOfApplication":"Fecha de aplicación",
+            "current":"Actual",
+            "log":"Bitácora",
+            "comments":"Comentarios",
+            "motorStop":"Paro de motor",
+            "messageAlert":"Su cuenta no tiene registrada la responsiva de envío de paro de motor",
+            "messageDownloadAlert":"Descargar responsiva aquí",
+            "aware":"Enterado",
+            "event": "Evento",
+            "date": "Fecha",
+            "locationOrPointOfInterest": "Ubicación o punto de interés"
+
+          },
+          "configuringAlerts":{
+           "headerTable":{
+            "folio":"Folio",
+            "subfleet":"Subflota",
+            "unit":"unit",
+            "user":"Usuario",
+            "center":"Centro",
+            "process":"Proceso",
+            "dateAndTimeOfEvent":"Fecha y hora de evento",
+            "dateAndTimeOfAttention":"Fecha y hora de atención",
+            "resolutiondateAndTime":"Fecha y hora de resolución",
+            "criticity":"Criticidad",
+            "alert":"Alerta",
+            "operator":"Operador",
+            "comment":"Comentario"
+           },
+           "current":"Actual",
+           "binnacle":"Bitácora"
+        
+
           }
+
         },
       "editors":{},
       "forms":{},
       "login":{
         "login": "Inicia sesión con tu cuenta",
-        "email":"Correo electrónico",
+        "email":"Correo electrónico o usuario",
         "continuebutton": "Continuar",
         "session": "Iniciar sesión",
         "password" : "Contraseña",
         "problems": "¿Problemas para ingresar?",
         "registry": "Registrarse y solicitar prueba",
-        "warningemail":"Introduce un correo electrónico",
+        "warningemail":"Introduce un correo electrónico o usuario",
         "spanishlanguage": "Español",
         "englishlanguage" : "English",
         "terms": "Términos y condiciones",
@@ -635,6 +845,25 @@
         "dangerpass": "Por favor introduce una contraseña válida",
         "warningpass":"Introduce una contraseña",
         "admin": "Inicia sesión como Administrador"
+      },
+      "userRegister":{
+        "login": "Ingresa tus datos para registrarte",
+        "signUp": "Registrarse",
+        "names": "Nombre(s)",
+        "surnames": "Apellidos",
+        "phone": "Teléfono",
+        "email": "Correo electrónico",
+        "username": "Crear nombre de usuario",
+        "createPassword": "Crear contraseña",
+        "confirmPassword": "Confirmar contraseña",
+        "characters": "Mínimo de 7 caracteres",
+        "uppercase": "Incluir una mayúscula",
+        "consecutive": "No utilizar números consecutivos",
+        "number": "Incluir un número",
+        "lowercase": "Incluir una minúscula",
+        "repeat": "No repetir caracteres",
+        "incorrectPass": "Las contraseñas ingresadas no coinciden",
+        "dangeremail": "Por favor introduce un correo válido"
       },
       "titletable":{
           "usersSection": "Usuarios",
@@ -650,7 +879,8 @@
           "status": "Estado",
           "username": "Usuario",
           "products": "Productos",
-          "plataforms": "Plataformas",
+          "platforms": "Plataformas",
+          "applications": "Aplicaciones",
           "last_access": "Último acceso",
           "expiration": "Vencimiento"
       },
@@ -687,11 +917,103 @@
         "delete": "Eliminar",
         "deleteMessage": "Al eliminar el grupo, los subgrupos serán eliminados y los vehículos quedarán desasignados.",
         "canBeUndone": "Esta acción no se puede deshacer."
+      },
+      "modifyVehicle": {
+        "title": "Modificar vehículos",
+        "columnHeaders": {
+          "economicNumber": "Económico",
+          "businessName": "Razón social",
+          "distributor": "Distribuidor",
+          "plates": "Placs",
+          "vin": "VIN",
+          "type": "Tipo",
+          "trademark": "Marca",
+          "model": "Modelo",
+          "year": "Año"
+        }
+      },
+      "formModifyVehicle": {
+        "title": "Editar vehículo"
+      },
+      "vehiclesGroups": {
+        "title": "Vehículos y grupos"
+      }
+    },
+    "ranking":{
+        "last": "Últimos ",
+        "days": "días",
+        "current": "Actual",
+        "binnacle": "Bitácora",
+        "records" : "Total de registros:",
+        "users":{
+          "title": "Usuarios",
+          "recordsCount" : "Total de registros",
+          "search" : "Usuario o departamento o ranking actual",
+          "cards":{
+            "serviceScore" : "Puntaje de servicio",
+            "platformKnowledge" : "Conocimiento de la plataforma",
+            "lastUpdate" : "Última actualización",
+            "userSince" : "Usuario desde"
+          },
+          "tables":{
+            "currentRanking" : "Ranking actual",
+            "user" : "Usuario",
+            "serviceScore": "Puntaje de servicio",
+            "plaformKnowledge" : "Conocimiento de la plataforma",
+            "generalScore" : "Puntaje general",
+            "department" : "Departamento",
+            "userSince" : "Usuario desde"
+          }
+        },
+      "drivers":{
+        "search":"Operadores",
+        "title":"Operadores",
+        "tables":{
+          "ranking":"Ranking",
+          "driver":"Operador",
+          "score":"Puntaje",
+          "tripsAmount": "Número de viajes",
+          "kms":"Kilometraje",
+          "performance":"Rendimiento"
+        }
+      },
+      "vehiclePerformance":{
+        "search":"#Económico o rendimiento o marca",
+        "performanceCurve":"Campana de rendimiento",
+        "fuelConsumption":"Consumo de combustible",
+        "title": "Rendimiento Vehicular",
+        "tables":{
+          "rankingNumber": "Ranking",
+          "economicNumber": "#Económico",
+          "performance": "Rendimiento",
+          "kms": "Kms.",
+          "comb": "Comb.",
+          "ralenti":"Ralentí",
+          "loadFact": "% Fact. de carga",
+          "rpmAvr":"AVR RPM",
+          "avgVol":"AVG Vol.",
+          "accelerations":"Aceleraciones",
+          "brakes":"Frenadas",
+          "downloadsPercentaje":"% Descargas",
+          "brand":"Marca",
+          "model": "Modelo",
+          "year": "Año"
+        }
       }
     }
   },
   "theme": {
     "components": {
+      "motumModalDatePicker":{
+        "accept":"Aceptar",
+        "cancel":"Cancelar",
+        "last":"Últimos ",
+        "days":"días",
+        "lastMonth": "Mes anterior",
+        "currentMonth": "Mes actual",
+        "today":"Hoy",
+        "yesterday":"Ayer"
+      },
       "bapagetop":{
         "toSeeHow":"Ver como",
         "state":"Estado:",
@@ -716,9 +1038,7 @@
     },
     "services": {}
   },
-
-  "Menu":
-  {
+  "Menu": {
     "dashboard": "Dashboard",
     "logistica": "Logistica",
     "ranking": "Ranking",
@@ -736,5 +1056,4 @@
     "red": "Red",
     "vehicles": "Vehiculos"
   }
-
 }
