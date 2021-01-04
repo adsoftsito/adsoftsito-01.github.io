@@ -17,6 +17,10 @@ export class DashboardComponent implements OnInit, OnDestroy {
   constructor(private graphqlProductsService: GraphqlProductsService) {}
 
   ngOnInit() {
+
+
+
+    
     this.querySubscription = this.graphqlProductsService.links()
       .valueChanges
       .subscribe(({ data, loading }) => {
