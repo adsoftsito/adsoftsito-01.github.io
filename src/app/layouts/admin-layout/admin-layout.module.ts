@@ -17,6 +17,11 @@ import {MatRippleModule} from '@angular/material/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select';
+import {NewUserComponent } from '../../new-user/new-user.component';
+import {LoginComponent } from '../../login/login.component';
+import { StorageService } from "../../../services/storage.service";
+import {ProductsComponent } from '../../products/products.component';
+import {NewProductComponent } from '../../new-product/new-product.component';
 
 @NgModule({
   imports: [
@@ -34,13 +39,19 @@ import {MatSelectModule} from '@angular/material/select';
   declarations: [
     DashboardComponent,
     UserProfileComponent,
+    NewUserComponent,
+    NewProductComponent,
+    LoginComponent,
+    ProductsComponent,
     TableListComponent,
     TypographyComponent,
     IconsComponent,
     MapsComponent,
     NotificationsComponent,
     UpgradeComponent,
-  ]
+  ],
+  providers: [StorageService]
+
 })
 
 export class AdminLayoutModule {}

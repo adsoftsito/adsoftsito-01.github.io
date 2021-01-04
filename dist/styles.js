@@ -7,9 +7,9 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/m/Desktop/biouv-front/node_modules/perfect-scrollbar/css/perfect-scrollbar.css */"faiq");
-__webpack_require__(/*! /Users/m/Desktop/biouv-front/src/assets/scss/material-dashboard.scss */"nhev");
-module.exports = __webpack_require__(/*! /Users/m/Desktop/biouv-front/src/assets/css/demo.css */"xuPZ");
+__webpack_require__(/*! /Users/m/Desktop/cmf-iot/node_modules/perfect-scrollbar/css/perfect-scrollbar.css */"faiq");
+__webpack_require__(/*! /Users/m/Desktop/cmf-iot/src/assets/scss/material-dashboard.scss */"nhev");
+module.exports = __webpack_require__(/*! /Users/m/Desktop/cmf-iot/src/assets/css/demo.css */"xuPZ");
 
 
 /***/ }),

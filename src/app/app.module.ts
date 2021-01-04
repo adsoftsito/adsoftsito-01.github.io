@@ -18,15 +18,19 @@ import { IconsComponent } from './icons/icons.component';
 import { MapsComponent } from './maps/maps.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { UpgradeComponent } from './upgrade/upgrade.component';
+import { BrowserModule } from '@angular/platform-browser';
+
 import {
   AgmCoreModule
 } from '@agm/core';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { GraphQLModule } from './graphql.module';
 
 @NgModule({
   imports: [
     BrowserAnimationsModule,
     FormsModule,
+    BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
     ComponentsModule,
@@ -34,7 +38,8 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
     AppRoutingModule,
     AgmCoreModule.forRoot({
       apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
-    })
+    }),
+    GraphQLModule
   ],
   declarations: [
     AppComponent,

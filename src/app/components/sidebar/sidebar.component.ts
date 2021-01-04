@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { GraalvService } from '../../../services/graalv.service';
 
 declare const $: any;
 declare interface RouteInfo {
@@ -10,13 +9,16 @@ declare interface RouteInfo {
 }
 export const ROUTES: RouteInfo[] = [
     { path: '/dashboard', title: 'Dashboard',  icon: 'dashboard', class: '' },
-    { path: '/user-profile', title: 'User Profile',  icon:'person', class: '' },
+    { path: '/productos', title: 'Productos',  icon: 'dashboard', class: '' },
+    { path: '/promociones', title: 'Promociones',  icon: 'dashboard', class: '' },
+    { path: '/clientes', title: 'Clientes',  icon: 'dashboard', class: '' },
+    /* { path: '/user-profile', title: 'User Profile',  icon:'person', class: '' },
     { path: '/table-list', title: 'Table List',  icon:'content_paste', class: '' },
     { path: '/typography', title: 'Typography',  icon:'library_books', class: '' },
     { path: '/icons', title: 'Icons',  icon:'bubble_chart', class: '' },
     { path: '/maps', title: 'Maps',  icon:'location_on', class: '' },
     { path: '/notifications', title: 'Notifications',  icon:'notifications', class: '' },
-    { path: '/upgrade', title: 'Upgrade to PRO',  icon:'unarchive', class: 'active-pro' },
+    { path: '/upgrade', title: 'Upgrade to PRO',  icon:'unarchive', class: 'active-pro' },*/
 ];
 
 @Component({
@@ -28,15 +30,16 @@ export class SidebarComponent implements OnInit {
   menuItems: any[];
   version = "0.0"
 
-  constructor(private graalvService: GraalvService) { }
+  constructor() { }
 
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
+    /*
     this.graalvService.getVersion()
     .subscribe((data: any) => {
      this.version = data.version;
      //alert(data.version);
-   });
+   });*/
   }
   isMobileMenu() {
       if ($(window).width() > 991) {
