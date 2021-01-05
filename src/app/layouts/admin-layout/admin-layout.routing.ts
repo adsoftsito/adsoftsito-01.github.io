@@ -12,6 +12,7 @@ import { NewUserComponent } from '../../new-user/new-user.component';
 import { ProductsComponent } from '../../products/products.component';
 import { LoginComponent } from '../../login/login.component';
 import { NewProductComponent } from '../../new-product/new-product.component';
+import { CarritocomprasComponent } from '../../carritocompras/carritocompras.component';
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -62,6 +63,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'new-product',    component: NewProductComponent },
     { path: 'login',          component: LoginComponent },
     { path: 'productos',      component: ProductsComponent },
+    { path: 'carrito',        component: CarritocomprasComponent },
     { path: 'table-list',     component: TableListComponent },
     { path: 'typography',     component: TypographyComponent },
     { path: 'icons',          component: IconsComponent },

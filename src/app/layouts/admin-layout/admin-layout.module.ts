@@ -22,6 +22,11 @@ import {LoginComponent } from '../../login/login.component';
 import { StorageService } from "../../../services/storage.service";
 import {ProductsComponent } from '../../products/products.component';
 import {NewProductComponent } from '../../new-product/new-product.component';
+import { CarritocomprasComponent } from '../../carritocompras/carritocompras.component';
+import { ShoppingCartService } from '../../../services/shopping-cart.service';
+import { CartComponent } from '../../cart/cart.component';
+import { CheckoutDialog } from '../../checkout/checkout.component';
+import { MaterialModule } from '../../material/material.module';
 
 @NgModule({
   imports: [
@@ -35,6 +40,7 @@ import {NewProductComponent } from '../../new-product/new-product.component';
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
+    MaterialModule
   ],
   declarations: [
     DashboardComponent,
@@ -49,8 +55,13 @@ import {NewProductComponent } from '../../new-product/new-product.component';
     MapsComponent,
     NotificationsComponent,
     UpgradeComponent,
+    CarritocomprasComponent,
+    CartComponent,
+    CheckoutDialog
   ],
-  providers: [StorageService]
+  providers: [StorageService, ShoppingCartService],
+  entryComponents: [CheckoutDialog]
+
 
 })
 

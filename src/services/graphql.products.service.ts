@@ -3,6 +3,7 @@ import {Apollo, gql} from 'apollo-angular';
 import { Subscription } from 'rxjs';
 //import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
+//import { StorageService } from "./storage.service";
 
 const TOKENAUTH = gql`
   mutation TokenAuth($username: String!, $password: String!) {
@@ -19,6 +20,9 @@ const LINKS = gql`
       url
       description
       precio
+      postedBy {
+        username
+      }
     }
   }
 `;
@@ -53,8 +57,8 @@ export class GraphqlProductsService  {
     });
   
   }
-  createLink(url: string, description: string, precio: number) {
- 
+  createLink(mytoken: string, url: string, description: string, precio: number) {
+       console.log("token auth = " + mytoken);
       return this.apollo.mutate({
         mutation: CREATELINK,
         variables: {
@@ -64,7 +68,7 @@ export class GraphqlProductsService  {
         },
         context: {
           // example of setting the headers with context per operation
-          headers: new HttpHeaders().set('Authorization', 'JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFkc29mdCIsImV4cCI6MTYwOTcyODAzNywib3JpZ0lhdCI6MTYwOTcyNzczN30.jYfyGMhQBap4OYZHw1HLH5YHmnxNwyDw4Su7uUJRs4o'),
+          headers: new HttpHeaders().set('Authorization', 'JWT ' + mytoken),
         },
 
       });

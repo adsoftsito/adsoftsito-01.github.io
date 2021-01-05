@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductApi } from "../../models/productapi";
 import { GraphqlProductsService} from '../../services/graphql.products.service';
 import { Router } from '@angular/router';
+import { StorageService } from "../../services/storage.service";
 
 @Component({
   selector: 'app-new-product',
@@ -13,15 +14,16 @@ export class NewProductComponent implements OnInit {
   myProduct = new ProductApi;
 
   constructor(private graphqlProduct : GraphqlProductsService,
-              private router : Router) { }
+              private router : Router,
+              private storageService: StorageService) { }
 
   ngOnInit(): void {
   }
 
   addProduct() {
-
+    var mytoken = this.storageService.getSession("token");
     alert(JSON.stringify(this.myProduct));
-    this.graphqlProduct.createLink(this.myProduct.url,
+    this.graphqlProduct.createLink(mytoken, this.myProduct.url,
                   this.myProduct.description, this.myProduct.precio)
     .subscribe(({ data }) => {
        console.log('product created :  ', data);

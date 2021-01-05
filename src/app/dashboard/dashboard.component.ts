@@ -1,7 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { CarritocomprasComponent } from 'app/carritocompras/carritocompras.component';
 import * as Chartist from 'chartist';
 import { Subscription } from 'rxjs';
 import { GraphqlProductsService} from '../../services/graphql.products.service';
+import { ShoppingCartService, CartItem, Totals } from '../../services/shopping-cart.service';
+import { ShopItem } from '../../models/CartItem'
+import { ProductApi } from '../../models/productapi'
+
 
 @Component({
   selector: 'app-dashboard',
@@ -14,8 +19,23 @@ export class DashboardComponent implements OnInit, OnDestroy {
   posts: any;
   private querySubscription: Subscription;
 
-  constructor(private graphqlProductsService: GraphqlProductsService) {}
+  constructor(private graphqlProductsService: GraphqlProductsService,
+    private shoppingCartService: ShoppingCartService
+    ) {}
 
+  cartState$ = this.shoppingCartService.state$;
+  
+  addItemToCart(item: ProductApi) {
+    //alert(JSON.stringify(item));
+    var myItem = new ShopItem();
+    myItem.name = item.description;
+    myItem.price = item.precio;
+    this.shoppingCartService.addCartItem(myItem);
+  }
+
+  remove(item: CartItem): void {
+    this.shoppingCartService.removeCartItem(item);
+  }
   ngOnInit() {
 
 
