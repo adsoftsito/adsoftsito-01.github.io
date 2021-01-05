@@ -1100,6 +1100,86 @@ var PortalInjector = /*#__PURE__*/function () {
 
 /***/ }),
 
+/***/ "/8ZT":
+/*!***************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-browser/v35.js ***!
+  \***************************************************/
+/*! exports provided: DNS, URL, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DNS", function() { return DNS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "URL", function() { return URL; });
+/* harmony import */ var _stringify_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./stringify.js */ "WM9j");
+/* harmony import */ var _parse_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./parse.js */ "DeoT");
+
+
+
+function stringToBytes(str) {
+  str = unescape(encodeURIComponent(str)); // UTF8 escape
+
+  var bytes = [];
+
+  for (var i = 0; i < str.length; ++i) {
+    bytes.push(str.charCodeAt(i));
+  }
+
+  return bytes;
+}
+
+var DNS = '6ba7b810-9dad-11d1-80b4-00c04fd430c8';
+var URL = '6ba7b811-9dad-11d1-80b4-00c04fd430c8';
+/* harmony default export */ __webpack_exports__["default"] = (function (name, version, hashfunc) {
+  function generateUUID(value, namespace, buf, offset) {
+    if (typeof value === 'string') {
+      value = stringToBytes(value);
+    }
+
+    if (typeof namespace === 'string') {
+      namespace = Object(_parse_js__WEBPACK_IMPORTED_MODULE_1__["default"])(namespace);
+    }
+
+    if (namespace.length !== 16) {
+      throw TypeError('Namespace must be array-like (16 iterable integer values, 0-255)');
+    } // Compute hash of namespace and value, Per 4.3
+    // Future: Use spread syntax when supported on all platforms, e.g. `bytes =
+    // hashfunc([...namespace, ... value])`
+
+
+    var bytes = new Uint8Array(16 + value.length);
+    bytes.set(namespace);
+    bytes.set(value, namespace.length);
+    bytes = hashfunc(bytes);
+    bytes[6] = bytes[6] & 0x0f | version;
+    bytes[8] = bytes[8] & 0x3f | 0x80;
+
+    if (buf) {
+      offset = offset || 0;
+
+      for (var i = 0; i < 16; ++i) {
+        buf[offset + i] = bytes[i];
+      }
+
+      return buf;
+    }
+
+    return Object(_stringify_js__WEBPACK_IMPORTED_MODULE_0__["default"])(bytes);
+  } // Function#name is not settable on some platforms (#270)
+
+
+  try {
+    generateUUID.name = name; // eslint-disable-next-line no-empty
+  } catch (err) {} // For CommonJS default export support
+
+
+  generateUUID.DNS = DNS;
+  generateUUID.URL = URL;
+  return generateUUID;
+});
+
+/***/ }),
+
 /***/ "/QLm":
 /*!*************************************************!*\
   !*** ./src/app/products/products.component.css ***!
@@ -1918,6 +1998,1898 @@ var _VIEW_REPEATER_STRATEGY = new _angular_core__WEBPACK_IMPORTED_MODULE_6__["In
 
 /***/ }),
 
+/***/ "0IaG":
+/*!************************************************************************!*\
+  !*** ./node_modules/@angular/material/__ivy_ngcc__/fesm2015/dialog.js ***!
+  \************************************************************************/
+/*! exports provided: MAT_DIALOG_DATA, MAT_DIALOG_DEFAULT_OPTIONS, MAT_DIALOG_SCROLL_STRATEGY, MAT_DIALOG_SCROLL_STRATEGY_FACTORY, MAT_DIALOG_SCROLL_STRATEGY_PROVIDER, MAT_DIALOG_SCROLL_STRATEGY_PROVIDER_FACTORY, MatDialog, MatDialogActions, MatDialogClose, MatDialogConfig, MatDialogContainer, MatDialogContent, MatDialogModule, MatDialogRef, MatDialogTitle, _MatDialogBase, _MatDialogContainerBase, _closeDialogVia, matDialogAnimations, throwMatDialogContentAlreadyAttachedError */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MAT_DIALOG_DATA", function() { return MAT_DIALOG_DATA; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MAT_DIALOG_DEFAULT_OPTIONS", function() { return MAT_DIALOG_DEFAULT_OPTIONS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MAT_DIALOG_SCROLL_STRATEGY", function() { return MAT_DIALOG_SCROLL_STRATEGY; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MAT_DIALOG_SCROLL_STRATEGY_FACTORY", function() { return MAT_DIALOG_SCROLL_STRATEGY_FACTORY; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MAT_DIALOG_SCROLL_STRATEGY_PROVIDER", function() { return MAT_DIALOG_SCROLL_STRATEGY_PROVIDER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MAT_DIALOG_SCROLL_STRATEGY_PROVIDER_FACTORY", function() { return MAT_DIALOG_SCROLL_STRATEGY_PROVIDER_FACTORY; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatDialog", function() { return MatDialog; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatDialogActions", function() { return MatDialogActions; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatDialogClose", function() { return MatDialogClose; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatDialogConfig", function() { return MatDialogConfig; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatDialogContainer", function() { return MatDialogContainer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatDialogContent", function() { return MatDialogContent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatDialogModule", function() { return MatDialogModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatDialogRef", function() { return MatDialogRef; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatDialogTitle", function() { return MatDialogTitle; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_MatDialogBase", function() { return _MatDialogBase; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_MatDialogContainerBase", function() { return _MatDialogContainerBase; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "_closeDialogVia", function() { return _closeDialogVia; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "matDialogAnimations", function() { return matDialogAnimations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "throwMatDialogContentAlreadyAttachedError", function() { return throwMatDialogContentAlreadyAttachedError; });
+/* harmony import */ var _Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/createClass */ "vuIU");
+/* harmony import */ var _Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/inherits */ "Ji7U");
+/* harmony import */ var _Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/createSuper */ "LK+K");
+/* harmony import */ var _Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/classCallCheck */ "1OyB");
+/* harmony import */ var _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/cdk/overlay */ "rDax");
+/* harmony import */ var _angular_cdk_portal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/cdk/portal */ "+rOU");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _angular_material_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/core */ "FKr1");
+/* harmony import */ var _angular_cdk_bidi__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/cdk/bidi */ "cH1L");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/common */ "ofXK");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! rxjs */ "qCKp");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! rxjs/operators */ "kU1M");
+/* harmony import */ var _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/cdk/a11y */ "u47x");
+/* harmony import */ var _angular_animations__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/animations */ "R0Ic");
+/* harmony import */ var _angular_cdk_keycodes__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/cdk/keycodes */ "FtGj");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/**
+ * Configuration for opening a modal dialog with the MatDialog service.
+ */
+
+
+
+
+
+
+
+function MatDialogContainer_ng_template_0_Template(rf, ctx) {}
+
+var MatDialogConfig = function MatDialogConfig() {
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_3__["default"])(this, MatDialogConfig);
+
+  /** The ARIA role of the dialog element. */
+  this.role = 'dialog';
+  /** Custom class for the overlay pane. */
+
+  this.panelClass = '';
+  /** Whether the dialog has a backdrop. */
+
+  this.hasBackdrop = true;
+  /** Custom class for the backdrop. */
+
+  this.backdropClass = '';
+  /** Whether the user can use escape or clicking on the backdrop to close the modal. */
+
+  this.disableClose = false;
+  /** Width of the dialog. */
+
+  this.width = '';
+  /** Height of the dialog. */
+
+  this.height = '';
+  /** Max-width of the dialog. If a number is provided, assumes pixel units. Defaults to 80vw. */
+
+  this.maxWidth = '80vw';
+  /** Data being injected into the child component. */
+
+  this.data = null;
+  /** ID of the element that describes the dialog. */
+
+  this.ariaDescribedBy = null;
+  /** ID of the element that labels the dialog. */
+
+  this.ariaLabelledBy = null;
+  /** Aria label to assign to the dialog element. */
+
+  this.ariaLabel = null;
+  /** Whether the dialog should focus the first focusable element on open. */
+
+  this.autoFocus = true;
+  /**
+   * Whether the dialog should restore focus to the
+   * previously-focused element, after it's closed.
+   */
+
+  this.restoreFocus = true;
+  /**
+   * Whether the dialog should close when the user goes backwards/forwards in history.
+   * Note that this usually doesn't include clicking on links (unless the user is using
+   * the `HashLocationStrategy`).
+   */
+
+  this.closeOnNavigation = true; // TODO(jelbourn): add configuration for lifecycle hooks, ARIA labelling.
+};
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/**
+ * Animations used by MatDialog.
+ * @docs-private
+ */
+
+
+var matDialogAnimations = {
+  /** Animation that is applied on the dialog container by defalt. */
+  dialogContainer: Object(_angular_animations__WEBPACK_IMPORTED_MODULE_13__["trigger"])('dialogContainer', [// Note: The `enter` animation transitions to `transform: none`, because for some reason
+  // specifying the transform explicitly, causes IE both to blur the dialog content and
+  // decimate the animation performance. Leaving it as `none` solves both issues.
+  Object(_angular_animations__WEBPACK_IMPORTED_MODULE_13__["state"])('void, exit', Object(_angular_animations__WEBPACK_IMPORTED_MODULE_13__["style"])({
+    opacity: 0,
+    transform: 'scale(0.7)'
+  })), Object(_angular_animations__WEBPACK_IMPORTED_MODULE_13__["state"])('enter', Object(_angular_animations__WEBPACK_IMPORTED_MODULE_13__["style"])({
+    transform: 'none'
+  })), Object(_angular_animations__WEBPACK_IMPORTED_MODULE_13__["transition"])('* => enter', Object(_angular_animations__WEBPACK_IMPORTED_MODULE_13__["animate"])('150ms cubic-bezier(0, 0, 0.2, 1)', Object(_angular_animations__WEBPACK_IMPORTED_MODULE_13__["style"])({
+    transform: 'none',
+    opacity: 1
+  }))), Object(_angular_animations__WEBPACK_IMPORTED_MODULE_13__["transition"])('* => void, * => exit', Object(_angular_animations__WEBPACK_IMPORTED_MODULE_13__["animate"])('75ms cubic-bezier(0.4, 0.0, 0.2, 1)', Object(_angular_animations__WEBPACK_IMPORTED_MODULE_13__["style"])({
+    opacity: 0
+  })))])
+};
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/**
+ * Throws an exception for the case when a ComponentPortal is
+ * attached to a DomPortalOutlet without an origin.
+ * @docs-private
+ */
+
+function throwMatDialogContentAlreadyAttachedError() {
+  throw Error('Attempting to attach dialog content after content is already attached');
+}
+/**
+ * Base class for the `MatDialogContainer`. The base class does not implement
+ * animations as these are left to implementers of the dialog container.
+ */
+
+
+var _MatDialogContainerBase = /*#__PURE__*/function (_BasePortalOutlet) {
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_1__["default"])(_MatDialogContainerBase, _BasePortalOutlet);
+
+  var _super = Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_2__["default"])(_MatDialogContainerBase);
+
+  function _MatDialogContainerBase(_elementRef, _focusTrapFactory, _changeDetectorRef, _document,
+  /** The dialog configuration. */
+  _config, _focusMonitor) {
+    var _this;
+
+    Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_3__["default"])(this, _MatDialogContainerBase);
+
+    _this = _super.call(this);
+    _this._elementRef = _elementRef;
+    _this._focusTrapFactory = _focusTrapFactory;
+    _this._changeDetectorRef = _changeDetectorRef;
+    _this._config = _config;
+    _this._focusMonitor = _focusMonitor;
+    /** Emits when an animation state changes. */
+
+    _this._animationStateChanged = new _angular_core__WEBPACK_IMPORTED_MODULE_6__["EventEmitter"]();
+    /** Element that was focused before the dialog was opened. Save this to restore upon close. */
+
+    _this._elementFocusedBeforeDialogWasOpened = null;
+    /**
+     * Type of interaction that led to the dialog being closed. This is used to determine
+     * whether the focus style will be applied when returning focus to its original location
+     * after the dialog is closed.
+     */
+
+    _this._closeInteractionType = null;
+    /**
+     * Attaches a DOM portal to the dialog container.
+     * @param portal Portal to be attached.
+     * @deprecated To be turned into a method.
+     * @breaking-change 10.0.0
+     */
+
+    _this.attachDomPortal = function (portal) {
+      if (_this._portalOutlet.hasAttached() && (typeof ngDevMode === 'undefined' || ngDevMode)) {
+        throwMatDialogContentAlreadyAttachedError();
+      }
+
+      return _this._portalOutlet.attachDomPortal(portal);
+    };
+
+    _this._ariaLabelledBy = _config.ariaLabelledBy || null;
+    _this._document = _document;
+    return _this;
+  }
+  /** Initializes the dialog container with the attached content. */
+
+
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(_MatDialogContainerBase, [{
+    key: "_initializeWithAttachedContent",
+    value: function _initializeWithAttachedContent() {
+      this._setupFocusTrap(); // Save the previously focused element. This element will be re-focused
+      // when the dialog closes.
+
+
+      this._capturePreviouslyFocusedElement(); // Move focus onto the dialog immediately in order to prevent the user
+      // from accidentally opening multiple dialogs at the same time.
+
+
+      this._focusDialogContainer();
+    }
+    /**
+     * Attach a ComponentPortal as content to this dialog container.
+     * @param portal Portal to be attached as the dialog content.
+     */
+
+  }, {
+    key: "attachComponentPortal",
+    value: function attachComponentPortal(portal) {
+      if (this._portalOutlet.hasAttached() && (typeof ngDevMode === 'undefined' || ngDevMode)) {
+        throwMatDialogContentAlreadyAttachedError();
+      }
+
+      return this._portalOutlet.attachComponentPortal(portal);
+    }
+    /**
+     * Attach a TemplatePortal as content to this dialog container.
+     * @param portal Portal to be attached as the dialog content.
+     */
+
+  }, {
+    key: "attachTemplatePortal",
+    value: function attachTemplatePortal(portal) {
+      if (this._portalOutlet.hasAttached() && (typeof ngDevMode === 'undefined' || ngDevMode)) {
+        throwMatDialogContentAlreadyAttachedError();
+      }
+
+      return this._portalOutlet.attachTemplatePortal(portal);
+    }
+    /** Moves focus back into the dialog if it was moved out. */
+
+  }, {
+    key: "_recaptureFocus",
+    value: function _recaptureFocus() {
+      if (!this._containsFocus()) {
+        var focusContainer = !this._config.autoFocus || !this._focusTrap.focusInitialElement();
+
+        if (focusContainer) {
+          this._elementRef.nativeElement.focus();
+        }
+      }
+    }
+    /** Moves the focus inside the focus trap. */
+
+  }, {
+    key: "_trapFocus",
+    value: function _trapFocus() {
+      // If we were to attempt to focus immediately, then the content of the dialog would not yet be
+      // ready in instances where change detection has to run first. To deal with this, we simply
+      // wait for the microtask queue to be empty.
+      if (this._config.autoFocus) {
+        this._focusTrap.focusInitialElementWhenReady();
+      } else if (!this._containsFocus()) {
+        // Otherwise ensure that focus is on the dialog container. It's possible that a different
+        // component tried to move focus while the open animation was running. See:
+        // https://github.com/angular/components/issues/16215. Note that we only want to do this
+        // if the focus isn't inside the dialog already, because it's possible that the consumer
+        // turned off `autoFocus` in order to move focus themselves.
+        this._elementRef.nativeElement.focus();
+      }
+    }
+    /** Restores focus to the element that was focused before the dialog opened. */
+
+  }, {
+    key: "_restoreFocus",
+    value: function _restoreFocus() {
+      var previousElement = this._elementFocusedBeforeDialogWasOpened; // We need the extra check, because IE can set the `activeElement` to null in some cases.
+
+      if (this._config.restoreFocus && previousElement && typeof previousElement.focus === 'function') {
+        var activeElement = this._document.activeElement;
+        var element = this._elementRef.nativeElement; // Make sure that focus is still inside the dialog or is on the body (usually because a
+        // non-focusable element like the backdrop was clicked) before moving it. It's possible that
+        // the consumer moved it themselves before the animation was done, in which case we shouldn't
+        // do anything.
+
+        if (!activeElement || activeElement === this._document.body || activeElement === element || element.contains(activeElement)) {
+          if (this._focusMonitor) {
+            this._focusMonitor.focusVia(previousElement, this._closeInteractionType);
+
+            this._closeInteractionType = null;
+          } else {
+            previousElement.focus();
+          }
+        }
+      }
+
+      if (this._focusTrap) {
+        this._focusTrap.destroy();
+      }
+    }
+    /** Sets up the focus trap. */
+
+  }, {
+    key: "_setupFocusTrap",
+    value: function _setupFocusTrap() {
+      this._focusTrap = this._focusTrapFactory.create(this._elementRef.nativeElement);
+    }
+    /** Captures the element that was focused before the dialog was opened. */
+
+  }, {
+    key: "_capturePreviouslyFocusedElement",
+    value: function _capturePreviouslyFocusedElement() {
+      if (this._document) {
+        this._elementFocusedBeforeDialogWasOpened = this._document.activeElement;
+      }
+    }
+    /** Focuses the dialog container. */
+
+  }, {
+    key: "_focusDialogContainer",
+    value: function _focusDialogContainer() {
+      // Note that there is no focus method when rendering on the server.
+      if (this._elementRef.nativeElement.focus) {
+        this._elementRef.nativeElement.focus();
+      }
+    }
+    /** Returns whether focus is inside the dialog. */
+
+  }, {
+    key: "_containsFocus",
+    value: function _containsFocus() {
+      var element = this._elementRef.nativeElement;
+      var activeElement = this._document.activeElement;
+      return element === activeElement || element.contains(activeElement);
+    }
+  }]);
+
+  return _MatDialogContainerBase;
+}(_angular_cdk_portal__WEBPACK_IMPORTED_MODULE_5__["BasePortalOutlet"]);
+
+_MatDialogContainerBase.ɵfac = function _MatDialogContainerBase_Factory(t) {
+  return new (t || _MatDialogContainerBase)(_angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_6__["ElementRef"]), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdirectiveInject"](_angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_12__["FocusTrapFactory"]), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_6__["ChangeDetectorRef"]), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdirectiveInject"](_angular_common__WEBPACK_IMPORTED_MODULE_9__["DOCUMENT"], 8), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdirectiveInject"](MatDialogConfig), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdirectiveInject"](_angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_12__["FocusMonitor"]));
+};
+
+_MatDialogContainerBase.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdefineDirective"]({
+  type: _MatDialogContainerBase,
+  viewQuery: function _MatDialogContainerBase_Query(rf, ctx) {
+    if (rf & 1) {
+      _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵstaticViewQuery"](_angular_cdk_portal__WEBPACK_IMPORTED_MODULE_5__["CdkPortalOutlet"], true);
+    }
+
+    if (rf & 2) {
+      var _t;
+
+      _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵloadQuery"]()) && (ctx._portalOutlet = _t.first);
+    }
+  },
+  features: [_angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵInheritDefinitionFeature"]]
+});
+
+_MatDialogContainerBase.ctorParameters = function () {
+  return [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["ElementRef"]
+  }, {
+    type: _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_12__["FocusTrapFactory"]
+  }, {
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["ChangeDetectorRef"]
+  }, {
+    type: undefined,
+    decorators: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["Optional"]
+    }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["Inject"],
+      args: [_angular_common__WEBPACK_IMPORTED_MODULE_9__["DOCUMENT"]]
+    }]
+  }, {
+    type: MatDialogConfig
+  }, {
+    type: _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_12__["FocusMonitor"]
+  }];
+};
+
+_MatDialogContainerBase.propDecorators = {
+  _portalOutlet: [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["ViewChild"],
+    args: [_angular_cdk_portal__WEBPACK_IMPORTED_MODULE_5__["CdkPortalOutlet"], {
+      static: true
+    }]
+  }]
+};
+/*@__PURE__*/
+
+(function () {
+  _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵsetClassMetadata"](_MatDialogContainerBase, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["Directive"]
+  }], function () {
+    return [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["ElementRef"]
+    }, {
+      type: _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_12__["FocusTrapFactory"]
+    }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["ChangeDetectorRef"]
+    }, {
+      type: undefined,
+      decorators: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["Optional"]
+      }, {
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["Inject"],
+        args: [_angular_common__WEBPACK_IMPORTED_MODULE_9__["DOCUMENT"]]
+      }]
+    }, {
+      type: MatDialogConfig
+    }, {
+      type: _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_12__["FocusMonitor"]
+    }];
+  }, {
+    _portalOutlet: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["ViewChild"],
+      args: [_angular_cdk_portal__WEBPACK_IMPORTED_MODULE_5__["CdkPortalOutlet"], {
+        static: true
+      }]
+    }]
+  });
+})();
+/**
+ * Internal component that wraps user-provided dialog content.
+ * Animation is based on https://material.io/guidelines/motion/choreography.html.
+ * @docs-private
+ */
+
+
+var MatDialogContainer = /*#__PURE__*/function (_MatDialogContainerBa) {
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_1__["default"])(MatDialogContainer, _MatDialogContainerBa);
+
+  var _super2 = Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_2__["default"])(MatDialogContainer);
+
+  function MatDialogContainer() {
+    var _this2;
+
+    Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_3__["default"])(this, MatDialogContainer);
+
+    _this2 = _super2.apply(this, arguments);
+    /** State of the dialog animation. */
+
+    _this2._state = 'enter';
+    return _this2;
+  }
+  /** Callback, invoked whenever an animation on the host completes. */
+
+
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(MatDialogContainer, [{
+    key: "_onAnimationDone",
+    value: function _onAnimationDone(_ref) {
+      var toState = _ref.toState,
+          totalTime = _ref.totalTime;
+
+      if (toState === 'enter') {
+        this._trapFocus();
+
+        this._animationStateChanged.next({
+          state: 'opened',
+          totalTime: totalTime
+        });
+      } else if (toState === 'exit') {
+        this._restoreFocus();
+
+        this._animationStateChanged.next({
+          state: 'closed',
+          totalTime: totalTime
+        });
+      }
+    }
+    /** Callback, invoked when an animation on the host starts. */
+
+  }, {
+    key: "_onAnimationStart",
+    value: function _onAnimationStart(_ref2) {
+      var toState = _ref2.toState,
+          totalTime = _ref2.totalTime;
+
+      if (toState === 'enter') {
+        this._animationStateChanged.next({
+          state: 'opening',
+          totalTime: totalTime
+        });
+      } else if (toState === 'exit' || toState === 'void') {
+        this._animationStateChanged.next({
+          state: 'closing',
+          totalTime: totalTime
+        });
+      }
+    }
+    /** Starts the dialog exit animation. */
+
+  }, {
+    key: "_startExitAnimation",
+    value: function _startExitAnimation() {
+      this._state = 'exit'; // Mark the container for check so it can react if the
+      // view container is using OnPush change detection.
+
+      this._changeDetectorRef.markForCheck();
+    }
+  }]);
+
+  return MatDialogContainer;
+}(_MatDialogContainerBase);
+
+MatDialogContainer.ɵfac = function MatDialogContainer_Factory(t) {
+  return ɵMatDialogContainer_BaseFactory(t || MatDialogContainer);
+};
+
+MatDialogContainer.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdefineComponent"]({
+  type: MatDialogContainer,
+  selectors: [["mat-dialog-container"]],
+  hostAttrs: ["tabindex", "-1", "aria-modal", "true", 1, "mat-dialog-container"],
+  hostVars: 6,
+  hostBindings: function MatDialogContainer_HostBindings(rf, ctx) {
+    if (rf & 1) {
+      _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵsyntheticHostListener"]("@dialogContainer.start", function MatDialogContainer_animation_dialogContainer_start_HostBindingHandler($event) {
+        return ctx._onAnimationStart($event);
+      })("@dialogContainer.done", function MatDialogContainer_animation_dialogContainer_done_HostBindingHandler($event) {
+        return ctx._onAnimationDone($event);
+      });
+    }
+
+    if (rf & 2) {
+      _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵhostProperty"]("id", ctx._id);
+      _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵattribute"]("role", ctx._config.role)("aria-labelledby", ctx._config.ariaLabel ? null : ctx._ariaLabelledBy)("aria-label", ctx._config.ariaLabel)("aria-describedby", ctx._config.ariaDescribedBy || null);
+      _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵsyntheticHostProperty"]("@dialogContainer", ctx._state);
+    }
+  },
+  features: [_angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵInheritDefinitionFeature"]],
+  decls: 1,
+  vars: 0,
+  consts: [["cdkPortalOutlet", ""]],
+  template: function MatDialogContainer_Template(rf, ctx) {
+    if (rf & 1) {
+      _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtemplate"](0, MatDialogContainer_ng_template_0_Template, 0, 0, "ng-template", 0);
+    }
+  },
+  directives: [_angular_cdk_portal__WEBPACK_IMPORTED_MODULE_5__["CdkPortalOutlet"]],
+  styles: [".mat-dialog-container{display:block;padding:24px;border-radius:4px;box-sizing:border-box;overflow:auto;outline:0;width:100%;height:100%;min-height:inherit;max-height:inherit}.cdk-high-contrast-active .mat-dialog-container{outline:solid 1px}.mat-dialog-content{display:block;margin:0 -24px;padding:0 24px;max-height:65vh;overflow:auto;-webkit-overflow-scrolling:touch}.mat-dialog-title{margin:0 0 20px;display:block}.mat-dialog-actions{padding:8px 0;display:flex;flex-wrap:wrap;min-height:52px;align-items:center;margin-bottom:-24px}.mat-dialog-actions[align=end]{justify-content:flex-end}.mat-dialog-actions[align=center]{justify-content:center}.mat-dialog-actions .mat-button-base+.mat-button-base,.mat-dialog-actions .mat-mdc-button-base+.mat-mdc-button-base{margin-left:8px}[dir=rtl] .mat-dialog-actions .mat-button-base+.mat-button-base,[dir=rtl] .mat-dialog-actions .mat-mdc-button-base+.mat-mdc-button-base{margin-left:0;margin-right:8px}\n"],
+  encapsulation: 2,
+  data: {
+    animation: [matDialogAnimations.dialogContainer]
+  }
+});
+var ɵMatDialogContainer_BaseFactory = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵgetInheritedFactory"](MatDialogContainer);
+/*@__PURE__*/
+
+(function () {
+  _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵsetClassMetadata"](MatDialogContainer, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["Component"],
+    args: [{
+      selector: 'mat-dialog-container',
+      template: "<ng-template cdkPortalOutlet></ng-template>\n",
+      encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_6__["ViewEncapsulation"].None,
+      // Using OnPush for dialogs caused some G3 sync issues. Disabled until we can track them down.
+      // tslint:disable-next-line:validate-decorators
+      changeDetection: _angular_core__WEBPACK_IMPORTED_MODULE_6__["ChangeDetectionStrategy"].Default,
+      animations: [matDialogAnimations.dialogContainer],
+      host: {
+        'class': 'mat-dialog-container',
+        'tabindex': '-1',
+        'aria-modal': 'true',
+        '[id]': '_id',
+        '[attr.role]': '_config.role',
+        '[attr.aria-labelledby]': '_config.ariaLabel ? null : _ariaLabelledBy',
+        '[attr.aria-label]': '_config.ariaLabel',
+        '[attr.aria-describedby]': '_config.ariaDescribedBy || null',
+        '[@dialogContainer]': '_state',
+        '(@dialogContainer.start)': '_onAnimationStart($event)',
+        '(@dialogContainer.done)': '_onAnimationDone($event)'
+      },
+      styles: [".mat-dialog-container{display:block;padding:24px;border-radius:4px;box-sizing:border-box;overflow:auto;outline:0;width:100%;height:100%;min-height:inherit;max-height:inherit}.cdk-high-contrast-active .mat-dialog-container{outline:solid 1px}.mat-dialog-content{display:block;margin:0 -24px;padding:0 24px;max-height:65vh;overflow:auto;-webkit-overflow-scrolling:touch}.mat-dialog-title{margin:0 0 20px;display:block}.mat-dialog-actions{padding:8px 0;display:flex;flex-wrap:wrap;min-height:52px;align-items:center;margin-bottom:-24px}.mat-dialog-actions[align=end]{justify-content:flex-end}.mat-dialog-actions[align=center]{justify-content:center}.mat-dialog-actions .mat-button-base+.mat-button-base,.mat-dialog-actions .mat-mdc-button-base+.mat-mdc-button-base{margin-left:8px}[dir=rtl] .mat-dialog-actions .mat-button-base+.mat-button-base,[dir=rtl] .mat-dialog-actions .mat-mdc-button-base+.mat-mdc-button-base{margin-left:0;margin-right:8px}\n"]
+    }]
+  }], null, null);
+})();
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+// TODO(jelbourn): resizing
+// Counter for unique dialog ids.
+
+
+var uniqueId = 0;
+/**
+ * Reference to a dialog opened via the MatDialog service.
+ */
+
+var MatDialogRef = /*#__PURE__*/function () {
+  function MatDialogRef(_overlayRef, _containerInstance) {
+    var _this3 = this;
+
+    var id = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "mat-dialog-".concat(uniqueId++);
+
+    Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_3__["default"])(this, MatDialogRef);
+
+    this._overlayRef = _overlayRef;
+    this._containerInstance = _containerInstance;
+    this.id = id;
+    /** Whether the user is allowed to close the dialog. */
+
+    this.disableClose = this._containerInstance._config.disableClose;
+    /** Subject for notifying the user that the dialog has finished opening. */
+
+    this._afterOpened = new rxjs__WEBPACK_IMPORTED_MODULE_10__["Subject"]();
+    /** Subject for notifying the user that the dialog has finished closing. */
+
+    this._afterClosed = new rxjs__WEBPACK_IMPORTED_MODULE_10__["Subject"]();
+    /** Subject for notifying the user that the dialog has started closing. */
+
+    this._beforeClosed = new rxjs__WEBPACK_IMPORTED_MODULE_10__["Subject"]();
+    /** Current state of the dialog. */
+
+    this._state = 0
+    /* OPEN */
+    ; // Pass the id along to the container.
+
+    _containerInstance._id = id; // Emit when opening animation completes
+
+    _containerInstance._animationStateChanged.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_11__["filter"])(function (event) {
+      return event.state === 'opened';
+    }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_11__["take"])(1)).subscribe(function () {
+      _this3._afterOpened.next();
+
+      _this3._afterOpened.complete();
+    }); // Dispose overlay when closing animation is complete
+
+
+    _containerInstance._animationStateChanged.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_11__["filter"])(function (event) {
+      return event.state === 'closed';
+    }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_11__["take"])(1)).subscribe(function () {
+      clearTimeout(_this3._closeFallbackTimeout);
+
+      _this3._finishDialogClose();
+    });
+
+    _overlayRef.detachments().subscribe(function () {
+      _this3._beforeClosed.next(_this3._result);
+
+      _this3._beforeClosed.complete();
+
+      _this3._afterClosed.next(_this3._result);
+
+      _this3._afterClosed.complete();
+
+      _this3.componentInstance = null;
+
+      _this3._overlayRef.dispose();
+    });
+
+    _overlayRef.keydownEvents().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_11__["filter"])(function (event) {
+      return event.keyCode === _angular_cdk_keycodes__WEBPACK_IMPORTED_MODULE_14__["ESCAPE"] && !_this3.disableClose && !Object(_angular_cdk_keycodes__WEBPACK_IMPORTED_MODULE_14__["hasModifierKey"])(event);
+    })).subscribe(function (event) {
+      event.preventDefault();
+
+      _closeDialogVia(_this3, 'keyboard');
+    });
+
+    _overlayRef.backdropClick().subscribe(function () {
+      if (_this3.disableClose) {
+        _this3._containerInstance._recaptureFocus();
+      } else {
+        _closeDialogVia(_this3, 'mouse');
+      }
+    });
+  }
+  /**
+   * Close the dialog.
+   * @param dialogResult Optional result to return to the dialog opener.
+   */
+
+
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(MatDialogRef, [{
+    key: "close",
+    value: function close(dialogResult) {
+      var _this4 = this;
+
+      this._result = dialogResult; // Transition the backdrop in parallel to the dialog.
+
+      this._containerInstance._animationStateChanged.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_11__["filter"])(function (event) {
+        return event.state === 'closing';
+      }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_11__["take"])(1)).subscribe(function (event) {
+        _this4._beforeClosed.next(dialogResult);
+
+        _this4._beforeClosed.complete();
+
+        _this4._overlayRef.detachBackdrop(); // The logic that disposes of the overlay depends on the exit animation completing, however
+        // it isn't guaranteed if the parent view is destroyed while it's running. Add a fallback
+        // timeout which will clean everything up if the animation hasn't fired within the specified
+        // amount of time plus 100ms. We don't need to run this outside the NgZone, because for the
+        // vast majority of cases the timeout will have been cleared before it has the chance to fire.
+
+
+        _this4._closeFallbackTimeout = setTimeout(function () {
+          return _this4._finishDialogClose();
+        }, event.totalTime + 100);
+      });
+
+      this._state = 1
+      /* CLOSING */
+      ;
+
+      this._containerInstance._startExitAnimation();
+    }
+    /**
+     * Gets an observable that is notified when the dialog is finished opening.
+     */
+
+  }, {
+    key: "afterOpened",
+    value: function afterOpened() {
+      return this._afterOpened;
+    }
+    /**
+     * Gets an observable that is notified when the dialog is finished closing.
+     */
+
+  }, {
+    key: "afterClosed",
+    value: function afterClosed() {
+      return this._afterClosed;
+    }
+    /**
+     * Gets an observable that is notified when the dialog has started closing.
+     */
+
+  }, {
+    key: "beforeClosed",
+    value: function beforeClosed() {
+      return this._beforeClosed;
+    }
+    /**
+     * Gets an observable that emits when the overlay's backdrop has been clicked.
+     */
+
+  }, {
+    key: "backdropClick",
+    value: function backdropClick() {
+      return this._overlayRef.backdropClick();
+    }
+    /**
+     * Gets an observable that emits when keydown events are targeted on the overlay.
+     */
+
+  }, {
+    key: "keydownEvents",
+    value: function keydownEvents() {
+      return this._overlayRef.keydownEvents();
+    }
+    /**
+     * Updates the dialog's position.
+     * @param position New dialog position.
+     */
+
+  }, {
+    key: "updatePosition",
+    value: function updatePosition(position) {
+      var strategy = this._getPositionStrategy();
+
+      if (position && (position.left || position.right)) {
+        position.left ? strategy.left(position.left) : strategy.right(position.right);
+      } else {
+        strategy.centerHorizontally();
+      }
+
+      if (position && (position.top || position.bottom)) {
+        position.top ? strategy.top(position.top) : strategy.bottom(position.bottom);
+      } else {
+        strategy.centerVertically();
+      }
+
+      this._overlayRef.updatePosition();
+
+      return this;
+    }
+    /**
+     * Updates the dialog's width and height.
+     * @param width New width of the dialog.
+     * @param height New height of the dialog.
+     */
+
+  }, {
+    key: "updateSize",
+    value: function updateSize() {
+      var width = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+      var height = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+
+      this._getPositionStrategy().width(width).height(height);
+
+      this._overlayRef.updatePosition();
+
+      return this;
+    }
+    /** Add a CSS class or an array of classes to the overlay pane. */
+
+  }, {
+    key: "addPanelClass",
+    value: function addPanelClass(classes) {
+      this._overlayRef.addPanelClass(classes);
+
+      return this;
+    }
+    /** Remove a CSS class or an array of classes from the overlay pane. */
+
+  }, {
+    key: "removePanelClass",
+    value: function removePanelClass(classes) {
+      this._overlayRef.removePanelClass(classes);
+
+      return this;
+    }
+    /** Gets the current state of the dialog's lifecycle. */
+
+  }, {
+    key: "getState",
+    value: function getState() {
+      return this._state;
+    }
+    /**
+     * Finishes the dialog close by updating the state of the dialog
+     * and disposing the overlay.
+     */
+
+  }, {
+    key: "_finishDialogClose",
+    value: function _finishDialogClose() {
+      this._state = 2
+      /* CLOSED */
+      ;
+
+      this._overlayRef.dispose();
+    }
+    /** Fetches the position strategy object from the overlay ref. */
+
+  }, {
+    key: "_getPositionStrategy",
+    value: function _getPositionStrategy() {
+      return this._overlayRef.getConfig().positionStrategy;
+    }
+  }]);
+
+  return MatDialogRef;
+}();
+/**
+ * Closes the dialog with the specified interaction type. This is currently not part of
+ * `MatDialogRef` as that would conflict with custom dialog ref mocks provided in tests.
+ * More details. See: https://github.com/angular/components/pull/9257#issuecomment-651342226.
+ */
+// TODO: TODO: Move this back into `MatDialogRef` when we provide an official mock dialog ref.
+
+
+function _closeDialogVia(ref, interactionType, result) {
+  // Some mock dialog ref instances in tests do not have the `_containerInstance` property.
+  // For those, we keep the behavior as is and do not deal with the interaction type.
+  if (ref._containerInstance !== undefined) {
+    ref._containerInstance._closeInteractionType = interactionType;
+  }
+
+  return ref.close(result);
+}
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/** Injection token that can be used to access the data that was passed in to a dialog. */
+
+
+var MAT_DIALOG_DATA = new _angular_core__WEBPACK_IMPORTED_MODULE_6__["InjectionToken"]('MatDialogData');
+/** Injection token that can be used to specify default dialog options. */
+
+var MAT_DIALOG_DEFAULT_OPTIONS = new _angular_core__WEBPACK_IMPORTED_MODULE_6__["InjectionToken"]('mat-dialog-default-options');
+/** Injection token that determines the scroll handling while the dialog is open. */
+
+var MAT_DIALOG_SCROLL_STRATEGY = new _angular_core__WEBPACK_IMPORTED_MODULE_6__["InjectionToken"]('mat-dialog-scroll-strategy');
+/** @docs-private */
+
+function MAT_DIALOG_SCROLL_STRATEGY_FACTORY(overlay) {
+  return function () {
+    return overlay.scrollStrategies.block();
+  };
+}
+/** @docs-private */
+
+
+function MAT_DIALOG_SCROLL_STRATEGY_PROVIDER_FACTORY(overlay) {
+  return function () {
+    return overlay.scrollStrategies.block();
+  };
+}
+/** @docs-private */
+
+
+var MAT_DIALOG_SCROLL_STRATEGY_PROVIDER = {
+  provide: MAT_DIALOG_SCROLL_STRATEGY,
+  deps: [_angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_4__["Overlay"]],
+  useFactory: MAT_DIALOG_SCROLL_STRATEGY_PROVIDER_FACTORY
+};
+/**
+ * Base class for dialog services. The base dialog service allows
+ * for arbitrary dialog refs and dialog container components.
+ */
+
+var _MatDialogBase = /*#__PURE__*/function () {
+  function _MatDialogBase(_overlay, _injector, _defaultOptions, _parentDialog, _overlayContainer, scrollStrategy, _dialogRefConstructor, _dialogContainerType, _dialogDataToken) {
+    var _this5 = this;
+
+    Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_3__["default"])(this, _MatDialogBase);
+
+    this._overlay = _overlay;
+    this._injector = _injector;
+    this._defaultOptions = _defaultOptions;
+    this._parentDialog = _parentDialog;
+    this._overlayContainer = _overlayContainer;
+    this._dialogRefConstructor = _dialogRefConstructor;
+    this._dialogContainerType = _dialogContainerType;
+    this._dialogDataToken = _dialogDataToken;
+    this._openDialogsAtThisLevel = [];
+    this._afterAllClosedAtThisLevel = new rxjs__WEBPACK_IMPORTED_MODULE_10__["Subject"]();
+    this._afterOpenedAtThisLevel = new rxjs__WEBPACK_IMPORTED_MODULE_10__["Subject"]();
+    this._ariaHiddenElements = new Map(); // TODO (jelbourn): tighten the typing right-hand side of this expression.
+
+    /**
+     * Stream that emits when all open dialog have finished closing.
+     * Will emit on subscribe if there are no open dialogs to begin with.
+     */
+
+    this.afterAllClosed = Object(rxjs__WEBPACK_IMPORTED_MODULE_10__["defer"])(function () {
+      return _this5.openDialogs.length ? _this5._getAfterAllClosed() : _this5._getAfterAllClosed().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_11__["startWith"])(undefined));
+    });
+    this._scrollStrategy = scrollStrategy;
+  }
+  /** Keeps track of the currently-open dialogs. */
+
+
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(_MatDialogBase, [{
+    key: "_getAfterAllClosed",
+    value: function _getAfterAllClosed() {
+      var parent = this._parentDialog;
+      return parent ? parent._getAfterAllClosed() : this._afterAllClosedAtThisLevel;
+    }
+    /**
+     * Opens a modal dialog containing the given component.
+     * @param componentOrTemplateRef Type of the component to load into the dialog,
+     *     or a TemplateRef to instantiate as the dialog content.
+     * @param config Extra configuration options.
+     * @returns Reference to the newly-opened dialog.
+     */
+
+  }, {
+    key: "open",
+    value: function open(componentOrTemplateRef, config) {
+      var _this6 = this;
+
+      config = _applyConfigDefaults(config, this._defaultOptions || new MatDialogConfig());
+
+      if (config.id && this.getDialogById(config.id) && (typeof ngDevMode === 'undefined' || ngDevMode)) {
+        throw Error("Dialog with id \"".concat(config.id, "\" exists already. The dialog id must be unique."));
+      }
+
+      var overlayRef = this._createOverlay(config);
+
+      var dialogContainer = this._attachDialogContainer(overlayRef, config);
+
+      var dialogRef = this._attachDialogContent(componentOrTemplateRef, dialogContainer, overlayRef, config); // If this is the first dialog that we're opening, hide all the non-overlay content.
+
+
+      if (!this.openDialogs.length) {
+        this._hideNonDialogContentFromAssistiveTechnology();
+      }
+
+      this.openDialogs.push(dialogRef);
+      dialogRef.afterClosed().subscribe(function () {
+        return _this6._removeOpenDialog(dialogRef);
+      });
+      this.afterOpened.next(dialogRef); // Notify the dialog container that the content has been attached.
+
+      dialogContainer._initializeWithAttachedContent();
+
+      return dialogRef;
+    }
+    /**
+     * Closes all of the currently-open dialogs.
+     */
+
+  }, {
+    key: "closeAll",
+    value: function closeAll() {
+      this._closeDialogs(this.openDialogs);
+    }
+    /**
+     * Finds an open dialog by its id.
+     * @param id ID to use when looking up the dialog.
+     */
+
+  }, {
+    key: "getDialogById",
+    value: function getDialogById(id) {
+      return this.openDialogs.find(function (dialog) {
+        return dialog.id === id;
+      });
+    }
+  }, {
+    key: "ngOnDestroy",
+    value: function ngOnDestroy() {
+      // Only close the dialogs at this level on destroy
+      // since the parent service may still be active.
+      this._closeDialogs(this._openDialogsAtThisLevel);
+
+      this._afterAllClosedAtThisLevel.complete();
+
+      this._afterOpenedAtThisLevel.complete();
+    }
+    /**
+     * Creates the overlay into which the dialog will be loaded.
+     * @param config The dialog configuration.
+     * @returns A promise resolving to the OverlayRef for the created overlay.
+     */
+
+  }, {
+    key: "_createOverlay",
+    value: function _createOverlay(config) {
+      var overlayConfig = this._getOverlayConfig(config);
+
+      return this._overlay.create(overlayConfig);
+    }
+    /**
+     * Creates an overlay config from a dialog config.
+     * @param dialogConfig The dialog configuration.
+     * @returns The overlay configuration.
+     */
+
+  }, {
+    key: "_getOverlayConfig",
+    value: function _getOverlayConfig(dialogConfig) {
+      var state = new _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_4__["OverlayConfig"]({
+        positionStrategy: this._overlay.position().global(),
+        scrollStrategy: dialogConfig.scrollStrategy || this._scrollStrategy(),
+        panelClass: dialogConfig.panelClass,
+        hasBackdrop: dialogConfig.hasBackdrop,
+        direction: dialogConfig.direction,
+        minWidth: dialogConfig.minWidth,
+        minHeight: dialogConfig.minHeight,
+        maxWidth: dialogConfig.maxWidth,
+        maxHeight: dialogConfig.maxHeight,
+        disposeOnNavigation: dialogConfig.closeOnNavigation
+      });
+
+      if (dialogConfig.backdropClass) {
+        state.backdropClass = dialogConfig.backdropClass;
+      }
+
+      return state;
+    }
+    /**
+     * Attaches a dialog container to a dialog's already-created overlay.
+     * @param overlay Reference to the dialog's underlying overlay.
+     * @param config The dialog configuration.
+     * @returns A promise resolving to a ComponentRef for the attached container.
+     */
+
+  }, {
+    key: "_attachDialogContainer",
+    value: function _attachDialogContainer(overlay, config) {
+      var userInjector = config && config.viewContainerRef && config.viewContainerRef.injector;
+      var injector = _angular_core__WEBPACK_IMPORTED_MODULE_6__["Injector"].create({
+        parent: userInjector || this._injector,
+        providers: [{
+          provide: MatDialogConfig,
+          useValue: config
+        }]
+      });
+      var containerPortal = new _angular_cdk_portal__WEBPACK_IMPORTED_MODULE_5__["ComponentPortal"](this._dialogContainerType, config.viewContainerRef, injector, config.componentFactoryResolver);
+      var containerRef = overlay.attach(containerPortal);
+      return containerRef.instance;
+    }
+    /**
+     * Attaches the user-provided component to the already-created dialog container.
+     * @param componentOrTemplateRef The type of component being loaded into the dialog,
+     *     or a TemplateRef to instantiate as the content.
+     * @param dialogContainer Reference to the wrapping dialog container.
+     * @param overlayRef Reference to the overlay in which the dialog resides.
+     * @param config The dialog configuration.
+     * @returns A promise resolving to the MatDialogRef that should be returned to the user.
+     */
+
+  }, {
+    key: "_attachDialogContent",
+    value: function _attachDialogContent(componentOrTemplateRef, dialogContainer, overlayRef, config) {
+      // Create a reference to the dialog we're creating in order to give the user a handle
+      // to modify and close it.
+      var dialogRef = new this._dialogRefConstructor(overlayRef, dialogContainer, config.id);
+
+      if (componentOrTemplateRef instanceof _angular_core__WEBPACK_IMPORTED_MODULE_6__["TemplateRef"]) {
+        dialogContainer.attachTemplatePortal(new _angular_cdk_portal__WEBPACK_IMPORTED_MODULE_5__["TemplatePortal"](componentOrTemplateRef, null, {
+          $implicit: config.data,
+          dialogRef: dialogRef
+        }));
+      } else {
+        var injector = this._createInjector(config, dialogRef, dialogContainer);
+
+        var contentRef = dialogContainer.attachComponentPortal(new _angular_cdk_portal__WEBPACK_IMPORTED_MODULE_5__["ComponentPortal"](componentOrTemplateRef, config.viewContainerRef, injector));
+        dialogRef.componentInstance = contentRef.instance;
+      }
+
+      dialogRef.updateSize(config.width, config.height).updatePosition(config.position);
+      return dialogRef;
+    }
+    /**
+     * Creates a custom injector to be used inside the dialog. This allows a component loaded inside
+     * of a dialog to close itself and, optionally, to return a value.
+     * @param config Config object that is used to construct the dialog.
+     * @param dialogRef Reference to the dialog.
+     * @param dialogContainer Dialog container element that wraps all of the contents.
+     * @returns The custom injector that can be used inside the dialog.
+     */
+
+  }, {
+    key: "_createInjector",
+    value: function _createInjector(config, dialogRef, dialogContainer) {
+      var userInjector = config && config.viewContainerRef && config.viewContainerRef.injector; // The dialog container should be provided as the dialog container and the dialog's
+      // content are created out of the same `ViewContainerRef` and as such, are siblings
+      // for injector purposes. To allow the hierarchy that is expected, the dialog
+      // container is explicitly provided in the injector.
+
+      var providers = [{
+        provide: this._dialogContainerType,
+        useValue: dialogContainer
+      }, {
+        provide: this._dialogDataToken,
+        useValue: config.data
+      }, {
+        provide: this._dialogRefConstructor,
+        useValue: dialogRef
+      }];
+
+      if (config.direction && (!userInjector || !userInjector.get(_angular_cdk_bidi__WEBPACK_IMPORTED_MODULE_8__["Directionality"], null))) {
+        providers.push({
+          provide: _angular_cdk_bidi__WEBPACK_IMPORTED_MODULE_8__["Directionality"],
+          useValue: {
+            value: config.direction,
+            change: Object(rxjs__WEBPACK_IMPORTED_MODULE_10__["of"])()
+          }
+        });
+      }
+
+      return _angular_core__WEBPACK_IMPORTED_MODULE_6__["Injector"].create({
+        parent: userInjector || this._injector,
+        providers: providers
+      });
+    }
+    /**
+     * Removes a dialog from the array of open dialogs.
+     * @param dialogRef Dialog to be removed.
+     */
+
+  }, {
+    key: "_removeOpenDialog",
+    value: function _removeOpenDialog(dialogRef) {
+      var index = this.openDialogs.indexOf(dialogRef);
+
+      if (index > -1) {
+        this.openDialogs.splice(index, 1); // If all the dialogs were closed, remove/restore the `aria-hidden`
+        // to a the siblings and emit to the `afterAllClosed` stream.
+
+        if (!this.openDialogs.length) {
+          this._ariaHiddenElements.forEach(function (previousValue, element) {
+            if (previousValue) {
+              element.setAttribute('aria-hidden', previousValue);
+            } else {
+              element.removeAttribute('aria-hidden');
+            }
+          });
+
+          this._ariaHiddenElements.clear();
+
+          this._getAfterAllClosed().next();
+        }
+      }
+    }
+    /**
+     * Hides all of the content that isn't an overlay from assistive technology.
+     */
+
+  }, {
+    key: "_hideNonDialogContentFromAssistiveTechnology",
+    value: function _hideNonDialogContentFromAssistiveTechnology() {
+      var overlayContainer = this._overlayContainer.getContainerElement(); // Ensure that the overlay container is attached to the DOM.
+
+
+      if (overlayContainer.parentElement) {
+        var siblings = overlayContainer.parentElement.children;
+
+        for (var i = siblings.length - 1; i > -1; i--) {
+          var sibling = siblings[i];
+
+          if (sibling !== overlayContainer && sibling.nodeName !== 'SCRIPT' && sibling.nodeName !== 'STYLE' && !sibling.hasAttribute('aria-live')) {
+            this._ariaHiddenElements.set(sibling, sibling.getAttribute('aria-hidden'));
+
+            sibling.setAttribute('aria-hidden', 'true');
+          }
+        }
+      }
+    }
+    /** Closes all of the dialogs in an array. */
+
+  }, {
+    key: "_closeDialogs",
+    value: function _closeDialogs(dialogs) {
+      var i = dialogs.length;
+
+      while (i--) {
+        // The `_openDialogs` property isn't updated after close until the rxjs subscription
+        // runs on the next microtask, in addition to modifying the array as we're going
+        // through it. We loop through all of them and call close without assuming that
+        // they'll be removed from the list instantaneously.
+        dialogs[i].close();
+      }
+    }
+  }, {
+    key: "openDialogs",
+    get: function get() {
+      return this._parentDialog ? this._parentDialog.openDialogs : this._openDialogsAtThisLevel;
+    }
+    /** Stream that emits when a dialog has been opened. */
+
+  }, {
+    key: "afterOpened",
+    get: function get() {
+      return this._parentDialog ? this._parentDialog.afterOpened : this._afterOpenedAtThisLevel;
+    }
+  }]);
+
+  return _MatDialogBase;
+}();
+
+_MatDialogBase.ɵfac = function _MatDialogBase_Factory(t) {
+  return new (t || _MatDialogBase)(_angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdirectiveInject"](_angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_4__["Overlay"]), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_6__["Injector"]), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdirectiveInject"](undefined), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdirectiveInject"](undefined), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdirectiveInject"](_angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_4__["OverlayContainer"]), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdirectiveInject"](undefined), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_6__["Type"]), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_6__["Type"]), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_6__["InjectionToken"]));
+};
+
+_MatDialogBase.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdefineDirective"]({
+  type: _MatDialogBase
+});
+
+_MatDialogBase.ctorParameters = function () {
+  return [{
+    type: _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_4__["Overlay"]
+  }, {
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["Injector"]
+  }, {
+    type: undefined
+  }, {
+    type: undefined
+  }, {
+    type: _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_4__["OverlayContainer"]
+  }, {
+    type: undefined
+  }, {
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["Type"]
+  }, {
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["Type"]
+  }, {
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["InjectionToken"]
+  }];
+};
+/*@__PURE__*/
+
+
+(function () {
+  _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵsetClassMetadata"](_MatDialogBase, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["Directive"]
+  }], function () {
+    return [{
+      type: _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_4__["Overlay"]
+    }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["Injector"]
+    }, {
+      type: undefined
+    }, {
+      type: undefined
+    }, {
+      type: _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_4__["OverlayContainer"]
+    }, {
+      type: undefined
+    }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["Type"]
+    }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["Type"]
+    }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["InjectionToken"]
+    }];
+  }, null);
+})();
+/**
+ * Service to open Material Design modal dialogs.
+ */
+
+
+var MatDialog = /*#__PURE__*/function (_MatDialogBase2) {
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_1__["default"])(MatDialog, _MatDialogBase2);
+
+  var _super3 = Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_2__["default"])(MatDialog);
+
+  function MatDialog(overlay, injector,
+  /**
+   * @deprecated `_location` parameter to be removed.
+   * @breaking-change 10.0.0
+   */
+  location, defaultOptions, scrollStrategy, parentDialog, overlayContainer) {
+    Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_3__["default"])(this, MatDialog);
+
+    return _super3.call(this, overlay, injector, defaultOptions, parentDialog, overlayContainer, scrollStrategy, MatDialogRef, MatDialogContainer, MAT_DIALOG_DATA);
+  }
+
+  return MatDialog;
+}(_MatDialogBase);
+
+MatDialog.ɵfac = function MatDialog_Factory(t) {
+  return new (t || MatDialog)(_angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵinject"](_angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_4__["Overlay"]), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵinject"](_angular_core__WEBPACK_IMPORTED_MODULE_6__["Injector"]), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵinject"](_angular_common__WEBPACK_IMPORTED_MODULE_9__["Location"], 8), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵinject"](MAT_DIALOG_DEFAULT_OPTIONS, 8), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵinject"](MAT_DIALOG_SCROLL_STRATEGY), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵinject"](MatDialog, 12), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵinject"](_angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_4__["OverlayContainer"]));
+};
+
+MatDialog.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdefineInjectable"]({
+  token: MatDialog,
+  factory: MatDialog.ɵfac
+});
+
+MatDialog.ctorParameters = function () {
+  return [{
+    type: _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_4__["Overlay"]
+  }, {
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["Injector"]
+  }, {
+    type: _angular_common__WEBPACK_IMPORTED_MODULE_9__["Location"],
+    decorators: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["Optional"]
+    }]
+  }, {
+    type: MatDialogConfig,
+    decorators: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["Optional"]
+    }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["Inject"],
+      args: [MAT_DIALOG_DEFAULT_OPTIONS]
+    }]
+  }, {
+    type: undefined,
+    decorators: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["Inject"],
+      args: [MAT_DIALOG_SCROLL_STRATEGY]
+    }]
+  }, {
+    type: MatDialog,
+    decorators: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["Optional"]
+    }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["SkipSelf"]
+    }]
+  }, {
+    type: _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_4__["OverlayContainer"]
+  }];
+};
+/*@__PURE__*/
+
+
+(function () {
+  _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵsetClassMetadata"](MatDialog, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["Injectable"]
+  }], function () {
+    return [{
+      type: _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_4__["Overlay"]
+    }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["Injector"]
+    }, {
+      type: _angular_common__WEBPACK_IMPORTED_MODULE_9__["Location"],
+      decorators: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["Optional"]
+      }]
+    }, {
+      type: MatDialogConfig,
+      decorators: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["Optional"]
+      }, {
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["Inject"],
+        args: [MAT_DIALOG_DEFAULT_OPTIONS]
+      }]
+    }, {
+      type: undefined,
+      decorators: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["Inject"],
+        args: [MAT_DIALOG_SCROLL_STRATEGY]
+      }]
+    }, {
+      type: MatDialog,
+      decorators: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["Optional"]
+      }, {
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["SkipSelf"]
+      }]
+    }, {
+      type: _angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_4__["OverlayContainer"]
+    }];
+  }, null);
+})();
+/**
+ * Applies default options to the dialog config.
+ * @param config Config to be modified.
+ * @param defaultOptions Default options provided.
+ * @returns The new configuration object.
+ */
+
+
+function _applyConfigDefaults(config, defaultOptions) {
+  return Object.assign(Object.assign({}, defaultOptions), config);
+}
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/** Counter used to generate unique IDs for dialog elements. */
+
+
+var dialogElementUid = 0;
+/**
+ * Button that will close the current dialog.
+ */
+
+var MatDialogClose = /*#__PURE__*/function () {
+  function MatDialogClose( // The dialog title directive is always used in combination with a `MatDialogRef`.
+  // tslint:disable-next-line: lightweight-tokens
+  dialogRef, _elementRef, _dialog) {
+    Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_3__["default"])(this, MatDialogClose);
+
+    this.dialogRef = dialogRef;
+    this._elementRef = _elementRef;
+    this._dialog = _dialog;
+    /** Default to "button" to prevents accidental form submits. */
+
+    this.type = 'button';
+  }
+
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(MatDialogClose, [{
+    key: "ngOnInit",
+    value: function ngOnInit() {
+      if (!this.dialogRef) {
+        // When this directive is included in a dialog via TemplateRef (rather than being
+        // in a Component), the DialogRef isn't available via injection because embedded
+        // views cannot be given a custom injector. Instead, we look up the DialogRef by
+        // ID. This must occur in `onInit`, as the ID binding for the dialog container won't
+        // be resolved at constructor time.
+        this.dialogRef = getClosestDialog(this._elementRef, this._dialog.openDialogs);
+      }
+    }
+  }, {
+    key: "ngOnChanges",
+    value: function ngOnChanges(changes) {
+      var proxiedChange = changes['_matDialogClose'] || changes['_matDialogCloseResult'];
+
+      if (proxiedChange) {
+        this.dialogResult = proxiedChange.currentValue;
+      }
+    }
+  }, {
+    key: "_onButtonClick",
+    value: function _onButtonClick(event) {
+      // Determinate the focus origin using the click event, because using the FocusMonitor will
+      // result in incorrect origins. Most of the time, close buttons will be auto focused in the
+      // dialog, and therefore clicking the button won't result in a focus change. This means that
+      // the FocusMonitor won't detect any origin change, and will always output `program`.
+      _closeDialogVia(this.dialogRef, event.screenX === 0 && event.screenY === 0 ? 'keyboard' : 'mouse', this.dialogResult);
+    }
+  }]);
+
+  return MatDialogClose;
+}();
+
+MatDialogClose.ɵfac = function MatDialogClose_Factory(t) {
+  return new (t || MatDialogClose)(_angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdirectiveInject"](MatDialogRef, 8), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_6__["ElementRef"]), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdirectiveInject"](MatDialog));
+};
+
+MatDialogClose.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdefineDirective"]({
+  type: MatDialogClose,
+  selectors: [["", "mat-dialog-close", ""], ["", "matDialogClose", ""]],
+  hostVars: 2,
+  hostBindings: function MatDialogClose_HostBindings(rf, ctx) {
+    if (rf & 1) {
+      _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵlistener"]("click", function MatDialogClose_click_HostBindingHandler($event) {
+        return ctx._onButtonClick($event);
+      });
+    }
+
+    if (rf & 2) {
+      _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵattribute"]("aria-label", ctx.ariaLabel || null)("type", ctx.type);
+    }
+  },
+  inputs: {
+    type: "type",
+    dialogResult: ["mat-dialog-close", "dialogResult"],
+    ariaLabel: ["aria-label", "ariaLabel"],
+    _matDialogClose: ["matDialogClose", "_matDialogClose"]
+  },
+  exportAs: ["matDialogClose"],
+  features: [_angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵNgOnChangesFeature"]]
+});
+
+MatDialogClose.ctorParameters = function () {
+  return [{
+    type: MatDialogRef,
+    decorators: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["Optional"]
+    }]
+  }, {
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["ElementRef"]
+  }, {
+    type: MatDialog
+  }];
+};
+
+MatDialogClose.propDecorators = {
+  ariaLabel: [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["Input"],
+    args: ['aria-label']
+  }],
+  type: [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["Input"]
+  }],
+  dialogResult: [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["Input"],
+    args: ['mat-dialog-close']
+  }],
+  _matDialogClose: [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["Input"],
+    args: ['matDialogClose']
+  }]
+};
+/*@__PURE__*/
+
+(function () {
+  _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵsetClassMetadata"](MatDialogClose, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["Directive"],
+    args: [{
+      selector: '[mat-dialog-close], [matDialogClose]',
+      exportAs: 'matDialogClose',
+      host: {
+        '(click)': '_onButtonClick($event)',
+        '[attr.aria-label]': 'ariaLabel || null',
+        '[attr.type]': 'type'
+      }
+    }]
+  }], function () {
+    return [{
+      type: MatDialogRef,
+      decorators: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["Optional"]
+      }]
+    }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["ElementRef"]
+    }, {
+      type: MatDialog
+    }];
+  }, {
+    type: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["Input"]
+    }],
+    dialogResult: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["Input"],
+      args: ['mat-dialog-close']
+    }],
+    ariaLabel: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["Input"],
+      args: ['aria-label']
+    }],
+    _matDialogClose: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["Input"],
+      args: ['matDialogClose']
+    }]
+  });
+})();
+/**
+ * Title of a dialog element. Stays fixed to the top of the dialog when scrolling.
+ */
+
+
+var MatDialogTitle = /*#__PURE__*/function () {
+  function MatDialogTitle( // The dialog title directive is always used in combination with a `MatDialogRef`.
+  // tslint:disable-next-line: lightweight-tokens
+  _dialogRef, _elementRef, _dialog) {
+    Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_3__["default"])(this, MatDialogTitle);
+
+    this._dialogRef = _dialogRef;
+    this._elementRef = _elementRef;
+    this._dialog = _dialog;
+    this.id = "mat-dialog-title-".concat(dialogElementUid++);
+  }
+
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_0__["default"])(MatDialogTitle, [{
+    key: "ngOnInit",
+    value: function ngOnInit() {
+      var _this7 = this;
+
+      if (!this._dialogRef) {
+        this._dialogRef = getClosestDialog(this._elementRef, this._dialog.openDialogs);
+      }
+
+      if (this._dialogRef) {
+        Promise.resolve().then(function () {
+          var container = _this7._dialogRef._containerInstance;
+
+          if (container && !container._ariaLabelledBy) {
+            container._ariaLabelledBy = _this7.id;
+          }
+        });
+      }
+    }
+  }]);
+
+  return MatDialogTitle;
+}();
+
+MatDialogTitle.ɵfac = function MatDialogTitle_Factory(t) {
+  return new (t || MatDialogTitle)(_angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdirectiveInject"](MatDialogRef, 8), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_6__["ElementRef"]), _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdirectiveInject"](MatDialog));
+};
+
+MatDialogTitle.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdefineDirective"]({
+  type: MatDialogTitle,
+  selectors: [["", "mat-dialog-title", ""], ["", "matDialogTitle", ""]],
+  hostAttrs: [1, "mat-dialog-title"],
+  hostVars: 1,
+  hostBindings: function MatDialogTitle_HostBindings(rf, ctx) {
+    if (rf & 2) {
+      _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵhostProperty"]("id", ctx.id);
+    }
+  },
+  inputs: {
+    id: "id"
+  },
+  exportAs: ["matDialogTitle"]
+});
+
+MatDialogTitle.ctorParameters = function () {
+  return [{
+    type: MatDialogRef,
+    decorators: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["Optional"]
+    }]
+  }, {
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["ElementRef"]
+  }, {
+    type: MatDialog
+  }];
+};
+
+MatDialogTitle.propDecorators = {
+  id: [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["Input"]
+  }]
+};
+/*@__PURE__*/
+
+(function () {
+  _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵsetClassMetadata"](MatDialogTitle, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["Directive"],
+    args: [{
+      selector: '[mat-dialog-title], [matDialogTitle]',
+      exportAs: 'matDialogTitle',
+      host: {
+        'class': 'mat-dialog-title',
+        '[id]': 'id'
+      }
+    }]
+  }], function () {
+    return [{
+      type: MatDialogRef,
+      decorators: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["Optional"]
+      }]
+    }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["ElementRef"]
+    }, {
+      type: MatDialog
+    }];
+  }, {
+    id: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["Input"]
+    }]
+  });
+})();
+/**
+ * Scrollable content container of a dialog.
+ */
+
+
+var MatDialogContent = function MatDialogContent() {
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_3__["default"])(this, MatDialogContent);
+};
+
+MatDialogContent.ɵfac = function MatDialogContent_Factory(t) {
+  return new (t || MatDialogContent)();
+};
+
+MatDialogContent.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdefineDirective"]({
+  type: MatDialogContent,
+  selectors: [["", "mat-dialog-content", ""], ["mat-dialog-content"], ["", "matDialogContent", ""]],
+  hostAttrs: [1, "mat-dialog-content"]
+});
+/*@__PURE__*/
+
+(function () {
+  _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵsetClassMetadata"](MatDialogContent, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["Directive"],
+    args: [{
+      selector: "[mat-dialog-content], mat-dialog-content, [matDialogContent]",
+      host: {
+        'class': 'mat-dialog-content'
+      }
+    }]
+  }], null, null);
+})();
+/**
+ * Container for the bottom action buttons in a dialog.
+ * Stays fixed to the bottom when scrolling.
+ */
+
+
+var MatDialogActions = function MatDialogActions() {
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_3__["default"])(this, MatDialogActions);
+};
+
+MatDialogActions.ɵfac = function MatDialogActions_Factory(t) {
+  return new (t || MatDialogActions)();
+};
+
+MatDialogActions.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdefineDirective"]({
+  type: MatDialogActions,
+  selectors: [["", "mat-dialog-actions", ""], ["mat-dialog-actions"], ["", "matDialogActions", ""]],
+  hostAttrs: [1, "mat-dialog-actions"]
+});
+/*@__PURE__*/
+
+(function () {
+  _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵsetClassMetadata"](MatDialogActions, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["Directive"],
+    args: [{
+      selector: "[mat-dialog-actions], mat-dialog-actions, [matDialogActions]",
+      host: {
+        'class': 'mat-dialog-actions'
+      }
+    }]
+  }], null, null);
+})();
+/**
+ * Finds the closest MatDialogRef to an element by looking at the DOM.
+ * @param element Element relative to which to look for a dialog.
+ * @param openDialogs References to the currently-open dialogs.
+ */
+
+
+function getClosestDialog(element, openDialogs) {
+  var parent = element.nativeElement.parentElement;
+
+  while (parent && !parent.classList.contains('mat-dialog-container')) {
+    parent = parent.parentElement;
+  }
+
+  return parent ? openDialogs.find(function (dialog) {
+    return dialog.id === parent.id;
+  }) : null;
+}
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+
+var MatDialogModule = function MatDialogModule() {
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_3__["default"])(this, MatDialogModule);
+};
+
+MatDialogModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdefineNgModule"]({
+  type: MatDialogModule
+});
+MatDialogModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdefineInjector"]({
+  factory: function MatDialogModule_Factory(t) {
+    return new (t || MatDialogModule)();
+  },
+  providers: [MatDialog, MAT_DIALOG_SCROLL_STRATEGY_PROVIDER],
+  imports: [[_angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_4__["OverlayModule"], _angular_cdk_portal__WEBPACK_IMPORTED_MODULE_5__["PortalModule"], _angular_material_core__WEBPACK_IMPORTED_MODULE_7__["MatCommonModule"]], _angular_material_core__WEBPACK_IMPORTED_MODULE_7__["MatCommonModule"]]
+});
+
+(function () {
+  (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵsetNgModuleScope"](MatDialogModule, {
+    declarations: function declarations() {
+      return [MatDialogContainer, MatDialogClose, MatDialogTitle, MatDialogActions, MatDialogContent];
+    },
+    imports: function imports() {
+      return [_angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_4__["OverlayModule"], _angular_cdk_portal__WEBPACK_IMPORTED_MODULE_5__["PortalModule"], _angular_material_core__WEBPACK_IMPORTED_MODULE_7__["MatCommonModule"]];
+    },
+    exports: function exports() {
+      return [MatDialogContainer, MatDialogClose, MatDialogTitle, MatDialogContent, MatDialogActions, _angular_material_core__WEBPACK_IMPORTED_MODULE_7__["MatCommonModule"]];
+    }
+  });
+})();
+/*@__PURE__*/
+
+
+(function () {
+  _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵsetClassMetadata"](MatDialogModule, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_6__["NgModule"],
+    args: [{
+      imports: [_angular_cdk_overlay__WEBPACK_IMPORTED_MODULE_4__["OverlayModule"], _angular_cdk_portal__WEBPACK_IMPORTED_MODULE_5__["PortalModule"], _angular_material_core__WEBPACK_IMPORTED_MODULE_7__["MatCommonModule"]],
+      exports: [MatDialogContainer, MatDialogClose, MatDialogTitle, MatDialogContent, MatDialogActions, _angular_material_core__WEBPACK_IMPORTED_MODULE_7__["MatCommonModule"]],
+      declarations: [MatDialogContainer, MatDialogClose, MatDialogTitle, MatDialogActions, MatDialogContent],
+      providers: [MatDialog, MAT_DIALOG_SCROLL_STRATEGY_PROVIDER],
+      entryComponents: [MatDialogContainer]
+    }]
+  }], null, null);
+})();
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/**
+ * Generated bundle index. Do not edit.
+ */
+
+
+
+
+/***/ }),
+
 /***/ "0MNC":
 /*!*******************************************************************!*\
   !*** ./node_modules/@angular/cdk/__ivy_ngcc__/fesm2015/layout.js ***!
@@ -2325,6 +4297,32 @@ var Breakpoints = {
 
 /***/ }),
 
+/***/ "1M+P":
+/*!***************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-browser/nil.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ('00000000-0000-0000-0000-000000000000');
+
+/***/ }),
+
+/***/ "1PcV":
+/*!*****************************************!*\
+  !*** ./src/app/cart/cart.component.css ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NhcnQvY2FydC5jb21wb25lbnQuY3NzIn0= */");
+
+/***/ }),
+
 /***/ "1arE":
 /*!**************************************************!*\
   !*** ./src/services/graphql.products.service.ts ***!
@@ -2355,8 +4353,9 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 //import { Component, OnInit, OnDestroy } from '@angular/core';
 
+//import { StorageService } from "./storage.service";
 var TOKENAUTH = Object(apollo_angular__WEBPACK_IMPORTED_MODULE_1__["gql"])(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  mutation TokenAuth($username: String!, $password: String!) {\n    tokenAuth(username: $username, password: $password) {\n      token\n    }\n  }\n"], ["\n  mutation TokenAuth($username: String!, $password: String!) {\n    tokenAuth(username: $username, password: $password) {\n      token\n    }\n  }\n"])));
-var LINKS = Object(apollo_angular__WEBPACK_IMPORTED_MODULE_1__["gql"])(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  query Links {\n    links {\n      id\n      url\n      description\n      precio\n    }\n  }\n"], ["\n  query Links {\n    links {\n      id\n      url\n      description\n      precio\n    }\n  }\n"])));
+var LINKS = Object(apollo_angular__WEBPACK_IMPORTED_MODULE_1__["gql"])(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  query Links {\n    links {\n      id\n      url\n      description\n      precio\n      postedBy {\n        username\n      }\n    }\n  }\n"], ["\n  query Links {\n    links {\n      id\n      url\n      description\n      precio\n      postedBy {\n        username\n      }\n    }\n  }\n"])));
 var CREATELINK = Object(apollo_angular__WEBPACK_IMPORTED_MODULE_1__["gql"])(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n  mutation CreateLink($url: String!, $description: String!, $precio: Float!) {\n    createLink(url: $url, description: $description, precio: $precio) {\n      id\n      url\n      description\n      precio\n   }\n  }\n  "], ["\n  mutation CreateLink($url: String!, $description: String!, $precio: Float!) {\n    createLink(url: $url, description: $description, precio: $precio) {\n      id\n      url\n      description\n      precio\n   }\n  }\n  "])));
 var GraphqlProductsService = /** @class */ (function () {
     function GraphqlProductsService(apollo) {
@@ -2367,7 +4366,8 @@ var GraphqlProductsService = /** @class */ (function () {
             query: LINKS
         });
     };
-    GraphqlProductsService.prototype.createLink = function (url, description, precio) {
+    GraphqlProductsService.prototype.createLink = function (mytoken, url, description, precio) {
+        console.log("token auth = " + mytoken);
         return this.apollo.mutate({
             mutation: CREATELINK,
             variables: {
@@ -2377,7 +4377,7 @@ var GraphqlProductsService = /** @class */ (function () {
             },
             context: {
                 // example of setting the headers with context per operation
-                headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().set('Authorization', 'JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFkc29mdCIsImV4cCI6MTYwOTcyODAzNywib3JpZ0lhdCI6MTYwOTcyNzczN30.jYfyGMhQBap4OYZHw1HLH5YHmnxNwyDw4Su7uUJRs4o'),
+                headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().set('Authorization', 'JWT ' + mytoken),
             },
         });
     };
@@ -2395,6 +4395,51 @@ var GraphqlProductsService = /** @class */ (function () {
 
 var templateObject_1, templateObject_2, templateObject_3;
 
+
+/***/ }),
+
+/***/ "2Pgj":
+/*!***************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-browser/rng.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return rng; });
+// Unique ID creation requires a high quality random # generator. In the browser we therefore
+// require the crypto API and do not support built-in fallback to lower quality random number
+// generators (like Math.random()).
+var getRandomValues;
+var rnds8 = new Uint8Array(16);
+function rng() {
+  // lazy load so that environments that need to polyfill have a chance to do so
+  if (!getRandomValues) {
+    // getRandomValues needs to be invoked in a context where "this" is a Crypto implementation. Also,
+    // find the complete implementation of crypto (msCrypto) on IE11.
+    getRandomValues = typeof crypto !== 'undefined' && crypto.getRandomValues && crypto.getRandomValues.bind(crypto) || typeof msCrypto !== 'undefined' && typeof msCrypto.getRandomValues === 'function' && msCrypto.getRandomValues.bind(msCrypto);
+
+    if (!getRandomValues) {
+      throw new Error('crypto.getRandomValues() not supported. See https://github.com/uuidjs/uuid#getrandomvalues-not-supported');
+    }
+  }
+
+  return getRandomValues(rnds8);
+}
+
+/***/ }),
+
+/***/ "2ZcO":
+/*!****************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/checkout/checkout.component.html ***!
+  \****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<ng-container *ngIf=\"(state | async) as s\">\n\t<!-- <pre>\n    {{ s | json }}\n  </pre> -->\n\t<h3>\n\t\tCheckout\n\t\t<button style=\"float: right;\" mat-icon-button [mat-dialog-close]><mat-icon>cancel</mat-icon></button>\n  </h3>\n\n\t<div *ngIf=\"s.cart.length > 0; else elseBlock\">\n  <p>\n    Review your items and checkout\n  </p>\n  <mat-card>\n    <mat-card-header>\n      <mat-card-title>Total: {{ s.tot.subTot | currency:'USD':'symbol':'1.2-2' }}</mat-card-title>\n      <mat-card-subtitle>\n      tax: {{ s.tot.tax | currency:'USD':'symbol':'1.2-2' }}\n      <br />\n          at checkout: {{ s.tot.grandTot | currency:'USD':'symbol':'1.2-2' }}\n        </mat-card-subtitle>\n      </mat-card-header>\n      <mat-card-actions style=\"text-align: right;\">\n        <button type=\"button\" mat-button color=\"accent\" (click)=\"completeOrder()\">\n          Complete my order <mat-icon>check</mat-icon>\n        </button>\n      </mat-card-actions>\n  </mat-card>\n  <div *ngFor=\"let item of s.cart\">\n    <p>\n      {{ item.name }}<br />\n      <strong>{{ item.price }}</strong>\n    </p>\n  </div> \n</div>\n  <ng-template #elseBlock>\n    <h4>Thank you for your fake purchase!</h4>\n     <button type=\"button\" mat-button color=\"primary\" [mat-dialog-close]>\n         Close <mat-icon>cancel</mat-icon>\n        </button>\n  </ng-template>\n</ng-container>");
 
 /***/ }),
 
@@ -2495,6 +4540,54 @@ var NotificationsComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "4USb":
+/*!*****************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-browser/index.js ***!
+  \*****************************************************/
+/*! exports provided: v1, v3, v4, v5, NIL, version, validate, stringify, parse */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _v1_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./v1.js */ "xQqG");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "v1", function() { return _v1_js__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+/* harmony import */ var _v3_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./v3.js */ "VKuO");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "v3", function() { return _v3_js__WEBPACK_IMPORTED_MODULE_1__["default"]; });
+
+/* harmony import */ var _v4_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./v4.js */ "7Cbv");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "v4", function() { return _v4_js__WEBPACK_IMPORTED_MODULE_2__["default"]; });
+
+/* harmony import */ var _v5_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./v5.js */ "Jr8q");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "v5", function() { return _v5_js__WEBPACK_IMPORTED_MODULE_3__["default"]; });
+
+/* harmony import */ var _nil_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./nil.js */ "1M+P");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "NIL", function() { return _nil_js__WEBPACK_IMPORTED_MODULE_4__["default"]; });
+
+/* harmony import */ var _version_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./version.js */ "dugQ");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "version", function() { return _version_js__WEBPACK_IMPORTED_MODULE_5__["default"]; });
+
+/* harmony import */ var _validate_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./validate.js */ "BuRe");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "validate", function() { return _validate_js__WEBPACK_IMPORTED_MODULE_6__["default"]; });
+
+/* harmony import */ var _stringify_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./stringify.js */ "WM9j");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "stringify", function() { return _stringify_js__WEBPACK_IMPORTED_MODULE_7__["default"]; });
+
+/* harmony import */ var _parse_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./parse.js */ "DeoT");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "parse", function() { return _parse_js__WEBPACK_IMPORTED_MODULE_8__["default"]; });
+
+
+
+
+
+
+
+
+
+
+
+/***/ }),
+
 /***/ "61FP":
 /*!*****************************************!*\
   !*** ./src/services/storage.service.ts ***!
@@ -2542,6 +4635,44 @@ var StorageService = /** @class */ (function () {
 }());
 
 
+
+/***/ }),
+
+/***/ "7Cbv":
+/*!**************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-browser/v4.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _rng_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./rng.js */ "2Pgj");
+/* harmony import */ var _stringify_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./stringify.js */ "WM9j");
+
+
+
+function v4(options, buf, offset) {
+  options = options || {};
+  var rnds = options.random || (options.rng || _rng_js__WEBPACK_IMPORTED_MODULE_0__["default"])(); // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
+
+  rnds[6] = rnds[6] & 0x0f | 0x40;
+  rnds[8] = rnds[8] & 0x3f | 0x80; // Copy bytes to buffer, if provided
+
+  if (buf) {
+    offset = offset || 0;
+
+    for (var i = 0; i < 16; ++i) {
+      buf[offset + i] = rnds[i];
+    }
+
+    return buf;
+  }
+
+  return Object(_stringify_js__WEBPACK_IMPORTED_MODULE_1__["default"])(rnds);
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (v4);
 
 /***/ }),
 
@@ -2727,6 +4858,2468 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "A5z7":
+/*!***********************************************************************!*\
+  !*** ./node_modules/@angular/material/__ivy_ngcc__/fesm2015/chips.js ***!
+  \***********************************************************************/
+/*! exports provided: MAT_CHIPS_DEFAULT_OPTIONS, MAT_CHIP_AVATAR, MAT_CHIP_REMOVE, MAT_CHIP_TRAILING_ICON, MatChip, MatChipAvatar, MatChipInput, MatChipList, MatChipListChange, MatChipRemove, MatChipSelectionChange, MatChipTrailingIcon, MatChipsModule, ɵ0 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MAT_CHIPS_DEFAULT_OPTIONS", function() { return MAT_CHIPS_DEFAULT_OPTIONS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MAT_CHIP_AVATAR", function() { return MAT_CHIP_AVATAR; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MAT_CHIP_REMOVE", function() { return MAT_CHIP_REMOVE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MAT_CHIP_TRAILING_ICON", function() { return MAT_CHIP_TRAILING_ICON; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatChip", function() { return MatChip; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatChipAvatar", function() { return MatChipAvatar; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatChipInput", function() { return MatChipInput; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatChipList", function() { return MatChipList; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatChipListChange", function() { return MatChipListChange; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatChipRemove", function() { return MatChipRemove; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatChipSelectionChange", function() { return MatChipSelectionChange; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatChipTrailingIcon", function() { return MatChipTrailingIcon; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatChipsModule", function() { return MatChipsModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵ0", function() { return ɵ0; });
+/* harmony import */ var _Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/toConsumableArray */ "KQm4");
+/* harmony import */ var _Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/createClass */ "vuIU");
+/* harmony import */ var _Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/assertThisInitialized */ "JX7q");
+/* harmony import */ var _Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/inherits */ "Ji7U");
+/* harmony import */ var _Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/createSuper */ "LK+K");
+/* harmony import */ var _Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/classCallCheck */ "1OyB");
+/* harmony import */ var _angular_cdk_keycodes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/cdk/keycodes */ "FtGj");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _angular_material_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material/core */ "FKr1");
+/* harmony import */ var _angular_cdk_coercion__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/cdk/coercion */ "8LU1");
+/* harmony import */ var _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/cdk/platform */ "nLfN");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/common */ "ofXK");
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/platform-browser/animations */ "R1ws");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! rxjs */ "qCKp");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! rxjs/operators */ "kU1M");
+/* harmony import */ var _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/cdk/a11y */ "u47x");
+/* harmony import */ var _angular_cdk_bidi__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @angular/cdk/bidi */ "cH1L");
+/* harmony import */ var _angular_cdk_collections__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @angular/cdk/collections */ "0EQZ");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @angular/forms */ "3Pt+");
+/* harmony import */ var _angular_material_form_field__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @angular/material/form-field */ "kmnG");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/** Event object emitted by MatChip when selected or deselected. */
+
+
+
+
+
+
+var _c0 = ["*"];
+
+var MatChipSelectionChange = function MatChipSelectionChange(
+/** Reference to the chip that emitted the event. */
+source,
+/** Whether the chip that emitted the event is selected. */
+selected) {
+  var isUserInput = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_5__["default"])(this, MatChipSelectionChange);
+
+  this.source = source;
+  this.selected = selected;
+  this.isUserInput = isUserInput;
+};
+/**
+ * Injection token that can be used to reference instances of `MatChipRemove`. It serves as
+ * alternative token to the actual `MatChipRemove` class which could cause unnecessary
+ * retention of the class and its directive metadata.
+ */
+
+
+var MAT_CHIP_REMOVE = new _angular_core__WEBPACK_IMPORTED_MODULE_7__["InjectionToken"]('MatChipRemove');
+/**
+ * Injection token that can be used to reference instances of `MatChipAvatar`. It serves as
+ * alternative token to the actual `MatChipAvatar` class which could cause unnecessary
+ * retention of the class and its directive metadata.
+ */
+
+var MAT_CHIP_AVATAR = new _angular_core__WEBPACK_IMPORTED_MODULE_7__["InjectionToken"]('MatChipAvatar');
+/**
+ * Injection token that can be used to reference instances of `MatChipTrailingIcon`. It serves as
+ * alternative token to the actual `MatChipTrailingIcon` class which could cause unnecessary
+ * retention of the class and its directive metadata.
+ */
+
+var MAT_CHIP_TRAILING_ICON = new _angular_core__WEBPACK_IMPORTED_MODULE_7__["InjectionToken"]('MatChipTrailingIcon'); // Boilerplate for applying mixins to MatChip.
+
+/** @docs-private */
+
+var MatChipBase = function MatChipBase(_elementRef) {
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_5__["default"])(this, MatChipBase);
+
+  this._elementRef = _elementRef;
+};
+
+var _MatChipMixinBase = Object(_angular_material_core__WEBPACK_IMPORTED_MODULE_8__["mixinTabIndex"])(Object(_angular_material_core__WEBPACK_IMPORTED_MODULE_8__["mixinColor"])(Object(_angular_material_core__WEBPACK_IMPORTED_MODULE_8__["mixinDisableRipple"])(MatChipBase), 'primary'), -1);
+/**
+ * Dummy directive to add CSS class to chip avatar.
+ * @docs-private
+ */
+
+
+var MatChipAvatar = function MatChipAvatar() {
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_5__["default"])(this, MatChipAvatar);
+};
+
+MatChipAvatar.ɵfac = function MatChipAvatar_Factory(t) {
+  return new (t || MatChipAvatar)();
+};
+
+MatChipAvatar.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdefineDirective"]({
+  type: MatChipAvatar,
+  selectors: [["mat-chip-avatar"], ["", "matChipAvatar", ""]],
+  hostAttrs: [1, "mat-chip-avatar"],
+  features: [_angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵProvidersFeature"]([{
+    provide: MAT_CHIP_AVATAR,
+    useExisting: MatChipAvatar
+  }])]
+});
+/*@__PURE__*/
+
+(function () {
+  _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵsetClassMetadata"](MatChipAvatar, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Directive"],
+    args: [{
+      selector: 'mat-chip-avatar, [matChipAvatar]',
+      host: {
+        'class': 'mat-chip-avatar'
+      },
+      providers: [{
+        provide: MAT_CHIP_AVATAR,
+        useExisting: MatChipAvatar
+      }]
+    }]
+  }], null, null);
+})();
+/**
+ * Dummy directive to add CSS class to chip trailing icon.
+ * @docs-private
+ */
+
+
+var MatChipTrailingIcon = function MatChipTrailingIcon() {
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_5__["default"])(this, MatChipTrailingIcon);
+};
+
+MatChipTrailingIcon.ɵfac = function MatChipTrailingIcon_Factory(t) {
+  return new (t || MatChipTrailingIcon)();
+};
+
+MatChipTrailingIcon.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdefineDirective"]({
+  type: MatChipTrailingIcon,
+  selectors: [["mat-chip-trailing-icon"], ["", "matChipTrailingIcon", ""]],
+  hostAttrs: [1, "mat-chip-trailing-icon"],
+  features: [_angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵProvidersFeature"]([{
+    provide: MAT_CHIP_TRAILING_ICON,
+    useExisting: MatChipTrailingIcon
+  }])]
+});
+/*@__PURE__*/
+
+(function () {
+  _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵsetClassMetadata"](MatChipTrailingIcon, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Directive"],
+    args: [{
+      selector: 'mat-chip-trailing-icon, [matChipTrailingIcon]',
+      host: {
+        'class': 'mat-chip-trailing-icon'
+      },
+      providers: [{
+        provide: MAT_CHIP_TRAILING_ICON,
+        useExisting: MatChipTrailingIcon
+      }]
+    }]
+  }], null, null);
+})();
+/**
+ * Material design styled Chip component. Used inside the MatChipList component.
+ */
+
+
+var MatChip = /*#__PURE__*/function (_MatChipMixinBase2) {
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_3__["default"])(MatChip, _MatChipMixinBase2);
+
+  var _super = Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_4__["default"])(MatChip);
+
+  function MatChip(_elementRef, _ngZone, platform, globalRippleOptions, // @breaking-change 8.0.0 `animationMode` parameter to become required.
+  animationMode, // @breaking-change 9.0.0 `_changeDetectorRef` parameter to become required.
+  _changeDetectorRef, tabIndex, // @breaking-change 11.0.0 `_document` parameter to become required.
+  _document) {
+    var _this;
+
+    Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_5__["default"])(this, MatChip);
+
+    _this = _super.call(this, _elementRef);
+    _this._elementRef = _elementRef;
+    _this._ngZone = _ngZone;
+    _this._changeDetectorRef = _changeDetectorRef;
+    /** Whether the chip has focus. */
+
+    _this._hasFocus = false;
+    /** Whether the chip list is selectable */
+
+    _this.chipListSelectable = true;
+    /** Whether the chip list is in multi-selection mode. */
+
+    _this._chipListMultiple = false;
+    /** Whether the chip list as a whole is disabled. */
+
+    _this._chipListDisabled = false;
+    _this._selected = false;
+    _this._selectable = true;
+    _this._disabled = false;
+    _this._removable = true;
+    /** Emits when the chip is focused. */
+
+    _this._onFocus = new rxjs__WEBPACK_IMPORTED_MODULE_13__["Subject"]();
+    /** Emits when the chip is blured. */
+
+    _this._onBlur = new rxjs__WEBPACK_IMPORTED_MODULE_13__["Subject"]();
+    /** Emitted when the chip is selected or deselected. */
+
+    _this.selectionChange = new _angular_core__WEBPACK_IMPORTED_MODULE_7__["EventEmitter"]();
+    /** Emitted when the chip is destroyed. */
+
+    _this.destroyed = new _angular_core__WEBPACK_IMPORTED_MODULE_7__["EventEmitter"]();
+    /** Emitted when a chip is to be removed. */
+
+    _this.removed = new _angular_core__WEBPACK_IMPORTED_MODULE_7__["EventEmitter"]();
+
+    _this._addHostClassName(); // Dynamically create the ripple target, append it within the chip, and use it as the
+    // chip's ripple target. Adding the class '.mat-chip-ripple' ensures that it will have
+    // the proper styles.
+
+
+    _this._chipRippleTarget = (_document || document).createElement('div');
+
+    _this._chipRippleTarget.classList.add('mat-chip-ripple');
+
+    _this._elementRef.nativeElement.appendChild(_this._chipRippleTarget);
+
+    _this._chipRipple = new _angular_material_core__WEBPACK_IMPORTED_MODULE_8__["RippleRenderer"](Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__["default"])(_this), _ngZone, _this._chipRippleTarget, platform);
+
+    _this._chipRipple.setupTriggerEvents(_elementRef);
+
+    _this.rippleConfig = globalRippleOptions || {};
+    _this._animationsDisabled = animationMode === 'NoopAnimations';
+    _this.tabIndex = tabIndex != null ? parseInt(tabIndex) || -1 : -1;
+    return _this;
+  }
+  /**
+   * Whether ripples are disabled on interaction
+   * @docs-private
+   */
+
+
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(MatChip, [{
+    key: "_addHostClassName",
+    value: function _addHostClassName() {
+      var basicChipAttrName = 'mat-basic-chip';
+      var element = this._elementRef.nativeElement;
+
+      if (element.hasAttribute(basicChipAttrName) || element.tagName.toLowerCase() === basicChipAttrName) {
+        element.classList.add(basicChipAttrName);
+        return;
+      } else {
+        element.classList.add('mat-standard-chip');
+      }
+    }
+  }, {
+    key: "ngOnDestroy",
+    value: function ngOnDestroy() {
+      this.destroyed.emit({
+        chip: this
+      });
+
+      this._chipRipple._removeTriggerEvents();
+    }
+    /** Selects the chip. */
+
+  }, {
+    key: "select",
+    value: function select() {
+      if (!this._selected) {
+        this._selected = true;
+
+        this._dispatchSelectionChange();
+
+        this._markForCheck();
+      }
+    }
+    /** Deselects the chip. */
+
+  }, {
+    key: "deselect",
+    value: function deselect() {
+      if (this._selected) {
+        this._selected = false;
+
+        this._dispatchSelectionChange();
+
+        this._markForCheck();
+      }
+    }
+    /** Select this chip and emit selected event */
+
+  }, {
+    key: "selectViaInteraction",
+    value: function selectViaInteraction() {
+      if (!this._selected) {
+        this._selected = true;
+
+        this._dispatchSelectionChange(true);
+
+        this._markForCheck();
+      }
+    }
+    /** Toggles the current selected state of this chip. */
+
+  }, {
+    key: "toggleSelected",
+    value: function toggleSelected() {
+      var isUserInput = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+      this._selected = !this.selected;
+
+      this._dispatchSelectionChange(isUserInput);
+
+      this._markForCheck();
+
+      return this.selected;
+    }
+    /** Allows for programmatic focusing of the chip. */
+
+  }, {
+    key: "focus",
+    value: function focus() {
+      if (!this._hasFocus) {
+        this._elementRef.nativeElement.focus();
+
+        this._onFocus.next({
+          chip: this
+        });
+      }
+
+      this._hasFocus = true;
+    }
+    /**
+     * Allows for programmatic removal of the chip. Called by the MatChipList when the DELETE or
+     * BACKSPACE keys are pressed.
+     *
+     * Informs any listeners of the removal request. Does not remove the chip from the DOM.
+     */
+
+  }, {
+    key: "remove",
+    value: function remove() {
+      if (this.removable) {
+        this.removed.emit({
+          chip: this
+        });
+      }
+    }
+    /** Handles click events on the chip. */
+
+  }, {
+    key: "_handleClick",
+    value: function _handleClick(event) {
+      if (this.disabled) {
+        event.preventDefault();
+      } else {
+        event.stopPropagation();
+      }
+    }
+    /** Handle custom key presses. */
+
+  }, {
+    key: "_handleKeydown",
+    value: function _handleKeydown(event) {
+      if (this.disabled) {
+        return;
+      }
+
+      switch (event.keyCode) {
+        case _angular_cdk_keycodes__WEBPACK_IMPORTED_MODULE_6__["DELETE"]:
+        case _angular_cdk_keycodes__WEBPACK_IMPORTED_MODULE_6__["BACKSPACE"]:
+          // If we are removable, remove the focused chip
+          this.remove(); // Always prevent so page navigation does not occur
+
+          event.preventDefault();
+          break;
+
+        case _angular_cdk_keycodes__WEBPACK_IMPORTED_MODULE_6__["SPACE"]:
+          // If we are selectable, toggle the focused chip
+          if (this.selectable) {
+            this.toggleSelected(true);
+          } // Always prevent space from scrolling the page since the list has focus
+
+
+          event.preventDefault();
+          break;
+      }
+    }
+  }, {
+    key: "_blur",
+    value: function _blur() {
+      var _this2 = this;
+
+      // When animations are enabled, Angular may end up removing the chip from the DOM a little
+      // earlier than usual, causing it to be blurred and throwing off the logic in the chip list
+      // that moves focus not the next item. To work around the issue, we defer marking the chip
+      // as not focused until the next time the zone stabilizes.
+      this._ngZone.onStable.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_14__["take"])(1)).subscribe(function () {
+        _this2._ngZone.run(function () {
+          _this2._hasFocus = false;
+
+          _this2._onBlur.next({
+            chip: _this2
+          });
+        });
+      });
+    }
+  }, {
+    key: "_dispatchSelectionChange",
+    value: function _dispatchSelectionChange() {
+      var isUserInput = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+      this.selectionChange.emit({
+        source: this,
+        isUserInput: isUserInput,
+        selected: this._selected
+      });
+    }
+  }, {
+    key: "_markForCheck",
+    value: function _markForCheck() {
+      // @breaking-change 9.0.0 Remove this method once the _changeDetectorRef is a required param.
+      if (this._changeDetectorRef) {
+        this._changeDetectorRef.markForCheck();
+      }
+    }
+  }, {
+    key: "rippleDisabled",
+    get: function get() {
+      return this.disabled || this.disableRipple || !!this.rippleConfig.disabled;
+    }
+    /** Whether the chip is selected. */
+
+  }, {
+    key: "selected",
+    get: function get() {
+      return this._selected;
+    },
+    set: function set(value) {
+      var coercedValue = Object(_angular_cdk_coercion__WEBPACK_IMPORTED_MODULE_9__["coerceBooleanProperty"])(value);
+
+      if (coercedValue !== this._selected) {
+        this._selected = coercedValue;
+
+        this._dispatchSelectionChange();
+      }
+    }
+    /** The value of the chip. Defaults to the content inside `<mat-chip>` tags. */
+
+  }, {
+    key: "value",
+    get: function get() {
+      return this._value !== undefined ? this._value : this._elementRef.nativeElement.textContent;
+    },
+    set: function set(value) {
+      this._value = value;
+    }
+    /**
+     * Whether or not the chip is selectable. When a chip is not selectable,
+     * changes to its selected state are always ignored. By default a chip is
+     * selectable, and it becomes non-selectable if its parent chip list is
+     * not selectable.
+     */
+
+  }, {
+    key: "selectable",
+    get: function get() {
+      return this._selectable && this.chipListSelectable;
+    },
+    set: function set(value) {
+      this._selectable = Object(_angular_cdk_coercion__WEBPACK_IMPORTED_MODULE_9__["coerceBooleanProperty"])(value);
+    }
+    /** Whether the chip is disabled. */
+
+  }, {
+    key: "disabled",
+    get: function get() {
+      return this._chipListDisabled || this._disabled;
+    },
+    set: function set(value) {
+      this._disabled = Object(_angular_cdk_coercion__WEBPACK_IMPORTED_MODULE_9__["coerceBooleanProperty"])(value);
+    }
+    /**
+     * Determines whether or not the chip displays the remove styling and emits (removed) events.
+     */
+
+  }, {
+    key: "removable",
+    get: function get() {
+      return this._removable;
+    },
+    set: function set(value) {
+      this._removable = Object(_angular_cdk_coercion__WEBPACK_IMPORTED_MODULE_9__["coerceBooleanProperty"])(value);
+    }
+    /** The ARIA selected applied to the chip. */
+
+  }, {
+    key: "ariaSelected",
+    get: function get() {
+      // Remove the `aria-selected` when the chip is deselected in single-selection mode, because
+      // it adds noise to NVDA users where "not selected" will be read out for each chip.
+      return this.selectable && (this._chipListMultiple || this.selected) ? this.selected.toString() : null;
+    }
+  }]);
+
+  return MatChip;
+}(_MatChipMixinBase);
+
+MatChip.ɵfac = function MatChip_Factory(t) {
+  return new (t || MatChip)(_angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_7__["ElementRef"]), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_7__["NgZone"]), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_angular_cdk_platform__WEBPACK_IMPORTED_MODULE_10__["Platform"]), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_angular_material_core__WEBPACK_IMPORTED_MODULE_8__["MAT_RIPPLE_GLOBAL_OPTIONS"], 8), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_12__["ANIMATION_MODULE_TYPE"], 8), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_7__["ChangeDetectorRef"]), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵinjectAttribute"]('tabindex'), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_angular_common__WEBPACK_IMPORTED_MODULE_11__["DOCUMENT"], 8));
+};
+
+MatChip.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdefineDirective"]({
+  type: MatChip,
+  selectors: [["mat-basic-chip"], ["", "mat-basic-chip", ""], ["mat-chip"], ["", "mat-chip", ""]],
+  contentQueries: function MatChip_ContentQueries(rf, ctx, dirIndex) {
+    if (rf & 1) {
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵcontentQuery"](dirIndex, MAT_CHIP_AVATAR, true);
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵcontentQuery"](dirIndex, MAT_CHIP_TRAILING_ICON, true);
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵcontentQuery"](dirIndex, MAT_CHIP_REMOVE, true);
+    }
+
+    if (rf & 2) {
+      var _t;
+
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵloadQuery"]()) && (ctx.avatar = _t.first);
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵloadQuery"]()) && (ctx.trailingIcon = _t.first);
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵloadQuery"]()) && (ctx.removeIcon = _t.first);
+    }
+  },
+  hostAttrs: ["role", "option", 1, "mat-chip", "mat-focus-indicator"],
+  hostVars: 14,
+  hostBindings: function MatChip_HostBindings(rf, ctx) {
+    if (rf & 1) {
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("click", function MatChip_click_HostBindingHandler($event) {
+        return ctx._handleClick($event);
+      })("keydown", function MatChip_keydown_HostBindingHandler($event) {
+        return ctx._handleKeydown($event);
+      })("focus", function MatChip_focus_HostBindingHandler() {
+        return ctx.focus();
+      })("blur", function MatChip_blur_HostBindingHandler() {
+        return ctx._blur();
+      });
+    }
+
+    if (rf & 2) {
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵattribute"]("tabindex", ctx.disabled ? null : ctx.tabIndex)("disabled", ctx.disabled || null)("aria-disabled", ctx.disabled.toString())("aria-selected", ctx.ariaSelected);
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵclassProp"]("mat-chip-selected", ctx.selected)("mat-chip-with-avatar", ctx.avatar)("mat-chip-with-trailing-icon", ctx.trailingIcon || ctx.removeIcon)("mat-chip-disabled", ctx.disabled)("_mat-animation-noopable", ctx._animationsDisabled);
+    }
+  },
+  inputs: {
+    color: "color",
+    disableRipple: "disableRipple",
+    tabIndex: "tabIndex",
+    selected: "selected",
+    value: "value",
+    selectable: "selectable",
+    disabled: "disabled",
+    removable: "removable"
+  },
+  outputs: {
+    selectionChange: "selectionChange",
+    destroyed: "destroyed",
+    removed: "removed"
+  },
+  exportAs: ["matChip"],
+  features: [_angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵInheritDefinitionFeature"]]
+});
+
+MatChip.ctorParameters = function () {
+  return [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["ElementRef"]
+  }, {
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["NgZone"]
+  }, {
+    type: _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_10__["Platform"]
+  }, {
+    type: undefined,
+    decorators: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Optional"]
+    }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Inject"],
+      args: [_angular_material_core__WEBPACK_IMPORTED_MODULE_8__["MAT_RIPPLE_GLOBAL_OPTIONS"]]
+    }]
+  }, {
+    type: String,
+    decorators: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Optional"]
+    }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Inject"],
+      args: [_angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_12__["ANIMATION_MODULE_TYPE"]]
+    }]
+  }, {
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["ChangeDetectorRef"]
+  }, {
+    type: String,
+    decorators: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Attribute"],
+      args: ['tabindex']
+    }]
+  }, {
+    type: undefined,
+    decorators: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Optional"]
+    }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Inject"],
+      args: [_angular_common__WEBPACK_IMPORTED_MODULE_11__["DOCUMENT"]]
+    }]
+  }];
+};
+
+MatChip.propDecorators = {
+  avatar: [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["ContentChild"],
+    args: [MAT_CHIP_AVATAR]
+  }],
+  trailingIcon: [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["ContentChild"],
+    args: [MAT_CHIP_TRAILING_ICON]
+  }],
+  removeIcon: [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["ContentChild"],
+    args: [MAT_CHIP_REMOVE]
+  }],
+  selected: [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Input"]
+  }],
+  value: [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Input"]
+  }],
+  selectable: [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Input"]
+  }],
+  disabled: [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Input"]
+  }],
+  removable: [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Input"]
+  }],
+  selectionChange: [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Output"]
+  }],
+  destroyed: [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Output"]
+  }],
+  removed: [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Output"]
+  }]
+};
+/*@__PURE__*/
+
+(function () {
+  _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵsetClassMetadata"](MatChip, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Directive"],
+    args: [{
+      selector: "mat-basic-chip, [mat-basic-chip], mat-chip, [mat-chip]",
+      inputs: ['color', 'disableRipple', 'tabIndex'],
+      exportAs: 'matChip',
+      host: {
+        'class': 'mat-chip mat-focus-indicator',
+        '[attr.tabindex]': 'disabled ? null : tabIndex',
+        'role': 'option',
+        '[class.mat-chip-selected]': 'selected',
+        '[class.mat-chip-with-avatar]': 'avatar',
+        '[class.mat-chip-with-trailing-icon]': 'trailingIcon || removeIcon',
+        '[class.mat-chip-disabled]': 'disabled',
+        '[class._mat-animation-noopable]': '_animationsDisabled',
+        '[attr.disabled]': 'disabled || null',
+        '[attr.aria-disabled]': 'disabled.toString()',
+        '[attr.aria-selected]': 'ariaSelected',
+        '(click)': '_handleClick($event)',
+        '(keydown)': '_handleKeydown($event)',
+        '(focus)': 'focus()',
+        '(blur)': '_blur()'
+      }
+    }]
+  }], function () {
+    return [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["ElementRef"]
+    }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["NgZone"]
+    }, {
+      type: _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_10__["Platform"]
+    }, {
+      type: undefined,
+      decorators: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Optional"]
+      }, {
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Inject"],
+        args: [_angular_material_core__WEBPACK_IMPORTED_MODULE_8__["MAT_RIPPLE_GLOBAL_OPTIONS"]]
+      }]
+    }, {
+      type: String,
+      decorators: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Optional"]
+      }, {
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Inject"],
+        args: [_angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_12__["ANIMATION_MODULE_TYPE"]]
+      }]
+    }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["ChangeDetectorRef"]
+    }, {
+      type: String,
+      decorators: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Attribute"],
+        args: ['tabindex']
+      }]
+    }, {
+      type: undefined,
+      decorators: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Optional"]
+      }, {
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Inject"],
+        args: [_angular_common__WEBPACK_IMPORTED_MODULE_11__["DOCUMENT"]]
+      }]
+    }];
+  }, {
+    selectionChange: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Output"]
+    }],
+    destroyed: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Output"]
+    }],
+    removed: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Output"]
+    }],
+    selected: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Input"]
+    }],
+    value: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Input"]
+    }],
+    selectable: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Input"]
+    }],
+    disabled: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Input"]
+    }],
+    removable: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Input"]
+    }],
+    avatar: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["ContentChild"],
+      args: [MAT_CHIP_AVATAR]
+    }],
+    trailingIcon: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["ContentChild"],
+      args: [MAT_CHIP_TRAILING_ICON]
+    }],
+    removeIcon: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["ContentChild"],
+      args: [MAT_CHIP_REMOVE]
+    }]
+  });
+})();
+/**
+ * Applies proper (click) support and adds styling for use with the Material Design "cancel" icon
+ * available at https://material.io/icons/#ic_cancel.
+ *
+ * Example:
+ *
+ *     `<mat-chip>
+ *       <mat-icon matChipRemove>cancel</mat-icon>
+ *     </mat-chip>`
+ *
+ * You *may* use a custom icon, but you may need to override the `mat-chip-remove` positioning
+ * styles to properly center the icon within the chip.
+ */
+
+
+var MatChipRemove = /*#__PURE__*/function () {
+  function MatChipRemove(_parentChip, // @breaking-change 11.0.0 `elementRef` parameter to be made required.
+  elementRef) {
+    Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_5__["default"])(this, MatChipRemove);
+
+    this._parentChip = _parentChip; // @breaking-change 11.0.0 Remove null check for `elementRef`.
+
+    if (elementRef && elementRef.nativeElement.nodeName === 'BUTTON') {
+      elementRef.nativeElement.setAttribute('type', 'button');
+    }
+  }
+  /** Calls the parent chip's public `remove()` method if applicable. */
+
+
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(MatChipRemove, [{
+    key: "_handleClick",
+    value: function _handleClick(event) {
+      var parentChip = this._parentChip;
+
+      if (parentChip.removable && !parentChip.disabled) {
+        parentChip.remove();
+      } // We need to stop event propagation because otherwise the event will bubble up to the
+      // form field and cause the `onContainerClick` method to be invoked. This method would then
+      // reset the focused chip that has been focused after chip removal. Usually the parent
+      // the parent click listener of the `MatChip` would prevent propagation, but it can happen
+      // that the chip is being removed before the event bubbles up.
+
+
+      event.stopPropagation();
+    }
+  }]);
+
+  return MatChipRemove;
+}();
+
+MatChipRemove.ɵfac = function MatChipRemove_Factory(t) {
+  return new (t || MatChipRemove)(_angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](MatChip), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_7__["ElementRef"]));
+};
+
+MatChipRemove.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdefineDirective"]({
+  type: MatChipRemove,
+  selectors: [["", "matChipRemove", ""]],
+  hostAttrs: [1, "mat-chip-remove", "mat-chip-trailing-icon"],
+  hostBindings: function MatChipRemove_HostBindings(rf, ctx) {
+    if (rf & 1) {
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("click", function MatChipRemove_click_HostBindingHandler($event) {
+        return ctx._handleClick($event);
+      });
+    }
+  },
+  features: [_angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵProvidersFeature"]([{
+    provide: MAT_CHIP_REMOVE,
+    useExisting: MatChipRemove
+  }])]
+});
+
+MatChipRemove.ctorParameters = function () {
+  return [{
+    type: MatChip
+  }, {
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["ElementRef"]
+  }];
+};
+/*@__PURE__*/
+
+
+(function () {
+  _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵsetClassMetadata"](MatChipRemove, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Directive"],
+    args: [{
+      selector: '[matChipRemove]',
+      host: {
+        'class': 'mat-chip-remove mat-chip-trailing-icon',
+        '(click)': '_handleClick($event)'
+      },
+      providers: [{
+        provide: MAT_CHIP_REMOVE,
+        useExisting: MatChipRemove
+      }]
+    }]
+  }], function () {
+    return [{
+      type: MatChip
+    }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["ElementRef"]
+    }];
+  }, null);
+})();
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/** Injection token to be used to override the default options for the chips module. */
+
+
+var MAT_CHIPS_DEFAULT_OPTIONS = new _angular_core__WEBPACK_IMPORTED_MODULE_7__["InjectionToken"]('mat-chips-default-options');
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+// Boilerplate for applying mixins to MatChipList.
+
+/** @docs-private */
+
+var MatChipListBase = function MatChipListBase(_defaultErrorStateMatcher, _parentForm, _parentFormGroup,
+/** @docs-private */
+ngControl) {
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_5__["default"])(this, MatChipListBase);
+
+  this._defaultErrorStateMatcher = _defaultErrorStateMatcher;
+  this._parentForm = _parentForm;
+  this._parentFormGroup = _parentFormGroup;
+  this.ngControl = ngControl;
+};
+
+var _MatChipListMixinBase = Object(_angular_material_core__WEBPACK_IMPORTED_MODULE_8__["mixinErrorState"])(MatChipListBase); // Increasing integer for generating unique ids for chip-list components.
+
+
+var nextUniqueId = 0;
+/** Change event object that is emitted when the chip list value has changed. */
+
+var MatChipListChange = function MatChipListChange(
+/** Chip list that emitted the event. */
+source,
+/** Value of the chip list when the event was emitted. */
+value) {
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_5__["default"])(this, MatChipListChange);
+
+  this.source = source;
+  this.value = value;
+};
+/**
+ * A material design chips component (named ChipList for its similarity to the List component).
+ */
+
+
+var MatChipList = /*#__PURE__*/function (_MatChipListMixinBase2) {
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_3__["default"])(MatChipList, _MatChipListMixinBase2);
+
+  var _super2 = Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_4__["default"])(MatChipList);
+
+  function MatChipList(_elementRef, _changeDetectorRef, _dir, _parentForm, _parentFormGroup, _defaultErrorStateMatcher,
+  /** @docs-private */
+  ngControl) {
+    var _this3;
+
+    Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_5__["default"])(this, MatChipList);
+
+    _this3 = _super2.call(this, _defaultErrorStateMatcher, _parentForm, _parentFormGroup, ngControl);
+    _this3._elementRef = _elementRef;
+    _this3._changeDetectorRef = _changeDetectorRef;
+    _this3._dir = _dir;
+    _this3.ngControl = ngControl;
+    /**
+     * Implemented as part of MatFormFieldControl.
+     * @docs-private
+     */
+
+    _this3.controlType = 'mat-chip-list';
+    /**
+     * When a chip is destroyed, we store the index of the destroyed chip until the chips
+     * query list notifies about the update. This is necessary because we cannot determine an
+     * appropriate chip that should receive focus until the array of chips updated completely.
+     */
+
+    _this3._lastDestroyedChipIndex = null;
+    /** Subject that emits when the component has been destroyed. */
+
+    _this3._destroyed = new rxjs__WEBPACK_IMPORTED_MODULE_13__["Subject"]();
+    /** Uid of the chip list */
+
+    _this3._uid = "mat-chip-list-".concat(nextUniqueId++);
+    /** Tab index for the chip list. */
+
+    _this3._tabIndex = 0;
+    /**
+     * User defined tab index.
+     * When it is not null, use user defined tab index. Otherwise use _tabIndex
+     */
+
+    _this3._userTabIndex = null;
+    /** Function when touched */
+
+    _this3._onTouched = function () {};
+    /** Function when changed */
+
+
+    _this3._onChange = function () {};
+
+    _this3._multiple = false;
+
+    _this3._compareWith = function (o1, o2) {
+      return o1 === o2;
+    };
+
+    _this3._required = false;
+    _this3._disabled = false;
+    /** Orientation of the chip list. */
+
+    _this3.ariaOrientation = 'horizontal';
+    _this3._selectable = true;
+    /** Event emitted when the selected chip list value has been changed by the user. */
+
+    _this3.change = new _angular_core__WEBPACK_IMPORTED_MODULE_7__["EventEmitter"]();
+    /**
+     * Event that emits whenever the raw value of the chip-list changes. This is here primarily
+     * to facilitate the two-way binding for the `value` input.
+     * @docs-private
+     */
+
+    _this3.valueChange = new _angular_core__WEBPACK_IMPORTED_MODULE_7__["EventEmitter"]();
+
+    if (_this3.ngControl) {
+      _this3.ngControl.valueAccessor = Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__["default"])(_this3);
+    }
+
+    return _this3;
+  }
+  /** The array of selected chips inside chip list. */
+
+
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(MatChipList, [{
+    key: "ngAfterContentInit",
+    value: function ngAfterContentInit() {
+      var _this4 = this;
+
+      this._keyManager = new _angular_cdk_a11y__WEBPACK_IMPORTED_MODULE_15__["FocusKeyManager"](this.chips).withWrap().withVerticalOrientation().withHomeAndEnd().withHorizontalOrientation(this._dir ? this._dir.value : 'ltr');
+
+      if (this._dir) {
+        this._dir.change.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_14__["takeUntil"])(this._destroyed)).subscribe(function (dir) {
+          return _this4._keyManager.withHorizontalOrientation(dir);
+        });
+      }
+
+      this._keyManager.tabOut.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_14__["takeUntil"])(this._destroyed)).subscribe(function () {
+        _this4._allowFocusEscape();
+      }); // When the list changes, re-subscribe
+
+
+      this.chips.changes.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_14__["startWith"])(null), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_14__["takeUntil"])(this._destroyed)).subscribe(function () {
+        if (_this4.disabled) {
+          // Since this happens after the content has been
+          // checked, we need to defer it to the next tick.
+          Promise.resolve().then(function () {
+            _this4._syncChipsState();
+          });
+        }
+
+        _this4._resetChips(); // Reset chips selected/deselected status
+
+
+        _this4._initializeSelection(); // Check to see if we need to update our tab index
+
+
+        _this4._updateTabIndex(); // Check to see if we have a destroyed chip and need to refocus
+
+
+        _this4._updateFocusForDestroyedChips();
+
+        _this4.stateChanges.next();
+      });
+    }
+  }, {
+    key: "ngOnInit",
+    value: function ngOnInit() {
+      this._selectionModel = new _angular_cdk_collections__WEBPACK_IMPORTED_MODULE_17__["SelectionModel"](this.multiple, undefined, false);
+      this.stateChanges.next();
+    }
+  }, {
+    key: "ngDoCheck",
+    value: function ngDoCheck() {
+      if (this.ngControl) {
+        // We need to re-evaluate this on every change detection cycle, because there are some
+        // error triggers that we can't subscribe to (e.g. parent form submissions). This means
+        // that whatever logic is in here has to be super lean or we risk destroying the performance.
+        this.updateErrorState();
+
+        if (this.ngControl.disabled !== this._disabled) {
+          this.disabled = !!this.ngControl.disabled;
+        }
+      }
+    }
+  }, {
+    key: "ngOnDestroy",
+    value: function ngOnDestroy() {
+      this._destroyed.next();
+
+      this._destroyed.complete();
+
+      this.stateChanges.complete();
+
+      this._dropSubscriptions();
+    }
+    /** Associates an HTML input element with this chip list. */
+
+  }, {
+    key: "registerInput",
+    value: function registerInput(inputElement) {
+      this._chipInput = inputElement; // We use this attribute to match the chip list to its input in test harnesses.
+      // Set the attribute directly here to avoid "changed after checked" errors.
+
+      this._elementRef.nativeElement.setAttribute('data-mat-chip-input', inputElement.id);
+    }
+    /**
+     * Implemented as part of MatFormFieldControl.
+     * @docs-private
+     */
+
+  }, {
+    key: "setDescribedByIds",
+    value: function setDescribedByIds(ids) {
+      this._ariaDescribedby = ids.join(' ');
+    } // Implemented as part of ControlValueAccessor.
+
+  }, {
+    key: "writeValue",
+    value: function writeValue(value) {
+      if (this.chips) {
+        this._setSelectionByValue(value, false);
+      }
+    } // Implemented as part of ControlValueAccessor.
+
+  }, {
+    key: "registerOnChange",
+    value: function registerOnChange(fn) {
+      this._onChange = fn;
+    } // Implemented as part of ControlValueAccessor.
+
+  }, {
+    key: "registerOnTouched",
+    value: function registerOnTouched(fn) {
+      this._onTouched = fn;
+    } // Implemented as part of ControlValueAccessor.
+
+  }, {
+    key: "setDisabledState",
+    value: function setDisabledState(isDisabled) {
+      this.disabled = isDisabled;
+      this.stateChanges.next();
+    }
+    /**
+     * Implemented as part of MatFormFieldControl.
+     * @docs-private
+     */
+
+  }, {
+    key: "onContainerClick",
+    value: function onContainerClick(event) {
+      if (!this._originatesFromChip(event)) {
+        this.focus();
+      }
+    }
+    /**
+     * Focuses the first non-disabled chip in this chip list, or the associated input when there
+     * are no eligible chips.
+     */
+
+  }, {
+    key: "focus",
+    value: function focus(options) {
+      if (this.disabled) {
+        return;
+      } // TODO: ARIA says this should focus the first `selected` chip if any are selected.
+      // Focus on first element if there's no chipInput inside chip-list
+
+
+      if (this._chipInput && this._chipInput.focused) {// do nothing
+      } else if (this.chips.length > 0) {
+        this._keyManager.setFirstItemActive();
+
+        this.stateChanges.next();
+      } else {
+        this._focusInput(options);
+
+        this.stateChanges.next();
+      }
+    }
+    /** Attempt to focus an input if we have one. */
+
+  }, {
+    key: "_focusInput",
+    value: function _focusInput(options) {
+      if (this._chipInput) {
+        this._chipInput.focus(options);
+      }
+    }
+    /**
+     * Pass events to the keyboard manager. Available here for tests.
+     */
+
+  }, {
+    key: "_keydown",
+    value: function _keydown(event) {
+      var target = event.target; // If they are on an empty input and hit backspace, focus the last chip
+
+      if (event.keyCode === _angular_cdk_keycodes__WEBPACK_IMPORTED_MODULE_6__["BACKSPACE"] && this._isInputEmpty(target)) {
+        this._keyManager.setLastItemActive();
+
+        event.preventDefault();
+      } else if (target && target.classList.contains('mat-chip')) {
+        this._keyManager.onKeydown(event);
+
+        this.stateChanges.next();
+      }
+    }
+    /**
+     * Check the tab index as you should not be allowed to focus an empty list.
+     */
+
+  }, {
+    key: "_updateTabIndex",
+    value: function _updateTabIndex() {
+      // If we have 0 chips, we should not allow keyboard focus
+      this._tabIndex = this._userTabIndex || (this.chips.length === 0 ? -1 : 0);
+    }
+    /**
+     * If the amount of chips changed, we need to update the
+     * key manager state and focus the next closest chip.
+     */
+
+  }, {
+    key: "_updateFocusForDestroyedChips",
+    value: function _updateFocusForDestroyedChips() {
+      // Move focus to the closest chip. If no other chips remain, focus the chip-list itself.
+      if (this._lastDestroyedChipIndex != null) {
+        if (this.chips.length) {
+          var newChipIndex = Math.min(this._lastDestroyedChipIndex, this.chips.length - 1);
+
+          this._keyManager.setActiveItem(newChipIndex);
+        } else {
+          this.focus();
+        }
+      }
+
+      this._lastDestroyedChipIndex = null;
+    }
+    /**
+     * Utility to ensure all indexes are valid.
+     *
+     * @param index The index to be checked.
+     * @returns True if the index is valid for our list of chips.
+     */
+
+  }, {
+    key: "_isValidIndex",
+    value: function _isValidIndex(index) {
+      return index >= 0 && index < this.chips.length;
+    }
+  }, {
+    key: "_isInputEmpty",
+    value: function _isInputEmpty(element) {
+      if (element && element.nodeName.toLowerCase() === 'input') {
+        var input = element;
+        return !input.value;
+      }
+
+      return false;
+    }
+  }, {
+    key: "_setSelectionByValue",
+    value: function _setSelectionByValue(value) {
+      var _this5 = this;
+
+      var isUserInput = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+
+      this._clearSelection();
+
+      this.chips.forEach(function (chip) {
+        return chip.deselect();
+      });
+
+      if (Array.isArray(value)) {
+        value.forEach(function (currentValue) {
+          return _this5._selectValue(currentValue, isUserInput);
+        });
+
+        this._sortValues();
+      } else {
+        var correspondingChip = this._selectValue(value, isUserInput); // Shift focus to the active item. Note that we shouldn't do this in multiple
+        // mode, because we don't know what chip the user interacted with last.
+
+
+        if (correspondingChip) {
+          if (isUserInput) {
+            this._keyManager.setActiveItem(correspondingChip);
+          }
+        }
+      }
+    }
+    /**
+     * Finds and selects the chip based on its value.
+     * @returns Chip that has the corresponding value.
+     */
+
+  }, {
+    key: "_selectValue",
+    value: function _selectValue(value) {
+      var _this6 = this;
+
+      var isUserInput = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+      var correspondingChip = this.chips.find(function (chip) {
+        return chip.value != null && _this6._compareWith(chip.value, value);
+      });
+
+      if (correspondingChip) {
+        isUserInput ? correspondingChip.selectViaInteraction() : correspondingChip.select();
+
+        this._selectionModel.select(correspondingChip);
+      }
+
+      return correspondingChip;
+    }
+  }, {
+    key: "_initializeSelection",
+    value: function _initializeSelection() {
+      var _this7 = this;
+
+      // Defer setting the value in order to avoid the "Expression
+      // has changed after it was checked" errors from Angular.
+      Promise.resolve().then(function () {
+        if (_this7.ngControl || _this7._value) {
+          _this7._setSelectionByValue(_this7.ngControl ? _this7.ngControl.value : _this7._value, false);
+
+          _this7.stateChanges.next();
+        }
+      });
+    }
+    /**
+     * Deselects every chip in the list.
+     * @param skip Chip that should not be deselected.
+     */
+
+  }, {
+    key: "_clearSelection",
+    value: function _clearSelection(skip) {
+      this._selectionModel.clear();
+
+      this.chips.forEach(function (chip) {
+        if (chip !== skip) {
+          chip.deselect();
+        }
+      });
+      this.stateChanges.next();
+    }
+    /**
+     * Sorts the model values, ensuring that they keep the same
+     * order that they have in the panel.
+     */
+
+  }, {
+    key: "_sortValues",
+    value: function _sortValues() {
+      var _this8 = this;
+
+      if (this._multiple) {
+        this._selectionModel.clear();
+
+        this.chips.forEach(function (chip) {
+          if (chip.selected) {
+            _this8._selectionModel.select(chip);
+          }
+        });
+        this.stateChanges.next();
+      }
+    }
+    /** Emits change event to set the model value. */
+
+  }, {
+    key: "_propagateChanges",
+    value: function _propagateChanges(fallbackValue) {
+      var valueToEmit = null;
+
+      if (Array.isArray(this.selected)) {
+        valueToEmit = this.selected.map(function (chip) {
+          return chip.value;
+        });
+      } else {
+        valueToEmit = this.selected ? this.selected.value : fallbackValue;
+      }
+
+      this._value = valueToEmit;
+      this.change.emit(new MatChipListChange(this, valueToEmit));
+      this.valueChange.emit(valueToEmit);
+
+      this._onChange(valueToEmit);
+
+      this._changeDetectorRef.markForCheck();
+    }
+    /** When blurred, mark the field as touched when focus moved outside the chip list. */
+
+  }, {
+    key: "_blur",
+    value: function _blur() {
+      var _this9 = this;
+
+      if (!this._hasFocusedChip()) {
+        this._keyManager.setActiveItem(-1);
+      }
+
+      if (!this.disabled) {
+        if (this._chipInput) {
+          // If there's a chip input, we should check whether the focus moved to chip input.
+          // If the focus is not moved to chip input, mark the field as touched. If the focus moved
+          // to chip input, do nothing.
+          // Timeout is needed to wait for the focus() event trigger on chip input.
+          setTimeout(function () {
+            if (!_this9.focused) {
+              _this9._markAsTouched();
+            }
+          });
+        } else {
+          // If there's no chip input, then mark the field as touched.
+          this._markAsTouched();
+        }
+      }
+    }
+    /** Mark the field as touched */
+
+  }, {
+    key: "_markAsTouched",
+    value: function _markAsTouched() {
+      this._onTouched();
+
+      this._changeDetectorRef.markForCheck();
+
+      this.stateChanges.next();
+    }
+    /**
+     * Removes the `tabindex` from the chip list and resets it back afterwards, allowing the
+     * user to tab out of it. This prevents the list from capturing focus and redirecting
+     * it back to the first chip, creating a focus trap, if it user tries to tab away.
+     */
+
+  }, {
+    key: "_allowFocusEscape",
+    value: function _allowFocusEscape() {
+      var _this10 = this;
+
+      if (this._tabIndex !== -1) {
+        this._tabIndex = -1;
+        setTimeout(function () {
+          _this10._tabIndex = _this10._userTabIndex || 0;
+
+          _this10._changeDetectorRef.markForCheck();
+        });
+      }
+    }
+  }, {
+    key: "_resetChips",
+    value: function _resetChips() {
+      this._dropSubscriptions();
+
+      this._listenToChipsFocus();
+
+      this._listenToChipsSelection();
+
+      this._listenToChipsRemoved();
+    }
+  }, {
+    key: "_dropSubscriptions",
+    value: function _dropSubscriptions() {
+      if (this._chipFocusSubscription) {
+        this._chipFocusSubscription.unsubscribe();
+
+        this._chipFocusSubscription = null;
+      }
+
+      if (this._chipBlurSubscription) {
+        this._chipBlurSubscription.unsubscribe();
+
+        this._chipBlurSubscription = null;
+      }
+
+      if (this._chipSelectionSubscription) {
+        this._chipSelectionSubscription.unsubscribe();
+
+        this._chipSelectionSubscription = null;
+      }
+
+      if (this._chipRemoveSubscription) {
+        this._chipRemoveSubscription.unsubscribe();
+
+        this._chipRemoveSubscription = null;
+      }
+    }
+    /** Listens to user-generated selection events on each chip. */
+
+  }, {
+    key: "_listenToChipsSelection",
+    value: function _listenToChipsSelection() {
+      var _this11 = this;
+
+      this._chipSelectionSubscription = this.chipSelectionChanges.subscribe(function (event) {
+        event.source.selected ? _this11._selectionModel.select(event.source) : _this11._selectionModel.deselect(event.source); // For single selection chip list, make sure the deselected value is unselected.
+
+        if (!_this11.multiple) {
+          _this11.chips.forEach(function (chip) {
+            if (!_this11._selectionModel.isSelected(chip) && chip.selected) {
+              chip.deselect();
+            }
+          });
+        }
+
+        if (event.isUserInput) {
+          _this11._propagateChanges();
+        }
+      });
+    }
+    /** Listens to user-generated selection events on each chip. */
+
+  }, {
+    key: "_listenToChipsFocus",
+    value: function _listenToChipsFocus() {
+      var _this12 = this;
+
+      this._chipFocusSubscription = this.chipFocusChanges.subscribe(function (event) {
+        var chipIndex = _this12.chips.toArray().indexOf(event.chip);
+
+        if (_this12._isValidIndex(chipIndex)) {
+          _this12._keyManager.updateActiveItem(chipIndex);
+        }
+
+        _this12.stateChanges.next();
+      });
+      this._chipBlurSubscription = this.chipBlurChanges.subscribe(function () {
+        _this12._blur();
+
+        _this12.stateChanges.next();
+      });
+    }
+  }, {
+    key: "_listenToChipsRemoved",
+    value: function _listenToChipsRemoved() {
+      var _this13 = this;
+
+      this._chipRemoveSubscription = this.chipRemoveChanges.subscribe(function (event) {
+        var chip = event.chip;
+
+        var chipIndex = _this13.chips.toArray().indexOf(event.chip); // In case the chip that will be removed is currently focused, we temporarily store
+        // the index in order to be able to determine an appropriate sibling chip that will
+        // receive focus.
+
+
+        if (_this13._isValidIndex(chipIndex) && chip._hasFocus) {
+          _this13._lastDestroyedChipIndex = chipIndex;
+        }
+      });
+    }
+    /** Checks whether an event comes from inside a chip element. */
+
+  }, {
+    key: "_originatesFromChip",
+    value: function _originatesFromChip(event) {
+      var currentElement = event.target;
+
+      while (currentElement && currentElement !== this._elementRef.nativeElement) {
+        if (currentElement.classList.contains('mat-chip')) {
+          return true;
+        }
+
+        currentElement = currentElement.parentElement;
+      }
+
+      return false;
+    }
+    /** Checks whether any of the chips is focused. */
+
+  }, {
+    key: "_hasFocusedChip",
+    value: function _hasFocusedChip() {
+      return this.chips && this.chips.some(function (chip) {
+        return chip._hasFocus;
+      });
+    }
+    /** Syncs the list's state with the individual chips. */
+
+  }, {
+    key: "_syncChipsState",
+    value: function _syncChipsState() {
+      var _this14 = this;
+
+      if (this.chips) {
+        this.chips.forEach(function (chip) {
+          chip._chipListDisabled = _this14._disabled;
+          chip._chipListMultiple = _this14.multiple;
+        });
+      }
+    }
+  }, {
+    key: "selected",
+    get: function get() {
+      return this.multiple ? this._selectionModel.selected : this._selectionModel.selected[0];
+    }
+    /** The ARIA role applied to the chip list. */
+
+  }, {
+    key: "role",
+    get: function get() {
+      return this.empty ? null : 'listbox';
+    }
+    /** Whether the user should be allowed to select multiple chips. */
+
+  }, {
+    key: "multiple",
+    get: function get() {
+      return this._multiple;
+    },
+    set: function set(value) {
+      this._multiple = Object(_angular_cdk_coercion__WEBPACK_IMPORTED_MODULE_9__["coerceBooleanProperty"])(value);
+
+      this._syncChipsState();
+    }
+    /**
+     * A function to compare the option values with the selected values. The first argument
+     * is a value from an option. The second is a value from the selection. A boolean
+     * should be returned.
+     */
+
+  }, {
+    key: "compareWith",
+    get: function get() {
+      return this._compareWith;
+    },
+    set: function set(fn) {
+      this._compareWith = fn;
+
+      if (this._selectionModel) {
+        // A different comparator means the selection could change.
+        this._initializeSelection();
+      }
+    }
+    /**
+     * Implemented as part of MatFormFieldControl.
+     * @docs-private
+     */
+
+  }, {
+    key: "value",
+    get: function get() {
+      return this._value;
+    },
+    set: function set(value) {
+      this.writeValue(value);
+      this._value = value;
+    }
+    /**
+     * Implemented as part of MatFormFieldControl.
+     * @docs-private
+     */
+
+  }, {
+    key: "id",
+    get: function get() {
+      return this._chipInput ? this._chipInput.id : this._uid;
+    }
+    /**
+     * Implemented as part of MatFormFieldControl.
+     * @docs-private
+     */
+
+  }, {
+    key: "required",
+    get: function get() {
+      return this._required;
+    },
+    set: function set(value) {
+      this._required = Object(_angular_cdk_coercion__WEBPACK_IMPORTED_MODULE_9__["coerceBooleanProperty"])(value);
+      this.stateChanges.next();
+    }
+    /**
+     * Implemented as part of MatFormFieldControl.
+     * @docs-private
+     */
+
+  }, {
+    key: "placeholder",
+    get: function get() {
+      return this._chipInput ? this._chipInput.placeholder : this._placeholder;
+    },
+    set: function set(value) {
+      this._placeholder = value;
+      this.stateChanges.next();
+    }
+    /** Whether any chips or the matChipInput inside of this chip-list has focus. */
+
+  }, {
+    key: "focused",
+    get: function get() {
+      return this._chipInput && this._chipInput.focused || this._hasFocusedChip();
+    }
+    /**
+     * Implemented as part of MatFormFieldControl.
+     * @docs-private
+     */
+
+  }, {
+    key: "empty",
+    get: function get() {
+      return (!this._chipInput || this._chipInput.empty) && (!this.chips || this.chips.length === 0);
+    }
+    /**
+     * Implemented as part of MatFormFieldControl.
+     * @docs-private
+     */
+
+  }, {
+    key: "shouldLabelFloat",
+    get: function get() {
+      return !this.empty || this.focused;
+    }
+    /**
+     * Implemented as part of MatFormFieldControl.
+     * @docs-private
+     */
+
+  }, {
+    key: "disabled",
+    get: function get() {
+      return this.ngControl ? !!this.ngControl.disabled : this._disabled;
+    },
+    set: function set(value) {
+      this._disabled = Object(_angular_cdk_coercion__WEBPACK_IMPORTED_MODULE_9__["coerceBooleanProperty"])(value);
+
+      this._syncChipsState();
+    }
+    /**
+     * Whether or not this chip list is selectable. When a chip list is not selectable,
+     * the selected states for all the chips inside the chip list are always ignored.
+     */
+
+  }, {
+    key: "selectable",
+    get: function get() {
+      return this._selectable;
+    },
+    set: function set(value) {
+      var _this15 = this;
+
+      this._selectable = Object(_angular_cdk_coercion__WEBPACK_IMPORTED_MODULE_9__["coerceBooleanProperty"])(value);
+
+      if (this.chips) {
+        this.chips.forEach(function (chip) {
+          return chip.chipListSelectable = _this15._selectable;
+        });
+      }
+    }
+  }, {
+    key: "tabIndex",
+    set: function set(value) {
+      this._userTabIndex = value;
+      this._tabIndex = value;
+    }
+    /** Combined stream of all of the child chips' selection change events. */
+
+  }, {
+    key: "chipSelectionChanges",
+    get: function get() {
+      return rxjs__WEBPACK_IMPORTED_MODULE_13__["merge"].apply(void 0, Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__["default"])(this.chips.map(function (chip) {
+        return chip.selectionChange;
+      })));
+    }
+    /** Combined stream of all of the child chips' focus change events. */
+
+  }, {
+    key: "chipFocusChanges",
+    get: function get() {
+      return rxjs__WEBPACK_IMPORTED_MODULE_13__["merge"].apply(void 0, Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__["default"])(this.chips.map(function (chip) {
+        return chip._onFocus;
+      })));
+    }
+    /** Combined stream of all of the child chips' blur change events. */
+
+  }, {
+    key: "chipBlurChanges",
+    get: function get() {
+      return rxjs__WEBPACK_IMPORTED_MODULE_13__["merge"].apply(void 0, Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__["default"])(this.chips.map(function (chip) {
+        return chip._onBlur;
+      })));
+    }
+    /** Combined stream of all of the child chips' remove change events. */
+
+  }, {
+    key: "chipRemoveChanges",
+    get: function get() {
+      return rxjs__WEBPACK_IMPORTED_MODULE_13__["merge"].apply(void 0, Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__["default"])(this.chips.map(function (chip) {
+        return chip.destroyed;
+      })));
+    }
+  }]);
+
+  return MatChipList;
+}(_MatChipListMixinBase);
+
+MatChipList.ɵfac = function MatChipList_Factory(t) {
+  return new (t || MatChipList)(_angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_7__["ElementRef"]), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_7__["ChangeDetectorRef"]), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_angular_cdk_bidi__WEBPACK_IMPORTED_MODULE_16__["Directionality"], 8), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_18__["NgForm"], 8), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_18__["FormGroupDirective"], 8), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_angular_material_core__WEBPACK_IMPORTED_MODULE_8__["ErrorStateMatcher"]), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_18__["NgControl"], 10));
+};
+
+MatChipList.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdefineComponent"]({
+  type: MatChipList,
+  selectors: [["mat-chip-list"]],
+  contentQueries: function MatChipList_ContentQueries(rf, ctx, dirIndex) {
+    if (rf & 1) {
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵcontentQuery"](dirIndex, MatChip, true);
+    }
+
+    if (rf & 2) {
+      var _t;
+
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵloadQuery"]()) && (ctx.chips = _t);
+    }
+  },
+  hostAttrs: [1, "mat-chip-list"],
+  hostVars: 15,
+  hostBindings: function MatChipList_HostBindings(rf, ctx) {
+    if (rf & 1) {
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("focus", function MatChipList_focus_HostBindingHandler() {
+        return ctx.focus();
+      })("blur", function MatChipList_blur_HostBindingHandler() {
+        return ctx._blur();
+      })("keydown", function MatChipList_keydown_HostBindingHandler($event) {
+        return ctx._keydown($event);
+      });
+    }
+
+    if (rf & 2) {
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵhostProperty"]("id", ctx._uid);
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵattribute"]("tabindex", ctx.disabled ? null : ctx._tabIndex)("aria-describedby", ctx._ariaDescribedby || null)("aria-required", ctx.role ? ctx.required : null)("aria-disabled", ctx.disabled.toString())("aria-invalid", ctx.errorState)("aria-multiselectable", ctx.multiple)("role", ctx.role)("aria-orientation", ctx.ariaOrientation);
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵclassProp"]("mat-chip-list-disabled", ctx.disabled)("mat-chip-list-invalid", ctx.errorState)("mat-chip-list-required", ctx.required);
+    }
+  },
+  inputs: {
+    ariaOrientation: ["aria-orientation", "ariaOrientation"],
+    multiple: "multiple",
+    compareWith: "compareWith",
+    value: "value",
+    required: "required",
+    placeholder: "placeholder",
+    disabled: "disabled",
+    selectable: "selectable",
+    tabIndex: "tabIndex",
+    errorStateMatcher: "errorStateMatcher"
+  },
+  outputs: {
+    change: "change",
+    valueChange: "valueChange"
+  },
+  exportAs: ["matChipList"],
+  features: [_angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵProvidersFeature"]([{
+    provide: _angular_material_form_field__WEBPACK_IMPORTED_MODULE_19__["MatFormFieldControl"],
+    useExisting: MatChipList
+  }]), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵInheritDefinitionFeature"]],
+  ngContentSelectors: _c0,
+  decls: 2,
+  vars: 0,
+  consts: [[1, "mat-chip-list-wrapper"]],
+  template: function MatChipList_Template(rf, ctx) {
+    if (rf & 1) {
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵprojectionDef"]();
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "div", 0);
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵprojection"](1);
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+    }
+  },
+  styles: [".mat-chip{position:relative;box-sizing:border-box;-webkit-tap-highlight-color:transparent;transform:translateZ(0);border:none;-webkit-appearance:none;-moz-appearance:none}.mat-standard-chip{transition:box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);display:inline-flex;padding:7px 12px;border-radius:16px;align-items:center;cursor:default;min-height:32px;height:1px}._mat-animation-noopable.mat-standard-chip{transition:none;animation:none}.mat-standard-chip .mat-chip-remove.mat-icon{width:18px;height:18px}.mat-standard-chip::after{top:0;left:0;right:0;bottom:0;position:absolute;border-radius:inherit;opacity:0;content:\"\";pointer-events:none;transition:opacity 200ms cubic-bezier(0.35, 0, 0.25, 1)}.mat-standard-chip:hover::after{opacity:.12}.mat-standard-chip:focus{outline:none}.mat-standard-chip:focus::after{opacity:.16}.cdk-high-contrast-active .mat-standard-chip{outline:solid 1px}.cdk-high-contrast-active .mat-standard-chip:focus{outline:dotted 2px}.mat-standard-chip.mat-chip-disabled::after{opacity:0}.mat-standard-chip.mat-chip-disabled .mat-chip-remove,.mat-standard-chip.mat-chip-disabled .mat-chip-trailing-icon{cursor:default}.mat-standard-chip.mat-chip-with-trailing-icon.mat-chip-with-avatar,.mat-standard-chip.mat-chip-with-avatar{padding-top:0;padding-bottom:0}.mat-standard-chip.mat-chip-with-trailing-icon.mat-chip-with-avatar{padding-right:8px;padding-left:0}[dir=rtl] .mat-standard-chip.mat-chip-with-trailing-icon.mat-chip-with-avatar{padding-left:8px;padding-right:0}.mat-standard-chip.mat-chip-with-trailing-icon{padding-top:7px;padding-bottom:7px;padding-right:8px;padding-left:12px}[dir=rtl] .mat-standard-chip.mat-chip-with-trailing-icon{padding-left:8px;padding-right:12px}.mat-standard-chip.mat-chip-with-avatar{padding-left:0;padding-right:12px}[dir=rtl] .mat-standard-chip.mat-chip-with-avatar{padding-right:0;padding-left:12px}.mat-standard-chip .mat-chip-avatar{width:24px;height:24px;margin-right:8px;margin-left:4px}[dir=rtl] .mat-standard-chip .mat-chip-avatar{margin-left:8px;margin-right:4px}.mat-standard-chip .mat-chip-remove,.mat-standard-chip .mat-chip-trailing-icon{width:18px;height:18px;cursor:pointer}.mat-standard-chip .mat-chip-remove,.mat-standard-chip .mat-chip-trailing-icon{margin-left:8px;margin-right:0}[dir=rtl] .mat-standard-chip .mat-chip-remove,[dir=rtl] .mat-standard-chip .mat-chip-trailing-icon{margin-right:8px;margin-left:0}.mat-chip-ripple{top:0;left:0;right:0;bottom:0;position:absolute;pointer-events:none;border-radius:inherit;overflow:hidden}.mat-chip-list-wrapper{display:flex;flex-direction:row;flex-wrap:wrap;align-items:center;margin:-4px}.mat-chip-list-wrapper input.mat-input-element,.mat-chip-list-wrapper .mat-standard-chip{margin:4px}.mat-chip-list-stacked .mat-chip-list-wrapper{flex-direction:column;align-items:flex-start}.mat-chip-list-stacked .mat-chip-list-wrapper .mat-standard-chip{width:100%}.mat-chip-avatar{border-radius:50%;justify-content:center;align-items:center;display:flex;overflow:hidden;object-fit:cover}input.mat-chip-input{width:150px;margin:4px;flex:1 0 150px}\n"],
+  encapsulation: 2,
+  changeDetection: 0
+});
+
+MatChipList.ctorParameters = function () {
+  return [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["ElementRef"]
+  }, {
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["ChangeDetectorRef"]
+  }, {
+    type: _angular_cdk_bidi__WEBPACK_IMPORTED_MODULE_16__["Directionality"],
+    decorators: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Optional"]
+    }]
+  }, {
+    type: _angular_forms__WEBPACK_IMPORTED_MODULE_18__["NgForm"],
+    decorators: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Optional"]
+    }]
+  }, {
+    type: _angular_forms__WEBPACK_IMPORTED_MODULE_18__["FormGroupDirective"],
+    decorators: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Optional"]
+    }]
+  }, {
+    type: _angular_material_core__WEBPACK_IMPORTED_MODULE_8__["ErrorStateMatcher"]
+  }, {
+    type: _angular_forms__WEBPACK_IMPORTED_MODULE_18__["NgControl"],
+    decorators: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Optional"]
+    }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Self"]
+    }]
+  }];
+};
+
+MatChipList.propDecorators = {
+  errorStateMatcher: [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Input"]
+  }],
+  multiple: [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Input"]
+  }],
+  compareWith: [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Input"]
+  }],
+  value: [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Input"]
+  }],
+  required: [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Input"]
+  }],
+  placeholder: [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Input"]
+  }],
+  disabled: [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Input"]
+  }],
+  ariaOrientation: [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Input"],
+    args: ['aria-orientation']
+  }],
+  selectable: [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Input"]
+  }],
+  tabIndex: [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Input"]
+  }],
+  change: [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Output"]
+  }],
+  valueChange: [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Output"]
+  }],
+  chips: [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["ContentChildren"],
+    args: [MatChip, {
+      // We need to use `descendants: true`, because Ivy will no longer match
+      // indirect descendants if it's left as false.
+      descendants: true
+    }]
+  }]
+};
+/*@__PURE__*/
+
+(function () {
+  _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵsetClassMetadata"](MatChipList, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Component"],
+    args: [{
+      selector: 'mat-chip-list',
+      template: "<div class=\"mat-chip-list-wrapper\"><ng-content></ng-content></div>",
+      exportAs: 'matChipList',
+      host: {
+        '[attr.tabindex]': 'disabled ? null : _tabIndex',
+        '[attr.aria-describedby]': '_ariaDescribedby || null',
+        '[attr.aria-required]': 'role ? required : null',
+        '[attr.aria-disabled]': 'disabled.toString()',
+        '[attr.aria-invalid]': 'errorState',
+        '[attr.aria-multiselectable]': 'multiple',
+        '[attr.role]': 'role',
+        '[class.mat-chip-list-disabled]': 'disabled',
+        '[class.mat-chip-list-invalid]': 'errorState',
+        '[class.mat-chip-list-required]': 'required',
+        '[attr.aria-orientation]': 'ariaOrientation',
+        'class': 'mat-chip-list',
+        '(focus)': 'focus()',
+        '(blur)': '_blur()',
+        '(keydown)': '_keydown($event)',
+        '[id]': '_uid'
+      },
+      providers: [{
+        provide: _angular_material_form_field__WEBPACK_IMPORTED_MODULE_19__["MatFormFieldControl"],
+        useExisting: MatChipList
+      }],
+      encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_7__["ViewEncapsulation"].None,
+      changeDetection: _angular_core__WEBPACK_IMPORTED_MODULE_7__["ChangeDetectionStrategy"].OnPush,
+      styles: [".mat-chip{position:relative;box-sizing:border-box;-webkit-tap-highlight-color:transparent;transform:translateZ(0);border:none;-webkit-appearance:none;-moz-appearance:none}.mat-standard-chip{transition:box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);display:inline-flex;padding:7px 12px;border-radius:16px;align-items:center;cursor:default;min-height:32px;height:1px}._mat-animation-noopable.mat-standard-chip{transition:none;animation:none}.mat-standard-chip .mat-chip-remove.mat-icon{width:18px;height:18px}.mat-standard-chip::after{top:0;left:0;right:0;bottom:0;position:absolute;border-radius:inherit;opacity:0;content:\"\";pointer-events:none;transition:opacity 200ms cubic-bezier(0.35, 0, 0.25, 1)}.mat-standard-chip:hover::after{opacity:.12}.mat-standard-chip:focus{outline:none}.mat-standard-chip:focus::after{opacity:.16}.cdk-high-contrast-active .mat-standard-chip{outline:solid 1px}.cdk-high-contrast-active .mat-standard-chip:focus{outline:dotted 2px}.mat-standard-chip.mat-chip-disabled::after{opacity:0}.mat-standard-chip.mat-chip-disabled .mat-chip-remove,.mat-standard-chip.mat-chip-disabled .mat-chip-trailing-icon{cursor:default}.mat-standard-chip.mat-chip-with-trailing-icon.mat-chip-with-avatar,.mat-standard-chip.mat-chip-with-avatar{padding-top:0;padding-bottom:0}.mat-standard-chip.mat-chip-with-trailing-icon.mat-chip-with-avatar{padding-right:8px;padding-left:0}[dir=rtl] .mat-standard-chip.mat-chip-with-trailing-icon.mat-chip-with-avatar{padding-left:8px;padding-right:0}.mat-standard-chip.mat-chip-with-trailing-icon{padding-top:7px;padding-bottom:7px;padding-right:8px;padding-left:12px}[dir=rtl] .mat-standard-chip.mat-chip-with-trailing-icon{padding-left:8px;padding-right:12px}.mat-standard-chip.mat-chip-with-avatar{padding-left:0;padding-right:12px}[dir=rtl] .mat-standard-chip.mat-chip-with-avatar{padding-right:0;padding-left:12px}.mat-standard-chip .mat-chip-avatar{width:24px;height:24px;margin-right:8px;margin-left:4px}[dir=rtl] .mat-standard-chip .mat-chip-avatar{margin-left:8px;margin-right:4px}.mat-standard-chip .mat-chip-remove,.mat-standard-chip .mat-chip-trailing-icon{width:18px;height:18px;cursor:pointer}.mat-standard-chip .mat-chip-remove,.mat-standard-chip .mat-chip-trailing-icon{margin-left:8px;margin-right:0}[dir=rtl] .mat-standard-chip .mat-chip-remove,[dir=rtl] .mat-standard-chip .mat-chip-trailing-icon{margin-right:8px;margin-left:0}.mat-chip-ripple{top:0;left:0;right:0;bottom:0;position:absolute;pointer-events:none;border-radius:inherit;overflow:hidden}.mat-chip-list-wrapper{display:flex;flex-direction:row;flex-wrap:wrap;align-items:center;margin:-4px}.mat-chip-list-wrapper input.mat-input-element,.mat-chip-list-wrapper .mat-standard-chip{margin:4px}.mat-chip-list-stacked .mat-chip-list-wrapper{flex-direction:column;align-items:flex-start}.mat-chip-list-stacked .mat-chip-list-wrapper .mat-standard-chip{width:100%}.mat-chip-avatar{border-radius:50%;justify-content:center;align-items:center;display:flex;overflow:hidden;object-fit:cover}input.mat-chip-input{width:150px;margin:4px;flex:1 0 150px}\n"]
+    }]
+  }], function () {
+    return [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["ElementRef"]
+    }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["ChangeDetectorRef"]
+    }, {
+      type: _angular_cdk_bidi__WEBPACK_IMPORTED_MODULE_16__["Directionality"],
+      decorators: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Optional"]
+      }]
+    }, {
+      type: _angular_forms__WEBPACK_IMPORTED_MODULE_18__["NgForm"],
+      decorators: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Optional"]
+      }]
+    }, {
+      type: _angular_forms__WEBPACK_IMPORTED_MODULE_18__["FormGroupDirective"],
+      decorators: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Optional"]
+      }]
+    }, {
+      type: _angular_material_core__WEBPACK_IMPORTED_MODULE_8__["ErrorStateMatcher"]
+    }, {
+      type: _angular_forms__WEBPACK_IMPORTED_MODULE_18__["NgControl"],
+      decorators: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Optional"]
+      }, {
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Self"]
+      }]
+    }];
+  }, {
+    ariaOrientation: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Input"],
+      args: ['aria-orientation']
+    }],
+    change: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Output"]
+    }],
+    valueChange: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Output"]
+    }],
+    multiple: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Input"]
+    }],
+    compareWith: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Input"]
+    }],
+    value: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Input"]
+    }],
+    required: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Input"]
+    }],
+    placeholder: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Input"]
+    }],
+    disabled: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Input"]
+    }],
+    selectable: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Input"]
+    }],
+    tabIndex: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Input"]
+    }],
+    errorStateMatcher: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Input"]
+    }],
+    chips: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["ContentChildren"],
+      args: [MatChip, {
+        // We need to use `descendants: true`, because Ivy will no longer match
+        // indirect descendants if it's left as false.
+        descendants: true
+      }]
+    }]
+  });
+})();
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+// Increasing integer for generating unique ids.
+
+
+var nextUniqueId$1 = 0;
+/**
+ * Directive that adds chip-specific behaviors to an input element inside `<mat-form-field>`.
+ * May be placed inside or outside of an `<mat-chip-list>`.
+ */
+
+var MatChipInput = /*#__PURE__*/function () {
+  function MatChipInput(_elementRef, _defaultOptions) {
+    Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_5__["default"])(this, MatChipInput);
+
+    this._elementRef = _elementRef;
+    this._defaultOptions = _defaultOptions;
+    /** Whether the control is focused. */
+
+    this.focused = false;
+    this._addOnBlur = false;
+    /**
+     * The list of key codes that will trigger a chipEnd event.
+     *
+     * Defaults to `[ENTER]`.
+     */
+
+    this.separatorKeyCodes = this._defaultOptions.separatorKeyCodes;
+    /** Emitted when a chip is to be added. */
+
+    this.chipEnd = new _angular_core__WEBPACK_IMPORTED_MODULE_7__["EventEmitter"]();
+    /** The input's placeholder text. */
+
+    this.placeholder = '';
+    /** Unique id for the input. */
+
+    this.id = "mat-chip-list-input-".concat(nextUniqueId$1++);
+    this._disabled = false;
+    this._inputElement = this._elementRef.nativeElement;
+  }
+  /** Register input for chip list */
+
+
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(MatChipInput, [{
+    key: "ngOnChanges",
+    value: function ngOnChanges() {
+      this._chipList.stateChanges.next();
+    }
+    /** Utility method to make host definition/tests more clear. */
+
+  }, {
+    key: "_keydown",
+    value: function _keydown(event) {
+      // Allow the user's focus to escape when they're tabbing forward. Note that we don't
+      // want to do this when going backwards, because focus should go back to the first chip.
+      if (event && event.keyCode === _angular_cdk_keycodes__WEBPACK_IMPORTED_MODULE_6__["TAB"] && !Object(_angular_cdk_keycodes__WEBPACK_IMPORTED_MODULE_6__["hasModifierKey"])(event, 'shiftKey')) {
+        this._chipList._allowFocusEscape();
+      }
+
+      this._emitChipEnd(event);
+    }
+    /** Checks to see if the blur should emit the (chipEnd) event. */
+
+  }, {
+    key: "_blur",
+    value: function _blur() {
+      if (this.addOnBlur) {
+        this._emitChipEnd();
+      }
+
+      this.focused = false; // Blur the chip list if it is not focused
+
+      if (!this._chipList.focused) {
+        this._chipList._blur();
+      }
+
+      this._chipList.stateChanges.next();
+    }
+  }, {
+    key: "_focus",
+    value: function _focus() {
+      this.focused = true;
+
+      this._chipList.stateChanges.next();
+    }
+    /** Checks to see if the (chipEnd) event needs to be emitted. */
+
+  }, {
+    key: "_emitChipEnd",
+    value: function _emitChipEnd(event) {
+      if (!this._inputElement.value && !!event) {
+        this._chipList._keydown(event);
+      }
+
+      if (!event || this._isSeparatorKey(event)) {
+        this.chipEnd.emit({
+          input: this._inputElement,
+          value: this._inputElement.value
+        });
+
+        if (event) {
+          event.preventDefault();
+        }
+      }
+    }
+  }, {
+    key: "_onInput",
+    value: function _onInput() {
+      // Let chip list know whenever the value changes.
+      this._chipList.stateChanges.next();
+    }
+    /** Focuses the input. */
+
+  }, {
+    key: "focus",
+    value: function focus(options) {
+      this._inputElement.focus(options);
+    }
+    /** Checks whether a keycode is one of the configured separators. */
+
+  }, {
+    key: "_isSeparatorKey",
+    value: function _isSeparatorKey(event) {
+      return !Object(_angular_cdk_keycodes__WEBPACK_IMPORTED_MODULE_6__["hasModifierKey"])(event) && new Set(this.separatorKeyCodes).has(event.keyCode);
+    }
+  }, {
+    key: "chipList",
+    set: function set(value) {
+      if (value) {
+        this._chipList = value;
+
+        this._chipList.registerInput(this);
+      }
+    }
+    /**
+     * Whether or not the chipEnd event will be emitted when the input is blurred.
+     */
+
+  }, {
+    key: "addOnBlur",
+    get: function get() {
+      return this._addOnBlur;
+    },
+    set: function set(value) {
+      this._addOnBlur = Object(_angular_cdk_coercion__WEBPACK_IMPORTED_MODULE_9__["coerceBooleanProperty"])(value);
+    }
+    /** Whether the input is disabled. */
+
+  }, {
+    key: "disabled",
+    get: function get() {
+      return this._disabled || this._chipList && this._chipList.disabled;
+    },
+    set: function set(value) {
+      this._disabled = Object(_angular_cdk_coercion__WEBPACK_IMPORTED_MODULE_9__["coerceBooleanProperty"])(value);
+    }
+    /** Whether the input is empty. */
+
+  }, {
+    key: "empty",
+    get: function get() {
+      return !this._inputElement.value;
+    }
+  }]);
+
+  return MatChipInput;
+}();
+
+MatChipInput.ɵfac = function MatChipInput_Factory(t) {
+  return new (t || MatChipInput)(_angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_7__["ElementRef"]), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](MAT_CHIPS_DEFAULT_OPTIONS));
+};
+
+MatChipInput.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdefineDirective"]({
+  type: MatChipInput,
+  selectors: [["input", "matChipInputFor", ""]],
+  hostAttrs: [1, "mat-chip-input", "mat-input-element"],
+  hostVars: 5,
+  hostBindings: function MatChipInput_HostBindings(rf, ctx) {
+    if (rf & 1) {
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("keydown", function MatChipInput_keydown_HostBindingHandler($event) {
+        return ctx._keydown($event);
+      })("blur", function MatChipInput_blur_HostBindingHandler() {
+        return ctx._blur();
+      })("focus", function MatChipInput_focus_HostBindingHandler() {
+        return ctx._focus();
+      })("input", function MatChipInput_input_HostBindingHandler() {
+        return ctx._onInput();
+      });
+    }
+
+    if (rf & 2) {
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵhostProperty"]("id", ctx.id);
+      _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵattribute"]("disabled", ctx.disabled || null)("placeholder", ctx.placeholder || null)("aria-invalid", ctx._chipList && ctx._chipList.ngControl ? ctx._chipList.ngControl.invalid : null)("aria-required", ctx._chipList && ctx._chipList.required || null);
+    }
+  },
+  inputs: {
+    separatorKeyCodes: ["matChipInputSeparatorKeyCodes", "separatorKeyCodes"],
+    placeholder: "placeholder",
+    id: "id",
+    chipList: ["matChipInputFor", "chipList"],
+    addOnBlur: ["matChipInputAddOnBlur", "addOnBlur"],
+    disabled: "disabled"
+  },
+  outputs: {
+    chipEnd: "matChipInputTokenEnd"
+  },
+  exportAs: ["matChipInput", "matChipInputFor"],
+  features: [_angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵNgOnChangesFeature"]]
+});
+
+MatChipInput.ctorParameters = function () {
+  return [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["ElementRef"]
+  }, {
+    type: undefined,
+    decorators: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Inject"],
+      args: [MAT_CHIPS_DEFAULT_OPTIONS]
+    }]
+  }];
+};
+
+MatChipInput.propDecorators = {
+  chipList: [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Input"],
+    args: ['matChipInputFor']
+  }],
+  addOnBlur: [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Input"],
+    args: ['matChipInputAddOnBlur']
+  }],
+  separatorKeyCodes: [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Input"],
+    args: ['matChipInputSeparatorKeyCodes']
+  }],
+  chipEnd: [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Output"],
+    args: ['matChipInputTokenEnd']
+  }],
+  placeholder: [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Input"]
+  }],
+  id: [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Input"]
+  }],
+  disabled: [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Input"]
+  }]
+};
+/*@__PURE__*/
+
+(function () {
+  _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵsetClassMetadata"](MatChipInput, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Directive"],
+    args: [{
+      selector: 'input[matChipInputFor]',
+      exportAs: 'matChipInput, matChipInputFor',
+      host: {
+        'class': 'mat-chip-input mat-input-element',
+        '(keydown)': '_keydown($event)',
+        '(blur)': '_blur()',
+        '(focus)': '_focus()',
+        '(input)': '_onInput()',
+        '[id]': 'id',
+        '[attr.disabled]': 'disabled || null',
+        '[attr.placeholder]': 'placeholder || null',
+        '[attr.aria-invalid]': '_chipList && _chipList.ngControl ? _chipList.ngControl.invalid : null',
+        '[attr.aria-required]': '_chipList && _chipList.required || null'
+      }
+    }]
+  }], function () {
+    return [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["ElementRef"]
+    }, {
+      type: undefined,
+      decorators: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Inject"],
+        args: [MAT_CHIPS_DEFAULT_OPTIONS]
+      }]
+    }];
+  }, {
+    separatorKeyCodes: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Input"],
+      args: ['matChipInputSeparatorKeyCodes']
+    }],
+    chipEnd: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Output"],
+      args: ['matChipInputTokenEnd']
+    }],
+    placeholder: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Input"]
+    }],
+    id: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Input"]
+    }],
+    chipList: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Input"],
+      args: ['matChipInputFor']
+    }],
+    addOnBlur: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Input"],
+      args: ['matChipInputAddOnBlur']
+    }],
+    disabled: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["Input"]
+    }]
+  });
+})();
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+
+var CHIP_DECLARATIONS = [MatChipList, MatChip, MatChipInput, MatChipRemove, MatChipAvatar, MatChipTrailingIcon];
+var ɵ0 = {
+  separatorKeyCodes: [_angular_cdk_keycodes__WEBPACK_IMPORTED_MODULE_6__["ENTER"]]
+};
+
+var MatChipsModule = function MatChipsModule() {
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_5__["default"])(this, MatChipsModule);
+};
+
+MatChipsModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdefineNgModule"]({
+  type: MatChipsModule
+});
+MatChipsModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdefineInjector"]({
+  factory: function MatChipsModule_Factory(t) {
+    return new (t || MatChipsModule)();
+  },
+  providers: [_angular_material_core__WEBPACK_IMPORTED_MODULE_8__["ErrorStateMatcher"], {
+    provide: MAT_CHIPS_DEFAULT_OPTIONS,
+    useValue: ɵ0
+  }]
+});
+
+(function () {
+  (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵsetNgModuleScope"](MatChipsModule, {
+    declarations: [MatChipList, MatChip, MatChipInput, MatChipRemove, MatChipAvatar, MatChipTrailingIcon],
+    exports: [MatChipList, MatChip, MatChipInput, MatChipRemove, MatChipAvatar, MatChipTrailingIcon]
+  });
+})();
+/*@__PURE__*/
+
+
+(function () {
+  _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵsetClassMetadata"](MatChipsModule, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_7__["NgModule"],
+    args: [{
+      exports: CHIP_DECLARATIONS,
+      declarations: CHIP_DECLARATIONS,
+      providers: [_angular_material_core__WEBPACK_IMPORTED_MODULE_8__["ErrorStateMatcher"], {
+        provide: MAT_CHIPS_DEFAULT_OPTIONS,
+        useValue: ɵ0
+      }]
+    }]
+  }], null, null);
+})();
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/**
+ * Generated bundle index. Do not edit.
+ */
+
+
+
+
+/***/ }),
+
 /***/ "BrVi":
 /*!**********************************!*\
   !*** ./src/models/productapi.ts ***!
@@ -2744,6 +7337,26 @@ var ProductApi = /** @class */ (function () {
 }());
 
 
+
+/***/ }),
+
+/***/ "BuRe":
+/*!********************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-browser/validate.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _regex_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./regex.js */ "QNZY");
+
+
+function validate(uuid) {
+  return typeof uuid === 'string' && _regex_js__WEBPACK_IMPORTED_MODULE_0__["default"].test(uuid);
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (validate);
 
 /***/ }),
 
@@ -2777,6 +7390,67 @@ var UserApi = /** @class */ (function () {
 }());
 
 
+
+/***/ }),
+
+/***/ "DeoT":
+/*!*****************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-browser/parse.js ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _validate_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validate.js */ "BuRe");
+
+
+function parse(uuid) {
+  if (!Object(_validate_js__WEBPACK_IMPORTED_MODULE_0__["default"])(uuid)) {
+    throw TypeError('Invalid UUID');
+  }
+
+  var v;
+  var arr = new Uint8Array(16); // Parse ########-....-....-....-............
+
+  arr[0] = (v = parseInt(uuid.slice(0, 8), 16)) >>> 24;
+  arr[1] = v >>> 16 & 0xff;
+  arr[2] = v >>> 8 & 0xff;
+  arr[3] = v & 0xff; // Parse ........-####-....-....-............
+
+  arr[4] = (v = parseInt(uuid.slice(9, 13), 16)) >>> 8;
+  arr[5] = v & 0xff; // Parse ........-....-####-....-............
+
+  arr[6] = (v = parseInt(uuid.slice(14, 18), 16)) >>> 8;
+  arr[7] = v & 0xff; // Parse ........-....-....-####-............
+
+  arr[8] = (v = parseInt(uuid.slice(19, 23), 16)) >>> 8;
+  arr[9] = v & 0xff; // Parse ........-....-....-....-############
+  // (Use "/" to avoid 32-bit truncation when bit-shifting high-order bytes)
+
+  arr[10] = (v = parseInt(uuid.slice(24, 36), 16)) / 0x10000000000 & 0xff;
+  arr[11] = v / 0x100000000 & 0xff;
+  arr[12] = v >>> 24 & 0xff;
+  arr[13] = v >>> 16 & 0xff;
+  arr[14] = v >>> 8 & 0xff;
+  arr[15] = v & 0xff;
+  return arr;
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (parse);
+
+/***/ }),
+
+/***/ "DiOg":
+/*!*************************************************************!*\
+  !*** ./src/app/carritocompras/carritocompras.component.css ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NhcnJpdG9jb21wcmFzL2NhcnJpdG9jb21wcmFzLmNvbXBvbmVudC5jc3MifQ== */");
 
 /***/ }),
 
@@ -6933,7 +11607,124 @@ ObserversModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdefineIn
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"main-content\">\n  <div class=\"container-fluid\">\n      <!--\n      <div class=\"row\">\n          <div class=\"col-lg-3 col-md-6 col-sm-6\">\n              <div class=\"card card-stats\">\n                  <div class=\"card-header card-header-warning card-header-icon\">\n                      <div class=\"card-icon\">\n                          <i class=\"material-icons\">content_copy</i>\n                      </div>\n                      <p class=\"card-category\">Used Space</p>\n                      <h3 class=\"card-title\">49/50\n                          <small>GB</small>\n                      </h3>\n                  </div>\n                  <div class=\"card-footer\">\n                      <div class=\"stats\">\n                          <i class=\"material-icons text-danger\">warning</i>\n                          <a href=\"javascript:void(0)\">Get More Space...</a>\n                      </div>\n                  </div>\n              </div>\n          </div>\n        \n          <div class=\"col-lg-3 col-md-6 col-sm-6\">\n              <div class=\"card card-stats\">\n                  <div class=\"card-header card-header-success card-header-icon\">\n                      <div class=\"card-icon\">\n                          <i class=\"material-icons\">store</i>\n                      </div>\n                      <p class=\"card-category\">Revenue</p>\n                      <h3 class=\"card-title\">$34,245</h3>\n                  </div>\n                  <div class=\"card-footer\">\n                      <div class=\"stats\">\n                          <i class=\"material-icons\">date_range</i> Last 24 Hours\n                      </div>\n                  </div>\n              </div>\n          </div>\n          <div class=\"col-lg-3 col-md-6 col-sm-6\">\n              <div class=\"card card-stats\">\n                  <div class=\"card-header card-header-danger card-header-icon\">\n                      <div class=\"card-icon\">\n                          <i class=\"material-icons\">info_outline</i>\n                      </div>\n                      <p class=\"card-category\">Fixed Issues</p>\n                      <h3 class=\"card-title\">75</h3>\n                  </div>\n                  <div class=\"card-footer\">\n                      <div class=\"stats\">\n                          <i class=\"material-icons\">local_offer</i> Tracked from Github\n                      </div>\n                  </div>\n              </div>\n          </div>\n          <div class=\"col-lg-3 col-md-6 col-sm-6\">\n              <div class=\"card card-stats\">\n                  <div class=\"card-header card-header-info card-header-icon\">\n                      <div class=\"card-icon\">\n                          <i class=\"fa fa-twitter\"></i>\n                      </div>\n                      <p class=\"card-category\">Followers</p>\n                      <h3 class=\"card-title\">+245</h3>\n                  </div>\n                  <div class=\"card-footer\">\n                      <div class=\"stats\">\n                          <i class=\"material-icons\">update</i> Just Updated\n                      </div>\n                  </div>\n              </div>\n          </div>\n      </div>\n    -->\n   <!-- <ul>\n        <li *ngFor=\"let product of posts\">\n        -->\n      <div class=\"row\"> \n              <div class=\"col-md-4\" *ngFor=\"let product of posts\">\n              <div class=\"card card-chart\">\n                  <div class=\"card-header card-header-success\">\n                    <img  width=\"100\" height=\"100\" src={{product.url}}>\n                  </div>\n                  <div class=\"card-body\">\n                      <h4 class=\"card-title\">{{product.description}}</h4>\n                      <p class=\"card-category\">\n                          <span class=\"text-success\"><i class=\"fa fa-long-arrow-up\"></i> $ </span> {{product.precio}} </p>\n                  </div>\n                  <div class=\"card-footer\">\n                    <!--  <div class=\"stats\">\n                          <i class=\"material-icons\">access_time</i> updated 4 minutes ago\n                      </div>\n                    -->\n                    <div class=\"stats\">\n                        <i class=\"material-icons text-danger\">warning</i>\n                        <a href=\"javascript:void(0)\"> Comprar </a>\n                    </div>\n                  </div>\n              </div>\n              </div>\n         \n      </div> \n   \n   <!-- </li>\n\n    </ul> -->\n\n<!--\n      <div class=\"row\">\n          <div class=\"col-lg-6 col-md-12\">\n              <div class=\"card\">\n                  <div class=\"card-header card-header-tabs card-header-primary\">\n                      <div class=\"nav-tabs-navigation\">\n                          <div class=\"nav-tabs-wrapper\">\n                              <span class=\"nav-tabs-title\">Tasks:</span>\n                              <ul class=\"nav nav-tabs\" data-tabs=\"tabs\">\n                                  <li class=\"nav-item\">\n                                      <a mat-button class=\"nav-link active\" href=\"#profile\" data-toggle=\"tab\">\n                                          <i class=\"material-icons\">bug_report</i> Bugs\n                                          <div class=\"ripple-container\"></div>\n                                      </a>\n                                  </li>\n                                  <li class=\"nav-item\">\n                                      <a mat-button class=\"nav-link\" href=\"#messages\" data-toggle=\"tab\">\n                                          <i class=\"material-icons\">code</i> Website\n                                          <div class=\"ripple-container\"></div>\n                                      </a>\n                                  </li>\n                                  <li class=\"nav-item\">\n                                      <a mat-button class=\"nav-link\" href=\"#settings\" data-toggle=\"tab\">\n                                          <i class=\"material-icons\">cloud</i> Server\n                                          <div class=\"ripple-container\"></div>\n                                      </a>\n                                  </li>\n                              </ul>\n                          </div>\n                      </div>\n                  </div>\n                  <div class=\"card-body\">\n                      <div class=\"tab-content\">\n                          <div class=\"tab-pane active\" id=\"profile\">\n                              <table class=\"table\">\n                                  <tbody>\n                                      <tr>\n                                          <td>\n                                              <div class=\"form-check\">\n                                                  <label class=\"form-check-label\">\n                                                      <input class=\"form-check-input\" type=\"checkbox\" value=\"\" checked>\n                                                      <span class=\"form-check-sign\">\n                                                          <span class=\"check\"></span>\n                                                      </span>\n                                                  </label>\n                                              </div>\n                                          </td>\n                                          <td>Sign contract for \"What are conference organizers afraid of?\"</td>\n                                          <td class=\"td-actions text-right\">\n                                              <button mat-raised-button type=\"button\" matTooltip=\"Edit Task\" [matTooltipPosition]=\"'above'\" class=\"btn btn-primary btn-link btn-sm btn-just-icon\">\n                                                  <i class=\"material-icons\">edit</i>\n                                              </button>\n                                              <button mat-raised-button type=\"button\" matTooltip=\"Remove\" [matTooltipPosition]=\"'above'\" class=\"btn btn-danger btn-link btn-sm btn-just-icon\">\n                                                  <i class=\"material-icons\">close</i>\n                                              </button>\n                                          </td>\n                                      </tr>\n                                      <tr>\n                                          <td>\n                                              <div class=\"form-check\">\n                                                  <label class=\"form-check-label\">\n                                                      <input class=\"form-check-input\" type=\"checkbox\" value=\"\">\n                                                      <span class=\"form-check-sign\">\n                                                          <span class=\"check\"></span>\n                                                      </span>\n                                                  </label>\n                                              </div>\n                                          </td>\n                                          <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>\n                                          <td class=\"td-actions text-right\">\n                                              <button mat-raised-button type=\"button\" matTooltip=\"Edit Task\" [matTooltipPosition]=\"'above'\" class=\"btn btn-primary btn-link btn-sm btn-just-icon\">\n                                                  <i class=\"material-icons\">edit</i>\n                                              </button>\n                                              <button mat-raised-button type=\"button\" matTooltip=\"Remove\" [matTooltipPosition]=\"'above'\" class=\"btn btn-danger btn-link btn-sm btn-just-icon\">\n                                                  <i class=\"material-icons\">close</i>\n                                              </button>\n                                          </td>\n                                      </tr>\n                                      <tr>\n                                          <td>\n                                              <div class=\"form-check\">\n                                                  <label class=\"form-check-label\">\n                                                      <input class=\"form-check-input\" type=\"checkbox\" value=\"\">\n                                                      <span class=\"form-check-sign\">\n                                                          <span class=\"check\"></span>\n                                                      </span>\n                                                  </label>\n                                              </div>\n                                          </td>\n                                          <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit\n                                          </td>\n                                          <td class=\"td-actions text-right\">\n                                              <button mat-raised-button type=\"button\" matTooltip=\"Edit Task\" [matTooltipPosition]=\"'above'\" class=\"btn btn-primary btn-link btn-sm btn-just-icon\">\n                                                  <i class=\"material-icons\">edit</i>\n                                              </button>\n                                              <button mat-raised-button type=\"button\" matTooltip=\"Remove\" [matTooltipPosition]=\"'above'\" class=\"btn btn-danger btn-link btn-sm btn-just-icon\">\n                                                  <i class=\"material-icons\">close</i>\n                                              </button>\n                                          </td>\n                                      </tr>\n                                      <tr>\n                                          <td>\n                                              <div class=\"form-check\">\n                                                  <label class=\"form-check-label\">\n                                                      <input class=\"form-check-input\" type=\"checkbox\" value=\"\" checked>\n                                                      <span class=\"form-check-sign\">\n                                                          <span class=\"check\"></span>\n                                                      </span>\n                                                  </label>\n                                              </div>\n                                          </td>\n                                          <td>Create 4 Invisible User Experiences you Never Knew About</td>\n                                          <td class=\"td-actions text-right\">\n                                              <button mat-raised-button type=\"button\" matTooltip=\"Edit Task\" [matTooltipPosition]=\"'above'\" class=\"btn btn-primary btn-link btn-sm btn-just-icon\">\n                                                  <i class=\"material-icons\">edit</i>\n                                              </button>\n                                              <button mat-raised-button type=\"button\" matTooltip=\"Remove\" [matTooltipPosition]=\"'above'\" class=\"btn btn-danger btn-link btn-sm btn-just-icon\">\n                                                  <i class=\"material-icons\">close</i>\n                                              </button>\n                                          </td>\n                                      </tr>\n                                  </tbody>\n                              </table>\n                          </div>\n                          <div class=\"tab-pane\" id=\"messages\">\n                              <table class=\"table\">\n                                  <tbody>\n                                      <tr>\n                                          <td>\n                                              <div class=\"form-check\">\n                                                  <label class=\"form-check-label\">\n                                                      <input class=\"form-check-input\" type=\"checkbox\" value=\"\" checked>\n                                                      <span class=\"form-check-sign\">\n                                                          <span class=\"check\"></span>\n                                                      </span>\n                                                  </label>\n                                              </div>\n                                          </td>\n                                          <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit\n                                          </td>\n                                          <td class=\"td-actions text-right\">\n                                              <button mat-raised-button type=\"button\" matTooltip=\"Edit Task\" [matTooltipPosition]=\"'above'\" class=\"btn btn-primary btn-link btn-sm btn-just-icon\">\n                                                  <i class=\"material-icons\">edit</i>\n                                              </button>\n                                              <button mat-raised-button type=\"button\" matTooltip=\"Remove\" [matTooltipPosition]=\"'above'\" class=\"btn btn-danger btn-link btn-sm btn-just-icon\">\n                                                  <i class=\"material-icons\">close</i>\n                                              </button>\n                                          </td>\n                                      </tr>\n                                      <tr>\n                                          <td>\n                                              <div class=\"form-check\">\n                                                  <label class=\"form-check-label\">\n                                                      <input class=\"form-check-input\" type=\"checkbox\" value=\"\">\n                                                      <span class=\"form-check-sign\">\n                                                          <span class=\"check\"></span>\n                                                      </span>\n                                                  </label>\n                                              </div>\n                                          </td>\n                                          <td>Sign contract for \"What are conference organizers afraid of?\"</td>\n                                          <td class=\"td-actions text-right\">\n                                              <button mat-raised-button type=\"button\" matTooltip=\"Edit Task\" [matTooltipPosition]=\"'above'\" class=\"btn btn-primary btn-link btn-sm btn-just-icon\">\n                                                  <i class=\"material-icons\">edit</i>\n                                              </button>\n                                              <button mat-raised-button type=\"button\" matTooltip=\"Remove\" [matTooltipPosition]=\"'above'\" class=\"btn btn-danger btn-link btn-sm btn-just-icon\">\n                                                  <i class=\"material-icons\">close</i>\n                                              </button>\n                                          </td>\n                                      </tr>\n                                  </tbody>\n                              </table>\n                          </div>\n                          <div class=\"tab-pane\" id=\"settings\">\n                              <table class=\"table\">\n                                  <tbody>\n                                      <tr>\n                                          <td>\n                                              <div class=\"form-check\">\n                                                  <label class=\"form-check-label\">\n                                                      <input class=\"form-check-input\" type=\"checkbox\" value=\"\">\n                                                      <span class=\"form-check-sign\">\n                                                          <span class=\"check\"></span>\n                                                      </span>\n                                                  </label>\n                                              </div>\n                                          </td>\n                                          <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>\n                                          <td class=\"td-actions text-right\">\n                                              <button mat-raised-button type=\"button\" matTooltip=\"Edit Task\" [matTooltipPosition]=\"'above'\" class=\"btn btn-primary btn-link btn-sm btn-just-icon\">\n                                                  <i class=\"material-icons\">edit</i>\n                                              </button>\n                                              <button mat-raised-button type=\"button\" matTooltip=\"Remove\" [matTooltipPosition]=\"'above'\" class=\"btn btn-danger btn-link btn-sm btn-just-icon\">\n                                                  <i class=\"material-icons\">close</i>\n                                              </button>\n                                          </td>\n                                      </tr>\n                                      <tr>\n                                          <td>\n                                              <div class=\"form-check\">\n                                                  <label class=\"form-check-label\">\n                                                      <input class=\"form-check-input\" type=\"checkbox\" value=\"\" checked>\n                                                      <span class=\"form-check-sign\">\n                                                          <span class=\"check\"></span>\n                                                      </span>\n                                                  </label>\n                                              </div>\n                                          </td>\n                                          <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit\n                                          </td>\n                                          <td class=\"td-actions text-right\">\n                                              <button mat-raised-button type=\"button\" matTooltip=\"Edit Task\" [matTooltipPosition]=\"'above'\" class=\"btn btn-primary btn-link btn-sm btn-just-icon\">\n                                                  <i class=\"material-icons\">edit</i>\n                                              </button>\n                                              <button mat-raised-button type=\"button\" matTooltip=\"Remove\" [matTooltipPosition]=\"'above'\" class=\"btn btn-danger btn-link btn-sm btn-just-icon\">\n                                                  <i class=\"material-icons\">close</i>\n                                              </button>\n                                          </td>\n                                      </tr>\n                                      <tr>\n                                          <td>\n                                              <div class=\"form-check\">\n                                                  <label class=\"form-check-label\">\n                                                      <input class=\"form-check-input\" type=\"checkbox\" value=\"\" checked>\n                                                      <span class=\"form-check-sign\">\n                                                          <span class=\"check\"></span>\n                                                      </span>\n                                                  </label>\n                                              </div>\n                                          </td>\n                                          <td>Sign contract for \"What are conference organizers afraid of?\"</td>\n                                          <td class=\"td-actions text-right\">\n                                              <button mat-raised-button type=\"button\" matTooltip=\"Edit Task\" [matTooltipPosition]=\"'above'\" class=\"btn btn-primary btn-link btn-sm btn-just-icon\">\n                                                  <i class=\"material-icons\">edit</i>\n                                              </button>\n                                              <button mat-raised-button type=\"button\" matTooltip=\"Remove\" [matTooltipPosition]=\"'above'\" class=\"btn btn-danger btn-link btn-sm btn-just-icon\">\n                                                  <i class=\"material-icons\">close</i>\n                                              </button>\n                                          </td>\n                                      </tr>\n                                  </tbody>\n                              </table>\n                          </div>\n                      </div>\n                  </div>\n              </div>\n          </div>\n          <div class=\"col-lg-6 col-md-12\">\n              <div class=\"card\">\n                  <div class=\"card-header card-header-warning\">\n                      <h4 class=\"card-title\">Employees Stats</h4>\n                      <p class=\"card-category\">New employees on 15th September, 2016</p>\n                  </div>\n                  <div class=\"card-body table-responsive\">\n                      <table class=\"table table-hover\">\n                          <thead class=\"text-warning\">\n                              <th>ID</th>\n                              <th>Name</th>\n                              <th>Salary</th>\n                              <th>Country</th>\n                          </thead>\n                          <tbody>\n                              <tr>\n                                  <td>1</td>\n                                  <td>Dakota Rice</td>\n                                  <td>$36,738</td>\n                                  <td>Niger</td>\n                              </tr>\n                              <tr>\n                                  <td>2</td>\n                                  <td>Minerva Hooper</td>\n                                  <td>$23,789</td>\n                                  <td>Curaçao</td>\n                              </tr>\n                              <tr>\n                                  <td>3</td>\n                                  <td>Sage Rodriguez</td>\n                                  <td>$56,142</td>\n                                  <td>Netherlands</td>\n                              </tr>\n                              <tr>\n                                  <td>4</td>\n                                  <td>Philip Chaney</td>\n                                  <td>$38,735</td>\n                                  <td>Korea, South</td>\n                              </tr>\n                          </tbody>\n                      </table>\n                  </div>\n              </div>\n          </div>\n      </div>\n\n    -->\n  </div>\n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("\n\n<div class=\"main-content\">\n\n   \n  <div class=\"container-fluid\">\n\n    <ng-container *ngIf=\"cartState$ | async as state\">\n        <app-cart [state]=\"state\"></app-cart>\n        <mat-card>\n            <mat-card-header>\n                <mat-card-title>Total: {{ state.tot.subTot | currency:'USD':'symbol':'1.2-2' }}</mat-card-title>\n    \n                <mat-card-subtitle>\n                    tax: {{ state.tot.tax | currency:'USD':'symbol':'1.2-2' }}\n                    <br />\n              at checkout: {{ state.tot.grandTot | currency:'USD':'symbol':'1.2-2' }}\n            </mat-card-subtitle>\n          </mat-card-header>\n          <mat-card-actions>\n            <mat-chip-list>\n              <mat-chip *ngFor=\"let item of state.cart\" [removable]=\"true\" (removed)=\"remove(item)\">{{ item.name }}\n                <mat-icon matChipRemove>cancel</mat-icon>\n              </mat-chip>\n            </mat-chip-list>\n          </mat-card-actions>\n        </mat-card>\n      <hr />\n  <!--\n      <mat-card *ngFor=\"let item of state.store\">\n            <mat-card-header>\n                {{ item.name }}\n            </mat-card-header>\t\t\n        <mat-card-subtitle>\n          \n          <ul>\n            <li>{{ item.details }}</li>\n            <li>{{ item.price | currency:'USD':'symbol':'1.2-2' }}</li>\n          </ul>\n        </mat-card-subtitle>\n        <mat-card-actions>\n    \n            <button mat-flat-button color=\"primary\" role=\"button\" (click)=\"addItemToCart(item)\">\n          <mat-icon>add_shopping_cart</mat-icon>\n          Add to cart\n        </button>\n        </mat-card-actions>\n      </mat-card>\n    -->\n    </ng-container>\n    \n  \n    <div class=\"row\"> \n\n   \n          \n              <div class=\"col-md-4\" *ngFor=\"let product of posts\">\n              <div class=\"card card-chart\">\n                  <div class=\"card-header card-header-success\">\n                    <img  width=\"50\" height=\"50\" src={{product.url}}>\n                    Vendedor: {{product.postedBy.username}}\n\n                  </div>\n                  <div class=\"card-body\">\n\n                    <p class=\"card-category\">\n\n                        <span class=\"text-success\">\n                            <img  width=\"200\" height=\"200\" src={{product.url}}>\n                        </span> \n                    </p>    \n                        <h4 class=\"card-title\">{{product.description}}</h4>\n\n                    \n                    \n\n                      <p class=\"card-category\">\n                          <span class=\"text-success\"><i class=\"fa fa-long-arrow-up\"></i>  \n                          </span> Precio: ${{product.precio}} \n                      </p>\n                  </div>\n                  <div class=\"card-footer\">\n                    \n                    <div class=\"stats\">\n\n                        <button mat-flat-button color=\"primary\" role=\"button\" (click)=\"addItemToCart(product)\">\n                            <mat-icon>add_shopping_cart</mat-icon>\n                            Add to cart\n                          </button>\n                        <!--\n                        <i class=\"material-icons text-danger\">warning</i>\n                        <a href=\"javascript:void(0)\"> Comprar </a>\n                    -->\n                    </div>\n                  </div>\n              </div>\n              </div>\n            \n      </div> \n   \n   \n    \n</div>\n</div>\n");
+
+/***/ }),
+
+/***/ "HblP":
+/*!****************************!*\
+  !*** ./src/models/data.ts ***!
+  \****************************/
+/*! exports provided: DATA_ITEMS */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DATA_ITEMS", function() { return DATA_ITEMS; });
+var DATA_ITEMS = [
+    {
+        price: 59.99,
+        image: null,
+        name: 'Item 1',
+        details: 'It\'s as cool as it sounds',
+        heart: null,
+    },
+    {
+        price: 99.99,
+        image: null,
+        name: 'Item 2',
+        details: 'It\'s as cool as it sounds',
+        heart: null,
+    },
+    {
+        price: 19.99,
+        image: null,
+        name: 'Item 3',
+        details: 'It\'s as cool as it sounds',
+        heart: null,
+    },
+    {
+        price: 59.99,
+        image: null,
+        name: 'Item 4',
+        details: 'It\'s as cool as it sounds',
+        heart: null,
+    },
+    {
+        price: 39.99,
+        image: null,
+        name: 'Item 5',
+        details: 'It\'s as cool as it sounds',
+        heart: null,
+    },
+    {
+        price: 9.99,
+        image: null,
+        name: 'Item 6',
+        details: 'It\'s as cool as it sounds',
+        heart: null,
+    }
+];
+
+
+/***/ }),
+
+/***/ "IiZn":
+/*!************************************************!*\
+  !*** ./src/app/checkout/checkout.component.ts ***!
+  \************************************************/
+/*! exports provided: CheckoutDialog */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CheckoutDialog", function() { return CheckoutDialog; });
+/* harmony import */ var _raw_loader_checkout_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! raw-loader!./checkout.component.html */ "2ZcO");
+/* harmony import */ var _checkout_component_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./checkout.component.css */ "PkTJ");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material/dialog */ "0IaG");
+/* harmony import */ var _services_shopping_cart_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/shopping-cart.service */ "K5n9");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var CheckoutDialog = /** @class */ (function () {
+    // @Inject(MAT_DIALOG_DATA) public data: any,
+    function CheckoutDialog(shoppingCartService, dialogRef) {
+        this.shoppingCartService = shoppingCartService;
+        this.dialogRef = dialogRef;
+        this.state = this.shoppingCartService.state$.pipe();
+    }
+    CheckoutDialog.prototype.completeOrder = function () {
+        this.shoppingCartService.checkout();
+    };
+    CheckoutDialog.ctorParameters = function () { return [
+        { type: _services_shopping_cart_service__WEBPACK_IMPORTED_MODULE_4__["ShoppingCartService"] },
+        { type: _angular_material_dialog__WEBPACK_IMPORTED_MODULE_3__["MatDialogRef"] }
+    ]; };
+    CheckoutDialog = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Component"])({
+            selector: 'app-checkout',
+            template: _raw_loader_checkout_component_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+            styles: [_checkout_component_css__WEBPACK_IMPORTED_MODULE_1__["default"]]
+        }),
+        __metadata("design:paramtypes", [_services_shopping_cart_service__WEBPACK_IMPORTED_MODULE_4__["ShoppingCartService"],
+            _angular_material_dialog__WEBPACK_IMPORTED_MODULE_3__["MatDialogRef"]])
+    ], CheckoutDialog);
+    return CheckoutDialog;
+}());
+
+
 
 /***/ }),
 
@@ -6971,12 +11762,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_storage_service__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../../../services/storage.service */ "61FP");
 /* harmony import */ var _products_products_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ../../products/products.component */ "ziXE");
 /* harmony import */ var _new_product_new_product_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ../../new-product/new-product.component */ "dLVS");
+/* harmony import */ var _carritocompras_carritocompras_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ../../carritocompras/carritocompras.component */ "zWA4");
+/* harmony import */ var _services_shopping_cart_service__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ../../../services/shopping-cart.service */ "K5n9");
+/* harmony import */ var _cart_cart_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ../../cart/cart.component */ "c2A7");
+/* harmony import */ var _checkout_checkout_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ../../checkout/checkout.component */ "IiZn");
+/* harmony import */ var _material_material_module__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ../../material/material.module */ "hctd");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
+
+
 
 
 
@@ -7017,6 +11818,7 @@ var AdminLayoutModule = /** @class */ (function () {
                 _angular_material_input__WEBPACK_IMPORTED_MODULE_14__["MatInputModule"],
                 _angular_material_select__WEBPACK_IMPORTED_MODULE_18__["MatSelectModule"],
                 _angular_material_tooltip__WEBPACK_IMPORTED_MODULE_17__["MatTooltipModule"],
+                _material_material_module__WEBPACK_IMPORTED_MODULE_28__["MaterialModule"]
             ],
             declarations: [
                 _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_5__["DashboardComponent"],
@@ -7031,12 +11833,1632 @@ var AdminLayoutModule = /** @class */ (function () {
                 _maps_maps_component__WEBPACK_IMPORTED_MODULE_10__["MapsComponent"],
                 _notifications_notifications_component__WEBPACK_IMPORTED_MODULE_11__["NotificationsComponent"],
                 _upgrade_upgrade_component__WEBPACK_IMPORTED_MODULE_12__["UpgradeComponent"],
+                _carritocompras_carritocompras_component__WEBPACK_IMPORTED_MODULE_24__["CarritocomprasComponent"],
+                _cart_cart_component__WEBPACK_IMPORTED_MODULE_26__["CartComponent"],
+                _checkout_checkout_component__WEBPACK_IMPORTED_MODULE_27__["CheckoutDialog"]
             ],
-            providers: [_services_storage_service__WEBPACK_IMPORTED_MODULE_21__["StorageService"]]
+            providers: [_services_storage_service__WEBPACK_IMPORTED_MODULE_21__["StorageService"], _services_shopping_cart_service__WEBPACK_IMPORTED_MODULE_25__["ShoppingCartService"]],
+            entryComponents: [_checkout_checkout_component__WEBPACK_IMPORTED_MODULE_27__["CheckoutDialog"]]
         })
     ], AdminLayoutModule);
     return AdminLayoutModule;
 }());
+
+
+
+/***/ }),
+
+/***/ "Jr8q":
+/*!**************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-browser/v5.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _v35_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./v35.js */ "/8ZT");
+/* harmony import */ var _sha1_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sha1.js */ "t133");
+
+
+var v5 = Object(_v35_js__WEBPACK_IMPORTED_MODULE_0__["default"])('v5', 0x50, _sha1_js__WEBPACK_IMPORTED_MODULE_1__["default"]);
+/* harmony default export */ __webpack_exports__["default"] = (v5);
+
+/***/ }),
+
+/***/ "K5n9":
+/*!***********************************************!*\
+  !*** ./src/services/shopping-cart.service.ts ***!
+  \***********************************************/
+/*! exports provided: ShoppingCartService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ShoppingCartService", function() { return ShoppingCartService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! uuid */ "4USb");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "qCKp");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "kU1M");
+/* harmony import */ var _models_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../models/data */ "HblP");
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __spreadArrays = (undefined && undefined.__spreadArrays) || function () {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
+};
+
+
+
+
+
+;
+var ShoppingCartService = /** @class */ (function () {
+    function ShoppingCartService() {
+        var _this = this;
+        /**
+         * Main Observables
+         *
+         */
+        this.stateTree$ = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](null);
+        this.checkoutTrigger$ = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](false);
+        this.cartAdd$ = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
+        this.cartRemove$ = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
+        /**
+         * Main Shopping Cart StateTree
+         * Combines all dependencies and maps then to the StateTree Object
+         */
+        this.state$ = this.stateTree$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["switchMap"])(function () { return _this.getItems().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["combineLatest"])([_this.cart$, _this.total$, _this.checkoutTrigger$]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["debounceTime"])(0)); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (_a) {
+            var store = _a[0], cart = _a[1], tot = _a[2], checkout = _a[3];
+            return ({ store: store, cart: cart, tot: tot, checkout: checkout });
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(function (state) {
+            if (state.checkout) {
+                console.log('checkout', state);
+            }
+        }), 
+        // make sure we share to the world! or just the entire app
+        Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["shareReplay"])(1));
+    }
+    Object.defineProperty(ShoppingCartService.prototype, "cart$", {
+        /**
+         * Main application cart Observable
+         * This could start with items from local storage or even an API call
+         * We use scan peak at the items within the cart and add and remove
+         */
+        get: function () {
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["merge"])(this.cartAdd$, this.cartRemove$).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["startWith"])([]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["scan"])(function (acc, item) {
+                if (item) {
+                    if (item.remove) {
+                        return __spreadArrays(acc.filter(function (i) { return i.uuid !== item.uuid; }));
+                    }
+                    return __spreadArrays(acc, [item]);
+                }
+            }));
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(ShoppingCartService.prototype, "total$", {
+        /**
+         * Calcs all Totals from being piped through the cart Observable
+         * When an item gets added or removed it will automatically calc
+         */
+        get: function () {
+            return this.cart$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (items) {
+                var total = 0;
+                for (var _i = 0, items_1 = items; _i < items_1.length; _i++) {
+                    var i = items_1[_i];
+                    total += i.price;
+                }
+                return total;
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (cost) { return ({
+                subTot: cost,
+                tax: .034 * cost,
+                grandTot: .034 * cost + cost
+            }); }));
+        },
+        enumerable: false,
+        configurable: true
+    });
+    // Mock data service call
+    ShoppingCartService.prototype.getItems = function () {
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["of"])(_models_data__WEBPACK_IMPORTED_MODULE_4__["DATA_ITEMS"]);
+    };
+    // facade for next of cartAdd subject
+    ShoppingCartService.prototype.addCartItem = function (item) {
+        this.cartAdd$.next(__assign(__assign({}, item), { uuid: Object(uuid__WEBPACK_IMPORTED_MODULE_1__["v4"])() }));
+    };
+    // facade for next of cartRemove subject
+    ShoppingCartService.prototype.removeCartItem = function (item) {
+        this.cartRemove$.next(__assign(__assign({}, item), { remove: true }));
+    };
+    // not sure what else to do here so we don't do much
+    // have a great day!
+    ShoppingCartService.prototype.checkout = function () {
+        this.checkoutTrigger$.next(true);
+    };
+    ShoppingCartService.ctorParameters = function () { return []; };
+    ShoppingCartService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [])
+    ], ShoppingCartService);
+    return ShoppingCartService;
+}());
+
+
+
+/***/ }),
+
+/***/ "M2Tr":
+/*!********************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/cart/cart.component.html ***!
+  \********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<p>\n\tShopping Cart: <button mat-flat-button color=\"accent\" role=\"button\" [disabled]=\"state.cart.length < 1\" (click)=\"checkout()\">\n    <mat-icon>shopping_cart</mat-icon>\n     Checkout {{ state.cart.length }} Item{{ state.cart.length > 1 ? 's' : '' }}</button>\n</p>");
+
+/***/ }),
+
+/***/ "NFeN":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@angular/material/__ivy_ngcc__/fesm2015/icon.js ***!
+  \**********************************************************************/
+/*! exports provided: ICON_REGISTRY_PROVIDER, ICON_REGISTRY_PROVIDER_FACTORY, MAT_ICON_LOCATION, MAT_ICON_LOCATION_FACTORY, MatIcon, MatIconModule, MatIconRegistry, getMatIconFailedToSanitizeLiteralError, getMatIconFailedToSanitizeUrlError, getMatIconNameNotFoundError, getMatIconNoHttpProviderError, ɵ0 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ICON_REGISTRY_PROVIDER", function() { return ICON_REGISTRY_PROVIDER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ICON_REGISTRY_PROVIDER_FACTORY", function() { return ICON_REGISTRY_PROVIDER_FACTORY; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MAT_ICON_LOCATION", function() { return MAT_ICON_LOCATION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MAT_ICON_LOCATION_FACTORY", function() { return MAT_ICON_LOCATION_FACTORY; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatIcon", function() { return MatIcon; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatIconModule", function() { return MatIconModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatIconRegistry", function() { return MatIconRegistry; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getMatIconFailedToSanitizeLiteralError", function() { return getMatIconFailedToSanitizeLiteralError; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getMatIconFailedToSanitizeUrlError", function() { return getMatIconFailedToSanitizeUrlError; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getMatIconNameNotFoundError", function() { return getMatIconNameNotFoundError; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getMatIconNoHttpProviderError", function() { return getMatIconNoHttpProviderError; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵ0", function() { return ɵ0; });
+/* harmony import */ var _Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/slicedToArray */ "ODXe");
+/* harmony import */ var _Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/inherits */ "Ji7U");
+/* harmony import */ var _Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/createSuper */ "LK+K");
+/* harmony import */ var _Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/createClass */ "vuIU");
+/* harmony import */ var _Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/classCallCheck */ "1OyB");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _angular_material_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material/core */ "FKr1");
+/* harmony import */ var _angular_cdk_coercion__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/cdk/coercion */ "8LU1");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/common */ "ofXK");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! rxjs */ "qCKp");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! rxjs/operators */ "kU1M");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/common/http */ "tk/3");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/platform-browser */ "jhN1");
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/**
+ * Returns an exception to be thrown in the case when attempting to
+ * load an icon with a name that cannot be found.
+ * @docs-private
+ */
+
+
+
+
+var _c0 = ["*"];
+
+function getMatIconNameNotFoundError(iconName) {
+  return Error("Unable to find icon with the name \"".concat(iconName, "\""));
+}
+/**
+ * Returns an exception to be thrown when the consumer attempts to use
+ * `<mat-icon>` without including @angular/common/http.
+ * @docs-private
+ */
+
+
+function getMatIconNoHttpProviderError() {
+  return Error('Could not find HttpClient provider for use with Angular Material icons. ' + 'Please include the HttpClientModule from @angular/common/http in your ' + 'app imports.');
+}
+/**
+ * Returns an exception to be thrown when a URL couldn't be sanitized.
+ * @param url URL that was attempted to be sanitized.
+ * @docs-private
+ */
+
+
+function getMatIconFailedToSanitizeUrlError(url) {
+  return Error("The URL provided to MatIconRegistry was not trusted as a resource URL " + "via Angular's DomSanitizer. Attempted URL was \"".concat(url, "\"."));
+}
+/**
+ * Returns an exception to be thrown when a HTML string couldn't be sanitized.
+ * @param literal HTML that was attempted to be sanitized.
+ * @docs-private
+ */
+
+
+function getMatIconFailedToSanitizeLiteralError(literal) {
+  return Error("The literal provided to MatIconRegistry was not trusted as safe HTML by " + "Angular's DomSanitizer. Attempted literal was \"".concat(literal, "\"."));
+}
+/**
+ * Configuration for an icon, including the URL and possibly the cached SVG element.
+ * @docs-private
+ */
+
+
+var SvgIconConfig = function SvgIconConfig(url, svgText, options) {
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_4__["default"])(this, SvgIconConfig);
+
+  this.url = url;
+  this.svgText = svgText;
+  this.options = options;
+};
+/**
+ * Service to register and display icons used by the `<mat-icon>` component.
+ * - Registers icon URLs by namespace and name.
+ * - Registers icon set URLs by namespace.
+ * - Registers aliases for CSS classes, for use with icon fonts.
+ * - Loads icons from URLs and extracts individual icons from icon sets.
+ */
+
+
+var MatIconRegistry = /*#__PURE__*/function () {
+  function MatIconRegistry(_httpClient, _sanitizer, document, _errorHandler) {
+    Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_4__["default"])(this, MatIconRegistry);
+
+    this._httpClient = _httpClient;
+    this._sanitizer = _sanitizer;
+    this._errorHandler = _errorHandler;
+    /**
+     * URLs and cached SVG elements for individual icons. Keys are of the format "[namespace]:[icon]".
+     */
+
+    this._svgIconConfigs = new Map();
+    /**
+     * SvgIconConfig objects and cached SVG elements for icon sets, keyed by namespace.
+     * Multiple icon sets can be registered under the same namespace.
+     */
+
+    this._iconSetConfigs = new Map();
+    /** Cache for icons loaded by direct URLs. */
+
+    this._cachedIconsByUrl = new Map();
+    /** In-progress icon fetches. Used to coalesce multiple requests to the same URL. */
+
+    this._inProgressUrlFetches = new Map();
+    /** Map from font identifiers to their CSS class names. Used for icon fonts. */
+
+    this._fontCssClassesByAlias = new Map();
+    /**
+     * The CSS class to apply when an `<mat-icon>` component has no icon name, url, or font specified.
+     * The default 'material-icons' value assumes that the material icon font has been loaded as
+     * described at http://google.github.io/material-design-icons/#icon-font-for-the-web
+     */
+
+    this._defaultFontSetClass = 'material-icons';
+    this._document = document;
+  }
+  /**
+   * Registers an icon by URL in the default namespace.
+   * @param iconName Name under which the icon should be registered.
+   * @param url
+   */
+
+
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_3__["default"])(MatIconRegistry, [{
+    key: "addSvgIcon",
+    value: function addSvgIcon(iconName, url, options) {
+      return this.addSvgIconInNamespace('', iconName, url, options);
+    }
+    /**
+     * Registers an icon using an HTML string in the default namespace.
+     * @param iconName Name under which the icon should be registered.
+     * @param literal SVG source of the icon.
+     */
+
+  }, {
+    key: "addSvgIconLiteral",
+    value: function addSvgIconLiteral(iconName, literal, options) {
+      return this.addSvgIconLiteralInNamespace('', iconName, literal, options);
+    }
+    /**
+     * Registers an icon by URL in the specified namespace.
+     * @param namespace Namespace in which the icon should be registered.
+     * @param iconName Name under which the icon should be registered.
+     * @param url
+     */
+
+  }, {
+    key: "addSvgIconInNamespace",
+    value: function addSvgIconInNamespace(namespace, iconName, url, options) {
+      return this._addSvgIconConfig(namespace, iconName, new SvgIconConfig(url, null, options));
+    }
+    /**
+     * Registers an icon using an HTML string in the specified namespace.
+     * @param namespace Namespace in which the icon should be registered.
+     * @param iconName Name under which the icon should be registered.
+     * @param literal SVG source of the icon.
+     */
+
+  }, {
+    key: "addSvgIconLiteralInNamespace",
+    value: function addSvgIconLiteralInNamespace(namespace, iconName, literal, options) {
+      var cleanLiteral = this._sanitizer.sanitize(_angular_core__WEBPACK_IMPORTED_MODULE_5__["SecurityContext"].HTML, literal); // TODO: add an ngDevMode check
+
+
+      if (!cleanLiteral) {
+        throw getMatIconFailedToSanitizeLiteralError(literal);
+      }
+
+      return this._addSvgIconConfig(namespace, iconName, new SvgIconConfig('', cleanLiteral, options));
+    }
+    /**
+     * Registers an icon set by URL in the default namespace.
+     * @param url
+     */
+
+  }, {
+    key: "addSvgIconSet",
+    value: function addSvgIconSet(url, options) {
+      return this.addSvgIconSetInNamespace('', url, options);
+    }
+    /**
+     * Registers an icon set using an HTML string in the default namespace.
+     * @param literal SVG source of the icon set.
+     */
+
+  }, {
+    key: "addSvgIconSetLiteral",
+    value: function addSvgIconSetLiteral(literal, options) {
+      return this.addSvgIconSetLiteralInNamespace('', literal, options);
+    }
+    /**
+     * Registers an icon set by URL in the specified namespace.
+     * @param namespace Namespace in which to register the icon set.
+     * @param url
+     */
+
+  }, {
+    key: "addSvgIconSetInNamespace",
+    value: function addSvgIconSetInNamespace(namespace, url, options) {
+      return this._addSvgIconSetConfig(namespace, new SvgIconConfig(url, null, options));
+    }
+    /**
+     * Registers an icon set using an HTML string in the specified namespace.
+     * @param namespace Namespace in which to register the icon set.
+     * @param literal SVG source of the icon set.
+     */
+
+  }, {
+    key: "addSvgIconSetLiteralInNamespace",
+    value: function addSvgIconSetLiteralInNamespace(namespace, literal, options) {
+      var cleanLiteral = this._sanitizer.sanitize(_angular_core__WEBPACK_IMPORTED_MODULE_5__["SecurityContext"].HTML, literal);
+
+      if (!cleanLiteral) {
+        throw getMatIconFailedToSanitizeLiteralError(literal);
+      }
+
+      return this._addSvgIconSetConfig(namespace, new SvgIconConfig('', cleanLiteral, options));
+    }
+    /**
+     * Defines an alias for a CSS class name to be used for icon fonts. Creating an matIcon
+     * component with the alias as the fontSet input will cause the class name to be applied
+     * to the `<mat-icon>` element.
+     *
+     * @param alias Alias for the font.
+     * @param className Class name override to be used instead of the alias.
+     */
+
+  }, {
+    key: "registerFontClassAlias",
+    value: function registerFontClassAlias(alias) {
+      var className = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : alias;
+
+      this._fontCssClassesByAlias.set(alias, className);
+
+      return this;
+    }
+    /**
+     * Returns the CSS class name associated with the alias by a previous call to
+     * registerFontClassAlias. If no CSS class has been associated, returns the alias unmodified.
+     */
+
+  }, {
+    key: "classNameForFontAlias",
+    value: function classNameForFontAlias(alias) {
+      return this._fontCssClassesByAlias.get(alias) || alias;
+    }
+    /**
+     * Sets the CSS class name to be used for icon fonts when an `<mat-icon>` component does not
+     * have a fontSet input value, and is not loading an icon by name or URL.
+     *
+     * @param className
+     */
+
+  }, {
+    key: "setDefaultFontSetClass",
+    value: function setDefaultFontSetClass(className) {
+      this._defaultFontSetClass = className;
+      return this;
+    }
+    /**
+     * Returns the CSS class name to be used for icon fonts when an `<mat-icon>` component does not
+     * have a fontSet input value, and is not loading an icon by name or URL.
+     */
+
+  }, {
+    key: "getDefaultFontSetClass",
+    value: function getDefaultFontSetClass() {
+      return this._defaultFontSetClass;
+    }
+    /**
+     * Returns an Observable that produces the icon (as an `<svg>` DOM element) from the given URL.
+     * The response from the URL may be cached so this will not always cause an HTTP request, but
+     * the produced element will always be a new copy of the originally fetched icon. (That is,
+     * it will not contain any modifications made to elements previously returned).
+     *
+     * @param safeUrl URL from which to fetch the SVG icon.
+     */
+
+  }, {
+    key: "getSvgIconFromUrl",
+    value: function getSvgIconFromUrl(safeUrl) {
+      var _this = this;
+
+      var url = this._sanitizer.sanitize(_angular_core__WEBPACK_IMPORTED_MODULE_5__["SecurityContext"].RESOURCE_URL, safeUrl);
+
+      if (!url) {
+        throw getMatIconFailedToSanitizeUrlError(safeUrl);
+      }
+
+      var cachedIcon = this._cachedIconsByUrl.get(url);
+
+      if (cachedIcon) {
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_9__["of"])(cloneSvg(cachedIcon));
+      }
+
+      return this._loadSvgIconFromConfig(new SvgIconConfig(safeUrl, null)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_10__["tap"])(function (svg) {
+        return _this._cachedIconsByUrl.set(url, svg);
+      }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_10__["map"])(function (svg) {
+        return cloneSvg(svg);
+      }));
+    }
+    /**
+     * Returns an Observable that produces the icon (as an `<svg>` DOM element) with the given name
+     * and namespace. The icon must have been previously registered with addIcon or addIconSet;
+     * if not, the Observable will throw an error.
+     *
+     * @param name Name of the icon to be retrieved.
+     * @param namespace Namespace in which to look for the icon.
+     */
+
+  }, {
+    key: "getNamedSvgIcon",
+    value: function getNamedSvgIcon(name) {
+      var namespace = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+      // Return (copy of) cached icon if possible.
+      var key = iconKey(namespace, name);
+
+      var config = this._svgIconConfigs.get(key);
+
+      if (config) {
+        return this._getSvgFromConfig(config);
+      } // See if we have any icon sets registered for the namespace.
+
+
+      var iconSetConfigs = this._iconSetConfigs.get(namespace);
+
+      if (iconSetConfigs) {
+        return this._getSvgFromIconSetConfigs(name, iconSetConfigs);
+      }
+
+      return Object(rxjs__WEBPACK_IMPORTED_MODULE_9__["throwError"])(getMatIconNameNotFoundError(key));
+    }
+  }, {
+    key: "ngOnDestroy",
+    value: function ngOnDestroy() {
+      this._svgIconConfigs.clear();
+
+      this._iconSetConfigs.clear();
+
+      this._cachedIconsByUrl.clear();
+    }
+    /**
+     * Returns the cached icon for a SvgIconConfig if available, or fetches it from its URL if not.
+     */
+
+  }, {
+    key: "_getSvgFromConfig",
+    value: function _getSvgFromConfig(config) {
+      if (config.svgText) {
+        // We already have the SVG element for this icon, return a copy.
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_9__["of"])(cloneSvg(this._svgElementFromConfig(config)));
+      } else {
+        // Fetch the icon from the config's URL, cache it, and return a copy.
+        return this._loadSvgIconFromConfig(config).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_10__["map"])(function (svg) {
+          return cloneSvg(svg);
+        }));
+      }
+    }
+    /**
+     * Attempts to find an icon with the specified name in any of the SVG icon sets.
+     * First searches the available cached icons for a nested element with a matching name, and
+     * if found copies the element to a new `<svg>` element. If not found, fetches all icon sets
+     * that have not been cached, and searches again after all fetches are completed.
+     * The returned Observable produces the SVG element if possible, and throws
+     * an error if no icon with the specified name can be found.
+     */
+
+  }, {
+    key: "_getSvgFromIconSetConfigs",
+    value: function _getSvgFromIconSetConfigs(name, iconSetConfigs) {
+      var _this2 = this;
+
+      // For all the icon set SVG elements we've fetched, see if any contain an icon with the
+      // requested name.
+      var namedIcon = this._extractIconWithNameFromAnySet(name, iconSetConfigs);
+
+      if (namedIcon) {
+        // We could cache namedIcon in _svgIconConfigs, but since we have to make a copy every
+        // time anyway, there's probably not much advantage compared to just always extracting
+        // it from the icon set.
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_9__["of"])(namedIcon);
+      } // Not found in any cached icon sets. If there are icon sets with URLs that we haven't
+      // fetched, fetch them now and look for iconName in the results.
+
+
+      var iconSetFetchRequests = iconSetConfigs.filter(function (iconSetConfig) {
+        return !iconSetConfig.svgText;
+      }).map(function (iconSetConfig) {
+        return _this2._loadSvgIconSetFromConfig(iconSetConfig).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_10__["catchError"])(function (err) {
+          var url = _this2._sanitizer.sanitize(_angular_core__WEBPACK_IMPORTED_MODULE_5__["SecurityContext"].RESOURCE_URL, iconSetConfig.url); // Swallow errors fetching individual URLs so the
+          // combined Observable won't necessarily fail.
+
+
+          var errorMessage = "Loading icon set URL: ".concat(url, " failed: ").concat(err.message);
+
+          _this2._errorHandler.handleError(new Error(errorMessage));
+
+          return Object(rxjs__WEBPACK_IMPORTED_MODULE_9__["of"])(null);
+        }));
+      }); // Fetch all the icon set URLs. When the requests complete, every IconSet should have a
+      // cached SVG element (unless the request failed), and we can check again for the icon.
+
+      return Object(rxjs__WEBPACK_IMPORTED_MODULE_9__["forkJoin"])(iconSetFetchRequests).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_10__["map"])(function () {
+        var foundIcon = _this2._extractIconWithNameFromAnySet(name, iconSetConfigs); // TODO: add an ngDevMode check
+
+
+        if (!foundIcon) {
+          throw getMatIconNameNotFoundError(name);
+        }
+
+        return foundIcon;
+      }));
+    }
+    /**
+     * Searches the cached SVG elements for the given icon sets for a nested icon element whose "id"
+     * tag matches the specified name. If found, copies the nested element to a new SVG element and
+     * returns it. Returns null if no matching element is found.
+     */
+
+  }, {
+    key: "_extractIconWithNameFromAnySet",
+    value: function _extractIconWithNameFromAnySet(iconName, iconSetConfigs) {
+      // Iterate backwards, so icon sets added later have precedence.
+      for (var i = iconSetConfigs.length - 1; i >= 0; i--) {
+        var config = iconSetConfigs[i]; // Parsing the icon set's text into an SVG element can be expensive. We can avoid some of
+        // the parsing by doing a quick check using `indexOf` to see if there's any chance for the
+        // icon to be in the set. This won't be 100% accurate, but it should help us avoid at least
+        // some of the parsing.
+
+        if (config.svgText && config.svgText.indexOf(iconName) > -1) {
+          var svg = this._svgElementFromConfig(config);
+
+          var foundIcon = this._extractSvgIconFromSet(svg, iconName, config.options);
+
+          if (foundIcon) {
+            return foundIcon;
+          }
+        }
+      }
+
+      return null;
+    }
+    /**
+     * Loads the content of the icon URL specified in the SvgIconConfig and creates an SVG element
+     * from it.
+     */
+
+  }, {
+    key: "_loadSvgIconFromConfig",
+    value: function _loadSvgIconFromConfig(config) {
+      var _this3 = this;
+
+      return this._fetchIcon(config).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_10__["tap"])(function (svgText) {
+        return config.svgText = svgText;
+      }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_10__["map"])(function () {
+        return _this3._svgElementFromConfig(config);
+      }));
+    }
+    /**
+     * Loads the content of the icon set URL specified in the
+     * SvgIconConfig and attaches it to the config.
+     */
+
+  }, {
+    key: "_loadSvgIconSetFromConfig",
+    value: function _loadSvgIconSetFromConfig(config) {
+      if (config.svgText) {
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_9__["of"])(null);
+      }
+
+      return this._fetchIcon(config).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_10__["tap"])(function (svgText) {
+        return config.svgText = svgText;
+      }));
+    }
+    /**
+     * Searches the cached element of the given SvgIconConfig for a nested icon element whose "id"
+     * tag matches the specified name. If found, copies the nested element to a new SVG element and
+     * returns it. Returns null if no matching element is found.
+     */
+
+  }, {
+    key: "_extractSvgIconFromSet",
+    value: function _extractSvgIconFromSet(iconSet, iconName, options) {
+      // Use the `id="iconName"` syntax in order to escape special
+      // characters in the ID (versus using the #iconName syntax).
+      var iconSource = iconSet.querySelector("[id=\"".concat(iconName, "\"]"));
+
+      if (!iconSource) {
+        return null;
+      } // Clone the element and remove the ID to prevent multiple elements from being added
+      // to the page with the same ID.
+
+
+      var iconElement = iconSource.cloneNode(true);
+      iconElement.removeAttribute('id'); // If the icon node is itself an <svg> node, clone and return it directly. If not, set it as
+      // the content of a new <svg> node.
+
+      if (iconElement.nodeName.toLowerCase() === 'svg') {
+        return this._setSvgAttributes(iconElement, options);
+      } // If the node is a <symbol>, it won't be rendered so we have to convert it into <svg>. Note
+      // that the same could be achieved by referring to it via <use href="#id">, however the <use>
+      // tag is problematic on Firefox, because it needs to include the current page path.
+
+
+      if (iconElement.nodeName.toLowerCase() === 'symbol') {
+        return this._setSvgAttributes(this._toSvgElement(iconElement), options);
+      } // createElement('SVG') doesn't work as expected; the DOM ends up with
+      // the correct nodes, but the SVG content doesn't render. Instead we
+      // have to create an empty SVG node using innerHTML and append its content.
+      // Elements created using DOMParser.parseFromString have the same problem.
+      // http://stackoverflow.com/questions/23003278/svg-innerhtml-in-firefox-can-not-display
+
+
+      var svg = this._svgElementFromString('<svg></svg>'); // Clone the node so we don't remove it from the parent icon set element.
+
+
+      svg.appendChild(iconElement);
+      return this._setSvgAttributes(svg, options);
+    }
+    /**
+     * Creates a DOM element from the given SVG string.
+     */
+
+  }, {
+    key: "_svgElementFromString",
+    value: function _svgElementFromString(str) {
+      var div = this._document.createElement('DIV');
+
+      div.innerHTML = str;
+      var svg = div.querySelector('svg'); // TODO: add an ngDevMode check
+
+      if (!svg) {
+        throw Error('<svg> tag not found');
+      }
+
+      return svg;
+    }
+    /**
+     * Converts an element into an SVG node by cloning all of its children.
+     */
+
+  }, {
+    key: "_toSvgElement",
+    value: function _toSvgElement(element) {
+      var svg = this._svgElementFromString('<svg></svg>');
+
+      var attributes = element.attributes; // Copy over all the attributes from the `symbol` to the new SVG, except the id.
+
+      for (var i = 0; i < attributes.length; i++) {
+        var _attributes$i = attributes[i],
+            name = _attributes$i.name,
+            value = _attributes$i.value;
+
+        if (name !== 'id') {
+          svg.setAttribute(name, value);
+        }
+      }
+
+      for (var _i = 0; _i < element.childNodes.length; _i++) {
+        if (element.childNodes[_i].nodeType === this._document.ELEMENT_NODE) {
+          svg.appendChild(element.childNodes[_i].cloneNode(true));
+        }
+      }
+
+      return svg;
+    }
+    /**
+     * Sets the default attributes for an SVG element to be used as an icon.
+     */
+
+  }, {
+    key: "_setSvgAttributes",
+    value: function _setSvgAttributes(svg, options) {
+      svg.setAttribute('fit', '');
+      svg.setAttribute('height', '100%');
+      svg.setAttribute('width', '100%');
+      svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+      svg.setAttribute('focusable', 'false'); // Disable IE11 default behavior to make SVGs focusable.
+
+      if (options && options.viewBox) {
+        svg.setAttribute('viewBox', options.viewBox);
+      }
+
+      return svg;
+    }
+    /**
+     * Returns an Observable which produces the string contents of the given icon. Results may be
+     * cached, so future calls with the same URL may not cause another HTTP request.
+     */
+
+  }, {
+    key: "_fetchIcon",
+    value: function _fetchIcon(iconConfig) {
+      var _this4 = this;
+
+      var _a;
+
+      var safeUrl = iconConfig.url,
+          options = iconConfig.options;
+      var withCredentials = (_a = options === null || options === void 0 ? void 0 : options.withCredentials) !== null && _a !== void 0 ? _a : false;
+
+      if (!this._httpClient) {
+        throw getMatIconNoHttpProviderError();
+      } // TODO: add an ngDevMode check
+
+
+      if (safeUrl == null) {
+        throw Error("Cannot fetch icon from URL \"".concat(safeUrl, "\"."));
+      }
+
+      var url = this._sanitizer.sanitize(_angular_core__WEBPACK_IMPORTED_MODULE_5__["SecurityContext"].RESOURCE_URL, safeUrl); // TODO: add an ngDevMode check
+
+
+      if (!url) {
+        throw getMatIconFailedToSanitizeUrlError(safeUrl);
+      } // Store in-progress fetches to avoid sending a duplicate request for a URL when there is
+      // already a request in progress for that URL. It's necessary to call share() on the
+      // Observable returned by http.get() so that multiple subscribers don't cause multiple XHRs.
+
+
+      var inProgressFetch = this._inProgressUrlFetches.get(url);
+
+      if (inProgressFetch) {
+        return inProgressFetch;
+      }
+
+      var req = this._httpClient.get(url, {
+        responseType: 'text',
+        withCredentials: withCredentials
+      }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_10__["finalize"])(function () {
+        return _this4._inProgressUrlFetches.delete(url);
+      }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_10__["share"])());
+
+      this._inProgressUrlFetches.set(url, req);
+
+      return req;
+    }
+    /**
+     * Registers an icon config by name in the specified namespace.
+     * @param namespace Namespace in which to register the icon config.
+     * @param iconName Name under which to register the config.
+     * @param config Config to be registered.
+     */
+
+  }, {
+    key: "_addSvgIconConfig",
+    value: function _addSvgIconConfig(namespace, iconName, config) {
+      this._svgIconConfigs.set(iconKey(namespace, iconName), config);
+
+      return this;
+    }
+    /**
+     * Registers an icon set config in the specified namespace.
+     * @param namespace Namespace in which to register the icon config.
+     * @param config Config to be registered.
+     */
+
+  }, {
+    key: "_addSvgIconSetConfig",
+    value: function _addSvgIconSetConfig(namespace, config) {
+      var configNamespace = this._iconSetConfigs.get(namespace);
+
+      if (configNamespace) {
+        configNamespace.push(config);
+      } else {
+        this._iconSetConfigs.set(namespace, [config]);
+      }
+
+      return this;
+    }
+    /** Parses a config's text into an SVG element. */
+
+  }, {
+    key: "_svgElementFromConfig",
+    value: function _svgElementFromConfig(config) {
+      if (!config.svgElement) {
+        var svg = this._svgElementFromString(config.svgText);
+
+        this._setSvgAttributes(svg, config.options);
+
+        config.svgElement = svg;
+      }
+
+      return config.svgElement;
+    }
+  }]);
+
+  return MatIconRegistry;
+}();
+
+MatIconRegistry.ɵfac = function MatIconRegistry_Factory(t) {
+  return new (t || MatIconRegistry)(_angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_11__["HttpClient"], 8), _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵinject"](_angular_platform_browser__WEBPACK_IMPORTED_MODULE_12__["DomSanitizer"]), _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵinject"](_angular_common__WEBPACK_IMPORTED_MODULE_8__["DOCUMENT"], 8), _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵinject"](_angular_core__WEBPACK_IMPORTED_MODULE_5__["ErrorHandler"]));
+};
+
+MatIconRegistry.ɵprov = Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdefineInjectable"])({
+  factory: function MatIconRegistry_Factory() {
+    return new MatIconRegistry(Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵinject"])(_angular_common_http__WEBPACK_IMPORTED_MODULE_11__["HttpClient"], 8), Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵinject"])(_angular_platform_browser__WEBPACK_IMPORTED_MODULE_12__["DomSanitizer"]), Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵinject"])(_angular_common__WEBPACK_IMPORTED_MODULE_8__["DOCUMENT"], 8), Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵinject"])(_angular_core__WEBPACK_IMPORTED_MODULE_5__["ErrorHandler"]));
+  },
+  token: MatIconRegistry,
+  providedIn: "root"
+});
+
+MatIconRegistry.ctorParameters = function () {
+  return [{
+    type: _angular_common_http__WEBPACK_IMPORTED_MODULE_11__["HttpClient"],
+    decorators: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_5__["Optional"]
+    }]
+  }, {
+    type: _angular_platform_browser__WEBPACK_IMPORTED_MODULE_12__["DomSanitizer"]
+  }, {
+    type: undefined,
+    decorators: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_5__["Optional"]
+    }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_5__["Inject"],
+      args: [_angular_common__WEBPACK_IMPORTED_MODULE_8__["DOCUMENT"]]
+    }]
+  }, {
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_5__["ErrorHandler"]
+  }];
+};
+/*@__PURE__*/
+
+
+(function () {
+  _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵsetClassMetadata"](MatIconRegistry, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_5__["Injectable"],
+    args: [{
+      providedIn: 'root'
+    }]
+  }], function () {
+    return [{
+      type: _angular_common_http__WEBPACK_IMPORTED_MODULE_11__["HttpClient"],
+      decorators: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_5__["Optional"]
+      }]
+    }, {
+      type: _angular_platform_browser__WEBPACK_IMPORTED_MODULE_12__["DomSanitizer"]
+    }, {
+      type: undefined,
+      decorators: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_5__["Optional"]
+      }, {
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_5__["Inject"],
+        args: [_angular_common__WEBPACK_IMPORTED_MODULE_8__["DOCUMENT"]]
+      }]
+    }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_5__["ErrorHandler"]
+    }];
+  }, null);
+})();
+/** @docs-private */
+
+
+function ICON_REGISTRY_PROVIDER_FACTORY(parentRegistry, httpClient, sanitizer, errorHandler, document) {
+  return parentRegistry || new MatIconRegistry(httpClient, sanitizer, document, errorHandler);
+}
+/** @docs-private */
+
+
+var ICON_REGISTRY_PROVIDER = {
+  // If there is already an MatIconRegistry available, use that. Otherwise, provide a new one.
+  provide: MatIconRegistry,
+  deps: [[new _angular_core__WEBPACK_IMPORTED_MODULE_5__["Optional"](), new _angular_core__WEBPACK_IMPORTED_MODULE_5__["SkipSelf"](), MatIconRegistry], [new _angular_core__WEBPACK_IMPORTED_MODULE_5__["Optional"](), _angular_common_http__WEBPACK_IMPORTED_MODULE_11__["HttpClient"]], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_12__["DomSanitizer"], _angular_core__WEBPACK_IMPORTED_MODULE_5__["ErrorHandler"], [new _angular_core__WEBPACK_IMPORTED_MODULE_5__["Optional"](), _angular_common__WEBPACK_IMPORTED_MODULE_8__["DOCUMENT"]]],
+  useFactory: ICON_REGISTRY_PROVIDER_FACTORY
+};
+/** Clones an SVGElement while preserving type information. */
+
+function cloneSvg(svg) {
+  return svg.cloneNode(true);
+}
+/** Returns the cache key to use for an icon namespace and name. */
+
+
+function iconKey(namespace, name) {
+  return namespace + ':' + name;
+}
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+// Boilerplate for applying mixins to MatIcon.
+
+/** @docs-private */
+
+
+var MatIconBase = function MatIconBase(_elementRef) {
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_4__["default"])(this, MatIconBase);
+
+  this._elementRef = _elementRef;
+};
+
+var _MatIconMixinBase = Object(_angular_material_core__WEBPACK_IMPORTED_MODULE_6__["mixinColor"])(MatIconBase);
+/**
+ * Injection token used to provide the current location to `MatIcon`.
+ * Used to handle server-side rendering and to stub out during unit tests.
+ * @docs-private
+ */
+
+
+var MAT_ICON_LOCATION = new _angular_core__WEBPACK_IMPORTED_MODULE_5__["InjectionToken"]('mat-icon-location', {
+  providedIn: 'root',
+  factory: MAT_ICON_LOCATION_FACTORY
+});
+/** @docs-private */
+
+function MAT_ICON_LOCATION_FACTORY() {
+  var _document = Object(_angular_core__WEBPACK_IMPORTED_MODULE_5__["inject"])(_angular_common__WEBPACK_IMPORTED_MODULE_8__["DOCUMENT"]);
+
+  var _location = _document ? _document.location : null;
+
+  return {
+    // Note that this needs to be a function, rather than a property, because Angular
+    // will only resolve it once, but we want the current path on each call.
+    getPathname: function getPathname() {
+      return _location ? _location.pathname + _location.search : '';
+    }
+  };
+}
+/** SVG attributes that accept a FuncIRI (e.g. `url(<something>)`). */
+
+
+var funcIriAttributes = ['clip-path', 'color-profile', 'src', 'cursor', 'fill', 'filter', 'marker', 'marker-start', 'marker-mid', 'marker-end', 'mask', 'stroke'];
+
+var ɵ0 = function ɵ0(attr) {
+  return "[".concat(attr, "]");
+};
+/** Selector that can be used to find all elements that are using a `FuncIRI`. */
+
+
+var funcIriAttributeSelector = funcIriAttributes.map(ɵ0).join(', ');
+/** Regex that can be used to extract the id out of a FuncIRI. */
+
+var funcIriPattern = /^url\(['"]?#(.*?)['"]?\)$/;
+/**
+ * Component to display an icon. It can be used in the following ways:
+ *
+ * - Specify the svgIcon input to load an SVG icon from a URL previously registered with the
+ *   addSvgIcon, addSvgIconInNamespace, addSvgIconSet, or addSvgIconSetInNamespace methods of
+ *   MatIconRegistry. If the svgIcon value contains a colon it is assumed to be in the format
+ *   "[namespace]:[name]", if not the value will be the name of an icon in the default namespace.
+ *   Examples:
+ *     `<mat-icon svgIcon="left-arrow"></mat-icon>
+ *     <mat-icon svgIcon="animals:cat"></mat-icon>`
+ *
+ * - Use a font ligature as an icon by putting the ligature text in the content of the `<mat-icon>`
+ *   component. By default the Material icons font is used as described at
+ *   http://google.github.io/material-design-icons/#icon-font-for-the-web. You can specify an
+ *   alternate font by setting the fontSet input to either the CSS class to apply to use the
+ *   desired font, or to an alias previously registered with MatIconRegistry.registerFontClassAlias.
+ *   Examples:
+ *     `<mat-icon>home</mat-icon>
+ *     <mat-icon fontSet="myfont">sun</mat-icon>`
+ *
+ * - Specify a font glyph to be included via CSS rules by setting the fontSet input to specify the
+ *   font, and the fontIcon input to specify the icon. Typically the fontIcon will specify a
+ *   CSS class which causes the glyph to be displayed via a :before selector, as in
+ *   https://fortawesome.github.io/Font-Awesome/examples/
+ *   Example:
+ *     `<mat-icon fontSet="fa" fontIcon="alarm"></mat-icon>`
+ */
+
+var MatIcon = /*#__PURE__*/function (_MatIconMixinBase2) {
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_1__["default"])(MatIcon, _MatIconMixinBase2);
+
+  var _super = Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_createSuper__WEBPACK_IMPORTED_MODULE_2__["default"])(MatIcon);
+
+  function MatIcon(elementRef, _iconRegistry, ariaHidden, _location, _errorHandler) {
+    var _this5;
+
+    Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_4__["default"])(this, MatIcon);
+
+    _this5 = _super.call(this, elementRef);
+    _this5._iconRegistry = _iconRegistry;
+    _this5._location = _location;
+    _this5._errorHandler = _errorHandler;
+    _this5._inline = false;
+    /** Subscription to the current in-progress SVG icon request. */
+
+    _this5._currentIconFetch = rxjs__WEBPACK_IMPORTED_MODULE_9__["Subscription"].EMPTY; // If the user has not explicitly set aria-hidden, mark the icon as hidden, as this is
+    // the right thing to do for the majority of icon use-cases.
+
+    if (!ariaHidden) {
+      elementRef.nativeElement.setAttribute('aria-hidden', 'true');
+    }
+
+    return _this5;
+  }
+  /**
+   * Whether the icon should be inlined, automatically sizing the icon to match the font size of
+   * the element the icon is contained in.
+   */
+
+
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_3__["default"])(MatIcon, [{
+    key: "_splitIconName",
+
+    /**
+     * Splits an svgIcon binding value into its icon set and icon name components.
+     * Returns a 2-element array of [(icon set), (icon name)].
+     * The separator for the two fields is ':'. If there is no separator, an empty
+     * string is returned for the icon set and the entire value is returned for
+     * the icon name. If the argument is falsy, returns an array of two empty strings.
+     * Throws an error if the name contains two or more ':' separators.
+     * Examples:
+     *   `'social:cake' -> ['social', 'cake']
+     *   'penguin' -> ['', 'penguin']
+     *   null -> ['', '']
+     *   'a:b:c' -> (throws Error)`
+     */
+    value: function _splitIconName(iconName) {
+      if (!iconName) {
+        return ['', ''];
+      }
+
+      var parts = iconName.split(':');
+
+      switch (parts.length) {
+        case 1:
+          return ['', parts[0]];
+        // Use default namespace.
+
+        case 2:
+          return parts;
+
+        default:
+          throw Error("Invalid icon name: \"".concat(iconName, "\""));
+        // TODO: add an ngDevMode check
+      }
+    }
+  }, {
+    key: "ngOnChanges",
+    value: function ngOnChanges(changes) {
+      var _this6 = this;
+
+      // Only update the inline SVG icon if the inputs changed, to avoid unnecessary DOM operations.
+      var svgIconChanges = changes['svgIcon'];
+      this._svgNamespace = null;
+      this._svgName = null;
+
+      if (svgIconChanges) {
+        this._currentIconFetch.unsubscribe();
+
+        if (this.svgIcon) {
+          var _this$_splitIconName = this._splitIconName(this.svgIcon),
+              _this$_splitIconName2 = Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_this$_splitIconName, 2),
+              namespace = _this$_splitIconName2[0],
+              iconName = _this$_splitIconName2[1];
+
+          if (namespace) {
+            this._svgNamespace = namespace;
+          }
+
+          if (iconName) {
+            this._svgName = iconName;
+          }
+
+          this._currentIconFetch = this._iconRegistry.getNamedSvgIcon(iconName, namespace).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_10__["take"])(1)).subscribe(function (svg) {
+            return _this6._setSvgElement(svg);
+          }, function (err) {
+            var errorMessage = "Error retrieving icon ".concat(namespace, ":").concat(iconName, "! ").concat(err.message);
+
+            _this6._errorHandler.handleError(new Error(errorMessage));
+          });
+        } else if (svgIconChanges.previousValue) {
+          this._clearSvgElement();
+        }
+      }
+
+      if (this._usingFontIcon()) {
+        this._updateFontIconClasses();
+      }
+    }
+  }, {
+    key: "ngOnInit",
+    value: function ngOnInit() {
+      // Update font classes because ngOnChanges won't be called if none of the inputs are present,
+      // e.g. <mat-icon>arrow</mat-icon> In this case we need to add a CSS class for the default font.
+      if (this._usingFontIcon()) {
+        this._updateFontIconClasses();
+      }
+    }
+  }, {
+    key: "ngAfterViewChecked",
+    value: function ngAfterViewChecked() {
+      var cachedElements = this._elementsWithExternalReferences;
+
+      if (cachedElements && cachedElements.size) {
+        var newPath = this._location.getPathname(); // We need to check whether the URL has changed on each change detection since
+        // the browser doesn't have an API that will let us react on link clicks and
+        // we can't depend on the Angular router. The references need to be updated,
+        // because while most browsers don't care whether the URL is correct after
+        // the first render, Safari will break if the user navigates to a different
+        // page and the SVG isn't re-rendered.
+
+
+        if (newPath !== this._previousPath) {
+          this._previousPath = newPath;
+
+          this._prependPathToReferences(newPath);
+        }
+      }
+    }
+  }, {
+    key: "ngOnDestroy",
+    value: function ngOnDestroy() {
+      this._currentIconFetch.unsubscribe();
+
+      if (this._elementsWithExternalReferences) {
+        this._elementsWithExternalReferences.clear();
+      }
+    }
+  }, {
+    key: "_usingFontIcon",
+    value: function _usingFontIcon() {
+      return !this.svgIcon;
+    }
+  }, {
+    key: "_setSvgElement",
+    value: function _setSvgElement(svg) {
+      this._clearSvgElement(); // Workaround for IE11 and Edge ignoring `style` tags inside dynamically-created SVGs.
+      // See: https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/10898469/
+      // Do this before inserting the element into the DOM, in order to avoid a style recalculation.
+
+
+      var styleTags = svg.querySelectorAll('style');
+
+      for (var i = 0; i < styleTags.length; i++) {
+        styleTags[i].textContent += ' ';
+      } // Note: we do this fix here, rather than the icon registry, because the
+      // references have to point to the URL at the time that the icon was created.
+
+
+      var path = this._location.getPathname();
+
+      this._previousPath = path;
+
+      this._cacheChildrenWithExternalReferences(svg);
+
+      this._prependPathToReferences(path);
+
+      this._elementRef.nativeElement.appendChild(svg);
+    }
+  }, {
+    key: "_clearSvgElement",
+    value: function _clearSvgElement() {
+      var layoutElement = this._elementRef.nativeElement;
+      var childCount = layoutElement.childNodes.length;
+
+      if (this._elementsWithExternalReferences) {
+        this._elementsWithExternalReferences.clear();
+      } // Remove existing non-element child nodes and SVGs, and add the new SVG element. Note that
+      // we can't use innerHTML, because IE will throw if the element has a data binding.
+
+
+      while (childCount--) {
+        var child = layoutElement.childNodes[childCount]; // 1 corresponds to Node.ELEMENT_NODE. We remove all non-element nodes in order to get rid
+        // of any loose text nodes, as well as any SVG elements in order to remove any old icons.
+
+        if (child.nodeType !== 1 || child.nodeName.toLowerCase() === 'svg') {
+          layoutElement.removeChild(child);
+        }
+      }
+    }
+  }, {
+    key: "_updateFontIconClasses",
+    value: function _updateFontIconClasses() {
+      if (!this._usingFontIcon()) {
+        return;
+      }
+
+      var elem = this._elementRef.nativeElement;
+      var fontSetClass = this.fontSet ? this._iconRegistry.classNameForFontAlias(this.fontSet) : this._iconRegistry.getDefaultFontSetClass();
+
+      if (fontSetClass != this._previousFontSetClass) {
+        if (this._previousFontSetClass) {
+          elem.classList.remove(this._previousFontSetClass);
+        }
+
+        if (fontSetClass) {
+          elem.classList.add(fontSetClass);
+        }
+
+        this._previousFontSetClass = fontSetClass;
+      }
+
+      if (this.fontIcon != this._previousFontIconClass) {
+        if (this._previousFontIconClass) {
+          elem.classList.remove(this._previousFontIconClass);
+        }
+
+        if (this.fontIcon) {
+          elem.classList.add(this.fontIcon);
+        }
+
+        this._previousFontIconClass = this.fontIcon;
+      }
+    }
+    /**
+     * Cleans up a value to be used as a fontIcon or fontSet.
+     * Since the value ends up being assigned as a CSS class, we
+     * have to trim the value and omit space-separated values.
+     */
+
+  }, {
+    key: "_cleanupFontValue",
+    value: function _cleanupFontValue(value) {
+      return typeof value === 'string' ? value.trim().split(' ')[0] : value;
+    }
+    /**
+     * Prepends the current path to all elements that have an attribute pointing to a `FuncIRI`
+     * reference. This is required because WebKit browsers require references to be prefixed with
+     * the current path, if the page has a `base` tag.
+     */
+
+  }, {
+    key: "_prependPathToReferences",
+    value: function _prependPathToReferences(path) {
+      var elements = this._elementsWithExternalReferences;
+
+      if (elements) {
+        elements.forEach(function (attrs, element) {
+          attrs.forEach(function (attr) {
+            element.setAttribute(attr.name, "url('".concat(path, "#").concat(attr.value, "')"));
+          });
+        });
+      }
+    }
+    /**
+     * Caches the children of an SVG element that have `url()`
+     * references that we need to prefix with the current path.
+     */
+
+  }, {
+    key: "_cacheChildrenWithExternalReferences",
+    value: function _cacheChildrenWithExternalReferences(element) {
+      var elementsWithFuncIri = element.querySelectorAll(funcIriAttributeSelector);
+      var elements = this._elementsWithExternalReferences = this._elementsWithExternalReferences || new Map();
+
+      var _loop = function _loop(i) {
+        funcIriAttributes.forEach(function (attr) {
+          var elementWithReference = elementsWithFuncIri[i];
+          var value = elementWithReference.getAttribute(attr);
+          var match = value ? value.match(funcIriPattern) : null;
+
+          if (match) {
+            var attributes = elements.get(elementWithReference);
+
+            if (!attributes) {
+              attributes = [];
+              elements.set(elementWithReference, attributes);
+            }
+
+            attributes.push({
+              name: attr,
+              value: match[1]
+            });
+          }
+        });
+      };
+
+      for (var i = 0; i < elementsWithFuncIri.length; i++) {
+        _loop(i);
+      }
+    }
+  }, {
+    key: "inline",
+    get: function get() {
+      return this._inline;
+    },
+    set: function set(inline) {
+      this._inline = Object(_angular_cdk_coercion__WEBPACK_IMPORTED_MODULE_7__["coerceBooleanProperty"])(inline);
+    }
+    /** Font set that the icon is a part of. */
+
+  }, {
+    key: "fontSet",
+    get: function get() {
+      return this._fontSet;
+    },
+    set: function set(value) {
+      this._fontSet = this._cleanupFontValue(value);
+    }
+    /** Name of an icon within a font set. */
+
+  }, {
+    key: "fontIcon",
+    get: function get() {
+      return this._fontIcon;
+    },
+    set: function set(value) {
+      this._fontIcon = this._cleanupFontValue(value);
+    }
+  }]);
+
+  return MatIcon;
+}(_MatIconMixinBase);
+
+MatIcon.ɵfac = function MatIcon_Factory(t) {
+  return new (t || MatIcon)(_angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_5__["ElementRef"]), _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdirectiveInject"](MatIconRegistry), _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵinjectAttribute"]('aria-hidden'), _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdirectiveInject"](MAT_ICON_LOCATION), _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_5__["ErrorHandler"]));
+};
+
+MatIcon.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdefineComponent"]({
+  type: MatIcon,
+  selectors: [["mat-icon"]],
+  hostAttrs: ["role", "img", 1, "mat-icon", "notranslate"],
+  hostVars: 7,
+  hostBindings: function MatIcon_HostBindings(rf, ctx) {
+    if (rf & 2) {
+      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵattribute"]("data-mat-icon-type", ctx._usingFontIcon() ? "font" : "svg")("data-mat-icon-name", ctx._svgName || ctx.fontIcon)("data-mat-icon-namespace", ctx._svgNamespace || ctx.fontSet);
+      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵclassProp"]("mat-icon-inline", ctx.inline)("mat-icon-no-color", ctx.color !== "primary" && ctx.color !== "accent" && ctx.color !== "warn");
+    }
+  },
+  inputs: {
+    color: "color",
+    inline: "inline",
+    fontSet: "fontSet",
+    fontIcon: "fontIcon",
+    svgIcon: "svgIcon"
+  },
+  exportAs: ["matIcon"],
+  features: [_angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵInheritDefinitionFeature"], _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵNgOnChangesFeature"]],
+  ngContentSelectors: _c0,
+  decls: 1,
+  vars: 0,
+  template: function MatIcon_Template(rf, ctx) {
+    if (rf & 1) {
+      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵprojectionDef"]();
+      _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵprojection"](0);
+    }
+  },
+  styles: [".mat-icon{background-repeat:no-repeat;display:inline-block;fill:currentColor;height:24px;width:24px}.mat-icon.mat-icon-inline{font-size:inherit;height:inherit;line-height:inherit;width:inherit}[dir=rtl] .mat-icon-rtl-mirror{transform:scale(-1, 1)}.mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-prefix .mat-icon,.mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-suffix .mat-icon{display:block}.mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-prefix .mat-icon-button .mat-icon,.mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-suffix .mat-icon-button .mat-icon{margin:auto}\n"],
+  encapsulation: 2,
+  changeDetection: 0
+});
+
+MatIcon.ctorParameters = function () {
+  return [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_5__["ElementRef"]
+  }, {
+    type: MatIconRegistry
+  }, {
+    type: String,
+    decorators: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_5__["Attribute"],
+      args: ['aria-hidden']
+    }]
+  }, {
+    type: undefined,
+    decorators: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_5__["Inject"],
+      args: [MAT_ICON_LOCATION]
+    }]
+  }, {
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_5__["ErrorHandler"]
+  }];
+};
+
+MatIcon.propDecorators = {
+  inline: [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_5__["Input"]
+  }],
+  svgIcon: [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_5__["Input"]
+  }],
+  fontSet: [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_5__["Input"]
+  }],
+  fontIcon: [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_5__["Input"]
+  }]
+};
+/*@__PURE__*/
+
+(function () {
+  _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵsetClassMetadata"](MatIcon, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_5__["Component"],
+    args: [{
+      template: '<ng-content></ng-content>',
+      selector: 'mat-icon',
+      exportAs: 'matIcon',
+      inputs: ['color'],
+      host: {
+        'role': 'img',
+        'class': 'mat-icon notranslate',
+        '[attr.data-mat-icon-type]': '_usingFontIcon() ? "font" : "svg"',
+        '[attr.data-mat-icon-name]': '_svgName || fontIcon',
+        '[attr.data-mat-icon-namespace]': '_svgNamespace || fontSet',
+        '[class.mat-icon-inline]': 'inline',
+        '[class.mat-icon-no-color]': 'color !== "primary" && color !== "accent" && color !== "warn"'
+      },
+      encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_5__["ViewEncapsulation"].None,
+      changeDetection: _angular_core__WEBPACK_IMPORTED_MODULE_5__["ChangeDetectionStrategy"].OnPush,
+      styles: [".mat-icon{background-repeat:no-repeat;display:inline-block;fill:currentColor;height:24px;width:24px}.mat-icon.mat-icon-inline{font-size:inherit;height:inherit;line-height:inherit;width:inherit}[dir=rtl] .mat-icon-rtl-mirror{transform:scale(-1, 1)}.mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-prefix .mat-icon,.mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-suffix .mat-icon{display:block}.mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-prefix .mat-icon-button .mat-icon,.mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-suffix .mat-icon-button .mat-icon{margin:auto}\n"]
+    }]
+  }], function () {
+    return [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_5__["ElementRef"]
+    }, {
+      type: MatIconRegistry
+    }, {
+      type: String,
+      decorators: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_5__["Attribute"],
+        args: ['aria-hidden']
+      }]
+    }, {
+      type: undefined,
+      decorators: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_5__["Inject"],
+        args: [MAT_ICON_LOCATION]
+      }]
+    }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_5__["ErrorHandler"]
+    }];
+  }, {
+    inline: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_5__["Input"]
+    }],
+    fontSet: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_5__["Input"]
+    }],
+    fontIcon: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_5__["Input"]
+    }],
+    svgIcon: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_5__["Input"]
+    }]
+  });
+})();
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+
+var MatIconModule = function MatIconModule() {
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_4__["default"])(this, MatIconModule);
+};
+
+MatIconModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdefineNgModule"]({
+  type: MatIconModule
+});
+MatIconModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdefineInjector"]({
+  factory: function MatIconModule_Factory(t) {
+    return new (t || MatIconModule)();
+  },
+  imports: [[_angular_material_core__WEBPACK_IMPORTED_MODULE_6__["MatCommonModule"]], _angular_material_core__WEBPACK_IMPORTED_MODULE_6__["MatCommonModule"]]
+});
+
+(function () {
+  (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵsetNgModuleScope"](MatIconModule, {
+    declarations: function declarations() {
+      return [MatIcon];
+    },
+    imports: function imports() {
+      return [_angular_material_core__WEBPACK_IMPORTED_MODULE_6__["MatCommonModule"]];
+    },
+    exports: function exports() {
+      return [MatIcon, _angular_material_core__WEBPACK_IMPORTED_MODULE_6__["MatCommonModule"]];
+    }
+  });
+})();
+/*@__PURE__*/
+
+
+(function () {
+  _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵsetClassMetadata"](MatIconModule, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_5__["NgModule"],
+    args: [{
+      imports: [_angular_material_core__WEBPACK_IMPORTED_MODULE_6__["MatCommonModule"]],
+      exports: [MatIcon, _angular_material_core__WEBPACK_IMPORTED_MODULE_6__["MatCommonModule"]],
+      declarations: [MatIcon]
+    }]
+  }], null, null);
+})();
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/**
+ * Generated bundle index. Do not edit.
+ */
+
 
 
 
@@ -7081,6 +13503,32 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "PkTJ":
+/*!*************************************************!*\
+  !*** ./src/app/checkout/checkout.component.css ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NoZWNrb3V0L2NoZWNrb3V0LmNvbXBvbmVudC5jc3MifQ== */");
+
+/***/ }),
+
+/***/ "QNZY":
+/*!*****************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-browser/regex.js ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (/^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i);
+
+/***/ }),
+
 /***/ "QX6l":
 /*!**************************************************!*\
   !*** ./src/app/dashboard/dashboard.component.ts ***!
@@ -7097,6 +13545,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var chartist__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! chartist */ "uki+");
 /* harmony import */ var chartist__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(chartist__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _services_graphql_products_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/graphql.products.service */ "1arE");
+/* harmony import */ var _services_shopping_cart_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../services/shopping-cart.service */ "K5n9");
+/* harmony import */ var _models_CartItem__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../models/CartItem */ "VFRK");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -7111,10 +13561,24 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
 var DashboardComponent = /** @class */ (function () {
-    function DashboardComponent(graphqlProductsService) {
+    function DashboardComponent(graphqlProductsService, shoppingCartService) {
         this.graphqlProductsService = graphqlProductsService;
+        this.shoppingCartService = shoppingCartService;
+        this.cartState$ = this.shoppingCartService.state$;
     }
+    DashboardComponent.prototype.addItemToCart = function (item) {
+        //alert(JSON.stringify(item));
+        var myItem = new _models_CartItem__WEBPACK_IMPORTED_MODULE_6__["ShopItem"]();
+        myItem.name = item.description;
+        myItem.price = item.precio;
+        this.shoppingCartService.addCartItem(myItem);
+    };
+    DashboardComponent.prototype.remove = function (item) {
+        this.shoppingCartService.removeCartItem(item);
+    };
     DashboardComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.querySubscription = this.graphqlProductsService.links()
@@ -7185,7 +13649,8 @@ var DashboardComponent = /** @class */ (function () {
     };
     ;
     DashboardComponent.ctorParameters = function () { return [
-        { type: _services_graphql_products_service__WEBPACK_IMPORTED_MODULE_4__["GraphqlProductsService"] }
+        { type: _services_graphql_products_service__WEBPACK_IMPORTED_MODULE_4__["GraphqlProductsService"] },
+        { type: _services_shopping_cart_service__WEBPACK_IMPORTED_MODULE_5__["ShoppingCartService"] }
     ]; };
     DashboardComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Component"])({
@@ -7193,7 +13658,8 @@ var DashboardComponent = /** @class */ (function () {
             template: _raw_loader_dashboard_component_html__WEBPACK_IMPORTED_MODULE_0__["default"],
             styles: [_dashboard_component_css__WEBPACK_IMPORTED_MODULE_1__["default"]]
         }),
-        __metadata("design:paramtypes", [_services_graphql_products_service__WEBPACK_IMPORTED_MODULE_4__["GraphqlProductsService"]])
+        __metadata("design:paramtypes", [_services_graphql_products_service__WEBPACK_IMPORTED_MODULE_4__["GraphqlProductsService"],
+            _services_shopping_cart_service__WEBPACK_IMPORTED_MODULE_5__["ShoppingCartService"]])
     ], DashboardComponent);
     return DashboardComponent;
 }());
@@ -8479,6 +14945,26 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "VFRK":
+/*!********************************!*\
+  !*** ./src/models/CartItem.ts ***!
+  \********************************/
+/*! exports provided: ShopItem */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ShopItem", function() { return ShopItem; });
+var ShopItem = /** @class */ (function () {
+    function ShopItem() {
+    }
+    return ShopItem;
+}());
+
+
+
+/***/ }),
+
 /***/ "VKVo":
 /*!***************************************************!*\
   !*** ./src/app/dashboard/dashboard.component.css ***!
@@ -8489,6 +14975,752 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2Rhc2hib2FyZC9kYXNoYm9hcmQuY29tcG9uZW50LmNzcyJ9 */");
+
+/***/ }),
+
+/***/ "VKuO":
+/*!**************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-browser/v3.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _v35_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./v35.js */ "/8ZT");
+/* harmony import */ var _md5_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./md5.js */ "tysn");
+
+
+var v3 = Object(_v35_js__WEBPACK_IMPORTED_MODULE_0__["default"])('v3', 0x30, _md5_js__WEBPACK_IMPORTED_MODULE_1__["default"]);
+/* harmony default export */ __webpack_exports__["default"] = (v3);
+
+/***/ }),
+
+/***/ "WM9j":
+/*!*********************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-browser/stringify.js ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _validate_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validate.js */ "BuRe");
+
+/**
+ * Convert array of 16 byte values to UUID string format of the form:
+ * XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+ */
+
+var byteToHex = [];
+
+for (var i = 0; i < 256; ++i) {
+  byteToHex.push((i + 0x100).toString(16).substr(1));
+}
+
+function stringify(arr) {
+  var offset = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0; // Note: Be careful editing this code!  It's been tuned for performance
+  // and works in ways you may not expect. See https://github.com/uuidjs/uuid/pull/434
+
+  var uuid = (byteToHex[arr[offset + 0]] + byteToHex[arr[offset + 1]] + byteToHex[arr[offset + 2]] + byteToHex[arr[offset + 3]] + '-' + byteToHex[arr[offset + 4]] + byteToHex[arr[offset + 5]] + '-' + byteToHex[arr[offset + 6]] + byteToHex[arr[offset + 7]] + '-' + byteToHex[arr[offset + 8]] + byteToHex[arr[offset + 9]] + '-' + byteToHex[arr[offset + 10]] + byteToHex[arr[offset + 11]] + byteToHex[arr[offset + 12]] + byteToHex[arr[offset + 13]] + byteToHex[arr[offset + 14]] + byteToHex[arr[offset + 15]]).toLowerCase(); // Consistency check for valid UUID.  If this throws, it's likely due to one
+  // of the following:
+  // - One or more input array values don't map to a hex octet (leading to
+  // "undefined" in the uuid)
+  // - Invalid input values for the RFC `version` or `variant` fields
+
+  if (!Object(_validate_js__WEBPACK_IMPORTED_MODULE_0__["default"])(uuid)) {
+    throw TypeError('Stringified UUID is invalid');
+  }
+
+  return uuid;
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (stringify);
+
+/***/ }),
+
+/***/ "Wp6s":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@angular/material/__ivy_ngcc__/fesm2015/card.js ***!
+  \**********************************************************************/
+/*! exports provided: MatCard, MatCardActions, MatCardAvatar, MatCardContent, MatCardFooter, MatCardHeader, MatCardImage, MatCardLgImage, MatCardMdImage, MatCardModule, MatCardSmImage, MatCardSubtitle, MatCardTitle, MatCardTitleGroup, MatCardXlImage */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatCard", function() { return MatCard; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatCardActions", function() { return MatCardActions; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatCardAvatar", function() { return MatCardAvatar; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatCardContent", function() { return MatCardContent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatCardFooter", function() { return MatCardFooter; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatCardHeader", function() { return MatCardHeader; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatCardImage", function() { return MatCardImage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatCardLgImage", function() { return MatCardLgImage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatCardMdImage", function() { return MatCardMdImage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatCardModule", function() { return MatCardModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatCardSmImage", function() { return MatCardSmImage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatCardSubtitle", function() { return MatCardSubtitle; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatCardTitle", function() { return MatCardTitle; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatCardTitleGroup", function() { return MatCardTitleGroup; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MatCardXlImage", function() { return MatCardXlImage; });
+/* harmony import */ var _Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/classCallCheck */ "1OyB");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/platform-browser/animations */ "R1ws");
+/* harmony import */ var _angular_material_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material/core */ "FKr1");
+
+
+
+
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/**
+ * Content of a card, needed as it's used as a selector in the API.
+ * @docs-private
+ */
+
+
+var _c0 = ["*", [["mat-card-footer"]]];
+var _c1 = ["*", "mat-card-footer"];
+var _c2 = [[["", "mat-card-avatar", ""], ["", "matCardAvatar", ""]], [["mat-card-title"], ["mat-card-subtitle"], ["", "mat-card-title", ""], ["", "mat-card-subtitle", ""], ["", "matCardTitle", ""], ["", "matCardSubtitle", ""]], "*"];
+var _c3 = ["[mat-card-avatar], [matCardAvatar]", "mat-card-title, mat-card-subtitle,\n      [mat-card-title], [mat-card-subtitle],\n      [matCardTitle], [matCardSubtitle]", "*"];
+var _c4 = [[["mat-card-title"], ["mat-card-subtitle"], ["", "mat-card-title", ""], ["", "mat-card-subtitle", ""], ["", "matCardTitle", ""], ["", "matCardSubtitle", ""]], [["img"]], "*"];
+var _c5 = ["mat-card-title, mat-card-subtitle,\n      [mat-card-title], [mat-card-subtitle],\n      [matCardTitle], [matCardSubtitle]", "img", "*"];
+
+var MatCardContent = function MatCardContent() {
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, MatCardContent);
+};
+
+MatCardContent.ɵfac = function MatCardContent_Factory(t) {
+  return new (t || MatCardContent)();
+};
+
+MatCardContent.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineDirective"]({
+  type: MatCardContent,
+  selectors: [["mat-card-content"], ["", "mat-card-content", ""], ["", "matCardContent", ""]],
+  hostAttrs: [1, "mat-card-content"]
+});
+/*@__PURE__*/
+
+(function () {
+  _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](MatCardContent, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Directive"],
+    args: [{
+      selector: 'mat-card-content, [mat-card-content], [matCardContent]',
+      host: {
+        'class': 'mat-card-content'
+      }
+    }]
+  }], null, null);
+})();
+/**
+ * Title of a card, needed as it's used as a selector in the API.
+ * @docs-private
+ */
+
+
+var MatCardTitle = function MatCardTitle() {
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, MatCardTitle);
+};
+
+MatCardTitle.ɵfac = function MatCardTitle_Factory(t) {
+  return new (t || MatCardTitle)();
+};
+
+MatCardTitle.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineDirective"]({
+  type: MatCardTitle,
+  selectors: [["mat-card-title"], ["", "mat-card-title", ""], ["", "matCardTitle", ""]],
+  hostAttrs: [1, "mat-card-title"]
+});
+/*@__PURE__*/
+
+(function () {
+  _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](MatCardTitle, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Directive"],
+    args: [{
+      selector: "mat-card-title, [mat-card-title], [matCardTitle]",
+      host: {
+        'class': 'mat-card-title'
+      }
+    }]
+  }], null, null);
+})();
+/**
+ * Sub-title of a card, needed as it's used as a selector in the API.
+ * @docs-private
+ */
+
+
+var MatCardSubtitle = function MatCardSubtitle() {
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, MatCardSubtitle);
+};
+
+MatCardSubtitle.ɵfac = function MatCardSubtitle_Factory(t) {
+  return new (t || MatCardSubtitle)();
+};
+
+MatCardSubtitle.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineDirective"]({
+  type: MatCardSubtitle,
+  selectors: [["mat-card-subtitle"], ["", "mat-card-subtitle", ""], ["", "matCardSubtitle", ""]],
+  hostAttrs: [1, "mat-card-subtitle"]
+});
+/*@__PURE__*/
+
+(function () {
+  _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](MatCardSubtitle, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Directive"],
+    args: [{
+      selector: "mat-card-subtitle, [mat-card-subtitle], [matCardSubtitle]",
+      host: {
+        'class': 'mat-card-subtitle'
+      }
+    }]
+  }], null, null);
+})();
+/**
+ * Action section of a card, needed as it's used as a selector in the API.
+ * @docs-private
+ */
+
+
+var MatCardActions = function MatCardActions() {
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, MatCardActions);
+
+  /** Position of the actions inside the card. */
+  this.align = 'start';
+};
+
+MatCardActions.ɵfac = function MatCardActions_Factory(t) {
+  return new (t || MatCardActions)();
+};
+
+MatCardActions.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineDirective"]({
+  type: MatCardActions,
+  selectors: [["mat-card-actions"]],
+  hostAttrs: [1, "mat-card-actions"],
+  hostVars: 2,
+  hostBindings: function MatCardActions_HostBindings(rf, ctx) {
+    if (rf & 2) {
+      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵclassProp"]("mat-card-actions-align-end", ctx.align === "end");
+    }
+  },
+  inputs: {
+    align: "align"
+  },
+  exportAs: ["matCardActions"]
+});
+MatCardActions.propDecorators = {
+  align: [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"]
+  }]
+};
+/*@__PURE__*/
+
+(function () {
+  _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](MatCardActions, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Directive"],
+    args: [{
+      selector: 'mat-card-actions',
+      exportAs: 'matCardActions',
+      host: {
+        'class': 'mat-card-actions',
+        '[class.mat-card-actions-align-end]': 'align === "end"'
+      }
+    }]
+  }], function () {
+    return [];
+  }, {
+    align: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"]
+    }]
+  });
+})();
+/**
+ * Footer of a card, needed as it's used as a selector in the API.
+ * @docs-private
+ */
+
+
+var MatCardFooter = function MatCardFooter() {
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, MatCardFooter);
+};
+
+MatCardFooter.ɵfac = function MatCardFooter_Factory(t) {
+  return new (t || MatCardFooter)();
+};
+
+MatCardFooter.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineDirective"]({
+  type: MatCardFooter,
+  selectors: [["mat-card-footer"]],
+  hostAttrs: [1, "mat-card-footer"]
+});
+/*@__PURE__*/
+
+(function () {
+  _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](MatCardFooter, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Directive"],
+    args: [{
+      selector: 'mat-card-footer',
+      host: {
+        'class': 'mat-card-footer'
+      }
+    }]
+  }], null, null);
+})();
+/**
+ * Image used in a card, needed to add the mat- CSS styling.
+ * @docs-private
+ */
+
+
+var MatCardImage = function MatCardImage() {
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, MatCardImage);
+};
+
+MatCardImage.ɵfac = function MatCardImage_Factory(t) {
+  return new (t || MatCardImage)();
+};
+
+MatCardImage.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineDirective"]({
+  type: MatCardImage,
+  selectors: [["", "mat-card-image", ""], ["", "matCardImage", ""]],
+  hostAttrs: [1, "mat-card-image"]
+});
+/*@__PURE__*/
+
+(function () {
+  _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](MatCardImage, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Directive"],
+    args: [{
+      selector: '[mat-card-image], [matCardImage]',
+      host: {
+        'class': 'mat-card-image'
+      }
+    }]
+  }], null, null);
+})();
+/**
+ * Image used in a card, needed to add the mat- CSS styling.
+ * @docs-private
+ */
+
+
+var MatCardSmImage = function MatCardSmImage() {
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, MatCardSmImage);
+};
+
+MatCardSmImage.ɵfac = function MatCardSmImage_Factory(t) {
+  return new (t || MatCardSmImage)();
+};
+
+MatCardSmImage.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineDirective"]({
+  type: MatCardSmImage,
+  selectors: [["", "mat-card-sm-image", ""], ["", "matCardImageSmall", ""]],
+  hostAttrs: [1, "mat-card-sm-image"]
+});
+/*@__PURE__*/
+
+(function () {
+  _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](MatCardSmImage, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Directive"],
+    args: [{
+      selector: '[mat-card-sm-image], [matCardImageSmall]',
+      host: {
+        'class': 'mat-card-sm-image'
+      }
+    }]
+  }], null, null);
+})();
+/**
+ * Image used in a card, needed to add the mat- CSS styling.
+ * @docs-private
+ */
+
+
+var MatCardMdImage = function MatCardMdImage() {
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, MatCardMdImage);
+};
+
+MatCardMdImage.ɵfac = function MatCardMdImage_Factory(t) {
+  return new (t || MatCardMdImage)();
+};
+
+MatCardMdImage.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineDirective"]({
+  type: MatCardMdImage,
+  selectors: [["", "mat-card-md-image", ""], ["", "matCardImageMedium", ""]],
+  hostAttrs: [1, "mat-card-md-image"]
+});
+/*@__PURE__*/
+
+(function () {
+  _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](MatCardMdImage, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Directive"],
+    args: [{
+      selector: '[mat-card-md-image], [matCardImageMedium]',
+      host: {
+        'class': 'mat-card-md-image'
+      }
+    }]
+  }], null, null);
+})();
+/**
+ * Image used in a card, needed to add the mat- CSS styling.
+ * @docs-private
+ */
+
+
+var MatCardLgImage = function MatCardLgImage() {
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, MatCardLgImage);
+};
+
+MatCardLgImage.ɵfac = function MatCardLgImage_Factory(t) {
+  return new (t || MatCardLgImage)();
+};
+
+MatCardLgImage.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineDirective"]({
+  type: MatCardLgImage,
+  selectors: [["", "mat-card-lg-image", ""], ["", "matCardImageLarge", ""]],
+  hostAttrs: [1, "mat-card-lg-image"]
+});
+/*@__PURE__*/
+
+(function () {
+  _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](MatCardLgImage, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Directive"],
+    args: [{
+      selector: '[mat-card-lg-image], [matCardImageLarge]',
+      host: {
+        'class': 'mat-card-lg-image'
+      }
+    }]
+  }], null, null);
+})();
+/**
+ * Large image used in a card, needed to add the mat- CSS styling.
+ * @docs-private
+ */
+
+
+var MatCardXlImage = function MatCardXlImage() {
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, MatCardXlImage);
+};
+
+MatCardXlImage.ɵfac = function MatCardXlImage_Factory(t) {
+  return new (t || MatCardXlImage)();
+};
+
+MatCardXlImage.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineDirective"]({
+  type: MatCardXlImage,
+  selectors: [["", "mat-card-xl-image", ""], ["", "matCardImageXLarge", ""]],
+  hostAttrs: [1, "mat-card-xl-image"]
+});
+/*@__PURE__*/
+
+(function () {
+  _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](MatCardXlImage, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Directive"],
+    args: [{
+      selector: '[mat-card-xl-image], [matCardImageXLarge]',
+      host: {
+        'class': 'mat-card-xl-image'
+      }
+    }]
+  }], null, null);
+})();
+/**
+ * Avatar image used in a card, needed to add the mat- CSS styling.
+ * @docs-private
+ */
+
+
+var MatCardAvatar = function MatCardAvatar() {
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, MatCardAvatar);
+};
+
+MatCardAvatar.ɵfac = function MatCardAvatar_Factory(t) {
+  return new (t || MatCardAvatar)();
+};
+
+MatCardAvatar.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineDirective"]({
+  type: MatCardAvatar,
+  selectors: [["", "mat-card-avatar", ""], ["", "matCardAvatar", ""]],
+  hostAttrs: [1, "mat-card-avatar"]
+});
+/*@__PURE__*/
+
+(function () {
+  _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](MatCardAvatar, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Directive"],
+    args: [{
+      selector: '[mat-card-avatar], [matCardAvatar]',
+      host: {
+        'class': 'mat-card-avatar'
+      }
+    }]
+  }], null, null);
+})();
+/**
+ * A basic content container component that adds the styles of a Material design card.
+ *
+ * While this component can be used alone, it also provides a number
+ * of preset styles for common card sections, including:
+ * - mat-card-title
+ * - mat-card-subtitle
+ * - mat-card-content
+ * - mat-card-actions
+ * - mat-card-footer
+ */
+
+
+var MatCard = // @breaking-change 9.0.0 `_animationMode` parameter to be made required.
+function MatCard(_animationMode) {
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, MatCard);
+
+  this._animationMode = _animationMode;
+};
+
+MatCard.ɵfac = function MatCard_Factory(t) {
+  return new (t || MatCard)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_2__["ANIMATION_MODULE_TYPE"], 8));
+};
+
+MatCard.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({
+  type: MatCard,
+  selectors: [["mat-card"]],
+  hostAttrs: [1, "mat-card", "mat-focus-indicator"],
+  hostVars: 2,
+  hostBindings: function MatCard_HostBindings(rf, ctx) {
+    if (rf & 2) {
+      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵclassProp"]("_mat-animation-noopable", ctx._animationMode === "NoopAnimations");
+    }
+  },
+  exportAs: ["matCard"],
+  ngContentSelectors: _c1,
+  decls: 2,
+  vars: 0,
+  template: function MatCard_Template(rf, ctx) {
+    if (rf & 1) {
+      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵprojectionDef"](_c0);
+      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵprojection"](0);
+      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵprojection"](1, 1);
+    }
+  },
+  styles: [".mat-card{transition:box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);display:block;position:relative;padding:16px;border-radius:4px}._mat-animation-noopable.mat-card{transition:none;animation:none}.mat-card .mat-divider-horizontal{position:absolute;left:0;width:100%}[dir=rtl] .mat-card .mat-divider-horizontal{left:auto;right:0}.mat-card .mat-divider-horizontal.mat-divider-inset{position:static;margin:0}[dir=rtl] .mat-card .mat-divider-horizontal.mat-divider-inset{margin-right:0}.cdk-high-contrast-active .mat-card{outline:solid 1px}.mat-card-actions,.mat-card-subtitle,.mat-card-content{display:block;margin-bottom:16px}.mat-card-title{display:block;margin-bottom:8px}.mat-card-actions{margin-left:-8px;margin-right:-8px;padding:8px 0}.mat-card-actions-align-end{display:flex;justify-content:flex-end}.mat-card-image{width:calc(100% + 32px);margin:0 -16px 16px -16px}.mat-card-footer{display:block;margin:0 -16px -16px -16px}.mat-card-actions .mat-button,.mat-card-actions .mat-raised-button,.mat-card-actions .mat-stroked-button{margin:0 8px}.mat-card-header{display:flex;flex-direction:row}.mat-card-header .mat-card-title{margin-bottom:12px}.mat-card-header-text{margin:0 16px}.mat-card-avatar{height:40px;width:40px;border-radius:50%;flex-shrink:0;object-fit:cover}.mat-card-title-group{display:flex;justify-content:space-between}.mat-card-sm-image{width:80px;height:80px}.mat-card-md-image{width:112px;height:112px}.mat-card-lg-image{width:152px;height:152px}.mat-card-xl-image{width:240px;height:240px;margin:-8px}.mat-card-title-group>.mat-card-xl-image{margin:-8px 0 8px}@media(max-width: 599px){.mat-card-title-group{margin:0}.mat-card-xl-image{margin-left:0;margin-right:0}}.mat-card>:first-child,.mat-card-content>:first-child{margin-top:0}.mat-card>:last-child:not(.mat-card-footer),.mat-card-content>:last-child:not(.mat-card-footer){margin-bottom:0}.mat-card-image:first-child{margin-top:-16px;border-top-left-radius:inherit;border-top-right-radius:inherit}.mat-card>.mat-card-actions:last-child{margin-bottom:-8px;padding-bottom:0}.mat-card-actions .mat-button:first-child,.mat-card-actions .mat-raised-button:first-child,.mat-card-actions .mat-stroked-button:first-child{margin-left:0;margin-right:0}.mat-card-title:not(:first-child),.mat-card-subtitle:not(:first-child){margin-top:-4px}.mat-card-header .mat-card-subtitle:not(:first-child){margin-top:-8px}.mat-card>.mat-card-xl-image:first-child{margin-top:-8px}.mat-card>.mat-card-xl-image:last-child{margin-bottom:-8px}\n"],
+  encapsulation: 2,
+  changeDetection: 0
+});
+
+MatCard.ctorParameters = function () {
+  return [{
+    type: String,
+    decorators: [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Optional"]
+    }, {
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"],
+      args: [_angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_2__["ANIMATION_MODULE_TYPE"]]
+    }]
+  }];
+};
+/*@__PURE__*/
+
+
+(function () {
+  _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](MatCard, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"],
+    args: [{
+      selector: 'mat-card',
+      exportAs: 'matCard',
+      template: "<ng-content></ng-content>\n<ng-content select=\"mat-card-footer\"></ng-content>\n",
+      encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewEncapsulation"].None,
+      changeDetection: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectionStrategy"].OnPush,
+      host: {
+        'class': 'mat-card mat-focus-indicator',
+        '[class._mat-animation-noopable]': '_animationMode === "NoopAnimations"'
+      },
+      styles: [".mat-card{transition:box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);display:block;position:relative;padding:16px;border-radius:4px}._mat-animation-noopable.mat-card{transition:none;animation:none}.mat-card .mat-divider-horizontal{position:absolute;left:0;width:100%}[dir=rtl] .mat-card .mat-divider-horizontal{left:auto;right:0}.mat-card .mat-divider-horizontal.mat-divider-inset{position:static;margin:0}[dir=rtl] .mat-card .mat-divider-horizontal.mat-divider-inset{margin-right:0}.cdk-high-contrast-active .mat-card{outline:solid 1px}.mat-card-actions,.mat-card-subtitle,.mat-card-content{display:block;margin-bottom:16px}.mat-card-title{display:block;margin-bottom:8px}.mat-card-actions{margin-left:-8px;margin-right:-8px;padding:8px 0}.mat-card-actions-align-end{display:flex;justify-content:flex-end}.mat-card-image{width:calc(100% + 32px);margin:0 -16px 16px -16px}.mat-card-footer{display:block;margin:0 -16px -16px -16px}.mat-card-actions .mat-button,.mat-card-actions .mat-raised-button,.mat-card-actions .mat-stroked-button{margin:0 8px}.mat-card-header{display:flex;flex-direction:row}.mat-card-header .mat-card-title{margin-bottom:12px}.mat-card-header-text{margin:0 16px}.mat-card-avatar{height:40px;width:40px;border-radius:50%;flex-shrink:0;object-fit:cover}.mat-card-title-group{display:flex;justify-content:space-between}.mat-card-sm-image{width:80px;height:80px}.mat-card-md-image{width:112px;height:112px}.mat-card-lg-image{width:152px;height:152px}.mat-card-xl-image{width:240px;height:240px;margin:-8px}.mat-card-title-group>.mat-card-xl-image{margin:-8px 0 8px}@media(max-width: 599px){.mat-card-title-group{margin:0}.mat-card-xl-image{margin-left:0;margin-right:0}}.mat-card>:first-child,.mat-card-content>:first-child{margin-top:0}.mat-card>:last-child:not(.mat-card-footer),.mat-card-content>:last-child:not(.mat-card-footer){margin-bottom:0}.mat-card-image:first-child{margin-top:-16px;border-top-left-radius:inherit;border-top-right-radius:inherit}.mat-card>.mat-card-actions:last-child{margin-bottom:-8px;padding-bottom:0}.mat-card-actions .mat-button:first-child,.mat-card-actions .mat-raised-button:first-child,.mat-card-actions .mat-stroked-button:first-child{margin-left:0;margin-right:0}.mat-card-title:not(:first-child),.mat-card-subtitle:not(:first-child){margin-top:-4px}.mat-card-header .mat-card-subtitle:not(:first-child){margin-top:-8px}.mat-card>.mat-card-xl-image:first-child{margin-top:-8px}.mat-card>.mat-card-xl-image:last-child{margin-bottom:-8px}\n"]
+    }]
+  }], function () {
+    return [{
+      type: String,
+      decorators: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Optional"]
+      }, {
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"],
+        args: [_angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_2__["ANIMATION_MODULE_TYPE"]]
+      }]
+    }];
+  }, null);
+})();
+/**
+ * Component intended to be used within the `<mat-card>` component. It adds styles for a
+ * preset header section (i.e. a title, subtitle, and avatar layout).
+ * @docs-private
+ */
+
+
+var MatCardHeader = function MatCardHeader() {
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, MatCardHeader);
+};
+
+MatCardHeader.ɵfac = function MatCardHeader_Factory(t) {
+  return new (t || MatCardHeader)();
+};
+
+MatCardHeader.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({
+  type: MatCardHeader,
+  selectors: [["mat-card-header"]],
+  hostAttrs: [1, "mat-card-header"],
+  ngContentSelectors: _c3,
+  decls: 4,
+  vars: 0,
+  consts: [[1, "mat-card-header-text"]],
+  template: function MatCardHeader_Template(rf, ctx) {
+    if (rf & 1) {
+      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵprojectionDef"](_c2);
+      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵprojection"](0);
+      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "div", 0);
+      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵprojection"](2, 1);
+      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵprojection"](3, 2);
+    }
+  },
+  encapsulation: 2,
+  changeDetection: 0
+});
+/*@__PURE__*/
+
+(function () {
+  _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](MatCardHeader, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"],
+    args: [{
+      selector: 'mat-card-header',
+      template: "<ng-content select=\"[mat-card-avatar], [matCardAvatar]\"></ng-content>\n<div class=\"mat-card-header-text\">\n  <ng-content\n      select=\"mat-card-title, mat-card-subtitle,\n      [mat-card-title], [mat-card-subtitle],\n      [matCardTitle], [matCardSubtitle]\"></ng-content>\n</div>\n<ng-content></ng-content>\n",
+      encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewEncapsulation"].None,
+      changeDetection: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectionStrategy"].OnPush,
+      host: {
+        'class': 'mat-card-header'
+      }
+    }]
+  }], null, null);
+})();
+/**
+ * Component intended to be used within the `<mat-card>` component. It adds styles for a preset
+ * layout that groups an image with a title section.
+ * @docs-private
+ */
+
+
+var MatCardTitleGroup = function MatCardTitleGroup() {
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, MatCardTitleGroup);
+};
+
+MatCardTitleGroup.ɵfac = function MatCardTitleGroup_Factory(t) {
+  return new (t || MatCardTitleGroup)();
+};
+
+MatCardTitleGroup.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({
+  type: MatCardTitleGroup,
+  selectors: [["mat-card-title-group"]],
+  hostAttrs: [1, "mat-card-title-group"],
+  ngContentSelectors: _c5,
+  decls: 4,
+  vars: 0,
+  template: function MatCardTitleGroup_Template(rf, ctx) {
+    if (rf & 1) {
+      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵprojectionDef"](_c4);
+      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div");
+      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵprojection"](1);
+      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵprojection"](2, 1);
+      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵprojection"](3, 2);
+    }
+  },
+  encapsulation: 2,
+  changeDetection: 0
+});
+/*@__PURE__*/
+
+(function () {
+  _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](MatCardTitleGroup, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"],
+    args: [{
+      selector: 'mat-card-title-group',
+      template: "<div>\n  <ng-content\n      select=\"mat-card-title, mat-card-subtitle,\n      [mat-card-title], [mat-card-subtitle],\n      [matCardTitle], [matCardSubtitle]\"></ng-content>\n</div>\n<ng-content select=\"img\"></ng-content>\n<ng-content></ng-content>\n",
+      encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewEncapsulation"].None,
+      changeDetection: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectionStrategy"].OnPush,
+      host: {
+        'class': 'mat-card-title-group'
+      }
+    }]
+  }], null, null);
+})();
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+
+var MatCardModule = function MatCardModule() {
+  Object(_Users_m_Desktop_cmf_iot_node_modules_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, MatCardModule);
+};
+
+MatCardModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineNgModule"]({
+  type: MatCardModule
+});
+MatCardModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInjector"]({
+  factory: function MatCardModule_Factory(t) {
+    return new (t || MatCardModule)();
+  },
+  imports: [[_angular_material_core__WEBPACK_IMPORTED_MODULE_3__["MatCommonModule"]], _angular_material_core__WEBPACK_IMPORTED_MODULE_3__["MatCommonModule"]]
+});
+
+(function () {
+  (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵsetNgModuleScope"](MatCardModule, {
+    declarations: function declarations() {
+      return [MatCard, MatCardHeader, MatCardTitleGroup, MatCardContent, MatCardTitle, MatCardSubtitle, MatCardActions, MatCardFooter, MatCardSmImage, MatCardMdImage, MatCardLgImage, MatCardImage, MatCardXlImage, MatCardAvatar];
+    },
+    imports: function imports() {
+      return [_angular_material_core__WEBPACK_IMPORTED_MODULE_3__["MatCommonModule"]];
+    },
+    exports: function exports() {
+      return [MatCard, MatCardHeader, MatCardTitleGroup, MatCardContent, MatCardTitle, MatCardSubtitle, MatCardActions, MatCardFooter, MatCardSmImage, MatCardMdImage, MatCardLgImage, MatCardImage, MatCardXlImage, MatCardAvatar, _angular_material_core__WEBPACK_IMPORTED_MODULE_3__["MatCommonModule"]];
+    }
+  });
+})();
+/*@__PURE__*/
+
+
+(function () {
+  _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵsetClassMetadata"](MatCardModule, [{
+    type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"],
+    args: [{
+      imports: [_angular_material_core__WEBPACK_IMPORTED_MODULE_3__["MatCommonModule"]],
+      exports: [MatCard, MatCardHeader, MatCardTitleGroup, MatCardContent, MatCardTitle, MatCardSubtitle, MatCardActions, MatCardFooter, MatCardSmImage, MatCardMdImage, MatCardLgImage, MatCardImage, MatCardXlImage, MatCardAvatar, _angular_material_core__WEBPACK_IMPORTED_MODULE_3__["MatCommonModule"]],
+      declarations: [MatCard, MatCardHeader, MatCardTitleGroup, MatCardContent, MatCardTitle, MatCardSubtitle, MatCardActions, MatCardFooter, MatCardSmImage, MatCardMdImage, MatCardLgImage, MatCardImage, MatCardXlImage, MatCardAvatar]
+    }]
+  }], null, null);
+})();
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/**
+ * Generated bundle index. Do not edit.
+ */
+
+
+
 
 /***/ }),
 
@@ -9072,6 +16304,72 @@ MatButtonModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdefineIn
  * Generated bundle index. Do not edit.
  */
 
+
+
+
+/***/ }),
+
+/***/ "c2A7":
+/*!****************************************!*\
+  !*** ./src/app/cart/cart.component.ts ***!
+  \****************************************/
+/*! exports provided: CartComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CartComponent", function() { return CartComponent; });
+/* harmony import */ var _raw_loader_cart_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! raw-loader!./cart.component.html */ "M2Tr");
+/* harmony import */ var _cart_component_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./cart.component.css */ "1PcV");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _services_shopping_cart_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/shopping-cart.service */ "K5n9");
+/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material/dialog */ "0IaG");
+/* harmony import */ var _checkout_checkout_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../checkout/checkout.component */ "IiZn");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var CartComponent = /** @class */ (function () {
+    function CartComponent(shoppingCartService, dialog) {
+        this.shoppingCartService = shoppingCartService;
+        this.dialog = dialog;
+    }
+    CartComponent.prototype.checkout = function () {
+        // this.shoppingCartService.checkout();
+        var dialogRef = this.dialog.open(_checkout_checkout_component__WEBPACK_IMPORTED_MODULE_5__["CheckoutDialog"], {
+            // data: { state: this.state }, // now uses the observable
+            height: '400px',
+            width: '600px',
+        });
+    };
+    CartComponent.ctorParameters = function () { return [
+        { type: _services_shopping_cart_service__WEBPACK_IMPORTED_MODULE_3__["ShoppingCartService"] },
+        { type: _angular_material_dialog__WEBPACK_IMPORTED_MODULE_4__["MatDialog"] }
+    ]; };
+    CartComponent.propDecorators = {
+        state: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_2__["Input"] }]
+    };
+    CartComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Component"])({
+            selector: 'app-cart',
+            template: _raw_loader_cart_component_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+            styles: [_cart_component_css__WEBPACK_IMPORTED_MODULE_1__["default"]]
+        }),
+        __metadata("design:paramtypes", [_services_shopping_cart_service__WEBPACK_IMPORTED_MODULE_3__["ShoppingCartService"], _angular_material_dialog__WEBPACK_IMPORTED_MODULE_4__["MatDialog"]])
+    ], CartComponent);
+    return CartComponent;
+}());
 
 
 
@@ -11637,6 +18935,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _models_productapi__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../models/productapi */ "BrVi");
 /* harmony import */ var _services_graphql_products_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/graphql.products.service */ "1arE");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "tyNb");
+/* harmony import */ var _services_storage_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../services/storage.service */ "61FP");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -11652,18 +18951,21 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var NewProductComponent = /** @class */ (function () {
-    function NewProductComponent(graphqlProduct, router) {
+    function NewProductComponent(graphqlProduct, router, storageService) {
         this.graphqlProduct = graphqlProduct;
         this.router = router;
+        this.storageService = storageService;
         this.myProduct = new _models_productapi__WEBPACK_IMPORTED_MODULE_3__["ProductApi"];
     }
     NewProductComponent.prototype.ngOnInit = function () {
     };
     NewProductComponent.prototype.addProduct = function () {
         var _this = this;
+        var mytoken = this.storageService.getSession("token");
         alert(JSON.stringify(this.myProduct));
-        this.graphqlProduct.createLink(this.myProduct.url, this.myProduct.description, this.myProduct.precio)
+        this.graphqlProduct.createLink(mytoken, this.myProduct.url, this.myProduct.description, this.myProduct.precio)
             .subscribe(function (_a) {
             var data = _a.data;
             console.log('product created :  ', data);
@@ -11674,7 +18976,8 @@ var NewProductComponent = /** @class */ (function () {
     };
     NewProductComponent.ctorParameters = function () { return [
         { type: _services_graphql_products_service__WEBPACK_IMPORTED_MODULE_4__["GraphqlProductsService"] },
-        { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] }
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] },
+        { type: _services_storage_service__WEBPACK_IMPORTED_MODULE_6__["StorageService"] }
     ]; };
     NewProductComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Component"])({
@@ -11683,9 +18986,117 @@ var NewProductComponent = /** @class */ (function () {
             styles: [_new_product_component_css__WEBPACK_IMPORTED_MODULE_1__["default"]]
         }),
         __metadata("design:paramtypes", [_services_graphql_products_service__WEBPACK_IMPORTED_MODULE_4__["GraphqlProductsService"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]])
+            _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"],
+            _services_storage_service__WEBPACK_IMPORTED_MODULE_6__["StorageService"]])
     ], NewProductComponent);
     return NewProductComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "dugQ":
+/*!*******************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-browser/version.js ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _validate_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./validate.js */ "BuRe");
+
+
+function version(uuid) {
+  if (!Object(_validate_js__WEBPACK_IMPORTED_MODULE_0__["default"])(uuid)) {
+    throw TypeError('Invalid UUID');
+  }
+
+  return parseInt(uuid.substr(14, 1), 16);
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (version);
+
+/***/ }),
+
+/***/ "hctd":
+/*!*********************************************!*\
+  !*** ./src/app/material/material.module.ts ***!
+  \*********************************************/
+/*! exports provided: MaterialModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MaterialModule", function() { return MaterialModule; });
+/* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/material/button */ "bTqV");
+/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/material/card */ "Wp6s");
+/* harmony import */ var _angular_material_chips__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material/chips */ "A5z7");
+/* harmony import */ var _angular_material_form_field__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material/form-field */ "kmnG");
+/* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material/icon */ "NFeN");
+/* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/material/input */ "qFsG");
+/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material/dialog */ "0IaG");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ "fXoL");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+// import { MatAutocompleteModule } from '@angular/material/autocomplete';
+// import {MatBadgeModule} from '@angular/material/badge';
+
+
+// import { MatCheckboxModule } from '@angular/material/checkbox';
+
+// import { MatExpansionModule } from '@angular/material/expansion';
+
+// import { MatGridListModule } from '@angular/material/grid-list';
+
+
+// import { MatLineModule } from '@angular/material/core';
+// import { MatMenuModule } from '@angular/material/menu';
+// import { MatProgressBarModule } from '@angular/material/progress-bar';
+// import { MatRadioModule } from '@angular/material/radio';
+// import { MatSelectModule } from '@angular/material/select';
+// import { MatSidenavModule } from '@angular/material/sidenav';
+// import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+// import { MatSliderModule } from '@angular/material/slider';
+// import { MatSnackBarModule } from '@angular/material/snack-bar';
+// import { MatTabsModule } from '@angular/material/tabs';
+// import { MatToolbarModule } from '@angular/material/toolbar';
+// import { MatTooltipModule } from '@angular/material/tooltip';
+// import { MatButtonToggleModule } from '@angular/material/button-toggle';
+
+// import { MatDividerModule } from '@angular/material/divider';
+// import { MatTableModule } from '@angular/material/table';
+
+var MATERIAL_MODULES = [
+    // MatAutocompleteModule,
+    _angular_material_button__WEBPACK_IMPORTED_MODULE_0__["MatButtonModule"],
+    // MatButtonToggleModule,
+    _angular_material_card__WEBPACK_IMPORTED_MODULE_1__["MatCardModule"],
+    // MatCheckboxModule,
+    _angular_material_chips__WEBPACK_IMPORTED_MODULE_2__["MatChipsModule"],
+    _angular_material_dialog__WEBPACK_IMPORTED_MODULE_6__["MatDialogModule"],
+    // MatDividerModule,
+    // MatExpansionModule,
+    _angular_material_form_field__WEBPACK_IMPORTED_MODULE_3__["MatFormFieldModule"],
+    // MatGridListModule,
+    _angular_material_icon__WEBPACK_IMPORTED_MODULE_4__["MatIconModule"],
+    _angular_material_input__WEBPACK_IMPORTED_MODULE_5__["MatInputModule"],
+];
+var MaterialModule = /** @class */ (function () {
+    function MaterialModule() {
+    }
+    MaterialModule = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_7__["NgModule"])({
+            imports: [MATERIAL_MODULES],
+            exports: [MATERIAL_MODULES]
+        })
+    ], MaterialModule);
+    return MaterialModule;
 }());
 
 
@@ -14667,6 +22078,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "prKX":
+/*!****************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/carritocompras/carritocompras.component.html ***!
+  \****************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"main-content\">\n    <div class=\"container-fluid\">\n        <a class=\"nav-link\" [routerLink]=\"['/new-product']\">\n            <i class=\"material-icons\">login</i>\n            <p>\n                <span class=\"d-lg-none d-md-block\">Account</span>\n            </p>\n        </a>\n        <div class=\"row\">\n       \n            <div class=\"col-lg-12 col-md-12\">\n                <div class=\"card\">\n                    <div class=\"card-header card-header-warning\">\n                        <h4 class=\"card-title\">Carrito de Compras</h4>\n                        <p class=\"card-category\"> - </p>\n                    </div>\n                    <div class=\"card-body table-responsive\">\n                        <table class=\"table table-hover\">\n                            <thead class=\"text-warning\">\n                                <th>Clave</th>\n                                <th>Url</th>\n                                <th>Descripcion</th>\n                            </thead>\n                            <tbody>\n                                <tr *ngFor=\"let product of posts\" >\n                                    <td>{{ product.id }}</td>\n                                    <td>{{ product.url }}</td>\n                                    <td>{{ product.description }}</td>\n                                </tr>\n                              \n                            </tbody>\n                        </table>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n  </div>\n  ");
+
+/***/ }),
+
 /***/ "pvxy":
 /*!****************************************************************************************!*\
   !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/new-user/new-user.component.html ***!
@@ -15668,6 +23092,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _products_products_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../products/products.component */ "ziXE");
 /* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../login/login.component */ "vtpD");
 /* harmony import */ var _new_product_new_product_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../new-product/new-product.component */ "dLVS");
+/* harmony import */ var _carritocompras_carritocompras_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../carritocompras/carritocompras.component */ "zWA4");
+
 
 
 
@@ -15729,6 +23155,7 @@ var AdminLayoutRoutes = [
     { path: 'new-product', component: _new_product_new_product_component__WEBPACK_IMPORTED_MODULE_11__["NewProductComponent"] },
     { path: 'login', component: _login_login_component__WEBPACK_IMPORTED_MODULE_10__["LoginComponent"] },
     { path: 'productos', component: _products_products_component__WEBPACK_IMPORTED_MODULE_9__["ProductsComponent"] },
+    { path: 'carrito', component: _carritocompras_carritocompras_component__WEBPACK_IMPORTED_MODULE_12__["CarritocomprasComponent"] },
     { path: 'table-list', component: _table_list_table_list_component__WEBPACK_IMPORTED_MODULE_2__["TableListComponent"] },
     { path: 'typography', component: _typography_typography_component__WEBPACK_IMPORTED_MODULE_3__["TypographyComponent"] },
     { path: 'icons', component: _icons_icons_component__WEBPACK_IMPORTED_MODULE_4__["IconsComponent"] },
@@ -20720,6 +28147,341 @@ var TableListComponent = /** @class */ (function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("\n<div class=\"main-content\">\n  <div class=\"container-fluid\">\n      <div class=\"card card-plain\">\n          <div class=\"card-header card-header-danger\">\n              <h4 class=\"card-title\">Material Design Icons</h4>\n              <p class=\"card-category\">Handcrafted by our friends from\n                  <a target=\"_blank\" href=\"https://design.google.com/icons/\">Google</a>\n              </p>\n          </div>\n          <div class=\"row\">\n              <div class=\"col-md-12\">\n                  <div class=\"card-body\">\n                      <div class=\"iframe-container d-none d-lg-block\">\n                          <iframe src=\"https://design.google.com/icons/\">\n                              <p>Your browser does not support iframes.</p>\n                          </iframe>\n                      </div>\n                      <div class=\"col-md-12 d-none d-sm-block d-md-block d-lg-none d-block d-sm-none text-center ml-auto mr-auto\">\n                          <h5>The icons are visible on Desktop mode inside an iframe. Since the iframe is not working on Mobile and Tablets please visit the icons on their original page on Google. Check the\n                              <a href=\"https://design.google.com/icons/\" target=\"_blank\">Material Icons</a>\n                          </h5>\n                      </div>\n                  </div>\n              </div>\n          </div>\n      </div>\n  </div>\n</div>\n");
+
+/***/ }),
+
+/***/ "t133":
+/*!****************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-browser/sha1.js ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// Adapted from Chris Veness' SHA1 code at
+// http://www.movable-type.co.uk/scripts/sha1.html
+function f(s, x, y, z) {
+  switch (s) {
+    case 0:
+      return x & y ^ ~x & z;
+
+    case 1:
+      return x ^ y ^ z;
+
+    case 2:
+      return x & y ^ x & z ^ y & z;
+
+    case 3:
+      return x ^ y ^ z;
+  }
+}
+
+function ROTL(x, n) {
+  return x << n | x >>> 32 - n;
+}
+
+function sha1(bytes) {
+  var K = [0x5a827999, 0x6ed9eba1, 0x8f1bbcdc, 0xca62c1d6];
+  var H = [0x67452301, 0xefcdab89, 0x98badcfe, 0x10325476, 0xc3d2e1f0];
+
+  if (typeof bytes === 'string') {
+    var msg = unescape(encodeURIComponent(bytes)); // UTF8 escape
+
+    bytes = [];
+
+    for (var i = 0; i < msg.length; ++i) {
+      bytes.push(msg.charCodeAt(i));
+    }
+  } else if (!Array.isArray(bytes)) {
+    // Convert Array-like to Array
+    bytes = Array.prototype.slice.call(bytes);
+  }
+
+  bytes.push(0x80);
+  var l = bytes.length / 4 + 2;
+  var N = Math.ceil(l / 16);
+  var M = new Array(N);
+
+  for (var _i = 0; _i < N; ++_i) {
+    var arr = new Uint32Array(16);
+
+    for (var j = 0; j < 16; ++j) {
+      arr[j] = bytes[_i * 64 + j * 4] << 24 | bytes[_i * 64 + j * 4 + 1] << 16 | bytes[_i * 64 + j * 4 + 2] << 8 | bytes[_i * 64 + j * 4 + 3];
+    }
+
+    M[_i] = arr;
+  }
+
+  M[N - 1][14] = (bytes.length - 1) * 8 / Math.pow(2, 32);
+  M[N - 1][14] = Math.floor(M[N - 1][14]);
+  M[N - 1][15] = (bytes.length - 1) * 8 & 0xffffffff;
+
+  for (var _i2 = 0; _i2 < N; ++_i2) {
+    var W = new Uint32Array(80);
+
+    for (var t = 0; t < 16; ++t) {
+      W[t] = M[_i2][t];
+    }
+
+    for (var _t = 16; _t < 80; ++_t) {
+      W[_t] = ROTL(W[_t - 3] ^ W[_t - 8] ^ W[_t - 14] ^ W[_t - 16], 1);
+    }
+
+    var a = H[0];
+    var b = H[1];
+    var c = H[2];
+    var d = H[3];
+    var e = H[4];
+
+    for (var _t2 = 0; _t2 < 80; ++_t2) {
+      var s = Math.floor(_t2 / 20);
+      var T = ROTL(a, 5) + f(s, b, c, d) + e + K[s] + W[_t2] >>> 0;
+      e = d;
+      d = c;
+      c = ROTL(b, 30) >>> 0;
+      b = a;
+      a = T;
+    }
+
+    H[0] = H[0] + a >>> 0;
+    H[1] = H[1] + b >>> 0;
+    H[2] = H[2] + c >>> 0;
+    H[3] = H[3] + d >>> 0;
+    H[4] = H[4] + e >>> 0;
+  }
+
+  return [H[0] >> 24 & 0xff, H[0] >> 16 & 0xff, H[0] >> 8 & 0xff, H[0] & 0xff, H[1] >> 24 & 0xff, H[1] >> 16 & 0xff, H[1] >> 8 & 0xff, H[1] & 0xff, H[2] >> 24 & 0xff, H[2] >> 16 & 0xff, H[2] >> 8 & 0xff, H[2] & 0xff, H[3] >> 24 & 0xff, H[3] >> 16 & 0xff, H[3] >> 8 & 0xff, H[3] & 0xff, H[4] >> 24 & 0xff, H[4] >> 16 & 0xff, H[4] >> 8 & 0xff, H[4] & 0xff];
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (sha1);
+
+/***/ }),
+
+/***/ "tysn":
+/*!***************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-browser/md5.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/*
+ * Browser-compatible JavaScript MD5
+ *
+ * Modification of JavaScript MD5
+ * https://github.com/blueimp/JavaScript-MD5
+ *
+ * Copyright 2011, Sebastian Tschan
+ * https://blueimp.net
+ *
+ * Licensed under the MIT license:
+ * https://opensource.org/licenses/MIT
+ *
+ * Based on
+ * A JavaScript implementation of the RSA Data Security, Inc. MD5 Message
+ * Digest Algorithm, as defined in RFC 1321.
+ * Version 2.2 Copyright (C) Paul Johnston 1999 - 2009
+ * Other contributors: Greg Holt, Andrew Kepert, Ydnar, Lostinet
+ * Distributed under the BSD License
+ * See http://pajhome.org.uk/crypt/md5 for more info.
+ */
+function md5(bytes) {
+  if (typeof bytes === 'string') {
+    var msg = unescape(encodeURIComponent(bytes)); // UTF8 escape
+
+    bytes = new Uint8Array(msg.length);
+
+    for (var i = 0; i < msg.length; ++i) {
+      bytes[i] = msg.charCodeAt(i);
+    }
+  }
+
+  return md5ToHexEncodedArray(wordsToMd5(bytesToWords(bytes), bytes.length * 8));
+}
+/*
+ * Convert an array of little-endian words to an array of bytes
+ */
+
+
+function md5ToHexEncodedArray(input) {
+  var output = [];
+  var length32 = input.length * 32;
+  var hexTab = '0123456789abcdef';
+
+  for (var i = 0; i < length32; i += 8) {
+    var x = input[i >> 5] >>> i % 32 & 0xff;
+    var hex = parseInt(hexTab.charAt(x >>> 4 & 0x0f) + hexTab.charAt(x & 0x0f), 16);
+    output.push(hex);
+  }
+
+  return output;
+}
+/**
+ * Calculate output length with padding and bit length
+ */
+
+
+function getOutputLength(inputLength8) {
+  return (inputLength8 + 64 >>> 9 << 4) + 14 + 1;
+}
+/*
+ * Calculate the MD5 of an array of little-endian words, and a bit length.
+ */
+
+
+function wordsToMd5(x, len) {
+  /* append padding */
+  x[len >> 5] |= 0x80 << len % 32;
+  x[getOutputLength(len) - 1] = len;
+  var a = 1732584193;
+  var b = -271733879;
+  var c = -1732584194;
+  var d = 271733878;
+
+  for (var i = 0; i < x.length; i += 16) {
+    var olda = a;
+    var oldb = b;
+    var oldc = c;
+    var oldd = d;
+    a = md5ff(a, b, c, d, x[i], 7, -680876936);
+    d = md5ff(d, a, b, c, x[i + 1], 12, -389564586);
+    c = md5ff(c, d, a, b, x[i + 2], 17, 606105819);
+    b = md5ff(b, c, d, a, x[i + 3], 22, -1044525330);
+    a = md5ff(a, b, c, d, x[i + 4], 7, -176418897);
+    d = md5ff(d, a, b, c, x[i + 5], 12, 1200080426);
+    c = md5ff(c, d, a, b, x[i + 6], 17, -1473231341);
+    b = md5ff(b, c, d, a, x[i + 7], 22, -45705983);
+    a = md5ff(a, b, c, d, x[i + 8], 7, 1770035416);
+    d = md5ff(d, a, b, c, x[i + 9], 12, -1958414417);
+    c = md5ff(c, d, a, b, x[i + 10], 17, -42063);
+    b = md5ff(b, c, d, a, x[i + 11], 22, -1990404162);
+    a = md5ff(a, b, c, d, x[i + 12], 7, 1804603682);
+    d = md5ff(d, a, b, c, x[i + 13], 12, -40341101);
+    c = md5ff(c, d, a, b, x[i + 14], 17, -1502002290);
+    b = md5ff(b, c, d, a, x[i + 15], 22, 1236535329);
+    a = md5gg(a, b, c, d, x[i + 1], 5, -165796510);
+    d = md5gg(d, a, b, c, x[i + 6], 9, -1069501632);
+    c = md5gg(c, d, a, b, x[i + 11], 14, 643717713);
+    b = md5gg(b, c, d, a, x[i], 20, -373897302);
+    a = md5gg(a, b, c, d, x[i + 5], 5, -701558691);
+    d = md5gg(d, a, b, c, x[i + 10], 9, 38016083);
+    c = md5gg(c, d, a, b, x[i + 15], 14, -660478335);
+    b = md5gg(b, c, d, a, x[i + 4], 20, -405537848);
+    a = md5gg(a, b, c, d, x[i + 9], 5, 568446438);
+    d = md5gg(d, a, b, c, x[i + 14], 9, -1019803690);
+    c = md5gg(c, d, a, b, x[i + 3], 14, -187363961);
+    b = md5gg(b, c, d, a, x[i + 8], 20, 1163531501);
+    a = md5gg(a, b, c, d, x[i + 13], 5, -1444681467);
+    d = md5gg(d, a, b, c, x[i + 2], 9, -51403784);
+    c = md5gg(c, d, a, b, x[i + 7], 14, 1735328473);
+    b = md5gg(b, c, d, a, x[i + 12], 20, -1926607734);
+    a = md5hh(a, b, c, d, x[i + 5], 4, -378558);
+    d = md5hh(d, a, b, c, x[i + 8], 11, -2022574463);
+    c = md5hh(c, d, a, b, x[i + 11], 16, 1839030562);
+    b = md5hh(b, c, d, a, x[i + 14], 23, -35309556);
+    a = md5hh(a, b, c, d, x[i + 1], 4, -1530992060);
+    d = md5hh(d, a, b, c, x[i + 4], 11, 1272893353);
+    c = md5hh(c, d, a, b, x[i + 7], 16, -155497632);
+    b = md5hh(b, c, d, a, x[i + 10], 23, -1094730640);
+    a = md5hh(a, b, c, d, x[i + 13], 4, 681279174);
+    d = md5hh(d, a, b, c, x[i], 11, -358537222);
+    c = md5hh(c, d, a, b, x[i + 3], 16, -722521979);
+    b = md5hh(b, c, d, a, x[i + 6], 23, 76029189);
+    a = md5hh(a, b, c, d, x[i + 9], 4, -640364487);
+    d = md5hh(d, a, b, c, x[i + 12], 11, -421815835);
+    c = md5hh(c, d, a, b, x[i + 15], 16, 530742520);
+    b = md5hh(b, c, d, a, x[i + 2], 23, -995338651);
+    a = md5ii(a, b, c, d, x[i], 6, -198630844);
+    d = md5ii(d, a, b, c, x[i + 7], 10, 1126891415);
+    c = md5ii(c, d, a, b, x[i + 14], 15, -1416354905);
+    b = md5ii(b, c, d, a, x[i + 5], 21, -57434055);
+    a = md5ii(a, b, c, d, x[i + 12], 6, 1700485571);
+    d = md5ii(d, a, b, c, x[i + 3], 10, -1894986606);
+    c = md5ii(c, d, a, b, x[i + 10], 15, -1051523);
+    b = md5ii(b, c, d, a, x[i + 1], 21, -2054922799);
+    a = md5ii(a, b, c, d, x[i + 8], 6, 1873313359);
+    d = md5ii(d, a, b, c, x[i + 15], 10, -30611744);
+    c = md5ii(c, d, a, b, x[i + 6], 15, -1560198380);
+    b = md5ii(b, c, d, a, x[i + 13], 21, 1309151649);
+    a = md5ii(a, b, c, d, x[i + 4], 6, -145523070);
+    d = md5ii(d, a, b, c, x[i + 11], 10, -1120210379);
+    c = md5ii(c, d, a, b, x[i + 2], 15, 718787259);
+    b = md5ii(b, c, d, a, x[i + 9], 21, -343485551);
+    a = safeAdd(a, olda);
+    b = safeAdd(b, oldb);
+    c = safeAdd(c, oldc);
+    d = safeAdd(d, oldd);
+  }
+
+  return [a, b, c, d];
+}
+/*
+ * Convert an array bytes to an array of little-endian words
+ * Characters >255 have their high-byte silently ignored.
+ */
+
+
+function bytesToWords(input) {
+  if (input.length === 0) {
+    return [];
+  }
+
+  var length8 = input.length * 8;
+  var output = new Uint32Array(getOutputLength(length8));
+
+  for (var i = 0; i < length8; i += 8) {
+    output[i >> 5] |= (input[i / 8] & 0xff) << i % 32;
+  }
+
+  return output;
+}
+/*
+ * Add integers, wrapping at 2^32. This uses 16-bit operations internally
+ * to work around bugs in some JS interpreters.
+ */
+
+
+function safeAdd(x, y) {
+  var lsw = (x & 0xffff) + (y & 0xffff);
+  var msw = (x >> 16) + (y >> 16) + (lsw >> 16);
+  return msw << 16 | lsw & 0xffff;
+}
+/*
+ * Bitwise rotate a 32-bit number to the left.
+ */
+
+
+function bitRotateLeft(num, cnt) {
+  return num << cnt | num >>> 32 - cnt;
+}
+/*
+ * These functions implement the four basic operations the algorithm uses.
+ */
+
+
+function md5cmn(q, a, b, x, s, t) {
+  return safeAdd(bitRotateLeft(safeAdd(safeAdd(a, q), safeAdd(x, t)), s), b);
+}
+
+function md5ff(a, b, c, d, x, s, t) {
+  return md5cmn(b & c | ~b & d, a, b, x, s, t);
+}
+
+function md5gg(a, b, c, d, x, s, t) {
+  return md5cmn(b & d | c & ~d, a, b, x, s, t);
+}
+
+function md5hh(a, b, c, d, x, s, t) {
+  return md5cmn(b ^ c ^ d, a, b, x, s, t);
+}
+
+function md5ii(a, b, c, d, x, s, t) {
+  return md5cmn(c ^ (b | ~d), a, b, x, s, t);
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (md5);
 
 /***/ }),
 
@@ -29086,8 +36848,8 @@ var LoginComponent = /** @class */ (function () {
             .subscribe(function (_a) {
             var data = _a.data;
             console.log('logged: ', JSON.stringify(data));
-            //this.storageService.setSession("token", JSON.parse(JSON.stringify(data)).tokenAuth.token);
-            _this.storageService.setLocal("token", JSON.parse(JSON.stringify(data)).tokenAuth.token);
+            _this.storageService.setSession("token", JSON.parse(JSON.stringify(data)).tokenAuth.token);
+            //this.storageService.setLocal("token", JSON.parse(JSON.stringify(data)).tokenAuth.token);
         }, function (error) {
             console.log('there was an error sending the query', error);
         });
@@ -31502,6 +39264,115 @@ ScrollingModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdefineIn
 
 /***/ }),
 
+/***/ "xQqG":
+/*!**************************************************!*\
+  !*** ./node_modules/uuid/dist/esm-browser/v1.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _rng_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./rng.js */ "2Pgj");
+/* harmony import */ var _stringify_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./stringify.js */ "WM9j");
+
+ // **`v1()` - Generate time-based UUID**
+//
+// Inspired by https://github.com/LiosK/UUID.js
+// and http://docs.python.org/library/uuid.html
+
+var _nodeId;
+
+var _clockseq; // Previous uuid creation time
+
+
+var _lastMSecs = 0;
+var _lastNSecs = 0; // See https://github.com/uuidjs/uuid for API details
+
+function v1(options, buf, offset) {
+  var i = buf && offset || 0;
+  var b = buf || new Array(16);
+  options = options || {};
+  var node = options.node || _nodeId;
+  var clockseq = options.clockseq !== undefined ? options.clockseq : _clockseq; // node and clockseq need to be initialized to random values if they're not
+  // specified.  We do this lazily to minimize issues related to insufficient
+  // system entropy.  See #189
+
+  if (node == null || clockseq == null) {
+    var seedBytes = options.random || (options.rng || _rng_js__WEBPACK_IMPORTED_MODULE_0__["default"])();
+
+    if (node == null) {
+      // Per 4.5, create and 48-bit node id, (47 random bits + multicast bit = 1)
+      node = _nodeId = [seedBytes[0] | 0x01, seedBytes[1], seedBytes[2], seedBytes[3], seedBytes[4], seedBytes[5]];
+    }
+
+    if (clockseq == null) {
+      // Per 4.2.2, randomize (14 bit) clockseq
+      clockseq = _clockseq = (seedBytes[6] << 8 | seedBytes[7]) & 0x3fff;
+    }
+  } // UUID timestamps are 100 nano-second units since the Gregorian epoch,
+  // (1582-10-15 00:00).  JSNumbers aren't precise enough for this, so
+  // time is handled internally as 'msecs' (integer milliseconds) and 'nsecs'
+  // (100-nanoseconds offset from msecs) since unix epoch, 1970-01-01 00:00.
+
+
+  var msecs = options.msecs !== undefined ? options.msecs : Date.now(); // Per 4.2.1.2, use count of uuid's generated during the current clock
+  // cycle to simulate higher resolution clock
+
+  var nsecs = options.nsecs !== undefined ? options.nsecs : _lastNSecs + 1; // Time since last uuid creation (in msecs)
+
+  var dt = msecs - _lastMSecs + (nsecs - _lastNSecs) / 10000; // Per 4.2.1.2, Bump clockseq on clock regression
+
+  if (dt < 0 && options.clockseq === undefined) {
+    clockseq = clockseq + 1 & 0x3fff;
+  } // Reset nsecs if clock regresses (new clockseq) or we've moved onto a new
+  // time interval
+
+
+  if ((dt < 0 || msecs > _lastMSecs) && options.nsecs === undefined) {
+    nsecs = 0;
+  } // Per 4.2.1.2 Throw error if too many uuids are requested
+
+
+  if (nsecs >= 10000) {
+    throw new Error("uuid.v1(): Can't create more than 10M uuids/sec");
+  }
+
+  _lastMSecs = msecs;
+  _lastNSecs = nsecs;
+  _clockseq = clockseq; // Per 4.1.4 - Convert from unix epoch to Gregorian epoch
+
+  msecs += 12219292800000; // `time_low`
+
+  var tl = ((msecs & 0xfffffff) * 10000 + nsecs) % 0x100000000;
+  b[i++] = tl >>> 24 & 0xff;
+  b[i++] = tl >>> 16 & 0xff;
+  b[i++] = tl >>> 8 & 0xff;
+  b[i++] = tl & 0xff; // `time_mid`
+
+  var tmh = msecs / 0x100000000 * 10000 & 0xfffffff;
+  b[i++] = tmh >>> 8 & 0xff;
+  b[i++] = tmh & 0xff; // `time_high_and_version`
+
+  b[i++] = tmh >>> 24 & 0xf | 0x10; // include version
+
+  b[i++] = tmh >>> 16 & 0xff; // `clock_seq_hi_and_reserved` (Per 4.2.2 - include variant)
+
+  b[i++] = clockseq >>> 8 | 0x80; // `clock_seq_low`
+
+  b[i++] = clockseq & 0xff; // `node`
+
+  for (var n = 0; n < 6; ++n) {
+    b[i + n] = node[n];
+  }
+
+  return buf || Object(_stringify_js__WEBPACK_IMPORTED_MODULE_1__["default"])(b);
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (v1);
+
+/***/ }),
+
 /***/ "xz+E":
 /*!***************************************************!*\
   !*** ./node_modules/@angular/cdk/fesm2015/cdk.js ***!
@@ -31540,6 +39411,52 @@ var VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["Version"]('10.2.4'
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
+
+
+
+/***/ }),
+
+/***/ "zWA4":
+/*!************************************************************!*\
+  !*** ./src/app/carritocompras/carritocompras.component.ts ***!
+  \************************************************************/
+/*! exports provided: CarritocomprasComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CarritocomprasComponent", function() { return CarritocomprasComponent; });
+/* harmony import */ var _raw_loader_carritocompras_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! raw-loader!./carritocompras.component.html */ "prKX");
+/* harmony import */ var _carritocompras_component_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./carritocompras.component.css */ "DiOg");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "fXoL");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var CarritocomprasComponent = /** @class */ (function () {
+    function CarritocomprasComponent() {
+    }
+    CarritocomprasComponent.prototype.ngOnInit = function () {
+    };
+    CarritocomprasComponent.ctorParameters = function () { return []; };
+    CarritocomprasComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Component"])({
+            selector: 'app-carritocompras',
+            template: _raw_loader_carritocompras_component_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+            styles: [_carritocompras_component_css__WEBPACK_IMPORTED_MODULE_1__["default"]]
+        }),
+        __metadata("design:paramtypes", [])
+    ], CarritocomprasComponent);
+    return CarritocomprasComponent;
+}());
 
 
 

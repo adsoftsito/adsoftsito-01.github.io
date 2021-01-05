@@ -984,8 +984,6 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var ROUTES = [
     { path: '/dashboard', title: 'Dashboard', icon: 'dashboard', class: '' },
     { path: '/productos', title: 'Productos', icon: 'dashboard', class: '' },
-    { path: '/promociones', title: 'Promociones', icon: 'dashboard', class: '' },
-    { path: '/clientes', title: 'Clientes', icon: 'dashboard', class: '' },
 ];
 var SidebarComponent = /** @class */ (function () {
     function SidebarComponent() {
