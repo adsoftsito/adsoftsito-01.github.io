@@ -111,6 +111,28 @@ export class DashboardComponent implements OnInit, OnDestroy {
       seq2 = 0;
   };
 /*
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyAF1og02DFYvP9tjGYNT6YlP2YSl6-G4RQ",
+    authDomain: "elmandadero-storage.firebaseapp.com",
+    projectId: "elmandadero-storage",
+    storageBucket: "elmandadero-storage.appspot.com",
+    messagingSenderId: "570694818428",
+    appId: "1:570694818428:web:f28410432578bf336647f9"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+
+
   ngOnInit() {
 
       const dataDailySalesChart: any = {

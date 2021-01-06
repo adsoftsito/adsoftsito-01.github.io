@@ -11611,6 +11611,93 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "HF6d":
+/*!*********************************************!*\
+  !*** ./src/services/file-upload.service.ts ***!
+  \*********************************************/
+/*! exports provided: FileUploadService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FileUploadService", function() { return FileUploadService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _angular_fire_database__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/fire/database */ "sSZD");
+/* harmony import */ var _angular_fire_storage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/fire/storage */ "Vaw3");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "kU1M");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var FileUploadService = /** @class */ (function () {
+    function FileUploadService(db, storage) {
+        this.db = db;
+        this.storage = storage;
+        this.basePath = '/uploads';
+    }
+    FileUploadService.prototype.pushFileToStorage = function (fileUpload) {
+        var _this = this;
+        var filePath = this.basePath + "/" + fileUpload.file.name;
+        var storageRef = this.storage.ref(filePath);
+        var uploadTask = this.storage.upload(filePath, fileUpload.file);
+        uploadTask.snapshotChanges().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["finalize"])(function () {
+            storageRef.getDownloadURL().subscribe(function (downloadURL) {
+                fileUpload.url = downloadURL;
+                fileUpload.name = fileUpload.file.name;
+                _this.saveFileData(fileUpload);
+            });
+        })).subscribe();
+        return uploadTask.percentageChanges();
+    };
+    FileUploadService.prototype.saveFileData = function (fileUpload) {
+        this.db.list(this.basePath).push(fileUpload);
+    };
+    FileUploadService.prototype.getFiles = function (numberItems) {
+        return this.db.list(this.basePath, function (ref) {
+            return ref.limitToLast(numberItems);
+        });
+    };
+    FileUploadService.prototype.deleteFile = function (fileUpload) {
+        var _this = this;
+        this.deleteFileDatabase(fileUpload.key)
+            .then(function () {
+            _this.deleteFileStorage(fileUpload.name);
+        })
+            .catch(function (error) { return console.log(error); });
+    };
+    FileUploadService.prototype.deleteFileDatabase = function (key) {
+        return this.db.list(this.basePath).remove(key);
+    };
+    FileUploadService.prototype.deleteFileStorage = function (name) {
+        var storageRef = this.storage.ref(this.basePath);
+        storageRef.child(name).delete();
+    };
+    FileUploadService.ctorParameters = function () { return [
+        { type: _angular_fire_database__WEBPACK_IMPORTED_MODULE_1__["AngularFireDatabase"] },
+        { type: _angular_fire_storage__WEBPACK_IMPORTED_MODULE_2__["AngularFireStorage"] }
+    ]; };
+    FileUploadService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [_angular_fire_database__WEBPACK_IMPORTED_MODULE_1__["AngularFireDatabase"], _angular_fire_storage__WEBPACK_IMPORTED_MODULE_2__["AngularFireStorage"]])
+    ], FileUploadService);
+    return FileUploadService;
+}());
+
+
+
+/***/ }),
+
 /***/ "HblP":
 /*!****************************!*\
   !*** ./src/models/data.ts ***!
@@ -18936,6 +19023,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_graphql_products_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/graphql.products.service */ "1arE");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "tyNb");
 /* harmony import */ var _services_storage_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../services/storage.service */ "61FP");
+/* harmony import */ var _services_file_upload_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../services/file-upload.service */ "HF6d");
+/* harmony import */ var _models_file_upload__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../models/file-upload */ "pUJ3");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18952,14 +19041,31 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
 var NewProductComponent = /** @class */ (function () {
-    function NewProductComponent(graphqlProduct, router, storageService) {
+    function NewProductComponent(graphqlProduct, router, storageService, uploadService) {
         this.graphqlProduct = graphqlProduct;
         this.router = router;
         this.storageService = storageService;
+        this.uploadService = uploadService;
         this.myProduct = new _models_productapi__WEBPACK_IMPORTED_MODULE_3__["ProductApi"];
     }
     NewProductComponent.prototype.ngOnInit = function () {
+    };
+    NewProductComponent.prototype.selectFile = function (event) {
+        this.selectedFiles = event.target.files;
+    };
+    NewProductComponent.prototype.upload = function () {
+        var _this = this;
+        var file = this.selectedFiles.item(0);
+        this.selectedFiles = undefined;
+        this.currentFileUpload = new _models_file_upload__WEBPACK_IMPORTED_MODULE_8__["FileUpload"](file);
+        this.uploadService.pushFileToStorage(this.currentFileUpload).subscribe(function (percentage) {
+            _this.percentage = Math.round(percentage);
+        }, function (error) {
+            console.log(error);
+        });
     };
     NewProductComponent.prototype.addProduct = function () {
         var _this = this;
@@ -18977,7 +19083,8 @@ var NewProductComponent = /** @class */ (function () {
     NewProductComponent.ctorParameters = function () { return [
         { type: _services_graphql_products_service__WEBPACK_IMPORTED_MODULE_4__["GraphqlProductsService"] },
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] },
-        { type: _services_storage_service__WEBPACK_IMPORTED_MODULE_6__["StorageService"] }
+        { type: _services_storage_service__WEBPACK_IMPORTED_MODULE_6__["StorageService"] },
+        { type: _services_file_upload_service__WEBPACK_IMPORTED_MODULE_7__["FileUploadService"] }
     ]; };
     NewProductComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Component"])({
@@ -18987,7 +19094,8 @@ var NewProductComponent = /** @class */ (function () {
         }),
         __metadata("design:paramtypes", [_services_graphql_products_service__WEBPACK_IMPORTED_MODULE_4__["GraphqlProductsService"],
             _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"],
-            _services_storage_service__WEBPACK_IMPORTED_MODULE_6__["StorageService"]])
+            _services_storage_service__WEBPACK_IMPORTED_MODULE_6__["StorageService"],
+            _services_file_upload_service__WEBPACK_IMPORTED_MODULE_7__["FileUploadService"]])
     ], NewProductComponent);
     return NewProductComponent;
 }());
@@ -22074,7 +22182,28 @@ var NewUserComponent = /** @class */ (function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"main-content\">\n    <div class=\"container-fluid\">\n        <div class=\"row\">\n            <div class=\"col-md-12\">\n                <div class=\"card\">\n                    <div class=\"card-header card-header-danger\">\n                        <h4 class=\"card-title\">Product Nuevo</h4>\n                        <p class=\"card-category\">Completa informacion del producto</p>\n                    </div>\n                    <div class=\"card-body\">\n                        <form>\n                            <div class=\"row\">\n                                \n                                <div class=\"col-md-4\">\n                                    <mat-form-field class=\"example-full-width\">\n                                      <input matInput placeholder=\"url imagen\" [(ngModel)]=\"myProduct.url\" name=\"url\">\n                                    </mat-form-field>\n                                </div>\n                                <div class=\"col-md-4\">\n                                    <mat-form-field class=\"example-full-width\">\n                                      <input matInput placeholder=\"Descripcion\" [(ngModel)]=\"myProduct.description\" name=\"description\">\n                                    </mat-form-field>\n                                </div>\n                                <div class=\"col-md-4\">\n                                    <mat-form-field class=\"example-full-width\">\n                                      <input matInput placeholder=\"Precio\"  type=\"number\" [(ngModel)]=\"myProduct.precio\" name=\"precio\">\n                                    </mat-form-field>\n                                </div>\n                            </div>\n                            \n                            <button mat-raised-button type=\"button\" class=\"btn btn-danger pull-right\" (click)=\"addProduct()\">Agregar producto</button>\n                            <div class=\"clearfix\"></div>\n                        </form>\n                    </div>\n                </div>\n            </div>\n          \n        </div>\n    </div>\n  </div>\n  ");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"main-content\">\n    <div class=\"container-fluid\">\n        <div class=\"row\">\n            <div class=\"col-md-12\">\n                <div class=\"card\">\n                    <div class=\"card-header card-header-danger\">\n                        <h4 class=\"card-title\">Product Nuevo</h4>\n                        <p class=\"card-category\">Completa informacion del producto</p>\n                    </div>\n                    <div class=\"card-body\">\n                        <form>\n                            <div class=\"row\">\n                                <label>\n                                    <input\n                                      type=\"file\"\n                                      class=\"text-nowrap text-truncate\"\n                                      (change)=\"selectFile($event)\"\n                                    />\n                                  </label>\n                                  \n                                  <button\n                                    class=\"btn btn-success btn-sm\"\n                                    [disabled]=\"!selectedFiles\"\n                                    (click)=\"upload()\"\n                                  >\n                                    Upload\n                                  </button>\n                                  <div *ngIf=\"currentFileUpload\" class=\"progress mt-2\">\n                                    <div\n                                      class=\"progress-bar progress-bar-info\"\n                                      role=\"progressbar\"\n                                      attr.aria-valuenow=\"{{ percentage }}\"\n                                      aria-valuemin=\"0\"\n                                      aria-valuemax=\"100\"\n                                      [ngStyle]=\"{ width: percentage + '%' }\"\n                                    >\n                                      {{ percentage }}%\n                                    </div>\n                                  </div>\n                                <div class=\"col-md-4\">\n                                    <mat-form-field class=\"example-full-width\">\n                                      <input matInput placeholder=\"url imagen\" [(ngModel)]=\"myProduct.url\" name=\"url\">\n                                    </mat-form-field>\n                                </div>\n                                <div class=\"col-md-4\">\n                                    <mat-form-field class=\"example-full-width\">\n                                      <input matInput placeholder=\"Descripcion\" [(ngModel)]=\"myProduct.description\" name=\"description\">\n                                    </mat-form-field>\n                                </div>\n                                <div class=\"col-md-4\">\n                                    <mat-form-field class=\"example-full-width\">\n                                      <input matInput placeholder=\"Precio\"  type=\"number\" [(ngModel)]=\"myProduct.precio\" name=\"precio\">\n                                    </mat-form-field>\n                                </div>\n                            </div>\n                            \n                            <button mat-raised-button type=\"button\" class=\"btn btn-danger pull-right\" (click)=\"addProduct()\">Agregar producto</button>\n                            <div class=\"clearfix\"></div>\n                        </form>\n                    </div>\n                </div>\n            </div>\n          \n        </div>\n    </div>\n  </div>\n  ");
+
+/***/ }),
+
+/***/ "pUJ3":
+/*!***********************************!*\
+  !*** ./src/models/file-upload.ts ***!
+  \***********************************/
+/*! exports provided: FileUpload */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FileUpload", function() { return FileUpload; });
+var FileUpload = /** @class */ (function () {
+    function FileUpload(file) {
+        this.file = file;
+    }
+    return FileUpload;
+}());
+
+
 
 /***/ }),
 
