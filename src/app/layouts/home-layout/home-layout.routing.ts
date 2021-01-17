@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 
-import { DashboardComponent } from '../../dashboard/dashboard.component';
+import { HomeComponent } from '../../home/home.component';
 import { UserProfileComponent } from '../../user-profile/user-profile.component';
 import { TableListComponent } from '../../table-list/table-list.component';
 import { TypographyComponent } from '../../typography/typography.component';
@@ -14,7 +14,7 @@ import { LoginComponent } from '../../login/login.component';
 import { NewProductComponent } from '../../new-product/new-product.component';
 import { CarritocomprasComponent } from '../../carritocompras/carritocompras.component';
 
-export const AdminLayoutRoutes: Routes = [
+export const HomeLayoutRoutes: Routes = [
     // {
     //   path: '',
     //   children: [ {
@@ -57,12 +57,12 @@ export const AdminLayoutRoutes: Routes = [
     //         component: UpgradeComponent
     //     }]
     // }
-    { path: 'admin/dashboard',      component: DashboardComponent },
+    { path: 'home',      component: HomeComponent },
     { path: 'user-profile',   component: UserProfileComponent },
     { path: 'new-user',       component: NewUserComponent },
     { path: 'new-product',    component: NewProductComponent },
     { path: 'login',          component: LoginComponent },
-    { path: 'admin/productos',      component: ProductsComponent },
+    { path: 'home/productos',      component: ProductsComponent },
     { path: 'carrito',        component: CarritocomprasComponent },
     { path: 'table-list',     component: TableListComponent },
     { path: 'typography',     component: TypographyComponent },

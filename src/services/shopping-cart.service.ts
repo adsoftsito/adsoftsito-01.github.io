@@ -91,7 +91,7 @@ export class ShoppingCartService {
     map(([store, cart, tot, checkout]: any) => ({ store, cart, tot, checkout })),
     tap(state => {
       if (state.checkout) {
-        console.log('checkout', state);
+        //console.log('checkout', state);
       }
     }),
     // make sure we share to the world! or just the entire app

@@ -4,14 +4,27 @@ import { BrowserModule  } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
 
 const routes: Routes =[
   {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'home',
     pathMatch: 'full',
   }, {
     path: '',
+    component: HomeLayoutComponent,
+    children: [{
+      path: '',
+      loadChildren: './layouts/home-layout/home-layout.module#HomeLayoutModule'
+    }]
+  },
+  {
+    path: 'admin',
+    redirectTo: 'admin/dashboard',
+    pathMatch: 'full',
+  }, {
+    path: 'admin',
     component: AdminLayoutComponent,
     children: [{
       path: '',

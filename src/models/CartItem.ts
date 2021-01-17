@@ -4,6 +4,6 @@ export class ShopItem {
     name: string;
     details: string;
     heart: boolean;
-    uuid?: any;
+    id: number;
     remove?: boolean;
   }

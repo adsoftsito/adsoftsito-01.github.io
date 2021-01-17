@@ -6,7 +6,7 @@
   <div class="container-fluid">
 
     <ng-container *ngIf="cartState$ | async as state">
-        <app-cart [state]="state"></app-cart>
+       <!-- <app-cart [state]="state"></app-cart> -->
         <mat-card>
             <mat-card-header>
                 <mat-card-title>Total: {{ state.tot.subTot | currency:'USD':'symbol':'1.2-2' }}</mat-card-title>
@@ -69,7 +69,7 @@
                             <img  width="200" height="200" src={{product.url}}>
                         </span> 
                     </p>    
-                        <h4 class="card-title">{{product.description}}</h4>
+                        <h4 class="card-title">{{product.id}} - {{product.description}}</h4>
 
                     
                     

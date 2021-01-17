@@ -6,6 +6,8 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { AppComponent } from './app.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+
 /*
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
@@ -17,6 +19,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { UpgradeComponent } from './upgrade/upgrade.component';
 */
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
@@ -28,7 +31,15 @@ import {
   AgmCoreModule
 } from '@agm/core';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
+
 import { GraphQLModule } from './graphql.module';
+import { CarritocomprasComponent } from './carritocompras/carritocompras.component';
+//import { CartComponent } from './cart/cart.component';
+//import { CheckoutDialog } from './checkout/checkout.component';
+//CarritocomprasComponent,
+    //CartComponent,
+    //CheckoutDialog
 
 @NgModule({
   imports: [
@@ -38,6 +49,7 @@ import { GraphQLModule } from './graphql.module';
     BrowserAnimationsModule,
     FormsModule,
     BrowserModule,
+    CommonModule,
     ReactiveFormsModule,
     HttpClientModule,
     ComponentsModule,
@@ -51,9 +63,18 @@ import { GraphQLModule } from './graphql.module';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
+    HomeLayoutComponent,
+    UserProfileComponent, 
+    CarritocomprasComponent,
+    //CartComponent,
+    //CheckoutDialog
+
+
 
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  //entryComponents: [CheckoutDialog]
+
 })
 export class AppModule { }
