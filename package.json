@@ -32,7 +32,7 @@
     "@angular/router": "10.1.4",
     "@apollo/client": "^3.0.0",
     "ajv": "6.12.5",
-    "apollo-angular": "^2.1.0",
+    "apollo-angular": "^2.2.0",
     "arrive": "2.4.1",
     "bootstrap": "4.5.2",
     "bootstrap-material-design": "4.1.3",
