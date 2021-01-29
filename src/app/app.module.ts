@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { AppComponent } from './app.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 /*
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -36,7 +37,7 @@ import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component
 import { GraphQLModule } from './graphql.module';
 import { CarritocomprasComponent } from './carritocompras/carritocompras.component';
 //import { CartComponent } from './cart/cart.component';
-//import { CheckoutDialog } from './checkout/checkout.component';
+import { CheckoutDialog } from './checkout/checkout.component';
 //CarritocomprasComponent,
     //CartComponent,
     //CheckoutDialog
@@ -58,7 +59,8 @@ import { CarritocomprasComponent } from './carritocompras/carritocompras.compone
     AgmCoreModule.forRoot({
       apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
     }),
-    GraphQLModule
+    GraphQLModule,
+    MatDialogModule
   ],
   declarations: [
     AppComponent,
@@ -67,14 +69,14 @@ import { CarritocomprasComponent } from './carritocompras/carritocompras.compone
     UserProfileComponent, 
     CarritocomprasComponent,
     //CartComponent,
-    //CheckoutDialog
+    CheckoutDialog
 
 
 
   ],
   providers: [],
   bootstrap: [AppComponent],
-  //entryComponents: [CheckoutDialog]
+  entryComponents: [CheckoutDialog]
 
 })
 export class AppModule { }

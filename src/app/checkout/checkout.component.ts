@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ShoppingCartService } from '../../services/shopping-cart.service';
 import { GraphqlSalesService} from '../../services/graphql.sales.service';
-import { Router } from '@angular/router';
 import { StorageService } from "../../services/storage.service";
 import { Totales } from "../../models/totales";
 import { ShopItem } from "../../models/CartItem";
+import { LoginService } from "../../services/login.service";
+import { Router } from '@angular/router';
 
 //import { Observable, of } from 'rxjs';
 //import { switchMap, shareReplay, share, take } from 'rxjs/operators';
@@ -31,7 +32,8 @@ export class CheckoutDialog implements OnInit {
     private graphqlSalesService: GraphqlSalesService,
     private storageService: StorageService,
     private router: Router,
-    private dialogRef: MatDialogRef<CheckoutDialog>) { }
+    private dialogRef: MatDialogRef<CheckoutDialog>,
+    private loginService: LoginService) { }
 
   ngOnInit() {
     this.state.subscribe(cart => { 
@@ -72,17 +74,19 @@ export class CheckoutDialog implements OnInit {
         precio: element.price
       })
     });
-    alert(JSON.stringify(products));
-/*
+   // alert(JSON.stringify(products));
+
     this.graphqlSalesService.createSale(mytoken, this.myTotal.subTot,
                   this.myTotal.tax, this.myTotal.grandTot, products)
     .subscribe(({ data }) => {
        console.log('Sale created :  ', data);
-       this.router.navigate(['/dashboard']);
+       //this.router.navigate(['/']);
+       this.loginService.showData("token here !!!");
+
     }, (error) => {
        console.log('there was an error sending the query', error);
     });
-  */
+
    
   }
 }

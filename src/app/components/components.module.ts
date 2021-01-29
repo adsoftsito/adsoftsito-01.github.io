@@ -6,6 +6,7 @@ import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { HomeNavbarComponent } from './home-navbar/home-navbar.component';
+//import { CheckoutDialog } from '../checkout/checkout.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { HomeNavbarComponent } from './home-navbar/home-navbar.component';
     FooterComponent,
     NavbarComponent,
     SidebarComponent,
-    HomeNavbarComponent
+    HomeNavbarComponent,
+   // CheckoutDialog
   ],
   exports: [
     FooterComponent,

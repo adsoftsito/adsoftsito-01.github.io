@@ -42,7 +42,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
 
     
-    this.querySubscription = this.graphqlProductsService.links()
+    this.querySubscription = this.graphqlProductsService.links("-")
       .valueChanges
       .subscribe(({ data, loading }) => {
         this.loading = loading;

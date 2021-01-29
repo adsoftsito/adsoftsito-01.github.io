@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ShoppingCartService, CartItem } from '../../services/shopping-cart.service';
+//import { ShoppingCartService, CartItem } from '../../services/shopping-cart.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CheckoutDialog } from '../checkout/checkout.component';
 
@@ -12,7 +12,9 @@ export class CartComponent  {
 
   @Input() state: any;
 
-  constructor(private shoppingCartService: ShoppingCartService, private dialog: MatDialog) { }
+  constructor(
+    /*private shoppingCartService: ShoppingCartService,*/
+     private dialog: MatDialog) { }
 
   checkout(): void {
     // this.shoppingCartService.checkout();

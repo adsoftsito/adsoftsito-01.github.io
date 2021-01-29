@@ -25,7 +25,7 @@ import { StorageService } from "../../../services/storage.service";
 
 //import { CarritocomprasComponent } from '../../carritocompras/carritocompras.component';
 import { CartComponent } from '../../cart/cart.component';
-import { CheckoutDialog } from '../../checkout/checkout.component';
+//import { CheckoutDialog } from '../../checkout/checkout.component';
 //CarritocomprasComponent,
     //CartComponent,
     //CheckoutDialog
@@ -33,6 +33,7 @@ import { CheckoutDialog } from '../../checkout/checkout.component';
 import { ShoppingCartService } from '../../../services/shopping-cart.service';
 
 import { MaterialModule } from '../../material/material.module';
+import { LoginService } from "../../../services/login.service";
 
 @NgModule({
   imports: [
@@ -63,9 +64,9 @@ import { MaterialModule } from '../../material/material.module';
     //UpgradeComponent,
     //CarritocomprasComponent,
     CartComponent,
-    CheckoutDialog
+   // CheckoutDialog
   ],
-  providers: [StorageService, ShoppingCartService]
+  providers: [StorageService, ShoppingCartService, LoginService]
 
 
 })
