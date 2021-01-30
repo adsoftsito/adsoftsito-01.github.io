@@ -69,6 +69,14 @@
             <ng-container *ngIf="user">
 
             Bienvenido: {{user}} 
+
+           Cerrar Sesion
+            <button mat-raised-button (click)="logout()" class="btn btn-white btn-round btn-just-icon">
+               <i class="material-icons">login</i>
+               <div class="ripple-container"></div>
+            </button>
+
+
             </ng-container>
             
             <div class="input-group no-border">

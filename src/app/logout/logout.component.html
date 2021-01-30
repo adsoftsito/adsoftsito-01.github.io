@@ -4,8 +4,8 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-danger">
-                        <h4 class="card-title">Usuario Nuevo</h4>
-                        <p class="card-category">Completa tu perfil</p>
+                        <h4 class="card-title">Logout</h4>
+                        <p class="card-category">Cerrar sesion</p>
                     </div>
                     <div class="card-body">
                         <form>
@@ -18,31 +18,24 @@
                                 </div>
                             </div>
                             <div class="row">
-                                
-                                <div class="col-md-12">
-                                    <mat-form-field class="example-full-width">
-                                      <input matInput placeholder="Email" type="email" [(ngModel)]="myUser.email" name="email">
-                                    </mat-form-field>
-                                </div>
-                            </div>
 
-                            <div class="row">
-                            
                                 <div class="col-md-12">
                                     <mat-form-field class="example-full-width">
                                         <input matInput placeholder="password " type="password" [(ngModel)]="myUser.password" name="password">
                                       </mat-form-field>
-                                  </div>
+                                </div>
                             </div>
+                               
+                               
                             
-                            <button mat-raised-button type="button" class="btn btn-danger pull-right" (click)="addUser()">Update Profile</button>
+                            <button mat-raised-button type="button" class="btn btn-danger pull-right" (click)="loginUser()">Iniciar sesion</button>
+
                             <div class="clearfix"></div>
                         </form>
                     </div>
                 </div>
             </div>
-          
-        </div>
+                 </div>
     </div>
   </div>
   

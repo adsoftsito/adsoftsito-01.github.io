@@ -38,6 +38,8 @@ import { GraphQLModule } from './graphql.module';
 import { CarritocomprasComponent } from './carritocompras/carritocompras.component';
 //import { CartComponent } from './cart/cart.component';
 import { CheckoutDialog } from './checkout/checkout.component';
+import { LogoutComponent } from './logout/logout.component';
+
 //CarritocomprasComponent,
     //CartComponent,
     //CheckoutDialog
@@ -68,7 +70,7 @@ import { CheckoutDialog } from './checkout/checkout.component';
     HomeLayoutComponent,
     UserProfileComponent, 
     CarritocomprasComponent,
-    //CartComponent,
+    LogoutComponent,
     CheckoutDialog
 
 

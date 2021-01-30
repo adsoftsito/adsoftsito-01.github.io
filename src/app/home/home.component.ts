@@ -10,6 +10,7 @@ import { LoginService } from "../../services/login.service";
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
 import { NewUserComponent } from '../new-user/new-user.component';
+import { LogoutComponent } from '../logout/logout.component';
 
 
 @Component({
@@ -53,12 +54,22 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
   }
 
+  logout(): void {
+    // this.shoppingCartService.checkout();
+    
+    let dialogRef = this.dialog.open(LogoutComponent, {
+      // data: { state: this.state }, // now uses the observable
+      height: '400px',
+      width: '400px',
+    });
+  }
+
   newuser(): void {
     // this.shoppingCartService.checkout();
     
     let dialogRef = this.dialog.open(NewUserComponent, {
       // data: { state: this.state }, // now uses the observable
-      height: '400px',
+      height: '450px',
       width: '400px',
     });
   }
