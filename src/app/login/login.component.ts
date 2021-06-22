@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
 
   loginUser() {
 
-    //alert(JSON.stringify(this.myUser));
+    alert(JSON.stringify(this.myUser));
     this.graphqlService.tokenAuth(this.myUser.username, this.myUser.password)
     .subscribe(({ data }) => {
        console.log('logged: ', JSON.stringify(data));
