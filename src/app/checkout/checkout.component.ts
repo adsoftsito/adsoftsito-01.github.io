@@ -74,7 +74,7 @@ export class CheckoutDialog implements OnInit {
         precio: element.price
       })
     });
-   // alert(JSON.stringify(products));
+    alert(JSON.stringify(products));
 
     this.graphqlSalesService.createSale(mytoken, this.myTotal.subTot,
                   this.myTotal.tax, this.myTotal.grandTot, products)

@@ -70,7 +70,9 @@ export class GraphqlSalesService  {
   }
   createSale(mytoken: string, subtotal: number, iva: number, total: number, products : any) {
        console.log("token auth = " + mytoken);
-      return this.apollo.mutate({
+       alert(mytoken);
+       
+       return this.apollo.mutate({
         mutation: CREATESALE,
         variables: {
           subtotal: subtotal,
