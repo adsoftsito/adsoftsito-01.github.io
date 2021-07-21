@@ -25,6 +25,12 @@
           Complete my order <mat-icon>check</mat-icon>
         </button>
       </mat-card-actions>
+      <br>
+      <mat-card-actions style="text-align: right;">
+        <button type="button" mat-button color="accent" (click)="getCfdi()" >
+          Facturar <mat-icon></mat-icon>
+        </button>
+      </mat-card-actions>
   </mat-card>
   <div *ngFor="let item of s.cart">
     <p>
