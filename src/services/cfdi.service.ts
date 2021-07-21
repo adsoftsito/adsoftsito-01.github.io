@@ -1,35 +1,36 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-//import { ResponseApi } from '../models/responseapi';
-import { UserApi } from '../models/usersapi';
+//import { UserApi } from '../models/usersapi';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
+import { timeout } from 'rxjs/operators/timeout';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class GraalvService {
+export class CfdiService {
 
- apiURL = 'http://34.68.87.191:8192';
- //apiURL = 'http://192.168.0.5:8080';
-
+ apiURL = 'http://35.232.232.192:5000';
+ 
   constructor(private http: HttpClient) { }
 
-  /*========================================
-    CRUD Methods for consuming RESTful API
-  =========================================*/
-
+ 
   // Http Options
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Allow-Origin' : '*',
+      'Access-Control-Allow-Methods':'POST,OPTIONS' 
+
     })
   }  
- 
+
+  
 
   // HttpClient GET post() method 
- 
+  /*
   getVersion(): Observable<any> {
     return this.http.get<any>(this.apiURL + '/home/about?command=v', this.httpOptions)
     .pipe(
@@ -37,19 +38,19 @@ export class GraalvService {
       catchError(this.handleError)
     )
   }
+  */
 
-
-  // HttpClient API post() method 
- 
-  loginUser(userApi): Observable<UserApi> {
-    console.log(JSON.stringify(userApi));
-    return this.http.post<UserApi>(this.apiURL + '/api/auth/signin', JSON.stringify(userApi), this.httpOptions)
+  // HttpClient POST complement method 
+  getCfdi(cfdi): Observable<any> {
+    //console.log(JSON.stringify(cfdi));
+    return this.http.post<any>(this.apiURL + '/', cfdi, this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
     )
   }
 
+  
   // Error handling 
   handleError(error) {
      let errorMessage = '';
@@ -61,7 +62,8 @@ export class GraalvService {
        errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
      }
      window.alert(errorMessage);
-     return throwError(errorMessage);
+    //  return throwError(errorMessage);
+     return errorMessage;
   }
 
 

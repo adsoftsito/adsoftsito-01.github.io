@@ -1,14 +1,60 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { CarritocomprasComponent } from 'app/carritocompras/carritocompras.component';
 import * as Chartist from 'chartist';
+import { Subscription } from 'rxjs';
+import { GraphqlProductsService} from '../../services/graphql.products.service';
+import { ShoppingCartService, CartItem, Totals } from '../../services/shopping-cart.service';
+import { ShopItem } from '../../models/CartItem'
+import { ProductApi } from '../../models/productapi'
+
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
 
-  constructor() { }
+  loading: boolean;
+  posts: any;
+  private querySubscription: Subscription;
+
+  constructor(private graphqlProductsService: GraphqlProductsService,
+    private shoppingCartService: ShoppingCartService
+    ) {}
+
+  cartState$ = this.shoppingCartService.state$;
+  
+  addItemToCart(item: ProductApi) {
+    //alert(JSON.stringify(item));
+    var myItem = new ShopItem();
+    myItem.id = item.id;
+    myItem.name = item.description;
+    myItem.price = item.precio;
+    this.shoppingCartService.addCartItem(myItem);
+  }
+
+  remove(item: CartItem): void {
+    this.shoppingCartService.removeCartItem(item);
+  }
+  ngOnInit() {
+
+
+
+    
+    this.querySubscription = this.graphqlProductsService.links("-")
+      .valueChanges
+      .subscribe(({ data, loading }) => {
+        this.loading = loading;
+        this.posts = JSON.parse(JSON.stringify(data)).links;
+        console.log(JSON.stringify(this.posts))
+      });
+  }
+
+  ngOnDestroy() {
+    this.querySubscription.unsubscribe();
+  }
+  
   startAnimationForLineChart(chart){
       let seq: any, delays: any, durations: any;
       seq = 0;
@@ -65,8 +111,30 @@ export class DashboardComponent implements OnInit {
 
       seq2 = 0;
   };
+/*
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyAF1og02DFYvP9tjGYNT6YlP2YSl6-G4RQ",
+    authDomain: "elmandadero-storage.firebaseapp.com",
+    projectId: "elmandadero-storage",
+    storageBucket: "elmandadero-storage.appspot.com",
+    messagingSenderId: "570694818428",
+    appId: "1:570694818428:web:f28410432578bf336647f9"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+
+
   ngOnInit() {
-      /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
 
       const dataDailySalesChart: any = {
           labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
@@ -89,7 +157,6 @@ export class DashboardComponent implements OnInit {
       this.startAnimationForLineChart(dailySalesChart);
 
 
-      /* ----------==========     Completed Tasks Chart initialization    ==========---------- */
 
       const dataCompletedTasksChart: any = {
           labels: ['12p', '3p', '6p', '9p', '12p', '3a', '6a', '9a'],
@@ -114,7 +181,6 @@ export class DashboardComponent implements OnInit {
 
 
 
-      /* ----------==========     Emails Subscription Chart initialization    ==========---------- */
 
       var datawebsiteViewsChart = {
         labels: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
@@ -146,5 +212,5 @@ export class DashboardComponent implements OnInit {
       //start animation for the Emails Subscription Chart
       this.startAnimationForBarChart(websiteViewsChart);
   }
-
+*/
 }
