@@ -175,7 +175,7 @@ var DashboardComponent = /** @class */ (function () {
     };
     DashboardComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.querySubscription = this.graphqlProductsService.links()
+        this.querySubscription = this.graphqlProductsService.links("-")
             .valueChanges
             .subscribe(function (_a) {
             var data = _a.data, loading = _a.loading;
