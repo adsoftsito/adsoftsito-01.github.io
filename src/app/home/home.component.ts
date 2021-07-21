@@ -6,6 +6,11 @@ import { GraphqlProductsService} from '../../services/graphql.products.service';
 import { ShoppingCartService, CartItem, Totals } from '../../services/shopping-cart.service';
 import { ShopItem } from '../../models/CartItem'
 import { ProductApi } from '../../models/productapi'
+import { LoginService } from "../../services/login.service";
+import { MatDialog } from '@angular/material/dialog';
+import { LoginComponent } from '../login/login.component';
+import { NewUserComponent } from '../new-user/new-user.component';
+import { LogoutComponent } from '../logout/logout.component';
 
 
 @Component({
@@ -15,12 +20,17 @@ import { ProductApi } from '../../models/productapi'
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
+  valor : string;
+  token : string;
+  user : string
   loading: boolean;
   posts: any;
   private querySubscription: Subscription;
 
   constructor(private graphqlProductsService: GraphqlProductsService,
-    private shoppingCartService: ShoppingCartService
+    private shoppingCartService: ShoppingCartService,
+    private loginService : LoginService,
+    private dialog : MatDialog
     ) {}
 
   cartState$ = this.shoppingCartService.state$;
@@ -33,22 +43,68 @@ export class HomeComponent implements OnInit, OnDestroy {
     myItem.price = item.precio;
     this.shoppingCartService.addCartItem(myItem);
   }
-
-  remove(item: CartItem): void {
-    this.shoppingCartService.removeCartItem(item);
-  }
-  ngOnInit() {
-
-
-
+  
+  checkout(): void {
+    // this.shoppingCartService.checkout();
     
-    this.querySubscription = this.graphqlProductsService.links()
+    let dialogRef = this.dialog.open(LoginComponent, {
+      // data: { state: this.state }, // now uses the observable
+      height: '400px',
+      width: '400px',
+    });
+  }
+
+  logout(): void {
+    // this.shoppingCartService.checkout();
+    
+    let dialogRef = this.dialog.open(LogoutComponent, {
+      // data: { state: this.state }, // now uses the observable
+      height: '400px',
+      width: '400px',
+    });
+  }
+
+  newuser(): void {
+    // this.shoppingCartService.checkout();
+    
+    let dialogRef = this.dialog.open(NewUserComponent, {
+      // data: { state: this.state }, // now uses the observable
+      height: '450px',
+      width: '400px',
+    });
+  }
+
+  search()
+  {
+    //alert(this.valor);
+    this.buscar(this.valor);
+  }
+
+  buscar(valor :string) {
+
+    this.querySubscription = this.graphqlProductsService.links(valor)
       .valueChanges
       .subscribe(({ data, loading }) => {
         this.loading = loading;
         this.posts = JSON.parse(JSON.stringify(data)).links;
         console.log(JSON.stringify(this.posts))
       });
+
+  }
+  remove(item: CartItem): void {
+    this.shoppingCartService.removeCartItem(item);
+  }
+  ngOnInit() {
+
+    this.querySubscription = this.loginService.getData().subscribe(data => {
+      //alert("print data"+ data);
+      this.user = data.user;
+
+      this.token = data.token;
+      console.log("token: " + this.token);
+    });
+
+   this.buscar("-");
   }
 
   ngOnDestroy() {

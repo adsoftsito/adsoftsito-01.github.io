@@ -398,6 +398,37 @@
     }
 }
 
+.main-panel-home{
+    position: relative;
+    float: right;
+    //width: $sidebar-width;
+    width: 100%;
+    @include transition (0.33s, cubic-bezier(0.685, 0.0473, 0.346, 1));
+
+     .main-content-home{
+        margin-top: 70px;
+        padding: 0px 10px;
+        min-height: calc(100vh - 123px);
+    }
+
+     .footer{
+        border-top: 1px solid #e7e7e7;
+    }
+
+     .navbar{
+        margin-bottom: 0;
+    }
+
+    .header{
+        margin-bottom: 30px;
+
+        .title{
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    }
+}
+
 .perfect-scrollbar-on{
     .sidebar,
     .main-panel{

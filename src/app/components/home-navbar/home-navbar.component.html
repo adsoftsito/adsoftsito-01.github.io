@@ -10,7 +10,7 @@
             <span class="navbar-toggler-icon icon-bar"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navigation">
-            <form class="navbar-form">
+        <!--    <form class="navbar-form">
                 <div class="input-group no-border">
                     <input type="text" value="" class="form-control" placeholder="Search...">
                     <button mat-raised-button type="submit" class="btn btn-white btn-round btn-just-icon">
@@ -19,6 +19,7 @@
                     </button>
                 </div>
             </form>
+        -->
             <ul class="navbar-nav">
                 <li class="nav-item">
                   <!--  <a class="nav-link" href="javascript:void(0)"> -->
@@ -50,13 +51,19 @@
             -->
                 <li class="nav-item">
                     
-                                        <a class="nav-link" [routerLink]="['/login']">
+                                        <a class="nav-link" (onclick)="checkout()">
                                             <i class="material-icons">login</i>
                                             <p>
                                                 <span class="d-lg-none d-md-block">Account</span>
                                             </p>
                                         </a>
-                                    </li>
+                                    <!--
+                                    <button mat-raised-button (click)="checkout()" class="btn btn-white btn-round btn-just-icon">
+                                        <i class="material-icons">login</i>
+                                        <div class="ripple-container"></div>
+                                    </button>
+                                -->
+                </li>
                 <li class="nav-item">
 <!--
                     <a class="nav-link" [routerLink]="[menuItem.path]">

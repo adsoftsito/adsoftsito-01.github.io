@@ -27,6 +27,19 @@ const LINKS = gql`
   }
 `;
 
+const LINKSPARAM = gql`
+  query Links($nombre: String!) {
+    links(nombre: $nombre) {
+      id
+      url
+      description
+      precio
+      postedBy {
+        username
+      }
+    }
+  }
+`;
 const CREATELINK = gql`
   mutation CreateLink($url: String!, $description: String!, $precio: Float!) {
     createLink(url: $url, description: $description, precio: $precio) {
@@ -50,11 +63,24 @@ export class GraphqlProductsService  {
 
   constructor(private apollo: Apollo) {}
 
-  links() {
- 
-    return this.apollo.watchQuery({
-      query: LINKS 
-    });
+  links(valor : string) {
+    //alert(valor);
+    if (valor=="-")
+    {
+      return this.apollo.watchQuery({
+        query: LINKS 
+      });
+    }
+    else
+    {
+      //alert(valor);
+      return this.apollo.watchQuery({
+        query: LINKSPARAM,
+        variables: {
+          nombre: valor
+        }, 
+      });
+    }
   
   }
   createLink(mytoken: string, url: string, description: string, precio: number) {
