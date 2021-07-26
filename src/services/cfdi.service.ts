@@ -11,7 +11,7 @@ import { timeout } from 'rxjs/operators/timeout';
 
 export class CfdiService {
 
- apiURL = 'http://104.198.201.106:8081';
+ apiURL = 'http://34.122.129.60:8081';
  
   constructor(private http: HttpClient) { }
 
