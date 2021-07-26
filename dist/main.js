@@ -170,7 +170,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var CfdiService = /** @class */ (function () {
     function CfdiService(http) {
         this.http = http;
-        this.apiURL = 'http://104.198.201.106:8081';
+        this.apiURL = 'http://34.122.129.60:8081';
         // Http Options
         this.httpOptions = {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({
@@ -289,7 +289,7 @@ import { HttpLink } from 'apollo-angular/http';
 import { InMemoryCache,ApolloLink } from '@apollo/client/core';
 import { setContext } from '@apollo/client/link/context';
 */
-var uri = 'http://104.198.201.106:8082/graphql/'; // <-- add the URL of the GraphQL server here
+var uri = 'http://34.122.129.60:8082/graphql/'; // <-- add the URL of the GraphQL server here
 function createApollo(httpLink) {
     return {
         link: httpLink.create({ uri: uri }),
