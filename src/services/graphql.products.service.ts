@@ -40,9 +40,12 @@ const LINKSPARAM = gql`
     }
   }
 `;
+
+// 'idprod', 'codigosat', 'noidentificacion', 'claveunidad', 'descuento', 'trasladoiva', 'retiva', and 'ieps'
+
 const CREATELINK = gql`
   mutation CreateLink($url: String!, $description: String!, $precio: Float!) {
-    createLink(url: $url, description: $description, precio: $precio) {
+    createLink(url: $url, description: $description, precio: $precio, idprod:"", codigosat: "", noidentificacion: "", claveunidad: "", descuento: 0.00, trasladoiva: 0.00, retiva: 0.00, ieps: 0.00) {
       id
       url
       description
