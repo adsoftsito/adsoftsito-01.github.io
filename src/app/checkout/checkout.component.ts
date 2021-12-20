@@ -7,6 +7,7 @@ import { Totales } from "../../models/totales";
 import { ShopItem } from "../../models/CartItem";
 import { LoginService } from "../../services/login.service";
 import { Router } from '@angular/router';
+import { CfdiService } from '../../services/cfdi.service';
 
 //import { Observable, of } from 'rxjs';
 //import { switchMap, shareReplay, share, take } from 'rxjs/operators';
@@ -28,6 +29,7 @@ export class CheckoutDialog implements OnInit {
 
     // @Inject(MAT_DIALOG_DATA) public data: any,
   constructor(
+    private cfdiService: CfdiService,
     private shoppingCartService: ShoppingCartService,
     private graphqlSalesService: GraphqlSalesService,
     private storageService: StorageService,
@@ -64,6 +66,122 @@ export class CheckoutDialog implements OnInit {
     //this.shoppingCartService.checkout();
   }
 
+  getCfdi() {
+    /*
+    var products = [];
+    var mytoken = this.storageService.getSession("token");
+    this.myCar.forEach(element => {
+      products.push({
+        product : element.id,
+        cantidad : 1,
+        precio: element.price
+      })
+    });
+    alert(JSON.stringify(products));
+    */
+
+    var mycfdi =
+    {
+      "serie": "AAA",
+      "folio": 1000,
+      "formapago":"03", 
+      "condicionesdepago":"CONTADO", 
+      "subtotal":"1850", 
+      "descuento":"175.00", 
+      "moneda":"MXN", 
+      "total":"1943.00", 
+      "tipodecomprobante":"I", 
+      "metodopago":"PUE", 
+      "lugarexpedicion":"68050",
+      "emisor": { 
+                  "rfc" : "CETA7610219C9",
+                  "nombre": "ADOLFO CENTENO TELLEZ",
+                  "regimenfiscal":"601"
+  
+                },
+      "receptor": {
+                    "rfc": "KUB1004199C9",
+                    "nombre": "KUBEET SRL DE CV",
+                    "usocfdi":"G01"
+                 },
+      "conceptos": [
+                  {
+                     "claveprodserv" : "01010101",
+                     "noidentificacion": "AULOG001",
+                     "cantidad": "5",
+                     "claveunidad": "H87",
+                     "unidad": "Pieza",
+                     "descripcion": "Aurriculares USB Logitech",
+                     "valorunitario": "350.00",
+                     "importe": "1750.00",
+                     "descuento": "175.00",
+                     "impuestos": {
+                        "traslados" : [
+                            {
+                                "base": "1575.00",
+                                "impuesto": "002",
+                                "tipofactor": "Tasa",
+                                "tasaocuota": "0.160000",
+                                "importe": "252.00"
+                            }
+                        ],
+                        "retenciones":[]
+  
+                     }
+                  },
+                  {
+                     "claveprodserv" : "01010101",
+                     "noidentificacion": "USB",
+                     "cantidad": "1",
+                     "claveunidad": "H87",
+                     "unidad": "Pieza",
+                     "descripcion": "Memoria USB 32gb marca Kingston",
+                     "valorunitario": "100.00",
+                     "importe": "100.00",
+                     "descuento": "0.00",
+                      "impuestos": {
+                        "traslados" : [
+                            {
+                                "base": "100.00",
+                                "impuesto": "002",
+                                "tipofactor": "Tasa",
+                                "tasaocuota": "0.160000",
+                                "importe": "16.00"
+                            }
+                        ],
+                        "retenciones":[]
+  
+  
+                     }
+                  }
+      ],
+      "impuestos": {
+          "totalimpuestostrasladados": "268.00",
+          "traslados" : [
+              {
+              "impuesto":"002",
+              "tipofactor":"Tasa",
+              "tasaocuota":"0.160000",
+              "importe":"268.00"
+              }
+          ]
+      }
+      
+  }
+   // alert("cfdi ...");
+    this.cfdiService.getCfdi(mycfdi)
+    .subscribe(( data ) => {
+       console.log('Cfdi ok :  ', data);
+       //this.router.navigate(['/']);
+       alert(JSON.stringify(data));
+       
+    }, (error) => {
+       console.log('there was an error in cfdi : ', error);
+    });
+
+   
+  }
+
   addSale() {
     var products = [];
     var mytoken = this.storageService.getSession("token");
@@ -74,12 +192,13 @@ export class CheckoutDialog implements OnInit {
         precio: element.price
       })
     });
-   // alert(JSON.stringify(products));
+    alert(JSON.stringify(products));
 
     this.graphqlSalesService.createSale(mytoken, this.myTotal.subTot,
                   this.myTotal.tax, this.myTotal.grandTot, products)
     .subscribe(({ data }) => {
        console.log('Sale created :  ', data);
+       alert(JSON.stringify(data));
        //this.router.navigate(['/']);
        this.loginService.showData("token here !!!");
 
