@@ -289,7 +289,7 @@ import { HttpLink } from 'apollo-angular/http';
 import { InMemoryCache,ApolloLink } from '@apollo/client/core';
 import { setContext } from '@apollo/client/link/context';
 */
-var uri = 'http://34.122.129.60:8082/graphql/'; // <-- add the URL of the GraphQL server here
+var uri = 'http://198.251.74.249:8080/graphql/'; // <-- add the URL of the GraphQL server here
 function createApollo(httpLink) {
     return {
         link: httpLink.create({ uri: uri }),
