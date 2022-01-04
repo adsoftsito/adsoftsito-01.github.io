@@ -8,7 +8,7 @@ import { ComponentsModule } from './components/components.module';
 import { AppComponent } from './app.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { MatDialogModule } from '@angular/material/dialog';
-
+//import { CartComponent } from './cart/cart.component';
 /*
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
@@ -71,8 +71,9 @@ import { LogoutComponent } from './logout/logout.component';
     UserProfileComponent, 
     CarritocomprasComponent,
     LogoutComponent,
-    CheckoutDialog
-
+    CheckoutDialog,
+   // CartComponent
+     
 
 
   ],

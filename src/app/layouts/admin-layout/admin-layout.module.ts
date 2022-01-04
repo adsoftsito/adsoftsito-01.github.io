@@ -29,6 +29,12 @@ import { ShoppingCartService } from '../../../services/shopping-cart.service';
 //import { CartComponent } from '../../cart/cart.component';
 //import { CheckoutDialog } from '../../checkout/checkout.component';
 import { MaterialModule } from '../../material/material.module';
+import { FacturacionComponent } from '../../facturacion/facturacion.component';
+import { ClientesComponent } from '../../clientes/clientes.component';
+import { ConfiguracionComponent } from '../../configuracion/configuracion.component';
+import {NewClientComponent } from '../../new-client/new-client.component';
+import { LoginService } from "../../../services/login.service";
+import { CartComponent } from '../../cart/cart.component';
 
 @NgModule({
   imports: [
@@ -58,10 +64,14 @@ import { MaterialModule } from '../../material/material.module';
     //NotificationsComponent,
     UpgradeComponent,
     //CarritocomprasComponent,
-    //CartComponent,
-    //CheckoutDialog
+    CartComponent,
+    //CheckoutDialog,
+    FacturacionComponent,
+    ClientesComponent,
+    ConfiguracionComponent,
+    NewClientComponent
   ],
-  providers: [StorageService, ShoppingCartService]
+  providers: [StorageService, ShoppingCartService, LoginService]
 
 
 })

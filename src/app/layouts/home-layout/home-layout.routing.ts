@@ -60,7 +60,7 @@ export const HomeLayoutRoutes: Routes = [
     { path: 'home',      component: HomeComponent },
     { path: 'user-profile',   component: UserProfileComponent },
     { path: 'new-user',       component: NewUserComponent },
-    { path: 'new-product',    component: NewProductComponent },
+   // { path: 'new-product',    component: NewProductComponent },
     { path: 'login',          component: LoginComponent },
     { path: 'home/productos',      component: ProductsComponent },
     { path: 'carrito',        component: CarritocomprasComponent },
