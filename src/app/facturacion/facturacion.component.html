@@ -18,15 +18,19 @@
                     <div class="card-body table-responsive">
                         <table class="table table-hover">
                             <thead class="text-warning">
-                                <th>Clave</th>
-                                <th>Url</th>
-                                <th>Descripcion</th>
+                                <th>Id</th>
+                                <th>Serie</th>
+                                <th>Folio</th>
+                                <th>Importe</th>
+                                <th>Cliente</th>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let product of posts" >
                                     <td>{{ product.id }}</td>
-                                    <td>{{ product.url }}</td>
-                                    <td>{{ product.description }}</td>
+                                    <td>{{ product.serie }}</td>
+                                    <td>{{ product.folio }}</td>
+                                    <td>{{ product.total }}</td>
+                                    <td>{{ product.postedBy.username }}</td>
                                 </tr>
                               
                             </tbody>

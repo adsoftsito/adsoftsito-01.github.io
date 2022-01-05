@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { GraphqlProductsService} from '../../services/graphql.products.service';
+
 
 @Component({
   selector: 'app-clientes',
@@ -7,9 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClientesComponent implements OnInit {
 
-  constructor() { }
 
-  ngOnInit(): void {
+  loading: boolean;
+  posts: any;
+  private querySubscription: Subscription;
+
+  constructor(private graphqlProductsService: GraphqlProductsService) {}
+
+  ngOnInit() {
+    this.querySubscription = this.graphqlProductsService.links("-")
+      .valueChanges
+      .subscribe(({ data, loading }) => {
+        this.loading = loading;
+        this.posts = JSON.parse(JSON.stringify(data)).links;
+        console.log(JSON.stringify(this.posts))
+      });
   }
 
+  ngOnDestroy() {
+    this.querySubscription.unsubscribe();
+  }
+  
 }

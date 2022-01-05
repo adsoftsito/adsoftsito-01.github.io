@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { GraphqlSalesService } from '../../services/graphql.sales.service';
 
 @Component({
   selector: 'app-facturacion',
@@ -7,9 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FacturacionComponent implements OnInit {
 
-  constructor() { }
+  loading: boolean;
+  posts: any;
+  private querySubscription: Subscription;
 
-  ngOnInit(): void {
+  constructor(private graphqlProductsService: GraphqlSalesService) {}
+
+  ngOnInit() {
+    this.querySubscription = this.graphqlProductsService.sales()
+      .valueChanges
+      .subscribe(({ data, loading }) => {
+        this.loading = loading;
+        this.posts = JSON.parse(JSON.stringify(data)).sales;
+        console.log(JSON.stringify(this.posts))
+      });
   }
 
+  ngOnDestroy() {
+    this.querySubscription.unsubscribe();
+  }
+  
 }
