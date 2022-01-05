@@ -13,13 +13,13 @@ const TOKENAUTH = gql`
   }
 `;
 
-const LINKS = gql`
-  query Links {
-    links {
+const SALES = gql`
+  query Sales {
+    sales {
       id
-      url
-      description
-      precio
+      serie
+      folio
+      total
       postedBy {
         username
       }
@@ -27,16 +27,26 @@ const LINKS = gql`
   }
 `;
 
-/*
-  input Product {
-    product: Int
-    cantidad: Float
-    precio: Float
-  }
-*/
+
 const CREATESALE = gql`
   mutation CreateSale($subtotal: Float!, $iva: Float!, $total: Float!, $products : [DetailInput]!) {
-    createSale(subtotal: $subtotal, iva: $iva, total: $total, products : $products) {
+    createSale(
+                serie: "A",
+                folio: "2",
+                condicionesdepago: "CONTADO",
+                formapago: "03",
+                lugarexpedicion: "94740",
+                tipodecomprobante: "I",
+                metodopago: "PUE",
+                moneda: "MXN",
+                descuento: 0,
+                
+                totalimpuestosretenidos: 16,
+                totalimpuestostrasladados: $iva,
+    
+                subtotal: $subtotal, 
+                total: $total, 
+                products : $products) {
       id
       total
       postedBy {
@@ -61,13 +71,14 @@ export class GraphqlSalesService  {
 
   constructor(private apollo: Apollo) {}
 
-  links() {
+  sales() {
  
     return this.apollo.watchQuery({
-      query: LINKS 
+      query: SALES 
     });
   
   }
+
   createSale(mytoken: string, subtotal: number, iva: number, total: number, products : any) {
        console.log("token auth = " + mytoken);
        alert(mytoken);

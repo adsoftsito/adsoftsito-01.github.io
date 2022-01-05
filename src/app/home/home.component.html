@@ -19,8 +19,8 @@
             <div class="collapse navbar-collapse justify-content-end" id="navigation">
            
                 <ul class="navbar-nav">
+                  <!--
                     <li class="nav-item">
-                      <!--  <a class="nav-link" href="javascript:void(0)"> -->
                         <a class="nav-link" [routerLink]="['/admin']">
     
                             <i class="material-icons">dashboard</i>
@@ -29,7 +29,7 @@
                             </p>
                         </a>
                     </li>
-                   
+                  -->
                     <li class="nav-item">
                         <!--
                                             <a class="nav-link" (onclick)="checkout()">
@@ -39,7 +39,10 @@
                                                 </p>
                                             </a>
                                           -->
-                                            <button mat-raised-button (click)="checkout()" class="btn btn-white btn-round btn-just-icon">
+                                          
+                                            Login
+                                        
+                                            <button mat-raised-button (click)="login()" class="btn btn-white btn-round btn-just-icon">
                                               <i class="material-icons">login</i>
                                               <div class="ripple-container"></div>
                                           </button>
@@ -51,8 +54,9 @@
                             <p>{{menuItem.title}}</p>
                         </a>
                     -->
-    
                         <a class="nav-link" [routerLink]="['/new-user']">
+                          Usuario nuevo
+
                             <i class="material-icons">person</i>
                             <p>
                                 <span class="d-lg-none d-md-block">Account</span>
@@ -63,7 +67,7 @@
             </div>
         </div>
     </nav>
-      
+      <!--
       <ng-container *ngIf="cartState$ | async as state">
           <form class="navbar-form"> 
             <ng-container *ngIf="user">
@@ -127,34 +131,14 @@
             </mat-card-actions>
           </mat-card>
         <hr />
-    <!--
-        <mat-card *ngFor="let item of state.store">
-              <mat-card-header>
-                  {{ item.name }}
-              </mat-card-header>		
-          <mat-card-subtitle>
-            
-            <ul>
-              <li>{{ item.details }}</li>
-              <li>{{ item.price | currency:'USD':'symbol':'1.2-2' }}</li>
-            </ul>
-          </mat-card-subtitle>
-          <mat-card-actions>
-      
-              <button mat-flat-button color="primary" role="button" (click)="addItemToCart(item)">
-            <mat-icon>add_shopping_cart</mat-icon>
-            Add to cart
-          </button>
-          </mat-card-actions>
-        </mat-card>
-      -->
+   
       </ng-container>
-      
+    -->
     
       <div class="row"> 
   
-     
-            
+      <h1>under construccion</h1> 
+            <!--
                 <div class="col-md-4" *ngFor="let product of posts">
                 <div class="card card-chart">
                     <div class="card-header card-header-success">
@@ -188,15 +172,11 @@
                               <mat-icon>add_shopping_cart</mat-icon>
                               Add to cart
                             </button>
-                          <!--
-                          <i class="material-icons text-danger">warning</i>
-                          <a href="javascript:void(0)"> Comprar </a>
-                      -->
                       </div>
                     </div>
                 </div>
                 </div>
-              
+              -->
         </div> 
      
      

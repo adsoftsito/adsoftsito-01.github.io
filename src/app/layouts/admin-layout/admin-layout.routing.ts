@@ -13,6 +13,10 @@ import { ProductsComponent } from '../../products/products.component';
 import { LoginComponent } from '../../login/login.component';
 import { NewProductComponent } from '../../new-product/new-product.component';
 import { CarritocomprasComponent } from '../../carritocompras/carritocompras.component';
+import { FacturacionComponent } from '../../facturacion/facturacion.component';
+import { ClientesComponent } from '../../clientes/clientes.component';
+import { ConfiguracionComponent } from '../../configuracion/configuracion.component';
+import { NewClientComponent } from '../../new-client/new-client.component';
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -57,17 +61,23 @@ export const AdminLayoutRoutes: Routes = [
     //         component: UpgradeComponent
     //     }]
     // }
-    { path: 'admin/dashboard',      component: DashboardComponent },
-    { path: 'user-profile',   component: UserProfileComponent },
-    { path: 'new-user',       component: NewUserComponent },
-    { path: 'new-product',    component: NewProductComponent },
-    { path: 'login',          component: LoginComponent },
-    { path: 'admin/productos',      component: ProductsComponent },
-    { path: 'carrito',        component: CarritocomprasComponent },
-    { path: 'table-list',     component: TableListComponent },
-    { path: 'typography',     component: TypographyComponent },
-    { path: 'icons',          component: IconsComponent },
-    { path: 'maps',           component: MapsComponent },
-    { path: 'notifications',  component: NotificationsComponent },
-    { path: 'upgrade',        component: UpgradeComponent },
+    { path: 'admin/dashboard',     component: DashboardComponent },
+    { path: 'admin/facturacion',   component: FacturacionComponent },
+    { path: 'admin/productos',     component: ProductsComponent },
+    { path: 'admin/clientes',      component: ClientesComponent },
+    { path: 'admin/configuracion', component: ConfiguracionComponent },
+    { path: 'admin/new-product',   component: NewProductComponent },
+    { path: 'admin/new-client',    component: NewClientComponent },
+
+
+
+    //{ path: 'new-user',       component: NewUserComponent },
+    //{ path: 'login',          component: LoginComponent },
+    //{ path: 'carrito',        component: CarritocomprasComponent },
+    //{ path: 'admin/table-list',     component: TableListComponent },
+    //{ path: 'typography',     component: TypographyComponent },
+    //{ path: 'icons',          component: IconsComponent },
+    //{ path: 'maps',           component: MapsComponent },
+    //{ path: 'notifications',  component: NotificationsComponent },
+    //{ path: 'upgrade',        component: UpgradeComponent },
 ];

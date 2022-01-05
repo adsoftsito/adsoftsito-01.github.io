@@ -4,6 +4,7 @@ import { GraphqlUsersService} from '../../services/graphql.users.service';
 import { StorageService } from "../../services/storage.service";
 import { LoginService } from "../../services/login.service";
 import { Router } from '@angular/router';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
   constructor(private graphqlService : GraphqlUsersService,
               private storageService : StorageService,
               private loginService : LoginService,
-              private router: Router)
+              private router: Router,
+              private dialogRef: MatDialogRef<LoginComponent >)
             { }
 
   ngOnInit(): void {
@@ -28,7 +30,8 @@ export class LoginComponent implements OnInit {
     alert(JSON.stringify(this.myUser));
     this.graphqlService.tokenAuth(this.myUser.username, this.myUser.password)
     .subscribe(({ data }) => {
-       console.log('logged: ', JSON.stringify(data));
+       console.log('user logged: ', JSON.stringify(data));
+       this.storageService.setSession("user", this.myUser.username);
        this.storageService.setSession("token", JSON.parse(JSON.stringify(data)).tokenAuth.token);
       //this.storageService.setLocal("token", JSON.parse(JSON.stringify(data)).tokenAuth.token);
       var mydata = {
@@ -37,7 +40,8 @@ export class LoginComponent implements OnInit {
       };
 
       this.loginService.showData(mydata);
-       this.router.navigate(['/']);
+      this.dialogRef.close();
+       this.router.navigate(['/admin/admin/dashboard']);
 
     }, (error) => {
        console.log('there was an error sending the query', error);
