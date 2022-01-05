@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
 import { NewUserComponent } from '../new-user/new-user.component';
 import { LogoutComponent } from '../logout/logout.component';
+import { StorageService } from "../../services/storage.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -28,7 +29,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   constructor(private graphqlProductsService: GraphqlProductsService,
     private shoppingCartService: ShoppingCartService,
     private loginService : LoginService,
-    private dialog : MatDialog
+    private dialog : MatDialog,
+    private storageService : StorageService
+
     ) {}
 
   cartState$ = this.shoppingCartService.state$;
@@ -74,7 +77,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   search()
   {
-    //alert(this.valor);
+    alert(this.valor);
     this.buscar(this.valor);
   }
 
@@ -93,15 +96,19 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.shoppingCartService.removeCartItem(item);
   }
   ngOnInit() {
-
+/*
     this.querySubscription = this.loginService.getData().subscribe(data => {
-      //alert("print data"+ data);
+      alert("print data"+ data);
       this.user = data.user;
 
       this.token = data.token;
+      console.log("user: " + this.user);
+
       console.log("token: " + this.token);
     });
-
+*/
+    this.user = this.storageService.getSession("user");
+    this.token = this.storageService.getSession("token");
    this.buscar("-");
   }
 

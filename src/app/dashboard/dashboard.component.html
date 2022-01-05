@@ -7,11 +7,12 @@
 
     <ng-container *ngIf="cartState$ | async as state">
       <form class="navbar-form"> 
-        <ng-container *ngIf="!user">
+        <ng-container *ngIf="user">
 
-        Bienvenido: {{user}} 
+        Bienvenido: <b>{{user}}</b> 
 
-       Cerrar Sesion
+        Cerrar Sesion
+
         <button mat-raised-button (click)="logout()" class="btn btn-white btn-round btn-just-icon">
            <i class="material-icons">login</i>
            <div class="ripple-container"></div>
@@ -20,17 +21,10 @@
 
         </ng-container>
         
-        <div class="input-group no-border">
-          <input type="text" [(ngModel)]="valor" name="valor" class="form-control" placeholder="Producto o Codigo de Barras...">
-          <button mat-raised-button (click)="search()" class="btn btn-white btn-round btn-just-icon">
-              <i class="material-icons">search</i>
-              <div class="ripple-container"></div>
-          </button>
-          
-      </div>
+        
       </form> 
 
-      <ng-container *ngIf="!user">
+      <ng-container *ngIf="user">
 
         <app-cart [state]="state"></app-cart> 
       </ng-container>
@@ -90,25 +84,34 @@
     </mat-card>
   -->
   </ng-container>
-  
+  <div class="input-group no-border">
+    <input type="text" [(ngModel)]="valor" name="valor" class="form-control" placeholder="Producto o Codigo de Barras...">
+    <button mat-raised-button (click)="search()" class="btn btn-white btn-round btn-just-icon">
+        <i class="material-icons">search</i>
+        <div class="ripple-container"></div>
+    </button>
+    
+</div>
   
   <div class="row"> 
   
      
             
-    <div class="col-md-4" *ngFor="let product of posts">
+    <div class="col-md-2" *ngFor="let product of posts">
     <div class="card card-chart">
-        <div class="card-header card-header-success">
-          <img  width="50" height="50" src={{product.url}}>
+        <!--     
+           <div class="card-header card-header-success">
+              <img  width="50" height="50" src={{product.url}}>
           Vendedor: {{product.postedBy.username}}
 
         </div>
+         -->
         <div class="card-body">
 
           <p class="card-category">
 
               <span class="text-success">
-                  <img  width="200" height="200" src={{product.url}}>
+                  <img  width="120" height="120" src={{product.url}}>
               </span> 
           </p>    
               <h4 class="card-title">{{product.id}} - {{product.description}}</h4>

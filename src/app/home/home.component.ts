@@ -44,7 +44,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.shoppingCartService.addCartItem(myItem);
   }
   
-  checkout(): void {
+  login(): void {
     // this.shoppingCartService.checkout();
     
     let dialogRef = this.dialog.open(LoginComponent, {
