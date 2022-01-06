@@ -13,6 +13,7 @@ const TOKENAUTH = gql`
   }
 `;
 
+/*
 const LINKS = gql`
   query Links {
     links {
@@ -26,10 +27,11 @@ const LINKS = gql`
     }
   }
 `;
+*/
 
 const LINKSPARAM = gql`
-  query Links($nombre: String!) {
-    links(nombre: $nombre) {
+  query Links($search: String!) {
+    links(search: $search) {
       id
       url
       description
@@ -68,22 +70,22 @@ export class GraphqlProductsService  {
 
   links(valor : string) {
     //alert(valor);
-    if (valor=="-")
+    /*if (valor=="-")
     {
       return this.apollo.watchQuery({
         query: LINKS 
       });
     }
     else
-    {
+    {*/
       //alert(valor);
       return this.apollo.watchQuery({
         query: LINKSPARAM,
         variables: {
-          nombre: valor
+          search: valor
         }, 
       });
-    }
+    //}
   
   }
   createLink(mytoken: string, url: string, description: string, precio: number) {

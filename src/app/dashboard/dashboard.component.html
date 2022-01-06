@@ -6,6 +6,7 @@
   <div class="container-fluid">
 
     <ng-container *ngIf="cartState$ | async as state">
+     <!--
       <form class="navbar-form"> 
         <ng-container *ngIf="user">
 
@@ -23,7 +24,7 @@
         
         
       </form> 
-
+    -->
       <ng-container *ngIf="user">
 
         <app-cart [state]="state"></app-cart> 
