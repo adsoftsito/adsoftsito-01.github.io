@@ -17,6 +17,7 @@ import { FacturacionComponent } from '../../facturacion/facturacion.component';
 import { ClientesComponent } from '../../clientes/clientes.component';
 import { ConfiguracionComponent } from '../../configuracion/configuracion.component';
 import { NewClientComponent } from '../../new-client/new-client.component';
+import { LogoutComponent } from '../../logout/logout.component';
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -68,6 +69,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'admin/configuracion', component: ConfiguracionComponent },
     { path: 'admin/new-product',   component: NewProductComponent },
     { path: 'admin/new-client',    component: NewClientComponent },
+    { path: 'admin/logout',        component: LogoutComponent },
 
 
 

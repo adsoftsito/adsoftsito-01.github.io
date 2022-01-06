@@ -21,7 +21,7 @@ import { StorageService } from "../../services/storage.service";
 export class DashboardComponent implements OnInit, OnDestroy {
   valor : string;
   token : string;
-  user : string
+  user : string;
   loading: boolean;
   posts: any;
   private querySubscription: Subscription;

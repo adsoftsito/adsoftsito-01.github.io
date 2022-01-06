@@ -35,6 +35,7 @@ import { ConfiguracionComponent } from '../../configuracion/configuracion.compon
 import {NewClientComponent } from '../../new-client/new-client.component';
 import { LoginService } from "../../../services/login.service";
 import { CartComponent } from '../../cart/cart.component';
+import { LogoutComponent } from '../../logout/logout.component';
 
 @NgModule({
   imports: [
@@ -69,8 +70,11 @@ import { CartComponent } from '../../cart/cart.component';
     FacturacionComponent,
     ClientesComponent,
     ConfiguracionComponent,
-    NewClientComponent
-  ],
+    NewClientComponent,
+    LogoutComponent
+    
+  ], 
+  
   providers: [StorageService, ShoppingCartService, LoginService]
 
 

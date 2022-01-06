@@ -6,6 +6,7 @@ import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { HomeNavbarComponent } from './home-navbar/home-navbar.component';
+import { StorageService } from 'services/storage.service';
 //import { CheckoutDialog } from '../checkout/checkout.component';
 
 @NgModule({
@@ -25,6 +26,7 @@ import { HomeNavbarComponent } from './home-navbar/home-navbar.component';
     NavbarComponent,
     SidebarComponent,
     HomeNavbarComponent
-  ]
+  ],
+  providers : [StorageService]
 })
 export class ComponentsModule { }
