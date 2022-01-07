@@ -28,8 +28,8 @@ export class LogoutComponent implements OnInit {
     console.log(' user : ' +     this.storageService.getSession("user"))
     console.log(' token : ' +     this.storageService.getSession("token"))
     
-    this.storageService.setSession("token", null);
-    this.storageService.setSession("user", null);
+    this.storageService.sessionDeleteAll();
+    //this.storageService.setSession("user", null);
     console.log(' user : ' +     this.storageService.getSession("user"))
     console.log(' token : ' +     this.storageService.getSession("token"))
       var mydata = {

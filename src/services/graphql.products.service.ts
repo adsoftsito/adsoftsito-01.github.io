@@ -64,26 +64,21 @@ export class GraphqlProductsService  {
 
   loading: boolean;
   posts: any;
-  private querySubscription: Subscription;
+  //private querySubscription: Subscription;
 
   constructor(private apollo: Apollo) {}
 
-  links(valor : string) {
-    //alert(valor);
-    /*if (valor=="-")
-    {
-      return this.apollo.watchQuery({
-        query: LINKS 
-      });
-    }
-    else
-    {*/
-      //alert(valor);
-      return this.apollo.watchQuery({
+  links(mytoken: string, valor : string) {
+    
+      return this.apollo.query({
         query: LINKSPARAM,
         variables: {
           search: valor
         }, 
+        context: {
+          // example of setting the headers with context per operation
+          headers: new HttpHeaders().set('Authorization', 'JWT ' + mytoken),
+        },
       });
     //}
   

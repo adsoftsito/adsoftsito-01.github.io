@@ -77,18 +77,24 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   search()
   {
-    alert(this.valor);
+    //alert(this.valor);
     this.buscar(this.valor);
   }
 
   buscar(valor :string) {
+    this.posts = [];
+    console.log(this.token);
+    console.log(valor);
 
-    this.querySubscription = this.graphqlProductsService.links(valor)
-      .valueChanges
+    //this.querySubscription = 
+    this.graphqlProductsService.links(this.token, valor)
+      //.valueChanges
       .subscribe(({ data, loading }) => {
         this.loading = loading;
         this.posts = JSON.parse(JSON.stringify(data)).links;
         console.log(JSON.stringify(this.posts))
+
+      //  this.querySubscription.unsubscribe();
       });
 
   }
@@ -113,7 +119,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.querySubscription.unsubscribe();
+    //this.querySubscription.unsubscribe();
   }
   
   startAnimationForLineChart(chart){

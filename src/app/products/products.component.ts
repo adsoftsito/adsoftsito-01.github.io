@@ -16,8 +16,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
   constructor(private graphqlProductsService: GraphqlProductsService) {}
 
   ngOnInit() {
-    this.querySubscription = this.graphqlProductsService.links("-")
-      .valueChanges
+    this.querySubscription = this.graphqlProductsService.links("token", "-")
+      //.valueChanges
       .subscribe(({ data, loading }) => {
         this.loading = loading;
         this.posts = JSON.parse(JSON.stringify(data)).links;
