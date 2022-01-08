@@ -14,14 +14,15 @@ const TOKENAUTH = gql`
 `;
 
 const SALES = gql`
-  query Sales {
-    sales {
+  query Sales($search: String!) {
+    sales(search: $search) {
       id
       serie
       folio
       total
-      postedBy {
-        username
+      receptor {
+        rfc
+        nombre
       }
     }
   }
@@ -46,6 +47,7 @@ const CREATESALE = gql`
     
                 subtotal: $subtotal, 
                 total: $total, 
+                receptorId: 1,
                 products : $products) {
       id
       total
@@ -71,10 +73,17 @@ export class GraphqlSalesService  {
 
   constructor(private apollo: Apollo) {}
 
-  sales() {
+  sales(mytoken: string, search: string) {
  
-    return this.apollo.watchQuery({
-      query: SALES 
+    return this.apollo.query({
+      query: SALES,
+      variables: {
+        search: search,       
+      },
+      context: {
+        // example of setting the headers with context per operation
+        headers: new HttpHeaders().set('Authorization', 'JWT ' + mytoken),
+      },
     });
   
   }

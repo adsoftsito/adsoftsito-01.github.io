@@ -2,6 +2,9 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { ROUTES } from '../sidebar/sidebar.component';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import { Router } from '@angular/router';
+import { StorageService } from "../../../services/storage.service";
+import { MatDialog } from '@angular/material/dialog';
+import { LogoutComponent } from '../../logout/logout.component';
 
 @Component({
   selector: 'app-navbar',
@@ -14,13 +17,24 @@ export class NavbarComponent implements OnInit {
       mobile_menu_visible: any = 0;
     private toggleButton: any;
     private sidebarVisible: boolean;
+    user : string;
 
-    constructor(location: Location,  private element: ElementRef, private router: Router) {
-      this.location = location;
-          this.sidebarVisible = false;
+    constructor(location: Location,  
+                private element: ElementRef, 
+                private router: Router,
+                private storageService : StorageService,
+                private dialog : MatDialog,
+
+                ) 
+    {
+        this.location = location;
+        this.sidebarVisible = false;
     }
 
     ngOnInit(){
+
+      this.user = this.storageService.getSession("user");
+  
       this.listTitles = ROUTES.filter(listTitle => listTitle);
       const navbar: HTMLElement = this.element.nativeElement;
       this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
@@ -32,6 +46,17 @@ export class NavbarComponent implements OnInit {
            this.mobile_menu_visible = 0;
          }
      });
+    }
+
+
+    logout(): void {
+        // this.shoppingCartService.checkout();
+        
+        let dialogRef = this.dialog.open(LogoutComponent, {
+          // data: { state: this.state }, // now uses the observable
+          height: '400px',
+          width: '400px',
+        });
     }
 
     sidebarOpen() {

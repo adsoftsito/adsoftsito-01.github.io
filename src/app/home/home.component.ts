@@ -77,13 +77,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   search()
   {
     //alert(this.valor);
-    this.buscar(this.valor);
+    //this.buscar(this.valor);
   }
 
   buscar(valor :string) {
 
-    this.querySubscription = this.graphqlProductsService.links(valor)
-      .valueChanges
+    this.querySubscription = this.graphqlProductsService.links("token", valor)
+      //.valueChanges
       .subscribe(({ data, loading }) => {
         this.loading = loading;
         this.posts = JSON.parse(JSON.stringify(data)).links;

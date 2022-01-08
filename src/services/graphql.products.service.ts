@@ -13,6 +13,7 @@ const TOKENAUTH = gql`
   }
 `;
 
+/*
 const LINKS = gql`
   query Links {
     links {
@@ -26,10 +27,11 @@ const LINKS = gql`
     }
   }
 `;
+*/
 
 const LINKSPARAM = gql`
-  query Links($nombre: String!) {
-    links(nombre: $nombre) {
+  query Links($search: String!) {
+    links(search: $search) {
       id
       url
       description
@@ -62,30 +64,26 @@ export class GraphqlProductsService  {
 
   loading: boolean;
   posts: any;
-  private querySubscription: Subscription;
+  //private querySubscription: Subscription;
 
   constructor(private apollo: Apollo) {}
 
-  links(valor : string) {
-    //alert(valor);
-    if (valor=="-")
-    {
-      return this.apollo.watchQuery({
-        query: LINKS 
-      });
-    }
-    else
-    {
-      //alert(valor);
-      return this.apollo.watchQuery({
+  links(mytoken: string, valor : string) {
+    
+      return this.apollo.query({
         query: LINKSPARAM,
         variables: {
-          nombre: valor
+          search: valor
         }, 
+        context: {
+          // example of setting the headers with context per operation
+          headers: new HttpHeaders().set('Authorization', 'JWT ' + mytoken),
+        },
       });
-    }
+    //}
   
   }
+  
   createLink(mytoken: string, url: string, description: string, precio: number) {
        console.log("token auth = " + mytoken);
       return this.apollo.mutate({
