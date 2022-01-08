@@ -82,10 +82,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   buscar(valor :string) {
-    this.posts = [];
+    //this.posts = [];
     console.log(this.token);
     console.log(valor);
-
+    
+   // alert(this.user + " : " +  valor + "- " + this.token);
+    
     //this.querySubscription = 
     this.graphqlProductsService.links(this.token, valor)
       //.valueChanges
@@ -115,7 +117,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 */
     this.user = this.storageService.getSession("user");
     this.token = this.storageService.getSession("token");
-   this.buscar("-");
+   this.buscar("*");
   }
 
   ngOnDestroy() {
