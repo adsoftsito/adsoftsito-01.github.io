@@ -34,6 +34,8 @@
                                 <th>Importe</th>
                                 <th>RFC</th>
                                 <th>Cliente</th>
+                                <th>Actions</th>
+                                
                             </thead>
                             <tbody>
                                 <tr *ngFor="let product of posts" >
@@ -42,7 +44,14 @@
                                     <td>{{ product.total }}</td>
                                     <td>{{ product.receptor.rfc }}</td>
                                     <td>{{ product.receptor.nombre }}</td>
-                                
+                                    <td>
+
+                                        <a class="nav-link" [routerLink]="['/admin/admin/cfdi']">
+                                            <i class="material-icons">login</i>
+                                            
+                                        </a>
+
+                                    </td>
                                 </tr>
                               
                             </tbody>
