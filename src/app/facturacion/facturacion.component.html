@@ -29,8 +29,8 @@
                         <table class="table table-hover">
                             <thead class="text-warning">
                                 
-                                <th>Serie</th>
-                                <th>Folio</th>
+                                <th>Id</th>
+                                <th>Ser/Folio</th>
                                 <th>Importe</th>
                                 <th>RFC</th>
                                 <th>Cliente</th>
@@ -39,14 +39,14 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let product of posts" >
-                                    <td>{{ product.serie }}</td>
-                                    <td>{{ product.folio }}</td>
+                                    <td>{{ product.id }}</td>
+                                    <td>{{ product.folio }}/{{ product.folio }}</td>
                                     <td>{{ product.total }}</td>
                                     <td>{{ product.receptor.rfc }}</td>
                                     <td>{{ product.receptor.nombre }}</td>
                                     <td>
 
-                                        <a class="nav-link" [routerLink]="['/admin/admin/cfdi']">
+                                        <a class="nav-link" [routerLink]="['/admin/admin/cfdi/' + product.id]">
                                             <i class="material-icons">login</i>
                                             
                                         </a>

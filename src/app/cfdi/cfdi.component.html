@@ -77,43 +77,25 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-info">
-                        <h4 class="card-title">CFDi - Complementos (Opcional)</h4>
+                        <h4 class="card-title">CFDi - Complementos <b>(Opcional)</b></h4>
                     </div>
                     <div class="card-body">
                         <form>
                             <div class="row">
                                 <div class="col-md-5">
                                   <mat-form-field class="example-full-width">
-                                      <input matInput placeholder="Company (disabled)" disabled>
+                                      <input matInput placeholder="Seleccione complemento" >
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-3">
-                                    <mat-form-field class="example-full-width">
-                                      <input matInput placeholder="Username">
-                                    </mat-form-field>
+                                    <button mat-raised-button type="button" class="btn btn-info pull-right" (click)="getCfdi()">Configurar Complemento</button>
+
                                 </div>
-                                <div class="col-md-4">
-                                    <mat-form-field class="example-full-width">
-                                      <input matInput placeholder="Email address" type="email">
-                                    </mat-form-field>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                  <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="Fist Name" type="text">
-                                  </mat-form-field>
-                                </div>
-                                <div class="col-md-6">
-                                  <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="Last Name" type="text">
-                                  </mat-form-field>
-                                </div>
+                                
                             </div>
                             
                             
-                            <button mat-raised-button type="submit" class="btn btn-info pull-right">Guardar Complemento</button>
-                            <div class="clearfix"></div>
+                            
                         </form>
                     </div>
                 </div>
@@ -128,24 +110,11 @@
                 <div class="card">
                 
                     <div class="card-header card-header-info">
-                        <h4 class="card-title">Confirma timbrado de CFDi</h4>
+                        <h4 class="card-title"><b>Confirma timbrado de CFDi</b></h4>
                     </div>
                 
                     <div class="card-body">
-                        <form>
-                            <!--
-                            <div class="row">
-                                <div class="col-md-12">
-                                  <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="Adress" type="text">
-                                  </mat-form-field>
-                                </div>
-                            </div> 
-                        -->
-                            
-                            <button mat-raised-button type="submit" class="btn btn-danger pull-right">Timbrar CFDi</button>
-                            <div class="clearfix"></div>
-                        </form>
+                        <button mat-raised-button type="submit" class="btn btn-danger pull-right" (click)="getCfdi()">Timbrar CFDi</button>
                     </div>
                 </div>
             </div>

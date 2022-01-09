@@ -71,7 +71,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'admin/new-product',   component: NewProductComponent },
     { path: 'admin/new-client',    component: NewClientComponent },
     { path: 'admin/logout',        component: LogoutComponent },
-    { path: 'admin/cfdi',          component: CfdiComponent },
+    { path: 'admin/cfdi/:id',          component: CfdiComponent },
 
 
 
