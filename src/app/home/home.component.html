@@ -4,7 +4,7 @@
 
    
     <div class="container-fluid">
-       <!--
+       
 
       <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top">
         <div class="container-fluid">
@@ -22,13 +22,25 @@
             <div class="collapse navbar-collapse justify-content-end" id="navigation">
            
                 <ul class="navbar-nav">
+                    
                     <li class="nav-item">
-                    </li>
+                      <a class="nav-link" [routerLink]="['/admin/admin/dashboard']" rel="tooltip" title="Punto de venta" data-placement="bottom">
+                          <i class="fa fa-twitter"></i>
+                          <p class="d-lg-none">Ventas</p>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" [routerLink]="['/admin/admin/facturacion']" rel="tooltip" title="Generacion de CFDi" data-placement="bottom" >
+                          <i class="fa fa-twitter"></i>
+                          <p class="d-lg-none">Facturacion</p>
+                      </a>
+                  </li>
+                 
                 </ul>
             </div>
-        </div>
-    </nav>
-
+            </div>
+         </nav>
+<!--
       <ng-container *ngIf="cartState$ | async as state">
           <form class="navbar-form"> 
             <ng-container *ngIf="user">

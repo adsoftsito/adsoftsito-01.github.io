@@ -1,3 +1,64 @@
+
+<nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top">
+    <div class="container-fluid">
+        
+      <div class="navbar-wrapper">
+          <a class="navbar-brand" href="javascript:void(0)"> <b>waves</b> cloud ERP</a>
+      </div>
+    
+        <button mat-raised-button class="navbar-toggler" type="button" (click)="sidebarToggle()">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+        </button>
+
+        
+        <div class="collapse navbar-collapse justify-content-end" id="navigation">
+       
+            <ul class="navbar-nav">
+                
+                <li class="nav-item">
+                  <a class="nav-link" [routerLink]="['/admin/admin/dashboard']" rel="tooltip" title="Punto de venta" data-placement="bottom">
+                      <i class="fa fa-twitter"></i>
+                      <p class="d-lg-none">Ventas</p>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" [routerLink]="['/admin/admin/facturacion']" rel="tooltip" title="Generacion de CFDi" data-placement="bottom" >
+                      <i class="fa fa-twitter"></i>
+                      <p class="d-lg-none">Facturacion</p>
+                  </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/admin/admin/productos']" rel="tooltip" title="Administracion de productos" data-placement="bottom" >
+                    <i class="fa fa-twitter"></i>
+                    <p class="d-lg-none">Productos</p>
+                </a>
+            </li>
+            <li class="nav-item" >
+                <a class="nav-link" [routerLink]="['/admin/admin/clientes']" rel="tooltip" title="Catalogo de clientes" data-placement="bottom">
+                    <i class="fa fa-facebook-square"></i>
+                    <p class="d-lg-none">Clientes</p>
+                </a>
+            </li>
+            <li class="nav-item" >
+                <a class="nav-link" [routerLink]="['/admin/admin/configuracion']" rel="tooltip" title="Opciones de Configuracion" data-placement="bottom">
+                    <i class="fa fa-instagram"></i>
+                    <p class="d-lg-none">Configuracion</p>
+                </a>
+            </li>
+            <li class="nav-item" >
+                <a class="nav-link" [routerLink]="['/admin/admin/logout']" rel="tooltip" title="Cerrar sesion del usuario" data-placement="bottom" >
+                    <i class="fa fa-github"></i>
+                    <p class="d-lg-none">Cerrar sesion</p>
+                </a>
+            </li>
+            </ul>
+        </div>
+        </div>
+     </nav>
+     <!--
 <nav class="navbar navbar-expand-lg fixed-top navbar-transparent" color-on-scroll="500">
     <div class="container">
         <div class="navbar-translate">
@@ -20,61 +81,48 @@
         </div>
         <div class="navbar-collapse" id="navbarToggler">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item" *ngIf="!isDocumentation()">
+                <li class="nav-item">
                     <a class="nav-link" [routerLink]="['/admin/admin/dashboard']" rel="tooltip" title="Punto de venta" data-placement="bottom">
                         <i class="fa fa-twitter"></i>
                         <p class="d-lg-none">Ventas</p>
                     </a>
                 </li>
-                <li class="nav-item" *ngIf="!isDocumentation()">
+                <li class="nav-item">
                     <a class="nav-link" [routerLink]="['/admin/admin/facturacion']" rel="tooltip" title="Generacion de CFDi" data-placement="bottom" >
                         <i class="fa fa-twitter"></i>
                         <p class="d-lg-none">Facturacion</p>
                     </a>
                 </li>
-                <li class="nav-item" *ngIf="!isDocumentation()">
+                <li class="nav-item">
                     <a class="nav-link" [routerLink]="['/admin/admin/productos']" rel="tooltip" title="Administracion de productos" data-placement="bottom" >
                         <i class="fa fa-twitter"></i>
                         <p class="d-lg-none">Productos</p>
                     </a>
                 </li>
-                <li class="nav-item" *ngIf="!isDocumentation()">
+                <li class="nav-item" >
                     <a class="nav-link" [routerLink]="['/admin/admin/clientes']" rel="tooltip" title="Catalogo de clientes" data-placement="bottom">
                         <i class="fa fa-facebook-square"></i>
                         <p class="d-lg-none">Clientes</p>
                     </a>
                 </li>
-                <li class="nav-item" *ngIf="!isDocumentation()">
+                <li class="nav-item" >
                     <a class="nav-link" [routerLink]="['/admin/admin/configuracion']" rel="tooltip" title="Opciones de Configuracion" data-placement="bottom">
                         <i class="fa fa-instagram"></i>
                         <p class="d-lg-none">Configuracion</p>
                     </a>
                 </li>
-                <li class="nav-item" *ngIf="!isDocumentation()">
+                <li class="nav-item" >
                     <a class="nav-link" [routerLink]="['/admin/admin/logout']" rel="tooltip" title="Cerrar sesion del usuario" data-placement="bottom" >
                         <i class="fa fa-github"></i>
                         <p class="d-lg-none">Cerrar sesion</p>
                     </a>
                 </li>
-                <!--
-                <li class="nav-item" *ngIf="!isDocumentation()">
-                    <a href="http://pk2-angular.creative-tim.com/documentation/tutorial" class="nav-link" target="_blank"><i class="nc-icon nc-book-bookmark"></i> Documentation</a>
-                </li>
-                <li class="nav-item" *ngIf="isHome()">
-                    <a href="http://www.waves-lab.com.mx:8081" target="_blank" class="btn btn-danger btn-round">Ingresar a waves</a>
-                </li>
-                <li class="nav-item" *ngIf="!isHome()">
-                    <a [routerLink]="['/home']" *ngIf="!isDocumentation()" class="nav-link"><i class="nc-icon nc-layout-11"></i>Components</a>
-                    <a [routerLink]="['/home']" *ngIf="isDocumentation()" class="nav-link">Back to Kit</a>
-                </li>
-                <li class="nav-item" *ngIf="isDocumentation()">
-                    <a href="https://github.com/creativetimofficial/paper-kit-2-angular/issues?ref=pk2-free-local" target="_blank" class="nav-link">Have an issue</a>
-                </li>
-            -->
+                
             </ul>
         </div>
     </div>
 </nav>
+-->
 <!--
 <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top">
     <div class="container-fluid">
