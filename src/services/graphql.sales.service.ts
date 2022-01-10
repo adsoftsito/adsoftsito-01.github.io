@@ -13,15 +13,69 @@ const TOKENAUTH = gql`
   }
 `;
 
+const EMISORME = gql`
+  query Emisorme {
+    emisorme {
+      rfc
+      nombre
+      regimenfiscal
+    }
+  }
+`;
+
+const SALE = gql`
+query Sale($saleid: Int!) {
+  sale(saleid: $saleid) {
+    sale {
+      id
+      serie
+      folio
+      formapago
+      condicionesdepago
+      subtotal
+      descuento
+      moneda
+      tipodecomprobante
+      metodopago
+      lugarexpedicion
+      totalimpuestostrasladados
+      totalimpuestosretenidos
+      total
+      receptor {
+        rfc
+        nombre
+        usocfdi
+        
+      }
+    } 
+    detail {
+      id
+      codigosat
+      noidentificacion
+      claveunidad
+      product
+      cantidad
+      precio
+      importe
+      descuento
+      trasladoiva
+      retiva
+      ieps
+    }    
+  }
+}
+`;
+
 const SALES = gql`
-  query Sales {
-    sales {
+  query Sales($search: String!) {
+    sales(search: $search) {
       id
       serie
       folio
       total
-      postedBy {
-        username
+      receptor {
+        rfc
+        nombre
       }
     }
   }
@@ -46,6 +100,7 @@ const CREATESALE = gql`
     
                 subtotal: $subtotal, 
                 total: $total, 
+                receptorId: 1,
                 products : $products) {
       id
       total
@@ -71,10 +126,45 @@ export class GraphqlSalesService  {
 
   constructor(private apollo: Apollo) {}
 
-  sales() {
+  emisorme(mytoken: string) {
  
-    return this.apollo.watchQuery({
-      query: SALES 
+    return this.apollo.query({
+      query: EMISORME,
+      context: {
+        // example of setting the headers with context per operation
+        headers: new HttpHeaders().set('Authorization', 'JWT ' + mytoken),
+      },
+    });
+  
+  }
+
+
+  sale(mytoken: string, saleid: number) {
+ 
+    return this.apollo.query({
+      query: SALE,
+      variables: {
+        saleid: saleid,       
+      },
+      context: {
+        // example of setting the headers with context per operation
+        headers: new HttpHeaders().set('Authorization', 'JWT ' + mytoken),
+      },
+    });
+  
+  }
+
+  sales(mytoken: string, search: string) {
+ 
+    return this.apollo.query({
+      query: SALES,
+      variables: {
+        search: search,       
+      },
+      context: {
+        // example of setting the headers with context per operation
+        headers: new HttpHeaders().set('Authorization', 'JWT ' + mytoken),
+      },
     });
   
   }

@@ -1,18 +1,28 @@
 <div class="main-content">
     <div class="container-fluid">
-        <a class="nav-link" [routerLink]="['/admin/admin/new-product']">
-            <i class="material-icons">login</i>
-            <p>
-                <span class="d-lg-none d-md-block">Account</span>
-            </p>
-        </a>
+        
+        <div class="input-group no-border">
+            <input type="text" [(ngModel)]="valor" name="valor" class="form-control" placeholder="Buscar cliente, serie, folio, importe ...">
+            <button mat-raised-button (click)="search()" class="btn btn-white btn-round btn-just-icon">
+                <i class="material-icons">search</i>
+                <div class="ripple-container"></div>
+            </button>
+            
+        </div>
         <div class="row">
        
             <div class="col-lg-12 col-md-12">
                 <div class="card">
                     <div class="card-header card-header-warning">
-                        <h4 class="card-title">Productos</h4>
-                        <p class="card-category">New employees on 15th September, 2016</p>
+                        <h4 class="card-title">Productos - 
+                        
+                        <a  [routerLink]="['/admin/admin/new-product']">
+                           <b> Crear producto nuevo  </b>
+                        <i class="material-icons">login</i>
+                           
+                        </a>
+                        </h4>
+                        
                     </div>
                     <div class="card-body table-responsive">
                         <table class="table table-hover">

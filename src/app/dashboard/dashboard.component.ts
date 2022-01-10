@@ -21,7 +21,7 @@ import { StorageService } from "../../services/storage.service";
 export class DashboardComponent implements OnInit, OnDestroy {
   valor : string;
   token : string;
-  user : string
+  user : string;
   loading: boolean;
   posts: any;
   private querySubscription: Subscription;
@@ -77,18 +77,26 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   search()
   {
-    alert(this.valor);
+    //alert(this.valor);
     this.buscar(this.valor);
   }
 
   buscar(valor :string) {
-
-    this.querySubscription = this.graphqlProductsService.links(valor)
-      .valueChanges
+    //this.posts = [];
+    console.log(this.token);
+    console.log(valor);
+    
+   // alert(this.user + " : " +  valor + "- " + this.token);
+    
+    //this.querySubscription = 
+    this.graphqlProductsService.links(this.token, valor)
+      //.valueChanges
       .subscribe(({ data, loading }) => {
         this.loading = loading;
         this.posts = JSON.parse(JSON.stringify(data)).links;
         console.log(JSON.stringify(this.posts))
+
+      //  this.querySubscription.unsubscribe();
       });
 
   }
@@ -109,11 +117,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
 */
     this.user = this.storageService.getSession("user");
     this.token = this.storageService.getSession("token");
-   this.buscar("-");
+   this.buscar("*");
   }
 
   ngOnDestroy() {
-    this.querySubscription.unsubscribe();
+    //this.querySubscription.unsubscribe();
   }
   
   startAnimationForLineChart(chart){

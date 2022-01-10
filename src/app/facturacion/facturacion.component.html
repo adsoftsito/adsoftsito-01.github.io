@@ -7,6 +7,16 @@
                 <span class="d-lg-none d-md-block">Account</span>
             </p>
         </a> -->
+
+        <div class="input-group no-border">
+            <input type="text" [(ngModel)]="valor" name="valor" class="form-control" placeholder="Buscar cliente, serie, folio, importe ...">
+            <button mat-raised-button (click)="search()" class="btn btn-white btn-round btn-just-icon">
+                <i class="material-icons">search</i>
+                <div class="ripple-container"></div>
+            </button>
+            
+        </div>
+         
         <div class="row">
        
             <div class="col-lg-12 col-md-12">
@@ -18,19 +28,30 @@
                     <div class="card-body table-responsive">
                         <table class="table table-hover">
                             <thead class="text-warning">
+                                
                                 <th>Id</th>
-                                <th>Serie</th>
-                                <th>Folio</th>
+                                <th>Ser/Folio</th>
                                 <th>Importe</th>
+                                <th>RFC</th>
                                 <th>Cliente</th>
+                                <th>Actions</th>
+                                
                             </thead>
                             <tbody>
                                 <tr *ngFor="let product of posts" >
                                     <td>{{ product.id }}</td>
-                                    <td>{{ product.serie }}</td>
-                                    <td>{{ product.folio }}</td>
+                                    <td>{{ product.folio }}/{{ product.folio }}</td>
                                     <td>{{ product.total }}</td>
-                                    <td>{{ product.postedBy.username }}</td>
+                                    <td>{{ product.receptor.rfc }}</td>
+                                    <td>{{ product.receptor.nombre }}</td>
+                                    <td>
+
+                                        <a class="nav-link" [routerLink]="['/admin/admin/cfdi/' + product.id]">
+                                            <i class="material-icons">login</i>
+                                            
+                                        </a>
+
+                                    </td>
                                 </tr>
                               
                             </tbody>

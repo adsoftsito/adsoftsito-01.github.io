@@ -7,9 +7,16 @@
  
       <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top">
         <div class="container-fluid">
-            <div class="navbar-wrapper">
-              <a class="navbar-brand" href="javascript:void(0)">El mandadero</a>
+            
+          <div class="navbar-wrapper">
+<!--
+            <div class="logo-img">
+                <img src="/assets/img/mandadero1.png"/>
             </div>
+          -->
+              <a class="navbar-brand" href="javascript:void(0)"> <b>waves</b> cloud ERP</a>
+          </div>
+        
             <button mat-raised-button class="navbar-toggler" type="button" (click)="sidebarToggle()">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="navbar-toggler-icon icon-bar"></span>
@@ -29,16 +36,9 @@
                             </p>
                         </a>
                     </li>
-                  -->
+                  
                     <li class="nav-item">
-                        <!--
-                                            <a class="nav-link" (onclick)="checkout()">
-                                                <i class="material-icons">login</i>
-                                                <p>
-                                                    <span class="d-lg-none d-md-block">Account</span>
-                                                </p>
-                                            </a>
-                                          -->
+                        
                                           
                                             Login
                                         
@@ -47,13 +47,14 @@
                                               <div class="ripple-container"></div>
                                           </button>
                     </li>
+                    -->
                     <li class="nav-item">
     <!--
                         <a class="nav-link" [routerLink]="[menuItem.path]">
                             <i class="material-icons">{{menuItem.icon}}</i>
                             <p>{{menuItem.title}}</p>
                         </a>
-                    -->
+                    
                         <a class="nav-link" [routerLink]="['/new-user']">
                           Usuario nuevo
 
@@ -61,12 +62,13 @@
                             <p>
                                 <span class="d-lg-none d-md-block">Account</span>
                             </p>
-                        </a>
+                        </a> -->
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+
       <!--
       <ng-container *ngIf="cartState$ | async as state">
           <form class="navbar-form"> 
@@ -134,10 +136,32 @@
    
       </ng-container>
     -->
-    
+
+
       <div class="row"> 
-  
-      <h1>under construccion</h1> 
+        <div class="col-md-3" >
+          <div class="logo-img">
+            <img src="/assets/img/waveslogo.jpg" height="200" width="200"/>
+        </div>
+        
+        
+        </div>
+        <div class="col-md-3" >
+
+          <app-login></app-login>
+        </div>
+        <div class="col-md-1" >
+
+        
+        </div>
+        <div class="col-md-4" >
+          <app-new-user></app-new-user>
+            
+        </div>
+        <div class="col-md-1" >
+
+        
+        </div>
             <!--
                 <div class="col-md-4" *ngFor="let product of posts">
                 <div class="card card-chart">
