@@ -27,14 +27,15 @@ export class NavbarComponent implements OnInit {
 
                 ) 
     {
-        this.location = location;
+        //this.location = location;
         this.sidebarVisible = false;
+
     }
 
     ngOnInit(){
 
       this.user = this.storageService.getSession("user");
-  
+  /*
       this.listTitles = ROUTES.filter(listTitle => listTitle);
       const navbar: HTMLElement = this.element.nativeElement;
       this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
@@ -45,7 +46,11 @@ export class NavbarComponent implements OnInit {
            $layer.remove();
            this.mobile_menu_visible = 0;
          }
-     });
+      });
+*/
+      const navbar: HTMLElement = this.element.nativeElement;
+      this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
+
     }
 
 
@@ -58,7 +63,7 @@ export class NavbarComponent implements OnInit {
           width: '400px',
         });
     }
-/*
+
     sidebarOpen() {
         const toggleButton = this.toggleButton;
         const body = document.getElementsByTagName('body')[0];
@@ -133,7 +138,7 @@ export class NavbarComponent implements OnInit {
 
         }
     };
-*/
+
     getTitle(){
       var titlee = this.location.prepareExternalUrl(this.location.path());
       if(titlee.charAt(0) === '#'){
@@ -150,7 +155,7 @@ export class NavbarComponent implements OnInit {
 
 
     /////////
-
+/*
     sidebarOpen() {
         const toggleButton = this.toggleButton;
         const html = document.getElementsByTagName('html')[0];
@@ -192,6 +197,8 @@ export class NavbarComponent implements OnInit {
             return false;
         }
     }
+    */
+    /*
     isDocumentation() {
       var titlee = this.location.prepareExternalUrl(this.location.path());
       if(titlee.charAt(0) === '#'){
@@ -203,5 +210,5 @@ export class NavbarComponent implements OnInit {
         else {
             return false;
         }
-    }
+    }*/
 }
