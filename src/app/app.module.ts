@@ -8,7 +8,7 @@ import { ComponentsModule } from './components/components.module';
 import { AppComponent } from './app.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { MatDialogModule } from '@angular/material/dialog';
-
+//import { CartComponent } from './cart/cart.component';
 /*
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
@@ -38,7 +38,7 @@ import { GraphQLModule } from './graphql.module';
 import { CarritocomprasComponent } from './carritocompras/carritocompras.component';
 //import { CartComponent } from './cart/cart.component';
 import { CheckoutDialog } from './checkout/checkout.component';
-import { LogoutComponent } from './logout/logout.component';
+//import { LogoutComponent } from './logout/logout.component';
 
 //CarritocomprasComponent,
     //CartComponent,
@@ -70,9 +70,10 @@ import { LogoutComponent } from './logout/logout.component';
     HomeLayoutComponent,
     UserProfileComponent, 
     CarritocomprasComponent,
-    LogoutComponent,
-    CheckoutDialog
-
+    //LogoutComponent,
+    CheckoutDialog,
+   // CartComponent
+     
 
 
   ],

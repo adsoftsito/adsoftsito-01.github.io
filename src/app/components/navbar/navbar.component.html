@@ -1,15 +1,31 @@
 <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top">
     <div class="container-fluid">
+        <form class="navbar-form"> 
+            <ng-container *ngIf="user">
+    
+            Bienvenido: <b>{{user}}</b> 
+    
+           
+    
+            </ng-container>
+            
+            
+          </form>
+          <!--
         <div class="navbar-wrapper">
           <a class="navbar-brand" href="javascript:void(0)">{{getTitle()}}</a>
-        </div>
+        </div> -->
+
+        <!--
         <button mat-raised-button class="navbar-toggler" type="button" (click)="sidebarToggle()">
             <span class="sr-only">Toggle navigation</span>
             <span class="navbar-toggler-icon icon-bar"></span>
             <span class="navbar-toggler-icon icon-bar"></span>
             <span class="navbar-toggler-icon icon-bar"></span>
         </button>
+    -->
         <div class="collapse navbar-collapse justify-content-end" id="navigation">
+        <!--
             <form class="navbar-form">
                 <div class="input-group no-border">
                     <input type="text" value="" class="form-control" placeholder="Search...">
@@ -19,7 +35,9 @@
                     </button>
                 </div>
             </form>
+        -->
             <ul class="navbar-nav">
+                <!--
                 <li class="nav-item">
                     <a class="nav-link" href="javascript:void(0)">
                         <i class="material-icons">dashboard</i>
@@ -28,6 +46,8 @@
                         </p>
                     </a>
                 </li>
+
+            -->
                 <!--
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="javascript:void(0)" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -47,14 +67,22 @@
                 </li>
             -->
                 <li class="nav-item">
-                    
-                                        <a class="nav-link" [routerLink]="['/login']">
+                    Cerrar Sesion
+                                       
+                                        <a class="nav-link" [routerLink]="['/admin/admin/logout']">
                                             <i class="material-icons">login</i>
                                             <p>
                                                 <span class="d-lg-none d-md-block">Account</span>
                                             </p>
                                         </a>
-                                    </li>
+                                    
+                                        <!--
+                                        <button mat-raised-button (click)="logout()" class="btn btn-white btn-round btn-just-icon">
+                                           <i class="material-icons">login</i>
+                                           <div class="ripple-container"></div>
+                                        </button>
+                                    -->
+                </li>
                 <li class="nav-item">
 <!--
                     <a class="nav-link" [routerLink]="[menuItem.path]">
@@ -62,13 +90,14 @@
                         <p>{{menuItem.title}}</p>
                     </a>
                 -->
-
+<!--
                     <a class="nav-link" [routerLink]="['/new-user']">
                         <i class="material-icons">person</i>
                         <p>
                             <span class="d-lg-none d-md-block">Account</span>
                         </p>
                     </a>
+                -->
                 </li>
             </ul>
         </div>

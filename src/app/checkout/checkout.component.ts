@@ -168,7 +168,7 @@ export class CheckoutDialog implements OnInit {
       }
       
   }
-   // alert("cfdi ...");
+    alert("cfdi ...");
     this.cfdiService.getCfdi(mycfdi)
     .subscribe(( data ) => {
        console.log('Cfdi ok :  ', data);
@@ -189,7 +189,16 @@ export class CheckoutDialog implements OnInit {
       products.push({
         product : element.id,
         cantidad : 1,
-        precio: element.price
+        precio: element.price,
+        importe : 100,
+        url: "--",
+        codigosat: "101010",
+        noidentificacion: "A01",
+        claveunidad: "U01",
+        descuento: 0.00,
+        trasladoiva: 16.00,
+        retiva: 0.0,
+        ieps: 0.0
       })
     });
     alert(JSON.stringify(products));

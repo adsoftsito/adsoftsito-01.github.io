@@ -24,7 +24,7 @@ import { StorageService } from "../../../services/storage.service";
 //import {NewProductComponent } from '../../new-product/new-product.component';
 
 //import { CarritocomprasComponent } from '../../carritocompras/carritocompras.component';
-import { CartComponent } from '../../cart/cart.component';
+//import { CartComponent } from '../../cart/cart.component';
 //import { CheckoutDialog } from '../../checkout/checkout.component';
 //CarritocomprasComponent,
     //CartComponent,
@@ -63,7 +63,7 @@ import { LoginService } from "../../../services/login.service";
     NotificationsComponent,
     //UpgradeComponent,
     //CarritocomprasComponent,
-    CartComponent,
+    //CartComponent,
    // CheckoutDialog
   ],
   providers: [StorageService, ShoppingCartService, LoginService]

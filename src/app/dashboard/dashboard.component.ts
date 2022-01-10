@@ -6,7 +6,12 @@ import { GraphqlProductsService} from '../../services/graphql.products.service';
 import { ShoppingCartService, CartItem, Totals } from '../../services/shopping-cart.service';
 import { ShopItem } from '../../models/CartItem'
 import { ProductApi } from '../../models/productapi'
-
+import { LoginService } from "../../services/login.service";
+import { MatDialog } from '@angular/material/dialog';
+import { LoginComponent } from '../login/login.component';
+import { NewUserComponent } from '../new-user/new-user.component';
+import { LogoutComponent } from '../logout/logout.component';
+import { StorageService } from "../../services/storage.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -14,13 +19,19 @@ import { ProductApi } from '../../models/productapi'
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit, OnDestroy {
-
+  valor : string;
+  token : string;
+  user : string;
   loading: boolean;
   posts: any;
   private querySubscription: Subscription;
 
   constructor(private graphqlProductsService: GraphqlProductsService,
-    private shoppingCartService: ShoppingCartService
+    private shoppingCartService: ShoppingCartService,
+    private loginService : LoginService,
+    private dialog : MatDialog,
+    private storageService : StorageService
+
     ) {}
 
   cartState$ = this.shoppingCartService.state$;
@@ -33,26 +44,84 @@ export class DashboardComponent implements OnInit, OnDestroy {
     myItem.price = item.precio;
     this.shoppingCartService.addCartItem(myItem);
   }
-
-  remove(item: CartItem): void {
-    this.shoppingCartService.removeCartItem(item);
-  }
-  ngOnInit() {
-
-
-
+  
+  checkout(): void {
+    // this.shoppingCartService.checkout();
     
-    this.querySubscription = this.graphqlProductsService.links("-")
-      .valueChanges
+    let dialogRef = this.dialog.open(LoginComponent, {
+      // data: { state: this.state }, // now uses the observable
+      height: '400px',
+      width: '400px',
+    });
+  }
+
+  logout(): void {
+    // this.shoppingCartService.checkout();
+    
+    let dialogRef = this.dialog.open(LogoutComponent, {
+      // data: { state: this.state }, // now uses the observable
+      height: '400px',
+      width: '400px',
+    });
+  }
+
+  newuser(): void {
+    // this.shoppingCartService.checkout();
+    
+    let dialogRef = this.dialog.open(NewUserComponent, {
+      // data: { state: this.state }, // now uses the observable
+      height: '450px',
+      width: '400px',
+    });
+  }
+
+  search()
+  {
+    //alert(this.valor);
+    this.buscar(this.valor);
+  }
+
+  buscar(valor :string) {
+    //this.posts = [];
+    console.log(this.token);
+    console.log(valor);
+    
+   // alert(this.user + " : " +  valor + "- " + this.token);
+    
+    //this.querySubscription = 
+    this.graphqlProductsService.links(this.token, valor)
+      //.valueChanges
       .subscribe(({ data, loading }) => {
         this.loading = loading;
         this.posts = JSON.parse(JSON.stringify(data)).links;
         console.log(JSON.stringify(this.posts))
+
+      //  this.querySubscription.unsubscribe();
       });
+
+  }
+  remove(item: CartItem): void {
+    this.shoppingCartService.removeCartItem(item);
+  }
+  ngOnInit() {
+/*
+    this.querySubscription = this.loginService.getData().subscribe(data => {
+      alert("print data"+ data);
+      this.user = data.user;
+
+      this.token = data.token;
+      console.log("user: " + this.user);
+
+      console.log("token: " + this.token);
+    });
+*/
+    this.user = this.storageService.getSession("user");
+    this.token = this.storageService.getSession("token");
+   this.buscar("*");
   }
 
   ngOnDestroy() {
-    this.querySubscription.unsubscribe();
+    //this.querySubscription.unsubscribe();
   }
   
   startAnimationForLineChart(chart){
@@ -111,106 +180,5 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
       seq2 = 0;
   };
-/*
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
 
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-
-<script>
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyAF1og02DFYvP9tjGYNT6YlP2YSl6-G4RQ",
-    authDomain: "elmandadero-storage.firebaseapp.com",
-    projectId: "elmandadero-storage",
-    storageBucket: "elmandadero-storage.appspot.com",
-    messagingSenderId: "570694818428",
-    appId: "1:570694818428:web:f28410432578bf336647f9"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-</script>
-
-
-
-  ngOnInit() {
-
-      const dataDailySalesChart: any = {
-          labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
-          series: [
-              [12, 17, 7, 17, 23, 18, 38]
-          ]
-      };
-
-     const optionsDailySalesChart: any = {
-          lineSmooth: Chartist.Interpolation.cardinal({
-              tension: 0
-          }),
-          low: 0,
-          high: 50, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
-          chartPadding: { top: 0, right: 0, bottom: 0, left: 0},
-      }
-
-      var dailySalesChart = new Chartist.Line('#dailySalesChart', dataDailySalesChart, optionsDailySalesChart);
-
-      this.startAnimationForLineChart(dailySalesChart);
-
-
-
-      const dataCompletedTasksChart: any = {
-          labels: ['12p', '3p', '6p', '9p', '12p', '3a', '6a', '9a'],
-          series: [
-              [230, 750, 450, 300, 280, 240, 200, 190]
-          ]
-      };
-
-     const optionsCompletedTasksChart: any = {
-          lineSmooth: Chartist.Interpolation.cardinal({
-              tension: 0
-          }),
-          low: 0,
-          high: 1000, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
-          chartPadding: { top: 0, right: 0, bottom: 0, left: 0}
-      }
-
-      var completedTasksChart = new Chartist.Line('#completedTasksChart', dataCompletedTasksChart, optionsCompletedTasksChart);
-
-      // start animation for the Completed Tasks Chart - Line Chart
-      this.startAnimationForLineChart(completedTasksChart);
-
-
-
-
-      var datawebsiteViewsChart = {
-        labels: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
-        series: [
-          [542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895]
-
-        ]
-      };
-      var optionswebsiteViewsChart = {
-          axisX: {
-              showGrid: false
-          },
-          low: 0,
-          high: 1000,
-          chartPadding: { top: 0, right: 5, bottom: 0, left: 0}
-      };
-      var responsiveOptions: any[] = [
-        ['screen and (max-width: 640px)', {
-          seriesBarDistance: 5,
-          axisX: {
-            labelInterpolationFnc: function (value) {
-              return value[0];
-            }
-          }
-        }]
-      ];
-      var websiteViewsChart = new Chartist.Bar('#websiteViewsChart', datawebsiteViewsChart, optionswebsiteViewsChart, responsiveOptions);
-
-      //start animation for the Emails Subscription Chart
-      this.startAnimationForBarChart(websiteViewsChart);
   }
-*/
-}
