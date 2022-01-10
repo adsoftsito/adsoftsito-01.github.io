@@ -522,7 +522,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"wrapper\">\n<!--\n    <div class=\"sidebar\" data-color=\"danger\" data-background-color=\"white\" data-image=\"./assets/img/sidebar-1.jpg\">\n        <app-sidebar></app-sidebar>\n        <div class=\"sidebar-background\" style=\"background-image: url(./assets/img/sidebar-4.jpg)\"></div>\n    </div>\n-->\n    <div class=\"main-panel\"> \n     <!--   <div class=\"main-panel-home\"> -->\n\n        <app-navbar></app-navbar> \n        <router-outlet></router-outlet>\n        <app-footer></app-footer>\n\n        <!--\n        <div *ngIf=\"isMaps('maps')\">\n            <app-footer></app-footer>\n        </div> -->\n    </div>\n\n</div>\n\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"wrapper\">\n\n\n    <div class=\"sidebar\" data-color=\"danger\" data-background-color=\"white\" data-image=\"./assets/img/sidebar-1.jpg\">\n        <app-sidebar></app-sidebar>\n        <div class=\"sidebar-background\" style=\"background-image: url(./assets/img/sidebar-4.jpg)\"></div>\n    </div>\n\n<!---\n<div class=\"navbar\">\n    <app-navbar></app-navbar> \n    \n</div>\n-->\n    <!--\n    <div class=\"main\">\n    -->\n     <div class=\"main-panel\"> \n        <app-navbar></app-navbar> \n\n        <router-outlet></router-outlet>\n        <app-footer></app-footer>\n\n        <!--\n        <div *ngIf=\"isMaps('maps')\">\n            <app-footer></app-footer>\n        </div> -->\n    </div>\n\n</div>\n\n");
 
 /***/ }),
 
@@ -1362,7 +1362,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<nav class=\"navbar navbar-expand-lg fixed-top navbar-transparent\" color-on-scroll=\"500\">\n    <div class=\"container\">\n        <div class=\"navbar-translate\">\n            <a class=\"navbar-brand\" href=\"http://waves-lab.com.mx:8081\">\n                    <img  src=\"assets/img/waveslogo.jpg\" alt=\"\"\n                    width=\"50\" \n                    height=\"40\" \n                    >      \n                    cloud ERP     \n                    - Bienvenido : <b>adsoft</b>\n     \n            </a>\n\n\n            <button class=\"navbar-toggler navbar-burger\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarToggler\" aria-controls=\"navbarTogglerDemo02\" aria-expanded=\"false\" aria-label=\"Toggle navigation\" (click)=\"sidebarToggle()\">\n                <span class=\"navbar-toggler-bar\"></span>\n                <span class=\"navbar-toggler-bar\"></span>\n                <span class=\"navbar-toggler-bar\"></span>\n            </button>\n        </div>\n        <div class=\"navbar-collapse\" id=\"navbarToggler\">\n            <ul class=\"navbar-nav ml-auto\">\n                <li class=\"nav-item\" *ngIf=\"!isDocumentation()\">\n                    <a class=\"nav-link\" [routerLink]=\"['/admin/admin/dashboard']\" rel=\"tooltip\" title=\"Punto de venta\" data-placement=\"bottom\">\n                        <i class=\"fa fa-twitter\"></i>\n                        <p class=\"d-lg-none\">Ventas</p>\n                    </a>\n                </li>\n                <li class=\"nav-item\" *ngIf=\"!isDocumentation()\">\n                    <a class=\"nav-link\" [routerLink]=\"['/admin/admin/facturacion']\" rel=\"tooltip\" title=\"Generacion de CFDi\" data-placement=\"bottom\" >\n                        <i class=\"fa fa-twitter\"></i>\n                        <p class=\"d-lg-none\">Facturacion</p>\n                    </a>\n                </li>\n                <li class=\"nav-item\" *ngIf=\"!isDocumentation()\">\n                    <a class=\"nav-link\" [routerLink]=\"['/admin/admin/productos']\" rel=\"tooltip\" title=\"Administracion de productos\" data-placement=\"bottom\" >\n                        <i class=\"fa fa-twitter\"></i>\n                        <p class=\"d-lg-none\">Productos</p>\n                    </a>\n                </li>\n                <li class=\"nav-item\" *ngIf=\"!isDocumentation()\">\n                    <a class=\"nav-link\" [routerLink]=\"['/admin/admin/clientes']\" rel=\"tooltip\" title=\"Catalogo de clientes\" data-placement=\"bottom\">\n                        <i class=\"fa fa-facebook-square\"></i>\n                        <p class=\"d-lg-none\">Clientes</p>\n                    </a>\n                </li>\n                <li class=\"nav-item\" *ngIf=\"!isDocumentation()\">\n                    <a class=\"nav-link\" [routerLink]=\"['/admin/admin/configuracion']\" rel=\"tooltip\" title=\"Opciones de Configuracion\" data-placement=\"bottom\">\n                        <i class=\"fa fa-instagram\"></i>\n                        <p class=\"d-lg-none\">Configuracion</p>\n                    </a>\n                </li>\n                <li class=\"nav-item\" *ngIf=\"!isDocumentation()\">\n                    <a class=\"nav-link\" [routerLink]=\"['/admin/admin/logout']\" rel=\"tooltip\" title=\"Cerrar sesion del usuario\" data-placement=\"bottom\" >\n                        <i class=\"fa fa-github\"></i>\n                        <p class=\"d-lg-none\">Cerrar sesion</p>\n                    </a>\n                </li>\n                <!--\n                <li class=\"nav-item\" *ngIf=\"!isDocumentation()\">\n                    <a href=\"http://pk2-angular.creative-tim.com/documentation/tutorial\" class=\"nav-link\" target=\"_blank\"><i class=\"nc-icon nc-book-bookmark\"></i> Documentation</a>\n                </li>\n                <li class=\"nav-item\" *ngIf=\"isHome()\">\n                    <a href=\"http://www.waves-lab.com.mx:8081\" target=\"_blank\" class=\"btn btn-danger btn-round\">Ingresar a waves</a>\n                </li>\n                <li class=\"nav-item\" *ngIf=\"!isHome()\">\n                    <a [routerLink]=\"['/home']\" *ngIf=\"!isDocumentation()\" class=\"nav-link\"><i class=\"nc-icon nc-layout-11\"></i>Components</a>\n                    <a [routerLink]=\"['/home']\" *ngIf=\"isDocumentation()\" class=\"nav-link\">Back to Kit</a>\n                </li>\n                <li class=\"nav-item\" *ngIf=\"isDocumentation()\">\n                    <a href=\"https://github.com/creativetimofficial/paper-kit-2-angular/issues?ref=pk2-free-local\" target=\"_blank\" class=\"nav-link\">Have an issue</a>\n                </li>\n            -->\n            </ul>\n        </div>\n    </div>\n</nav>\n<!--\n<nav class=\"navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top\">\n    <div class=\"container-fluid\">\n\n        \n        <form class=\"navbar-form\"> \n            <ng-container *ngIf=\"user\">\n    \n            Bienvenido: <b>{{user}}</b> \n    \n           \n    \n            </ng-container>\n            \n            \n        </form>\n    \n          \n        <div class=\"navbar-wrapper\">\n          <a class=\"navbar-brand\" href=\"javascript:void(0)\">{{getTitle()}}</a>\n        </div>\n\n        \n        <button mat-raised-button class=\"navbar-toggler\" type=\"button\" (click)=\"sidebarToggle()\">\n            <span class=\"sr-only\">Toggle navigation</span>\n            <span class=\"navbar-toggler-icon icon-bar\"></span>\n            <span class=\"navbar-toggler-icon icon-bar\"></span>\n            <span class=\"navbar-toggler-icon icon-bar\"></span>\n        </button>\n    \n        <div class=\"collapse navbar-collapse justify-content-end\" id=\"navigation\">\n        \n            <form class=\"navbar-form\">\n                <div class=\"input-group no-border\">\n                    <input type=\"text\" value=\"\" class=\"form-control\" placeholder=\"Search...\">\n                    <button mat-raised-button type=\"submit\" class=\"btn btn-white btn-round btn-just-icon\">\n                        <i class=\"material-icons\">search</i>\n                        <div class=\"ripple-container\"></div>\n                    </button>\n                </div>\n            </form>\n        \n            <ul class=\"navbar-nav\">\n                \n                <li class=\"nav-item\">\n                    <a class=\"nav-link\" href=\"javascript:void(0)\">\n                        <i class=\"material-icons\">dashboard</i>\n                        <p>\n                            <span class=\"d-lg-none d-md-block\">Stats</span>\n                        </p>\n                    </a>\n                </li>\n\n            \n                \n                <li class=\"nav-item dropdown\">\n                    <a class=\"nav-link\" href=\"javascript:void(0)\" id=\"navbarDropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                        <i class=\"material-icons\">notifications</i>\n                        <span class=\"notification\">5</span>\n                        <p>\n                            <span class=\"d-lg-none d-md-block\">Some Actions</span>\n                        </p>\n                    </a>\n                    <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"navbarDropdownMenuLink\">\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\">Mike John responded to your email</a>\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\">You have 5 new tasks</a>\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\">You're now friend with Andrew</a>\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\">Another Notification</a>\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\">Another One</a>\n                    </div>\n                </li>\n            \n                <li class=\"nav-item\">\n                    Cerrar Sesion\n                                       \n                                        <a class=\"nav-link\" [routerLink]=\"['/admin/admin/logout']\">\n                                            <i class=\"material-icons\">login</i>\n                                            <p>\n                                                <span class=\"d-lg-none d-md-block\">Account</span>\n                                            </p>\n                                        </a>\n                                    \n                                        \n                                        <button mat-raised-button (click)=\"logout()\" class=\"btn btn-white btn-round btn-just-icon\">\n                                           <i class=\"material-icons\">login</i>\n                                           <div class=\"ripple-container\"></div>\n                                        </button>\n                                    \n                </li>\n            \n                <li class=\"nav-item\">\n\n                    <a class=\"nav-link\" [routerLink]=\"[menuItem.path]\">\n                        <i class=\"material-icons\">{{menuItem.icon}}</i>\n                        <p>{{menuItem.title}}</p>\n                    </a>\n                \n\n                    <a class=\"nav-link\" [routerLink]=\"['/new-user']\">\n                        <i class=\"material-icons\">person</i>\n                        <p>\n                            <span class=\"d-lg-none d-md-block\">Account</span>\n                        </p>\n                    </a>\n                \n                </li>\n            </ul>\n        </div>\n    </div>\n</nav>\n-->\n\n<!--\n<nav class=\"navbar navbar-transparent navbar-absolute\">\n    <div class=\"container-fluid\">\n        <div class=\"navbar-header\">\n            <button mat-raised-button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" (click)=\"sidebarToggle()\">\n                <span class=\"sr-only\">Toggle navigation</span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand\" href=\"javascript:void(0)\">{{getTitle()}}</a>\n        </div>\n        <div class=\"collapse navbar-collapse\">\n            <ul class=\"nav navbar-nav navbar-right\">\n                <li>\n                    <a href=\"javascript:void(0)\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n                        <i class=\"material-icons\">dashboard</i>\n                        <p class=\"hidden-lg hidden-md\">Dashboard</p>\n                    </a>\n                </li>\n                <li class=\"dropdown\">\n                    <a href=\"javascript:void(0)\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n                        <i class=\"material-icons\">notifications</i>\n                        <span class=\"notification\">5</span>\n                        <p class=\"hidden-lg hidden-md\">Notifications</p>\n                    </a>\n                    <ul class=\"dropdown-menu\">\n                        <li><a href=\"javascript:void(0)\">Mike John responded to your email</a></li>\n                        <li><a href=\"javascript:void(0)\">You have 5 new tasks</a></li>\n                        <li><a href=\"javascript:void(0)\">You're now friend with Andrew</a></li>\n                        <li><a href=\"javascript:void(0)\">Another Notification</a></li>\n                        <li><a href=\"javascript:void(0)\">Another One</a></li>\n                    </ul>\n                </li>\n                <li>\n                    <a href=\"javascript:void(0)\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n                       <i class=\"material-icons\">person</i>\n                       <p class=\"hidden-lg hidden-md\">Profile</p>\n                    </a>\n                </li>\n            </ul>\n\n            <form class=\"navbar-form navbar-right\" role=\"search\">\n                <div class=\"form-group form-black is-empty\">\n                    <input type=\"text\" class=\"form-control\" placeholder=\"Search\">\n                    <span class=\"material-input\"></span>\n                </div>\n                <button mat-raised-button type=\"submit\" class=\"btn btn-white btn-round btn-just-icon\">\n                    <i class=\"material-icons\">search</i><div class=\"ripple-container\"></div>\n                </button>\n            </form>\n        </div>\n    </div>\n</nav> \n-->");
+/* harmony default export */ __webpack_exports__["default"] = ("\n<nav class=\"navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top\">\n    <div class=\"container-fluid\">\n        \n      <div class=\"navbar-wrapper\">\n          <a class=\"navbar-brand\" href=\"javascript:void(0)\"> <b>waves</b> cloud ERP</a>\n      </div>\n    \n        <button mat-raised-button class=\"navbar-toggler\" type=\"button\" (click)=\"sidebarToggle()\">\n            <span class=\"sr-only\">Toggle navigation</span>\n            <span class=\"navbar-toggler-icon icon-bar\"></span>\n            <span class=\"navbar-toggler-icon icon-bar\"></span>\n            <span class=\"navbar-toggler-icon icon-bar\"></span>\n        </button>\n\n        \n        <div class=\"collapse navbar-collapse justify-content-end\" id=\"navigation\">\n       \n            <ul class=\"navbar-nav\">\n                \n                <li class=\"nav-item\">\n                  <a class=\"nav-link\" [routerLink]=\"['/admin/admin/dashboard']\" rel=\"tooltip\" title=\"Punto de venta\" data-placement=\"bottom\">\n                      <i class=\"fa fa-twitter\"></i>\n                      <p class=\"d-lg-none\">Ventas</p>\n                  </a>\n              </li>\n              <li class=\"nav-item\">\n                  <a class=\"nav-link\" [routerLink]=\"['/admin/admin/facturacion']\" rel=\"tooltip\" title=\"Generacion de CFDi\" data-placement=\"bottom\" >\n                      <i class=\"fa fa-twitter\"></i>\n                      <p class=\"d-lg-none\">Facturacion</p>\n                  </a>\n              </li>\n              <li class=\"nav-item\">\n                <a class=\"nav-link\" [routerLink]=\"['/admin/admin/productos']\" rel=\"tooltip\" title=\"Administracion de productos\" data-placement=\"bottom\" >\n                    <i class=\"fa fa-twitter\"></i>\n                    <p class=\"d-lg-none\">Productos</p>\n                </a>\n            </li>\n            <li class=\"nav-item\" >\n                <a class=\"nav-link\" [routerLink]=\"['/admin/admin/clientes']\" rel=\"tooltip\" title=\"Catalogo de clientes\" data-placement=\"bottom\">\n                    <i class=\"fa fa-facebook-square\"></i>\n                    <p class=\"d-lg-none\">Clientes</p>\n                </a>\n            </li>\n            <li class=\"nav-item\" >\n                <a class=\"nav-link\" [routerLink]=\"['/admin/admin/configuracion']\" rel=\"tooltip\" title=\"Opciones de Configuracion\" data-placement=\"bottom\">\n                    <i class=\"fa fa-instagram\"></i>\n                    <p class=\"d-lg-none\">Configuracion</p>\n                </a>\n            </li>\n            <li class=\"nav-item\" >\n                <a class=\"nav-link\" [routerLink]=\"['/admin/admin/logout']\" rel=\"tooltip\" title=\"Cerrar sesion del usuario\" data-placement=\"bottom\" >\n                    <i class=\"fa fa-github\"></i>\n                    <p class=\"d-lg-none\">Cerrar sesion</p>\n                </a>\n            </li>\n            </ul>\n        </div>\n        </div>\n     </nav>\n     <!--\n<nav class=\"navbar navbar-expand-lg fixed-top navbar-transparent\" color-on-scroll=\"500\">\n    <div class=\"container\">\n        <div class=\"navbar-translate\">\n            <a class=\"navbar-brand\" href=\"http://waves-lab.com.mx:8081\">\n                    <img  src=\"assets/img/waveslogo.jpg\" alt=\"\"\n                    width=\"50\" \n                    height=\"40\" \n                    >      \n                    cloud ERP     \n                    - Bienvenido : <b>adsoft</b>\n     \n            </a>\n\n\n            <button class=\"navbar-toggler navbar-burger\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarToggler\" aria-controls=\"navbarTogglerDemo02\" aria-expanded=\"false\" aria-label=\"Toggle navigation\" (click)=\"sidebarToggle()\">\n                <span class=\"navbar-toggler-bar\"></span>\n                <span class=\"navbar-toggler-bar\"></span>\n                <span class=\"navbar-toggler-bar\"></span>\n            </button>\n        </div>\n        <div class=\"navbar-collapse\" id=\"navbarToggler\">\n            <ul class=\"navbar-nav ml-auto\">\n                <li class=\"nav-item\">\n                    <a class=\"nav-link\" [routerLink]=\"['/admin/admin/dashboard']\" rel=\"tooltip\" title=\"Punto de venta\" data-placement=\"bottom\">\n                        <i class=\"fa fa-twitter\"></i>\n                        <p class=\"d-lg-none\">Ventas</p>\n                    </a>\n                </li>\n                <li class=\"nav-item\">\n                    <a class=\"nav-link\" [routerLink]=\"['/admin/admin/facturacion']\" rel=\"tooltip\" title=\"Generacion de CFDi\" data-placement=\"bottom\" >\n                        <i class=\"fa fa-twitter\"></i>\n                        <p class=\"d-lg-none\">Facturacion</p>\n                    </a>\n                </li>\n                <li class=\"nav-item\">\n                    <a class=\"nav-link\" [routerLink]=\"['/admin/admin/productos']\" rel=\"tooltip\" title=\"Administracion de productos\" data-placement=\"bottom\" >\n                        <i class=\"fa fa-twitter\"></i>\n                        <p class=\"d-lg-none\">Productos</p>\n                    </a>\n                </li>\n                <li class=\"nav-item\" >\n                    <a class=\"nav-link\" [routerLink]=\"['/admin/admin/clientes']\" rel=\"tooltip\" title=\"Catalogo de clientes\" data-placement=\"bottom\">\n                        <i class=\"fa fa-facebook-square\"></i>\n                        <p class=\"d-lg-none\">Clientes</p>\n                    </a>\n                </li>\n                <li class=\"nav-item\" >\n                    <a class=\"nav-link\" [routerLink]=\"['/admin/admin/configuracion']\" rel=\"tooltip\" title=\"Opciones de Configuracion\" data-placement=\"bottom\">\n                        <i class=\"fa fa-instagram\"></i>\n                        <p class=\"d-lg-none\">Configuracion</p>\n                    </a>\n                </li>\n                <li class=\"nav-item\" >\n                    <a class=\"nav-link\" [routerLink]=\"['/admin/admin/logout']\" rel=\"tooltip\" title=\"Cerrar sesion del usuario\" data-placement=\"bottom\" >\n                        <i class=\"fa fa-github\"></i>\n                        <p class=\"d-lg-none\">Cerrar sesion</p>\n                    </a>\n                </li>\n                \n            </ul>\n        </div>\n    </div>\n</nav>\n-->\n<!--\n<nav class=\"navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top\">\n    <div class=\"container-fluid\">\n\n        \n        <form class=\"navbar-form\"> \n            <ng-container *ngIf=\"user\">\n    \n            Bienvenido: <b>{{user}}</b> \n    \n           \n    \n            </ng-container>\n            \n            \n        </form>\n    \n          \n        <div class=\"navbar-wrapper\">\n          <a class=\"navbar-brand\" href=\"javascript:void(0)\">{{getTitle()}}</a>\n        </div>\n\n        \n        <button mat-raised-button class=\"navbar-toggler\" type=\"button\" (click)=\"sidebarToggle()\">\n            <span class=\"sr-only\">Toggle navigation</span>\n            <span class=\"navbar-toggler-icon icon-bar\"></span>\n            <span class=\"navbar-toggler-icon icon-bar\"></span>\n            <span class=\"navbar-toggler-icon icon-bar\"></span>\n        </button>\n    \n        <div class=\"collapse navbar-collapse justify-content-end\" id=\"navigation\">\n        \n            <form class=\"navbar-form\">\n                <div class=\"input-group no-border\">\n                    <input type=\"text\" value=\"\" class=\"form-control\" placeholder=\"Search...\">\n                    <button mat-raised-button type=\"submit\" class=\"btn btn-white btn-round btn-just-icon\">\n                        <i class=\"material-icons\">search</i>\n                        <div class=\"ripple-container\"></div>\n                    </button>\n                </div>\n            </form>\n        \n            <ul class=\"navbar-nav\">\n                \n                <li class=\"nav-item\">\n                    <a class=\"nav-link\" href=\"javascript:void(0)\">\n                        <i class=\"material-icons\">dashboard</i>\n                        <p>\n                            <span class=\"d-lg-none d-md-block\">Stats</span>\n                        </p>\n                    </a>\n                </li>\n\n            \n                \n                <li class=\"nav-item dropdown\">\n                    <a class=\"nav-link\" href=\"javascript:void(0)\" id=\"navbarDropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                        <i class=\"material-icons\">notifications</i>\n                        <span class=\"notification\">5</span>\n                        <p>\n                            <span class=\"d-lg-none d-md-block\">Some Actions</span>\n                        </p>\n                    </a>\n                    <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"navbarDropdownMenuLink\">\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\">Mike John responded to your email</a>\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\">You have 5 new tasks</a>\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\">You're now friend with Andrew</a>\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\">Another Notification</a>\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\">Another One</a>\n                    </div>\n                </li>\n            \n                <li class=\"nav-item\">\n                    Cerrar Sesion\n                                       \n                                        <a class=\"nav-link\" [routerLink]=\"['/admin/admin/logout']\">\n                                            <i class=\"material-icons\">login</i>\n                                            <p>\n                                                <span class=\"d-lg-none d-md-block\">Account</span>\n                                            </p>\n                                        </a>\n                                    \n                                        \n                                        <button mat-raised-button (click)=\"logout()\" class=\"btn btn-white btn-round btn-just-icon\">\n                                           <i class=\"material-icons\">login</i>\n                                           <div class=\"ripple-container\"></div>\n                                        </button>\n                                    \n                </li>\n            \n                <li class=\"nav-item\">\n\n                    <a class=\"nav-link\" [routerLink]=\"[menuItem.path]\">\n                        <i class=\"material-icons\">{{menuItem.icon}}</i>\n                        <p>{{menuItem.title}}</p>\n                    </a>\n                \n\n                    <a class=\"nav-link\" [routerLink]=\"['/new-user']\">\n                        <i class=\"material-icons\">person</i>\n                        <p>\n                            <span class=\"d-lg-none d-md-block\">Account</span>\n                        </p>\n                    </a>\n                \n                </li>\n            </ul>\n        </div>\n    </div>\n</nav>\n-->\n\n<!--\n<nav class=\"navbar navbar-transparent navbar-absolute\">\n    <div class=\"container-fluid\">\n        <div class=\"navbar-header\">\n            <button mat-raised-button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" (click)=\"sidebarToggle()\">\n                <span class=\"sr-only\">Toggle navigation</span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand\" href=\"javascript:void(0)\">{{getTitle()}}</a>\n        </div>\n        <div class=\"collapse navbar-collapse\">\n            <ul class=\"nav navbar-nav navbar-right\">\n                <li>\n                    <a href=\"javascript:void(0)\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n                        <i class=\"material-icons\">dashboard</i>\n                        <p class=\"hidden-lg hidden-md\">Dashboard</p>\n                    </a>\n                </li>\n                <li class=\"dropdown\">\n                    <a href=\"javascript:void(0)\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n                        <i class=\"material-icons\">notifications</i>\n                        <span class=\"notification\">5</span>\n                        <p class=\"hidden-lg hidden-md\">Notifications</p>\n                    </a>\n                    <ul class=\"dropdown-menu\">\n                        <li><a href=\"javascript:void(0)\">Mike John responded to your email</a></li>\n                        <li><a href=\"javascript:void(0)\">You have 5 new tasks</a></li>\n                        <li><a href=\"javascript:void(0)\">You're now friend with Andrew</a></li>\n                        <li><a href=\"javascript:void(0)\">Another Notification</a></li>\n                        <li><a href=\"javascript:void(0)\">Another One</a></li>\n                    </ul>\n                </li>\n                <li>\n                    <a href=\"javascript:void(0)\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n                       <i class=\"material-icons\">person</i>\n                       <p class=\"hidden-lg hidden-md\">Profile</p>\n                    </a>\n                </li>\n            </ul>\n\n            <form class=\"navbar-form navbar-right\" role=\"search\">\n                <div class=\"form-group form-black is-empty\">\n                    <input type=\"text\" class=\"form-control\" placeholder=\"Search\">\n                    <span class=\"material-input\"></span>\n                </div>\n                <button mat-raised-button type=\"submit\" class=\"btn btn-white btn-round btn-just-icon\">\n                    <i class=\"material-icons\">search</i><div class=\"ripple-container\"></div>\n                </button>\n            </form>\n        </div>\n    </div>\n</nav> \n-->");
 
 /***/ }),
 
@@ -1911,12 +1911,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _raw_loader_navbar_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! raw-loader!./navbar.component.html */ "S6iF");
 /* harmony import */ var _navbar_component_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./navbar.component.css */ "DIg/");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "fXoL");
-/* harmony import */ var _sidebar_sidebar_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../sidebar/sidebar.component */ "zBoC");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ "ofXK");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "tyNb");
-/* harmony import */ var _services_storage_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../services/storage.service */ "61FP");
-/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/dialog */ "0IaG");
-/* harmony import */ var _logout_logout_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../logout/logout.component */ "n1B2");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ "ofXK");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "tyNb");
+/* harmony import */ var _services_storage_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../services/storage.service */ "61FP");
+/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material/dialog */ "0IaG");
+/* harmony import */ var _logout_logout_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../logout/logout.component */ "n1B2");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1934,7 +1933,6 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
-
 var NavbarComponent = /** @class */ (function () {
     function NavbarComponent(location, element, router, storageService, dialog) {
         this.element = element;
@@ -1942,108 +1940,103 @@ var NavbarComponent = /** @class */ (function () {
         this.storageService = storageService;
         this.dialog = dialog;
         this.mobile_menu_visible = 0;
-        this.location = location;
+        //this.location = location;
         this.sidebarVisible = false;
     }
     NavbarComponent.prototype.ngOnInit = function () {
-        var _this = this;
         this.user = this.storageService.getSession("user");
-        this.listTitles = _sidebar_sidebar_component__WEBPACK_IMPORTED_MODULE_3__["ROUTES"].filter(function (listTitle) { return listTitle; });
+        /*
+            this.listTitles = ROUTES.filter(listTitle => listTitle);
+            const navbar: HTMLElement = this.element.nativeElement;
+            this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
+            this.router.events.subscribe((event) => {
+              this.sidebarClose();
+               var $layer: any = document.getElementsByClassName('close-layer')[0];
+               if ($layer) {
+                 $layer.remove();
+                 this.mobile_menu_visible = 0;
+               }
+            });
+      */
         var navbar = this.element.nativeElement;
         this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
-        this.router.events.subscribe(function (event) {
-            _this.sidebarClose();
-            var $layer = document.getElementsByClassName('close-layer')[0];
-            if ($layer) {
-                $layer.remove();
-                _this.mobile_menu_visible = 0;
-            }
-        });
     };
     NavbarComponent.prototype.logout = function () {
         // this.shoppingCartService.checkout();
-        var dialogRef = this.dialog.open(_logout_logout_component__WEBPACK_IMPORTED_MODULE_8__["LogoutComponent"], {
+        var dialogRef = this.dialog.open(_logout_logout_component__WEBPACK_IMPORTED_MODULE_7__["LogoutComponent"], {
             // data: { state: this.state }, // now uses the observable
             height: '400px',
             width: '400px',
         });
     };
-    /*
-        sidebarOpen() {
-            const toggleButton = this.toggleButton;
-            const body = document.getElementsByTagName('body')[0];
-            setTimeout(function(){
-                toggleButton.classList.add('toggled');
-            }, 500);
-    
-            body.classList.add('nav-open');
-    
-            this.sidebarVisible = true;
-        };
-        sidebarClose() {
-            const body = document.getElementsByTagName('body')[0];
-            this.toggleButton.classList.remove('toggled');
-            this.sidebarVisible = false;
+    NavbarComponent.prototype.sidebarOpen = function () {
+        var toggleButton = this.toggleButton;
+        var body = document.getElementsByTagName('body')[0];
+        setTimeout(function () {
+            toggleButton.classList.add('toggled');
+        }, 500);
+        body.classList.add('nav-open');
+        this.sidebarVisible = true;
+    };
+    ;
+    NavbarComponent.prototype.sidebarClose = function () {
+        var body = document.getElementsByTagName('body')[0];
+        this.toggleButton.classList.remove('toggled');
+        this.sidebarVisible = false;
+        body.classList.remove('nav-open');
+    };
+    ;
+    NavbarComponent.prototype.sidebarToggle = function () {
+        // const toggleButton = this.toggleButton;
+        // const body = document.getElementsByTagName('body')[0];
+        var $toggle = document.getElementsByClassName('navbar-toggler')[0];
+        if (this.sidebarVisible === false) {
+            this.sidebarOpen();
+        }
+        else {
+            this.sidebarClose();
+        }
+        var body = document.getElementsByTagName('body')[0];
+        if (this.mobile_menu_visible == 1) {
+            // $('html').removeClass('nav-open');
             body.classList.remove('nav-open');
-        };
-        sidebarToggle() {
-            // const toggleButton = this.toggleButton;
-            // const body = document.getElementsByTagName('body')[0];
-            var $toggle = document.getElementsByClassName('navbar-toggler')[0];
-    
-            if (this.sidebarVisible === false) {
-                this.sidebarOpen();
-            } else {
-                this.sidebarClose();
+            if ($layer) {
+                $layer.remove();
             }
-            const body = document.getElementsByTagName('body')[0];
-    
-            if (this.mobile_menu_visible == 1) {
-                // $('html').removeClass('nav-open');
+            setTimeout(function () {
+                $toggle.classList.remove('toggled');
+            }, 400);
+            this.mobile_menu_visible = 0;
+        }
+        else {
+            setTimeout(function () {
+                $toggle.classList.add('toggled');
+            }, 430);
+            var $layer = document.createElement('div');
+            $layer.setAttribute('class', 'close-layer');
+            if (body.querySelectorAll('.main-panel')) {
+                document.getElementsByClassName('main-panel')[0].appendChild($layer);
+            }
+            else if (body.classList.contains('off-canvas-sidebar')) {
+                document.getElementsByClassName('wrapper-full-page')[0].appendChild($layer);
+            }
+            setTimeout(function () {
+                $layer.classList.add('visible');
+            }, 100);
+            $layer.onclick = function () {
                 body.classList.remove('nav-open');
-                if ($layer) {
+                this.mobile_menu_visible = 0;
+                $layer.classList.remove('visible');
+                setTimeout(function () {
                     $layer.remove();
-                }
-                setTimeout(function() {
                     $toggle.classList.remove('toggled');
                 }, 400);
-    
-                this.mobile_menu_visible = 0;
-            } else {
-                setTimeout(function() {
-                    $toggle.classList.add('toggled');
-                }, 430);
-    
-                var $layer = document.createElement('div');
-                $layer.setAttribute('class', 'close-layer');
-    
-    
-                if (body.querySelectorAll('.main-panel')) {
-                    document.getElementsByClassName('main-panel')[0].appendChild($layer);
-                }else if (body.classList.contains('off-canvas-sidebar')) {
-                    document.getElementsByClassName('wrapper-full-page')[0].appendChild($layer);
-                }
-    
-                setTimeout(function() {
-                    $layer.classList.add('visible');
-                }, 100);
-    
-                $layer.onclick = function() { //asign a function
-                  body.classList.remove('nav-open');
-                  this.mobile_menu_visible = 0;
-                  $layer.classList.remove('visible');
-                  setTimeout(function() {
-                      $layer.remove();
-                      $toggle.classList.remove('toggled');
-                  }, 400);
-                }.bind(this);
-    
-                body.classList.add('nav-open');
-                this.mobile_menu_visible = 1;
-    
-            }
-        };
-    */
+            }.bind(this);
+            body.classList.add('nav-open');
+            this.mobile_menu_visible = 1;
+        }
+    };
+    ;
     NavbarComponent.prototype.getTitle = function () {
         var titlee = this.location.prepareExternalUrl(this.location.path());
         if (titlee.charAt(0) === '#') {
@@ -2056,68 +2049,12 @@ var NavbarComponent = /** @class */ (function () {
         }
         return 'Dashboard';
     };
-    /////////
-    NavbarComponent.prototype.sidebarOpen = function () {
-        var toggleButton = this.toggleButton;
-        var html = document.getElementsByTagName('html')[0];
-        // console.log(html);
-        // console.log(toggleButton, 'toggle');
-        setTimeout(function () {
-            toggleButton.classList.add('toggled');
-        }, 500);
-        html.classList.add('nav-open');
-        this.sidebarVisible = true;
-    };
-    ;
-    NavbarComponent.prototype.sidebarClose = function () {
-        var html = document.getElementsByTagName('html')[0];
-        // console.log(html);
-        this.toggleButton.classList.remove('toggled');
-        this.sidebarVisible = false;
-        html.classList.remove('nav-open');
-    };
-    ;
-    NavbarComponent.prototype.sidebarToggle = function () {
-        // const toggleButton = this.toggleButton;
-        // const body = document.getElementsByTagName('body')[0];
-        if (this.sidebarVisible === false) {
-            this.sidebarOpen();
-        }
-        else {
-            this.sidebarClose();
-        }
-    };
-    ;
-    NavbarComponent.prototype.isHome = function () {
-        var titlee = this.location.prepareExternalUrl(this.location.path());
-        if (titlee.charAt(0) === '#') {
-            titlee = titlee.slice(1);
-        }
-        if (titlee === '/home') {
-            return true;
-        }
-        else {
-            return false;
-        }
-    };
-    NavbarComponent.prototype.isDocumentation = function () {
-        var titlee = this.location.prepareExternalUrl(this.location.path());
-        if (titlee.charAt(0) === '#') {
-            titlee = titlee.slice(1);
-        }
-        if (titlee === '/documentation') {
-            return true;
-        }
-        else {
-            return false;
-        }
-    };
     NavbarComponent.ctorParameters = function () { return [
-        { type: _angular_common__WEBPACK_IMPORTED_MODULE_4__["Location"] },
+        { type: _angular_common__WEBPACK_IMPORTED_MODULE_3__["Location"] },
         { type: _angular_core__WEBPACK_IMPORTED_MODULE_2__["ElementRef"] },
-        { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] },
-        { type: _services_storage_service__WEBPACK_IMPORTED_MODULE_6__["StorageService"] },
-        { type: _angular_material_dialog__WEBPACK_IMPORTED_MODULE_7__["MatDialog"] }
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"] },
+        { type: _services_storage_service__WEBPACK_IMPORTED_MODULE_5__["StorageService"] },
+        { type: _angular_material_dialog__WEBPACK_IMPORTED_MODULE_6__["MatDialog"] }
     ]; };
     NavbarComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Component"])({
@@ -2125,11 +2062,11 @@ var NavbarComponent = /** @class */ (function () {
             template: _raw_loader_navbar_component_html__WEBPACK_IMPORTED_MODULE_0__["default"],
             styles: [_navbar_component_css__WEBPACK_IMPORTED_MODULE_1__["default"]]
         }),
-        __metadata("design:paramtypes", [_angular_common__WEBPACK_IMPORTED_MODULE_4__["Location"],
+        __metadata("design:paramtypes", [_angular_common__WEBPACK_IMPORTED_MODULE_3__["Location"],
             _angular_core__WEBPACK_IMPORTED_MODULE_2__["ElementRef"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"],
-            _services_storage_service__WEBPACK_IMPORTED_MODULE_6__["StorageService"],
-            _angular_material_dialog__WEBPACK_IMPORTED_MODULE_7__["MatDialog"]])
+            _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"],
+            _services_storage_service__WEBPACK_IMPORTED_MODULE_5__["StorageService"],
+            _angular_material_dialog__WEBPACK_IMPORTED_MODULE_6__["MatDialog"]])
     ], NavbarComponent);
     return NavbarComponent;
 }());
