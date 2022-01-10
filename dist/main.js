@@ -1,5 +1,112 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["main"],{
 
+/***/ "+ncC":
+/*!***********************************************!*\
+  !*** ./src/services/graphql.sales.service.ts ***!
+  \***********************************************/
+/*! exports provided: GraphqlSalesService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GraphqlSalesService", function() { return GraphqlSalesService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var apollo_angular__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! apollo-angular */ "/IUn");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "tk/3");
+var __makeTemplateObject = (undefined && undefined.__makeTemplateObject) || function (cooked, raw) {
+    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+    return cooked;
+};
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+//import { Component, OnInit, OnDestroy } from '@angular/core';
+
+//import { StorageService } from "./storage.service";
+var TOKENAUTH = Object(apollo_angular__WEBPACK_IMPORTED_MODULE_1__["gql"])(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  mutation TokenAuth($username: String!, $password: String!) {\n    tokenAuth(username: $username, password: $password) {\n      token\n    }\n  }\n"], ["\n  mutation TokenAuth($username: String!, $password: String!) {\n    tokenAuth(username: $username, password: $password) {\n      token\n    }\n  }\n"])));
+var EMISORME = Object(apollo_angular__WEBPACK_IMPORTED_MODULE_1__["gql"])(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  query Emisorme {\n    emisorme {\n      rfc\n      nombre\n      regimenfiscal\n    }\n  }\n"], ["\n  query Emisorme {\n    emisorme {\n      rfc\n      nombre\n      regimenfiscal\n    }\n  }\n"])));
+var SALE = Object(apollo_angular__WEBPACK_IMPORTED_MODULE_1__["gql"])(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\nquery Sale($saleid: Int!) {\n  sale(saleid: $saleid) {\n    sale {\n      id\n      serie\n      folio\n      formapago\n      condicionesdepago\n      subtotal\n      descuento\n      moneda\n      tipodecomprobante\n      metodopago\n      lugarexpedicion\n      totalimpuestostrasladados\n      totalimpuestosretenidos\n      total\n      receptor {\n        rfc\n        nombre\n        usocfdi\n        \n      }\n    } \n    detail {\n      id\n      codigosat\n      noidentificacion\n      claveunidad\n      product\n      cantidad\n      precio\n      importe\n      descuento\n      trasladoiva\n      retiva\n      ieps\n    }    \n  }\n}\n"], ["\nquery Sale($saleid: Int!) {\n  sale(saleid: $saleid) {\n    sale {\n      id\n      serie\n      folio\n      formapago\n      condicionesdepago\n      subtotal\n      descuento\n      moneda\n      tipodecomprobante\n      metodopago\n      lugarexpedicion\n      totalimpuestostrasladados\n      totalimpuestosretenidos\n      total\n      receptor {\n        rfc\n        nombre\n        usocfdi\n        \n      }\n    } \n    detail {\n      id\n      codigosat\n      noidentificacion\n      claveunidad\n      product\n      cantidad\n      precio\n      importe\n      descuento\n      trasladoiva\n      retiva\n      ieps\n    }    \n  }\n}\n"])));
+var SALES = Object(apollo_angular__WEBPACK_IMPORTED_MODULE_1__["gql"])(templateObject_4 || (templateObject_4 = __makeTemplateObject(["\n  query Sales($search: String!) {\n    sales(search: $search) {\n      id\n      serie\n      folio\n      total\n      receptor {\n        rfc\n        nombre\n      }\n    }\n  }\n"], ["\n  query Sales($search: String!) {\n    sales(search: $search) {\n      id\n      serie\n      folio\n      total\n      receptor {\n        rfc\n        nombre\n      }\n    }\n  }\n"])));
+var CREATESALE = Object(apollo_angular__WEBPACK_IMPORTED_MODULE_1__["gql"])(templateObject_5 || (templateObject_5 = __makeTemplateObject(["\n  mutation CreateSale($subtotal: Float!, $iva: Float!, $total: Float!, $products : [DetailInput]!) {\n    createSale(\n                serie: \"A\",\n                folio: \"2\",\n                condicionesdepago: \"CONTADO\",\n                formapago: \"03\",\n                lugarexpedicion: \"94740\",\n                tipodecomprobante: \"I\",\n                metodopago: \"PUE\",\n                moneda: \"MXN\",\n                descuento: 0,\n                \n                totalimpuestosretenidos: 16,\n                totalimpuestostrasladados: $iva,\n    \n                subtotal: $subtotal, \n                total: $total, \n                receptorId: 1,\n                products : $products) {\n      id\n      total\n      postedBy {\n        id\n        username\n        email\n\n      }\n   }\n  }\n  "], ["\n  mutation CreateSale($subtotal: Float!, $iva: Float!, $total: Float!, $products : [DetailInput]!) {\n    createSale(\n                serie: \"A\",\n                folio: \"2\",\n                condicionesdepago: \"CONTADO\",\n                formapago: \"03\",\n                lugarexpedicion: \"94740\",\n                tipodecomprobante: \"I\",\n                metodopago: \"PUE\",\n                moneda: \"MXN\",\n                descuento: 0,\n                \n                totalimpuestosretenidos: 16,\n                totalimpuestostrasladados: $iva,\n    \n                subtotal: $subtotal, \n                total: $total, \n                receptorId: 1,\n                products : $products) {\n      id\n      total\n      postedBy {\n        id\n        username\n        email\n\n      }\n   }\n  }\n  "])));
+var GraphqlSalesService = /** @class */ (function () {
+    function GraphqlSalesService(apollo) {
+        this.apollo = apollo;
+    }
+    GraphqlSalesService.prototype.emisorme = function (mytoken) {
+        return this.apollo.query({
+            query: EMISORME,
+            context: {
+                // example of setting the headers with context per operation
+                headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().set('Authorization', 'JWT ' + mytoken),
+            },
+        });
+    };
+    GraphqlSalesService.prototype.sale = function (mytoken, saleid) {
+        return this.apollo.query({
+            query: SALE,
+            variables: {
+                saleid: saleid,
+            },
+            context: {
+                // example of setting the headers with context per operation
+                headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().set('Authorization', 'JWT ' + mytoken),
+            },
+        });
+    };
+    GraphqlSalesService.prototype.sales = function (mytoken, search) {
+        return this.apollo.query({
+            query: SALES,
+            variables: {
+                search: search,
+            },
+            context: {
+                // example of setting the headers with context per operation
+                headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().set('Authorization', 'JWT ' + mytoken),
+            },
+        });
+    };
+    GraphqlSalesService.prototype.createSale = function (mytoken, subtotal, iva, total, products) {
+        console.log("token auth = " + mytoken);
+        alert(mytoken);
+        return this.apollo.mutate({
+            mutation: CREATESALE,
+            variables: {
+                subtotal: subtotal,
+                iva: iva,
+                total: total,
+                products: products
+            },
+            context: {
+                // example of setting the headers with context per operation
+                headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().set('Authorization', 'JWT ' + mytoken),
+            },
+        });
+    };
+    GraphqlSalesService.ctorParameters = function () { return [
+        { type: apollo_angular__WEBPACK_IMPORTED_MODULE_1__["Apollo"] }
+    ]; };
+    GraphqlSalesService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [apollo_angular__WEBPACK_IMPORTED_MODULE_1__["Apollo"]])
+    ], GraphqlSalesService);
+    return GraphqlSalesService;
+}());
+
+var templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5;
+
+
+/***/ }),
+
 /***/ "/de2":
 /*!********************************************************!*\
   !*** ./src/app/user-profile/user-profile.component.ts ***!
@@ -53,7 +160,93 @@ var UserProfileComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/m/Desktop/cmf-iot/src/main.ts */"zUnb");
+module.exports = __webpack_require__(/*! /Users/m/Desktop/2022/cloud-erp/develop/cmf-iot/src/main.ts */"zUnb");
+
+
+/***/ }),
+
+/***/ "0vfD":
+/*!**************************************!*\
+  !*** ./src/services/cfdi.service.ts ***!
+  \**************************************/
+/*! exports provided: CfdiService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CfdiService", function() { return CfdiService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "tk/3");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ "kU1M");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var CfdiService = /** @class */ (function () {
+    function CfdiService(http) {
+        this.http = http;
+        this.apiURL = 'http://198.251.74.249:5000';
+        // Http Options
+        this.httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Headers': 'Content-Type',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'POST,OPTIONS'
+            })
+        };
+    }
+    // HttpClient GET post() method 
+    /*
+    getVersion(): Observable<any> {
+      return this.http.get<any>(this.apiURL + '/home/about?command=v', this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
+    }
+    */
+    // HttpClient POST complement method 
+    CfdiService.prototype.getCfdi = function (cfdi) {
+        //console.log(JSON.stringify(cfdi));
+        return this.http.post(this.apiURL + '/', cfdi, this.httpOptions)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["retry"])(1), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["catchError"])(this.handleError));
+    };
+    // Error handling 
+    CfdiService.prototype.handleError = function (error) {
+        var errorMessage = '';
+        if (error.error instanceof ErrorEvent) {
+            // Get client-side error
+            errorMessage = error.error.message;
+        }
+        else {
+            // Get server-side error
+            errorMessage = "Error Code: " + error.status + "\nMessage: " + error.message;
+        }
+        window.alert(errorMessage);
+        //  return throwError(errorMessage);
+        return errorMessage;
+    };
+    CfdiService.ctorParameters = function () { return [
+        { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"] }
+    ]; };
+    CfdiService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+    ], CfdiService);
+    return CfdiService;
+}());
+
 
 
 /***/ }),
@@ -68,6 +261,19 @@ module.exports = __webpack_require__(/*! /Users/m/Desktop/cmf-iot/src/main.ts */
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvc2lkZWJhci9zaWRlYmFyLmNvbXBvbmVudC5jc3MifQ== */");
+
+/***/ }),
+
+/***/ "2ZcO":
+/*!****************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/checkout/checkout.component.html ***!
+  \****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<ng-container *ngIf=\"(state | async) as s\">\n\t<!-- <pre>\n    {{ s | json }}\n  </pre> -->\n\t<h3>\n\t\tCheckout\n\t\t<button style=\"float: right;\" mat-icon-button [mat-dialog-close]><mat-icon>cancel</mat-icon></button>\n  </h3>\n\n\t<div *ngIf=\"s.cart.length > 0; else elseBlock\">\n  <p>\n    Review your items and checkout\n  </p>\n  <mat-card>\n    <mat-card-header>\n      <mat-card-title>Total: {{ s.tot.subTot | currency:'USD':'symbol':'1.2-2' }}</mat-card-title>\n      <mat-card-subtitle>\n      tax: {{ s.tot.tax | currency:'USD':'symbol':'1.2-2' }}\n      <br />\n          at checkout: {{ s.tot.grandTot | currency:'USD':'symbol':'1.2-2' }}\n        </mat-card-subtitle>\n      </mat-card-header>\n      <mat-card-actions style=\"text-align: right;\">\n        <button type=\"button\" mat-button color=\"accent\" (click)=\"completeOrder()\" >\n          Complete my order <mat-icon>check</mat-icon>\n        </button>\n      </mat-card-actions>\n      <br>\n      <mat-card-actions style=\"text-align: right;\">\n        <button type=\"button\" mat-button color=\"accent\" (click)=\"getCfdi()\" >\n          Facturar <mat-icon></mat-icon>\n        </button>\n      </mat-card-actions>\n  </mat-card>\n  <div *ngFor=\"let item of s.cart\">\n    <p>\n      {{ item.name }}<br />\n      <strong>{{ item.price }}</strong>\n    </p>\n  </div> \n</div>\n  <ng-template #elseBlock>\n    <h4>Thank you for your fake purchase!</h4>\n     <button type=\"button\" mat-button color=\"primary\" [mat-dialog-close]>\n         Close <mat-icon>cancel</mat-icon>\n        </button>\n  </ng-template>\n</ng-container>");
 
 /***/ }),
 
@@ -106,7 +312,7 @@ import { HttpLink } from 'apollo-angular/http';
 import { InMemoryCache,ApolloLink } from '@apollo/client/core';
 import { setContext } from '@apollo/client/link/context';
 */
-var uri = 'http://34.68.87.191:8081/graphql/'; // <-- add the URL of the GraphQL server here
+var uri = 'http://198.251.74.249:3000/graphql/'; // <-- add the URL of the GraphQL server here
 function createApollo(httpLink) {
     return {
         link: httpLink.create({ uri: uri }),
@@ -171,6 +377,103 @@ var GraphQLModule = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "61FP":
+/*!*****************************************!*\
+  !*** ./src/services/storage.service.ts ***!
+  \*****************************************/
+/*! exports provided: StorageService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StorageService", function() { return StorageService; });
+var StorageService = /** @class */ (function () {
+    function StorageService() {
+    }
+    StorageService.prototype.getApiUrl = function () {
+        return 'http://localhost:8080';
+        //return   'http://201.147.64.84:8083' 
+    };
+    StorageService.prototype.setSession = function (key, obj) {
+        sessionStorage.setItem(key, JSON.stringify(obj));
+    };
+    StorageService.prototype.getSession = function (key) {
+        var obj = sessionStorage.getItem(key);
+        return obj ? JSON.parse(obj) : null;
+    };
+    StorageService.prototype.sessionDeleteAll = function () {
+        sessionStorage.clear();
+    };
+    StorageService.prototype.sessionDeleteByKey = function (key) {
+        sessionStorage.removeItem(key);
+    };
+    StorageService.prototype.setLocal = function (key, obj) {
+        localStorage.setItem(key, JSON.stringify(obj));
+    };
+    StorageService.prototype.getLocal = function (key) {
+        var obj = localStorage.getItem(key);
+        return obj ? JSON.parse(obj) : null;
+    };
+    StorageService.prototype.localDeleteAll = function () {
+        localStorage.clear();
+    };
+    StorageService.prototype.localDeleteByKey = function (key) {
+        localStorage.removeItem(key);
+    };
+    return StorageService;
+}());
+
+
+
+/***/ }),
+
+/***/ "6Cq0":
+/*!***************************************!*\
+  !*** ./src/services/login.service.ts ***!
+  \***************************************/
+/*! exports provided: LoginService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginService", function() { return LoginService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ "qCKp");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+//import { NavigationStart } from '@angular/router';
+
+var LoginService = /** @class */ (function () {
+    function LoginService() {
+        this.dataChange = new rxjs__WEBPACK_IMPORTED_MODULE_1__["Subject"]();
+    }
+    LoginService.prototype.showData = function (outer_data) {
+        // alert("data");
+        this.dataChange.next(outer_data);
+    };
+    LoginService.prototype.getData = function () {
+        return this.dataChange.asObservable();
+    };
+    LoginService.ctorParameters = function () { return []; };
+    LoginService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [])
+    ], LoginService);
+    return LoginService;
+}());
+
+
+
+/***/ }),
+
 /***/ "9WCt":
 /*!*********************************************************!*\
   !*** ./src/app/user-profile/user-profile.component.css ***!
@@ -219,7 +522,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"wrapper\">\n\n    <div class=\"sidebar\" data-color=\"danger\" data-background-color=\"white\" data-image=\"./assets/img/sidebar-1.jpg\">\n        <app-sidebar></app-sidebar>\n        <div class=\"sidebar-background\" style=\"background-image: url(./assets/img/sidebar-4.jpg)\"></div>\n    </div>\n\n    <div class=\"main-panel\">\n        <app-navbar></app-navbar>\n        <router-outlet></router-outlet>\n        <div *ngIf=\"isMaps('maps')\">\n            <app-footer></app-footer>\n        </div>\n    </div>\n<!--\n    <div class=\"fixed-plugin\">\n        <div class=\"dropdown show-dropdown open show\">\n            <a href=\"#\" data-toggle=\"dropdown\" aria-expanded=\"true\">\n                <i class=\"fa fa-cog fa-2x\"> </i>\n            </a>\n            <ul class=\"dropdown-menu show\" x-placement=\"bottom-start\" style=\"position: absolute; top: 41px; left: -231px; will-change: top, left;\">\n                <li class=\"header-title\"> Sidebar Filters</li>\n                <li class=\"adjustments-line\">\n                    <a href=\"javascript:void(0)\" class=\"switch-trigger active-color\">\n                        <div class=\"ml-auto mr-auto\">\n                            <span class=\"badge filter badge-purple\" data-color=\"purple\"></span>\n                            <span class=\"badge filter badge-azure\" data-color=\"azure\"></span>\n                            <span class=\"badge filter badge-green\" data-color=\"green\"></span>\n                            <span class=\"badge filter badge-orange\" data-color=\"orange\"></span>\n                            <span class=\"badge filter badge-danger active\" data-color=\"danger\"></span>\n                        </div>\n                        <div class=\"clearfix\"></div>\n                    <div class=\"ripple-container\"></div></a>\n                </li>\n                <li class=\"header-title\">Images</li>\n                <li>\n                    <a class=\"img-holder switch-trigger\" href=\"javascript:void(0)\">\n                        <img src=\"./assets/img/sidebar-1.jpg\" alt=\"\">\n                    </a>\n                </li>\n                <li>\n                    <a class=\"img-holder switch-trigger\" href=\"javascript:void(0)\">\n                        <img src=\"./assets/img/sidebar-2.jpg\" alt=\"\">\n                    <div class=\"ripple-container\"></div></a>\n                </li>\n                <li>\n                    <a class=\"img-holder switch-trigger\" href=\"javascript:void(0)\">\n                        <img src=\"./assets/img/sidebar-3.jpg\" alt=\"\">\n                    </a>\n                </li>\n                <li class=\"active\">\n                    <a class=\"img-holder switch-trigger\" href=\"javascript:void(0)\">\n                        <img src=\"./assets/img/sidebar-4.jpg\" alt=\"\">\n                    </a>\n                </li>\n                <li class=\"button-container\">\n                    <div>\n                        <button class=\"btn btn-info btn-block btn-fill\" data-toggle=\"modal\" data-target=\"#buy\">\n                            Download Free\n                        </button>\n                    </div>\n                </li>\n                <li class=\"button-container\">\n                    <div>\n                        <button class=\"btn btn-warning btn-block btn-fill\" data-toggle=\"modal\" data-target=\"#buy\">\n                            Buy Pro\n                        </button>\n                    </div>\n                </li>\n                <li class=\"button-container text-center\" routerLinkActive=\"active\">\n                  <div>\n                    <a class=\"btn btn-default btn-block\" href=\"https://demos.creative-tim.com/material-dashboard-angular2/#/documentation/tutorial\">\n                        View Documentation\n                    </a>\n                  </div>\n                </li>\n            </ul>\n        </div>\n    </div>\n-->\n</div>\n<!-- Buy-Modal-angular -->\n<div class=\"modal modal-angular fade\" id=\"buy\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\">\n<div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n        <div class=\"modal-body text-center\">\n            <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\n            <h4 class=\"margin-top\">\n                Free Version\n            </h4>\n            <div class=\"separator\"></div>\n            <a href=\"https://www.creative-tim.com/product/material-dashboard\" class=\"modal-button\" target=\"_blank\">\n                <div class=\"wrapper-card\">\n                    <div class=\"image-container\">\n                        <img src=\"./assets/img/html.png\" alt=\"unloaded\">\n                    </div>\n                    Html5\n                    <div class=\"separator\"></div>\n                    <div class=\"product-type\">\n                        FREE\n                    </div>\n                </div>\n            </a>\n            <a href=\"https://www.creative-tim.com/product/material-dashboard-angular2\" class=\"modal-button\" target=\"_blank\">\n                <div class=\"wrapper-card\">\n                    <div class=\"image-container image-angular-cli\">\n                        <img src=\"./assets/img/angular.png\" alt=\"unloaded\">\n                    </div>\n                    Angular\n                    <div class=\"separator\"></div>\n                    <div class=\"product-type\">\n                        FREE\n                    </div>\n                </div>\n            </a>\n            <h4>\n                PRO Version\n            </h4>\n            <div class=\"separator\"></div>\n            <a href=\"https://www.creative-tim.com/product/material-dashboard-pro\" class=\"modal-button\" target=\"_blank\">\n                <div class=\"image-container\">\n                    <img src=\"./assets/img/html.png\" alt=\"unloaded\">\n                </div>\n                Html5\n                <div class=\"separator\"></div>\n                <div class=\"price\">\n                    from\n                    <span>\n                        49\n                        <i class=\"fa fa-usd\" aria-hidden=\"true\"></i>\n                    </span>\n                </div>\n            </a>\n            <a href=\"https://www.creative-tim.com/product/material-dashboard-pro-angular2\" class=\"modal-button\" target=\"_blank\">\n                <div class=\"image-container image-angular-cli\">\n                    <img src=\"./assets/img/angular.png\" alt=\"unloaded\">\n                </div>\n                Angular\n                <div class=\"separator\"></div>\n                <div class=\"price\">\n                    from\n                    <span>\n                        59\n                        <i class=\"fa fa-usd\" aria-hidden=\"true\"></i>\n                    </span>\n                </div>\n            </a>\n        </div>\n    </div>\n</div>\n\n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"wrapper\">\n\n    <div class=\"sidebar\" data-color=\"danger\" data-background-color=\"white\" data-image=\"./assets/img/sidebar-1.jpg\">\n        <app-sidebar></app-sidebar>\n        <div class=\"sidebar-background\" style=\"background-image: url(./assets/img/sidebar-4.jpg)\"></div>\n    </div>\n\n    <div class=\"main-panel\">\n        <app-navbar></app-navbar> \n        <router-outlet></router-outlet>\n        <app-footer></app-footer>\n\n        <!--\n        <div *ngIf=\"isMaps('maps')\">\n            <app-footer></app-footer>\n        </div> -->\n    </div>\n\n</div>\n\n");
 
 /***/ }),
 
@@ -248,6 +551,26 @@ var environment = {
         appId: "1:570694818428:web:f28410432578bf336647f9"
     }
 };
+
+
+/***/ }),
+
+/***/ "D/Am":
+/*!********************************!*\
+  !*** ./src/models/usersapi.ts ***!
+  \********************************/
+/*! exports provided: UserApi */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserApi", function() { return UserApi; });
+var UserApi = /** @class */ (function () {
+    function UserApi() {
+    }
+    return UserApi;
+}());
+
 
 
 /***/ }),
@@ -291,6 +614,459 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "HblP":
+/*!****************************!*\
+  !*** ./src/models/data.ts ***!
+  \****************************/
+/*! exports provided: DATA_ITEMS */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DATA_ITEMS", function() { return DATA_ITEMS; });
+var DATA_ITEMS = [
+    {
+        price: 59.99,
+        image: null,
+        name: 'Item 1',
+        details: 'It\'s as cool as it sounds',
+        heart: null,
+    },
+    {
+        price: 99.99,
+        image: null,
+        name: 'Item 2',
+        details: 'It\'s as cool as it sounds',
+        heart: null,
+    },
+    {
+        price: 19.99,
+        image: null,
+        name: 'Item 3',
+        details: 'It\'s as cool as it sounds',
+        heart: null,
+    },
+    {
+        price: 59.99,
+        image: null,
+        name: 'Item 4',
+        details: 'It\'s as cool as it sounds',
+        heart: null,
+    },
+    {
+        price: 39.99,
+        image: null,
+        name: 'Item 5',
+        details: 'It\'s as cool as it sounds',
+        heart: null,
+    },
+    {
+        price: 9.99,
+        image: null,
+        name: 'Item 6',
+        details: 'It\'s as cool as it sounds',
+        heart: null,
+    }
+];
+
+
+/***/ }),
+
+/***/ "IiZn":
+/*!************************************************!*\
+  !*** ./src/app/checkout/checkout.component.ts ***!
+  \************************************************/
+/*! exports provided: CheckoutDialog */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CheckoutDialog", function() { return CheckoutDialog; });
+/* harmony import */ var _raw_loader_checkout_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! raw-loader!./checkout.component.html */ "2ZcO");
+/* harmony import */ var _checkout_component_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./checkout.component.css */ "PkTJ");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material/dialog */ "0IaG");
+/* harmony import */ var _services_shopping_cart_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/shopping-cart.service */ "K5n9");
+/* harmony import */ var _services_graphql_sales_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../services/graphql.sales.service */ "+ncC");
+/* harmony import */ var _services_storage_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../services/storage.service */ "61FP");
+/* harmony import */ var _models_totales__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../models/totales */ "LZ+U");
+/* harmony import */ var _services_login_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../services/login.service */ "6Cq0");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/router */ "tyNb");
+/* harmony import */ var _services_cfdi_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../services/cfdi.service */ "0vfD");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+
+
+
+//import { Observable, of } from 'rxjs';
+//import { switchMap, shareReplay, share, take } from 'rxjs/operators';
+//import {  map, tap    } from 'rxjs/operators';
+//import { Totales } from '../../models/totales'
+var CheckoutDialog = /** @class */ (function () {
+    // @Inject(MAT_DIALOG_DATA) public data: any,
+    function CheckoutDialog(cfdiService, shoppingCartService, graphqlSalesService, storageService, router, dialogRef, loginService) {
+        this.cfdiService = cfdiService;
+        this.shoppingCartService = shoppingCartService;
+        this.graphqlSalesService = graphqlSalesService;
+        this.storageService = storageService;
+        this.router = router;
+        this.dialogRef = dialogRef;
+        this.loginService = loginService;
+        this.state = this.shoppingCartService.state$.pipe();
+        //totals = this.shoppingCartService.total$.pipe();
+        this.myTotal = new _models_totales__WEBPACK_IMPORTED_MODULE_7__["Totales"];
+        this.myCar = [];
+    }
+    CheckoutDialog.prototype.ngOnInit = function () {
+        var _this = this;
+        this.state.subscribe(function (cart) {
+            _this.myTotal = cart.tot;
+            //console.log(this.mytotal);
+            //console.log(cart.cart);
+            _this.myCar = cart.cart;
+        });
+    };
+    CheckoutDialog.prototype.completeOrder = function () {
+        //console.log(this.state);
+        this.addSale();
+        /*this.state.pipe(
+          map(([store, cart, tot, checkout]: any) =>
+            ({ store, cart, tot, checkout })),
+          tap(tot => {
+              console.log('totales ', tot);
+            
+          }),
+          // make sure we share to the world! or just the entire app
+          shareReplay(1)
+        ); */
+        //this.shoppingCartService.checkout();
+    };
+    CheckoutDialog.prototype.getCfdi = function () {
+        /*
+        var products = [];
+        var mytoken = this.storageService.getSession("token");
+        this.myCar.forEach(element => {
+          products.push({
+            product : element.id,
+            cantidad : 1,
+            precio: element.price
+          })
+        });
+        alert(JSON.stringify(products));
+        */
+        var mycfdi = {
+            "serie": "AAA",
+            "folio": 1000,
+            "formapago": "03",
+            "condicionesdepago": "CONTADO",
+            "subtotal": "1850",
+            "descuento": "175.00",
+            "moneda": "MXN",
+            "total": "1943.00",
+            "tipodecomprobante": "I",
+            "metodopago": "PUE",
+            "lugarexpedicion": "68050",
+            "emisor": {
+                "rfc": "CETA7610219C9",
+                "nombre": "ADOLFO CENTENO TELLEZ",
+                "regimenfiscal": "601"
+            },
+            "receptor": {
+                "rfc": "KUB1004199C9",
+                "nombre": "KUBEET SRL DE CV",
+                "usocfdi": "G01"
+            },
+            "conceptos": [
+                {
+                    "claveprodserv": "01010101",
+                    "noidentificacion": "AULOG001",
+                    "cantidad": "5",
+                    "claveunidad": "H87",
+                    "unidad": "Pieza",
+                    "descripcion": "Aurriculares USB Logitech",
+                    "valorunitario": "350.00",
+                    "importe": "1750.00",
+                    "descuento": "175.00",
+                    "impuestos": {
+                        "traslados": [
+                            {
+                                "base": "1575.00",
+                                "impuesto": "002",
+                                "tipofactor": "Tasa",
+                                "tasaocuota": "0.160000",
+                                "importe": "252.00"
+                            }
+                        ],
+                        "retenciones": []
+                    }
+                },
+                {
+                    "claveprodserv": "01010101",
+                    "noidentificacion": "USB",
+                    "cantidad": "1",
+                    "claveunidad": "H87",
+                    "unidad": "Pieza",
+                    "descripcion": "Memoria USB 32gb marca Kingston",
+                    "valorunitario": "100.00",
+                    "importe": "100.00",
+                    "descuento": "0.00",
+                    "impuestos": {
+                        "traslados": [
+                            {
+                                "base": "100.00",
+                                "impuesto": "002",
+                                "tipofactor": "Tasa",
+                                "tasaocuota": "0.160000",
+                                "importe": "16.00"
+                            }
+                        ],
+                        "retenciones": []
+                    }
+                }
+            ],
+            "impuestos": {
+                "totalimpuestostrasladados": "268.00",
+                "traslados": [
+                    {
+                        "impuesto": "002",
+                        "tipofactor": "Tasa",
+                        "tasaocuota": "0.160000",
+                        "importe": "268.00"
+                    }
+                ]
+            }
+        };
+        alert("cfdi ...");
+        this.cfdiService.getCfdi(mycfdi)
+            .subscribe(function (data) {
+            console.log('Cfdi ok :  ', data);
+            //this.router.navigate(['/']);
+            alert(JSON.stringify(data));
+        }, function (error) {
+            console.log('there was an error in cfdi : ', error);
+        });
+    };
+    CheckoutDialog.prototype.addSale = function () {
+        var _this = this;
+        var products = [];
+        var mytoken = this.storageService.getSession("token");
+        this.myCar.forEach(function (element) {
+            products.push({
+                product: element.id,
+                cantidad: 1,
+                precio: element.price,
+                importe: 100,
+                url: "--",
+                codigosat: "101010",
+                noidentificacion: "A01",
+                claveunidad: "U01",
+                descuento: 0.00,
+                trasladoiva: 16.00,
+                retiva: 0.0,
+                ieps: 0.0
+            });
+        });
+        alert(JSON.stringify(products));
+        this.graphqlSalesService.createSale(mytoken, this.myTotal.subTot, this.myTotal.tax, this.myTotal.grandTot, products)
+            .subscribe(function (_a) {
+            var data = _a.data;
+            console.log('Sale created :  ', data);
+            alert(JSON.stringify(data));
+            //this.router.navigate(['/']);
+            _this.loginService.showData("token here !!!");
+        }, function (error) {
+            console.log('there was an error sending the query', error);
+        });
+    };
+    CheckoutDialog.ctorParameters = function () { return [
+        { type: _services_cfdi_service__WEBPACK_IMPORTED_MODULE_10__["CfdiService"] },
+        { type: _services_shopping_cart_service__WEBPACK_IMPORTED_MODULE_4__["ShoppingCartService"] },
+        { type: _services_graphql_sales_service__WEBPACK_IMPORTED_MODULE_5__["GraphqlSalesService"] },
+        { type: _services_storage_service__WEBPACK_IMPORTED_MODULE_6__["StorageService"] },
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_9__["Router"] },
+        { type: _angular_material_dialog__WEBPACK_IMPORTED_MODULE_3__["MatDialogRef"] },
+        { type: _services_login_service__WEBPACK_IMPORTED_MODULE_8__["LoginService"] }
+    ]; };
+    CheckoutDialog = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Component"])({
+            selector: 'app-checkout',
+            template: _raw_loader_checkout_component_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+            styles: [_checkout_component_css__WEBPACK_IMPORTED_MODULE_1__["default"]]
+        }),
+        __metadata("design:paramtypes", [_services_cfdi_service__WEBPACK_IMPORTED_MODULE_10__["CfdiService"],
+            _services_shopping_cart_service__WEBPACK_IMPORTED_MODULE_4__["ShoppingCartService"],
+            _services_graphql_sales_service__WEBPACK_IMPORTED_MODULE_5__["GraphqlSalesService"],
+            _services_storage_service__WEBPACK_IMPORTED_MODULE_6__["StorageService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_9__["Router"],
+            _angular_material_dialog__WEBPACK_IMPORTED_MODULE_3__["MatDialogRef"],
+            _services_login_service__WEBPACK_IMPORTED_MODULE_8__["LoginService"]])
+    ], CheckoutDialog);
+    return CheckoutDialog;
+}());
+
+
+
+/***/ }),
+
+/***/ "K5n9":
+/*!***********************************************!*\
+  !*** ./src/services/shopping-cart.service.ts ***!
+  \***********************************************/
+/*! exports provided: ShoppingCartService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ShoppingCartService", function() { return ShoppingCartService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var uuid__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! uuid */ "4USb");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "qCKp");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "kU1M");
+/* harmony import */ var _models_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../models/data */ "HblP");
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __spreadArrays = (undefined && undefined.__spreadArrays) || function () {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
+};
+
+
+
+
+
+;
+var ShoppingCartService = /** @class */ (function () {
+    function ShoppingCartService() {
+        var _this = this;
+        /**
+         * Main Observables
+         *
+         */
+        this.stateTree$ = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](null);
+        this.checkoutTrigger$ = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](false);
+        this.cartAdd$ = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
+        this.cartRemove$ = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
+        /**
+         * Main Shopping Cart StateTree
+         * Combines all dependencies and maps then to the StateTree Object
+         */
+        this.state$ = this.stateTree$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["switchMap"])(function () { return _this.getItems().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["combineLatest"])([_this.cart$, _this.total$, _this.checkoutTrigger$]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["debounceTime"])(0)); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (_a) {
+            var store = _a[0], cart = _a[1], tot = _a[2], checkout = _a[3];
+            return ({ store: store, cart: cart, tot: tot, checkout: checkout });
+        }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(function (state) {
+            if (state.checkout) {
+                //console.log('checkout', state);
+            }
+        }), 
+        // make sure we share to the world! or just the entire app
+        Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["shareReplay"])(1));
+    }
+    Object.defineProperty(ShoppingCartService.prototype, "cart$", {
+        /**
+         * Main application cart Observable
+         * This could start with items from local storage or even an API call
+         * We use scan peak at the items within the cart and add and remove
+         */
+        get: function () {
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["merge"])(this.cartAdd$, this.cartRemove$).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["startWith"])([]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["scan"])(function (acc, item) {
+                if (item) {
+                    if (item.remove) {
+                        return __spreadArrays(acc.filter(function (i) { return i.uuid !== item.uuid; }));
+                    }
+                    return __spreadArrays(acc, [item]);
+                }
+            }));
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(ShoppingCartService.prototype, "total$", {
+        /**
+         * Calcs all Totals from being piped through the cart Observable
+         * When an item gets added or removed it will automatically calc
+         */
+        get: function () {
+            return this.cart$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (items) {
+                var total = 0;
+                for (var _i = 0, items_1 = items; _i < items_1.length; _i++) {
+                    var i = items_1[_i];
+                    total += i.price;
+                }
+                return total;
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (cost) { return ({
+                subTot: cost,
+                tax: .034 * cost,
+                grandTot: .034 * cost + cost
+            }); }));
+        },
+        enumerable: false,
+        configurable: true
+    });
+    // Mock data service call
+    ShoppingCartService.prototype.getItems = function () {
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["of"])(_models_data__WEBPACK_IMPORTED_MODULE_4__["DATA_ITEMS"]);
+    };
+    // facade for next of cartAdd subject
+    ShoppingCartService.prototype.addCartItem = function (item) {
+        this.cartAdd$.next(__assign(__assign({}, item), { uuid: Object(uuid__WEBPACK_IMPORTED_MODULE_1__["v4"])() }));
+    };
+    // facade for next of cartRemove subject
+    ShoppingCartService.prototype.removeCartItem = function (item) {
+        this.cartRemove$.next(__assign(__assign({}, item), { remove: true }));
+    };
+    // not sure what else to do here so we don't do much
+    // have a great day!
+    ShoppingCartService.prototype.checkout = function () {
+        this.checkoutTrigger$.next(true);
+    };
+    ShoppingCartService.ctorParameters = function () { return []; };
+    ShoppingCartService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
+        __metadata("design:paramtypes", [])
+    ], ShoppingCartService);
+    return ShoppingCartService;
+}());
+
+
+
+/***/ }),
+
 /***/ "KKA+":
 /*!*************************************************************************************************!*\
   !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/components/sidebar/sidebar.component.html ***!
@@ -300,7 +1076,27 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"logo\">\n    <a href=\"https://www.creative-tim.com\" class=\"simple-text\">\n        <div class=\"logo-img\">\n            <img src=\"/assets/img/mandadero1.png\"/>\n        </div>\n       <!--BioUV {{version}} -->\n       El mandadero\n    </a>\n</div>\n<div class=\"sidebar-wrapper\">\n  <div *ngIf=\"isMobileMenu()\">\n    <form class=\"navbar-form\">\n      <span class=\"bmd-form-group\">\n        <div class=\"input-group no-border\">\n          <input type=\"text\" value=\"\" class=\"form-control\" placeholder=\"Search...\">\n          <button mat-raised-button type=\"submit\" class=\"btn btn-white btn-round btn-just-icon\">\n            <i class=\"material-icons\">search</i>\n            <div class=\"ripple-container\"></div>\n          </button>\n        </div>\n      </span>\n    </form>\n    <ul class=\"nav navbar-nav nav-mobile-menu\">\n        <li class=\"nav-item\">\n            <a class=\"nav-link\" href=\"javascript:void(0)\">\n                <i class=\"material-icons\">dashboard</i>\n                <p>\n                    <span class=\"d-lg-none d-md-block\">Stats</span>\n                </p>\n            </a>\n        </li>\n        <li class=\"nav-item dropdown\">\n            <a class=\"nav-link\" href=\"javascript:void(0)\" id=\"navbarDropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                <i class=\"material-icons\">notifications</i>\n                <span class=\"notification\">5</span>\n                <p>\n                    <span class=\"d-lg-none d-md-block\">Some Actions</span>\n                </p>\n            </a>\n            <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"navbarDropdownMenuLink\">\n                <a class=\"dropdown-item\" href=\"#\">Mike John responded to your email</a>\n                <a class=\"dropdown-item\" href=\"#\">You have 5 new tasks</a>\n                <a class=\"dropdown-item\" href=\"#\">You're now friend with Andrew</a>\n                <a class=\"dropdown-item\" href=\"#\">Another Notification</a>\n                <a class=\"dropdown-item\" href=\"#\">Another One</a>\n            </div>\n        </li>\n        <li class=\"nav-item\">\n            <a class=\"nav-link\" href=\"javascript:void(0)\">\n                <i class=\"material-icons\">person</i>\n                <p>\n                    <span class=\"d-lg-none d-md-block\">Account</span>\n                </p>\n            </a>\n        </li>\n    </ul>\n  </div>\n    <ul class=\"nav\">\n        <li routerLinkActive=\"active\" *ngFor=\"let menuItem of menuItems\" class=\"{{menuItem.class}} nav-item\">\n            <a class=\"nav-link\" [routerLink]=\"[menuItem.path]\">\n                <i class=\"material-icons\">{{menuItem.icon}}</i>\n                <p>{{menuItem.title}}</p>\n            </a>\n        </li>\n    </ul>\n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"logo\">\n    <a href=\"https://www.creative-tim.com\" class=\"simple-text\">\n        <div class=\"logo-img\">\n            <img src=\"/assets/img/waveslogo.jpg\" height=\"50\" width=\"70\"/>\n        </div>\n       <!--BioUV {{version}} -->\n       <b>waves</b> ERP\n    </a>\n</div>\n<div class=\"sidebar-wrapper\">\n  <div *ngIf=\"isMobileMenu()\">\n    <form class=\"navbar-form\">\n      <span class=\"bmd-form-group\">\n        <div class=\"input-group no-border\">\n          <input type=\"text\" value=\"\" class=\"form-control\" placeholder=\"Search...\">\n          <button mat-raised-button type=\"submit\" class=\"btn btn-white btn-round btn-just-icon\">\n            <i class=\"material-icons\">search</i>\n            <div class=\"ripple-container\"></div>\n          </button>\n        </div>\n      </span>\n    </form>\n    <ul class=\"nav navbar-nav nav-mobile-menu\">\n        <li class=\"nav-item\">\n            <a class=\"nav-link\" href=\"javascript:void(0)\">\n                <i class=\"material-icons\">dashboard</i>\n                <p>\n                    <span class=\"d-lg-none d-md-block\">Stats</span>\n                </p>\n            </a>\n        </li>\n        <li class=\"nav-item dropdown\">\n            <a class=\"nav-link\" href=\"javascript:void(0)\" id=\"navbarDropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                <i class=\"material-icons\">notifications</i>\n                <span class=\"notification\">5</span>\n                <p>\n                    <span class=\"d-lg-none d-md-block\">Some Actions</span>\n                </p>\n            </a>\n            <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"navbarDropdownMenuLink\">\n                <a class=\"dropdown-item\" href=\"#\">Mike John responded to your email</a>\n                <a class=\"dropdown-item\" href=\"#\">You have 5 new tasks</a>\n                <a class=\"dropdown-item\" href=\"#\">You're now friend with Andrew</a>\n                <a class=\"dropdown-item\" href=\"#\">Another Notification</a>\n                <a class=\"dropdown-item\" href=\"#\">Another One</a>\n            </div>\n        </li>\n        <li class=\"nav-item\">\n            <a class=\"nav-link\" href=\"javascript:void(0)\">\n                <i class=\"material-icons\">person</i>\n                <p>\n                    <span class=\"d-lg-none d-md-block\">Account</span>\n                </p>\n            </a>\n        </li>\n    </ul>\n  </div>\n    <ul class=\"nav\">\n        <li routerLinkActive=\"active\" *ngFor=\"let menuItem of menuItems\" class=\"{{menuItem.class}} nav-item\">\n            <a class=\"nav-link\" [routerLink]=\"[menuItem.path]\">\n                <i class=\"material-icons\">{{menuItem.icon}}</i>\n                <p>{{menuItem.title}}</p>\n            </a>\n        </li>\n    </ul>\n</div>\n");
+
+/***/ }),
+
+/***/ "LZ+U":
+/*!*******************************!*\
+  !*** ./src/models/totales.ts ***!
+  \*******************************/
+/*! exports provided: Totales */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Totales", function() { return Totales; });
+var Totales = /** @class */ (function () {
+    function Totales() {
+    }
+    return Totales;
+}());
+
+
 
 /***/ }),
 
@@ -531,6 +1327,19 @@ var AdminLayoutComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "PkTJ":
+/*!*************************************************!*\
+  !*** ./src/app/checkout/checkout.component.css ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NoZWNrb3V0L2NoZWNrb3V0LmNvbXBvbmVudC5jc3MifQ== */");
+
+/***/ }),
+
 /***/ "RU0v":
 /*!************************************************************************************************!*\
   !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/user-profile/user-profile.component.html ***!
@@ -553,7 +1362,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<nav class=\"navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top\">\n    <div class=\"container-fluid\">\n        <div class=\"navbar-wrapper\">\n          <a class=\"navbar-brand\" href=\"javascript:void(0)\">{{getTitle()}}</a>\n        </div>\n        <button mat-raised-button class=\"navbar-toggler\" type=\"button\" (click)=\"sidebarToggle()\">\n            <span class=\"sr-only\">Toggle navigation</span>\n            <span class=\"navbar-toggler-icon icon-bar\"></span>\n            <span class=\"navbar-toggler-icon icon-bar\"></span>\n            <span class=\"navbar-toggler-icon icon-bar\"></span>\n        </button>\n        <div class=\"collapse navbar-collapse justify-content-end\" id=\"navigation\">\n            <form class=\"navbar-form\">\n                <div class=\"input-group no-border\">\n                    <input type=\"text\" value=\"\" class=\"form-control\" placeholder=\"Search...\">\n                    <button mat-raised-button type=\"submit\" class=\"btn btn-white btn-round btn-just-icon\">\n                        <i class=\"material-icons\">search</i>\n                        <div class=\"ripple-container\"></div>\n                    </button>\n                </div>\n            </form>\n            <ul class=\"navbar-nav\">\n                <li class=\"nav-item\">\n                    <a class=\"nav-link\" href=\"javascript:void(0)\">\n                        <i class=\"material-icons\">dashboard</i>\n                        <p>\n                            <span class=\"d-lg-none d-md-block\">Stats</span>\n                        </p>\n                    </a>\n                </li>\n                <!--\n                <li class=\"nav-item dropdown\">\n                    <a class=\"nav-link\" href=\"javascript:void(0)\" id=\"navbarDropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                        <i class=\"material-icons\">notifications</i>\n                        <span class=\"notification\">5</span>\n                        <p>\n                            <span class=\"d-lg-none d-md-block\">Some Actions</span>\n                        </p>\n                    </a>\n                    <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"navbarDropdownMenuLink\">\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\">Mike John responded to your email</a>\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\">You have 5 new tasks</a>\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\">You're now friend with Andrew</a>\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\">Another Notification</a>\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\">Another One</a>\n                    </div>\n                </li>\n            -->\n                <li class=\"nav-item\">\n                    \n                                        <a class=\"nav-link\" [routerLink]=\"['/login']\">\n                                            <i class=\"material-icons\">login</i>\n                                            <p>\n                                                <span class=\"d-lg-none d-md-block\">Account</span>\n                                            </p>\n                                        </a>\n                                    </li>\n                <li class=\"nav-item\">\n<!--\n                    <a class=\"nav-link\" [routerLink]=\"[menuItem.path]\">\n                        <i class=\"material-icons\">{{menuItem.icon}}</i>\n                        <p>{{menuItem.title}}</p>\n                    </a>\n                -->\n\n                    <a class=\"nav-link\" [routerLink]=\"['/new-user']\">\n                        <i class=\"material-icons\">person</i>\n                        <p>\n                            <span class=\"d-lg-none d-md-block\">Account</span>\n                        </p>\n                    </a>\n                </li>\n            </ul>\n        </div>\n    </div>\n</nav>\n\n<!--\n\n<nav class=\"navbar navbar-transparent navbar-absolute\">\n    <div class=\"container-fluid\">\n        <div class=\"navbar-header\">\n            <button mat-raised-button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" (click)=\"sidebarToggle()\">\n                <span class=\"sr-only\">Toggle navigation</span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand\" href=\"javascript:void(0)\">{{getTitle()}}</a>\n        </div>\n        <div class=\"collapse navbar-collapse\">\n            <ul class=\"nav navbar-nav navbar-right\">\n                <li>\n                    <a href=\"javascript:void(0)\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n                        <i class=\"material-icons\">dashboard</i>\n                        <p class=\"hidden-lg hidden-md\">Dashboard</p>\n                    </a>\n                </li>\n                <li class=\"dropdown\">\n                    <a href=\"javascript:void(0)\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n                        <i class=\"material-icons\">notifications</i>\n                        <span class=\"notification\">5</span>\n                        <p class=\"hidden-lg hidden-md\">Notifications</p>\n                    </a>\n                    <ul class=\"dropdown-menu\">\n                        <li><a href=\"javascript:void(0)\">Mike John responded to your email</a></li>\n                        <li><a href=\"javascript:void(0)\">You have 5 new tasks</a></li>\n                        <li><a href=\"javascript:void(0)\">You're now friend with Andrew</a></li>\n                        <li><a href=\"javascript:void(0)\">Another Notification</a></li>\n                        <li><a href=\"javascript:void(0)\">Another One</a></li>\n                    </ul>\n                </li>\n                <li>\n                    <a href=\"javascript:void(0)\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n                       <i class=\"material-icons\">person</i>\n                       <p class=\"hidden-lg hidden-md\">Profile</p>\n                    </a>\n                </li>\n            </ul>\n\n            <form class=\"navbar-form navbar-right\" role=\"search\">\n                <div class=\"form-group form-black is-empty\">\n                    <input type=\"text\" class=\"form-control\" placeholder=\"Search\">\n                    <span class=\"material-input\"></span>\n                </div>\n                <button mat-raised-button type=\"submit\" class=\"btn btn-white btn-round btn-just-icon\">\n                    <i class=\"material-icons\">search</i><div class=\"ripple-container\"></div>\n                </button>\n            </form>\n        </div>\n    </div>\n</nav> -->\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<nav class=\"navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top\">\n    <div class=\"container-fluid\">\n        <form class=\"navbar-form\"> \n            <ng-container *ngIf=\"user\">\n    \n            Bienvenido: <b>{{user}}</b> \n    \n           \n    \n            </ng-container>\n            \n            \n          </form>\n          <!--\n        <div class=\"navbar-wrapper\">\n          <a class=\"navbar-brand\" href=\"javascript:void(0)\">{{getTitle()}}</a>\n        </div> -->\n\n        <!--\n        <button mat-raised-button class=\"navbar-toggler\" type=\"button\" (click)=\"sidebarToggle()\">\n            <span class=\"sr-only\">Toggle navigation</span>\n            <span class=\"navbar-toggler-icon icon-bar\"></span>\n            <span class=\"navbar-toggler-icon icon-bar\"></span>\n            <span class=\"navbar-toggler-icon icon-bar\"></span>\n        </button>\n    -->\n        <div class=\"collapse navbar-collapse justify-content-end\" id=\"navigation\">\n        <!--\n            <form class=\"navbar-form\">\n                <div class=\"input-group no-border\">\n                    <input type=\"text\" value=\"\" class=\"form-control\" placeholder=\"Search...\">\n                    <button mat-raised-button type=\"submit\" class=\"btn btn-white btn-round btn-just-icon\">\n                        <i class=\"material-icons\">search</i>\n                        <div class=\"ripple-container\"></div>\n                    </button>\n                </div>\n            </form>\n        -->\n            <ul class=\"navbar-nav\">\n                <!--\n                <li class=\"nav-item\">\n                    <a class=\"nav-link\" href=\"javascript:void(0)\">\n                        <i class=\"material-icons\">dashboard</i>\n                        <p>\n                            <span class=\"d-lg-none d-md-block\">Stats</span>\n                        </p>\n                    </a>\n                </li>\n\n            -->\n                <!--\n                <li class=\"nav-item dropdown\">\n                    <a class=\"nav-link\" href=\"javascript:void(0)\" id=\"navbarDropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                        <i class=\"material-icons\">notifications</i>\n                        <span class=\"notification\">5</span>\n                        <p>\n                            <span class=\"d-lg-none d-md-block\">Some Actions</span>\n                        </p>\n                    </a>\n                    <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"navbarDropdownMenuLink\">\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\">Mike John responded to your email</a>\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\">You have 5 new tasks</a>\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\">You're now friend with Andrew</a>\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\">Another Notification</a>\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\">Another One</a>\n                    </div>\n                </li>\n            -->\n                <li class=\"nav-item\">\n                    Cerrar Sesion\n                                       \n                                        <a class=\"nav-link\" [routerLink]=\"['/admin/admin/logout']\">\n                                            <i class=\"material-icons\">login</i>\n                                            <p>\n                                                <span class=\"d-lg-none d-md-block\">Account</span>\n                                            </p>\n                                        </a>\n                                    \n                                        <!--\n                                        <button mat-raised-button (click)=\"logout()\" class=\"btn btn-white btn-round btn-just-icon\">\n                                           <i class=\"material-icons\">login</i>\n                                           <div class=\"ripple-container\"></div>\n                                        </button>\n                                    -->\n                </li>\n                <li class=\"nav-item\">\n<!--\n                    <a class=\"nav-link\" [routerLink]=\"[menuItem.path]\">\n                        <i class=\"material-icons\">{{menuItem.icon}}</i>\n                        <p>{{menuItem.title}}</p>\n                    </a>\n                -->\n<!--\n                    <a class=\"nav-link\" [routerLink]=\"['/new-user']\">\n                        <i class=\"material-icons\">person</i>\n                        <p>\n                            <span class=\"d-lg-none d-md-block\">Account</span>\n                        </p>\n                    </a>\n                -->\n                </li>\n            </ul>\n        </div>\n    </div>\n</nav>\n\n<!--\n\n<nav class=\"navbar navbar-transparent navbar-absolute\">\n    <div class=\"container-fluid\">\n        <div class=\"navbar-header\">\n            <button mat-raised-button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" (click)=\"sidebarToggle()\">\n                <span class=\"sr-only\">Toggle navigation</span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand\" href=\"javascript:void(0)\">{{getTitle()}}</a>\n        </div>\n        <div class=\"collapse navbar-collapse\">\n            <ul class=\"nav navbar-nav navbar-right\">\n                <li>\n                    <a href=\"javascript:void(0)\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n                        <i class=\"material-icons\">dashboard</i>\n                        <p class=\"hidden-lg hidden-md\">Dashboard</p>\n                    </a>\n                </li>\n                <li class=\"dropdown\">\n                    <a href=\"javascript:void(0)\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n                        <i class=\"material-icons\">notifications</i>\n                        <span class=\"notification\">5</span>\n                        <p class=\"hidden-lg hidden-md\">Notifications</p>\n                    </a>\n                    <ul class=\"dropdown-menu\">\n                        <li><a href=\"javascript:void(0)\">Mike John responded to your email</a></li>\n                        <li><a href=\"javascript:void(0)\">You have 5 new tasks</a></li>\n                        <li><a href=\"javascript:void(0)\">You're now friend with Andrew</a></li>\n                        <li><a href=\"javascript:void(0)\">Another Notification</a></li>\n                        <li><a href=\"javascript:void(0)\">Another One</a></li>\n                    </ul>\n                </li>\n                <li>\n                    <a href=\"javascript:void(0)\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n                       <i class=\"material-icons\">person</i>\n                       <p class=\"hidden-lg hidden-md\">Profile</p>\n                    </a>\n                </li>\n            </ul>\n\n            <form class=\"navbar-form navbar-right\" role=\"search\">\n                <div class=\"form-group form-black is-empty\">\n                    <input type=\"text\" class=\"form-control\" placeholder=\"Search\">\n                    <span class=\"material-input\"></span>\n                </div>\n                <button mat-raised-button type=\"submit\" class=\"btn btn-white btn-round btn-just-icon\">\n                    <i class=\"material-icons\">search</i><div class=\"ripple-container\"></div>\n                </button>\n            </form>\n        </div>\n    </div>\n</nav> -->\n");
 
 /***/ }),
 
@@ -677,7 +1486,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<footer class=\"footer \">\n    <div class=\"container-fluid\">\n        <nav class=\"pull-left\">\n            <ul>\n                <li>\n                    <a href=\"https://www.creative-tim.com\">\n                        Creative Tim\n                    </a>\n                </li>\n                <li>\n                    <a href=\"https://creative-tim.com/about-us\">\n                        About Us\n                    </a>\n                </li>\n                <li>\n                    <a href=\"http://blog.creative-tim.com\">\n                        Blog\n                    </a>\n                </li>\n                <li>\n                    <a href=\"https://www.creative-tim.com/license\">\n                        Licenses\n                    </a>\n                </li>\n            </ul>\n        </nav>\n        <div class=\"copyright pull-right\">\n            &copy;\n            {{test | date: 'yyyy'}}, made with love by\n            <a href=\"https://www.creative-tim.com\" target=\"_blank\">Creative Tim</a> for a better web.\n        </div>\n    </div>\n</footer>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<footer class=\"footer \">\n    <div class=\"container-fluid\">\n    <!--\n        <nav class=\"pull-left\">\n            <ul>\n                <li>\n                    <a href=\"https://www.creative-tim.com\">\n                        Creative Tim\n                    </a>\n                </li>\n                <li>\n                    <a href=\"https://creative-tim.com/about-us\">\n                        About Us\n                    </a>\n                </li>\n                <li>\n                    <a href=\"http://blog.creative-tim.com\">\n                        Blog\n                    </a>\n                </li>\n                <li>\n                    <a href=\"https://www.creative-tim.com/license\">\n                        Licenses\n                    </a>\n                </li>\n            </ul>\n        </nav>\n    -->\n        <div class=\"copyright pull-right\">\n            &copy;\n            {{test | date: 'yyyy'}}, made with love by\n            <a href=\"https://github.com/adsoftsito\" target=\"_blank\">adsoftsito</a> for a better world.\n        </div>\n    </div>\n</footer>\n");
 
 /***/ }),
 
@@ -700,17 +1509,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_components_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/components.module */ "j1ZV");
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./app.component */ "Sy1n");
 /* harmony import */ var _user_profile_user_profile_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./user-profile/user-profile.component */ "/de2");
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/platform-browser */ "jhN1");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/common */ "ofXK");
-/* harmony import */ var _angular_fire__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/fire */ "spgP");
-/* harmony import */ var _angular_fire_database__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/fire/database */ "sSZD");
-/* harmony import */ var _angular_fire_storage__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/fire/storage */ "Vaw3");
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../environments/environment */ "AytR");
-/* harmony import */ var _agm_core__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @agm/core */ "pxUr");
-/* harmony import */ var _layouts_admin_layout_admin_layout_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./layouts/admin-layout/admin-layout.component */ "P6kD");
-/* harmony import */ var _layouts_home_layout_home_layout_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./layouts/home-layout/home-layout.component */ "tWBk");
-/* harmony import */ var _graphql_module__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./graphql.module */ "4KHl");
-/* harmony import */ var _carritocompras_carritocompras_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./carritocompras/carritocompras.component */ "zWA4");
+/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/material/dialog */ "0IaG");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/platform-browser */ "jhN1");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/common */ "ofXK");
+/* harmony import */ var _angular_fire__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/fire */ "spgP");
+/* harmony import */ var _angular_fire_database__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/fire/database */ "sSZD");
+/* harmony import */ var _angular_fire_storage__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/fire/storage */ "Vaw3");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../environments/environment */ "AytR");
+/* harmony import */ var _agm_core__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @agm/core */ "pxUr");
+/* harmony import */ var _layouts_admin_layout_admin_layout_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./layouts/admin-layout/admin-layout.component */ "P6kD");
+/* harmony import */ var _layouts_home_layout_home_layout_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./layouts/home-layout/home-layout.component */ "tWBk");
+/* harmony import */ var _graphql_module__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./graphql.module */ "4KHl");
+/* harmony import */ var _carritocompras_carritocompras_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./carritocompras/carritocompras.component */ "zWA4");
+/* harmony import */ var _checkout_checkout_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./checkout/checkout.component */ "IiZn");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -726,6 +1537,8 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
+//import { CartComponent } from './cart/cart.component';
 /*
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
@@ -748,7 +1561,8 @@ import { UpgradeComponent } from './upgrade/upgrade.component';
 
 
 //import { CartComponent } from './cart/cart.component';
-//import { CheckoutDialog } from './checkout/checkout.component';
+
+//import { LogoutComponent } from './logout/logout.component';
 //CarritocomprasComponent,
 //CartComponent,
 //CheckoutDialog
@@ -758,32 +1572,36 @@ var AppModule = /** @class */ (function () {
     AppModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
             imports: [
-                _angular_fire__WEBPACK_IMPORTED_MODULE_11__["AngularFireModule"].initializeApp(_environments_environment__WEBPACK_IMPORTED_MODULE_14__["environment"].firebase),
-                _angular_fire_database__WEBPACK_IMPORTED_MODULE_12__["AngularFireDatabaseModule"],
-                _angular_fire_storage__WEBPACK_IMPORTED_MODULE_13__["AngularFireStorageModule"],
+                _angular_fire__WEBPACK_IMPORTED_MODULE_12__["AngularFireModule"].initializeApp(_environments_environment__WEBPACK_IMPORTED_MODULE_15__["environment"].firebase),
+                _angular_fire_database__WEBPACK_IMPORTED_MODULE_13__["AngularFireDatabaseModule"],
+                _angular_fire_storage__WEBPACK_IMPORTED_MODULE_14__["AngularFireStorageModule"],
                 _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_0__["BrowserAnimationsModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"],
-                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_9__["BrowserModule"],
-                _angular_common__WEBPACK_IMPORTED_MODULE_10__["CommonModule"],
+                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_10__["BrowserModule"],
+                _angular_common__WEBPACK_IMPORTED_MODULE_11__["CommonModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"],
                 _components_components_module__WEBPACK_IMPORTED_MODULE_6__["ComponentsModule"],
                 _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterModule"],
                 _app_routing__WEBPACK_IMPORTED_MODULE_5__["AppRoutingModule"],
-                _agm_core__WEBPACK_IMPORTED_MODULE_15__["AgmCoreModule"].forRoot({
+                _agm_core__WEBPACK_IMPORTED_MODULE_16__["AgmCoreModule"].forRoot({
                     apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
                 }),
-                _graphql_module__WEBPACK_IMPORTED_MODULE_18__["GraphQLModule"]
+                _graphql_module__WEBPACK_IMPORTED_MODULE_19__["GraphQLModule"],
+                _angular_material_dialog__WEBPACK_IMPORTED_MODULE_9__["MatDialogModule"]
             ],
             declarations: [
                 _app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"],
-                _layouts_admin_layout_admin_layout_component__WEBPACK_IMPORTED_MODULE_16__["AdminLayoutComponent"],
-                _layouts_home_layout_home_layout_component__WEBPACK_IMPORTED_MODULE_17__["HomeLayoutComponent"],
+                _layouts_admin_layout_admin_layout_component__WEBPACK_IMPORTED_MODULE_17__["AdminLayoutComponent"],
+                _layouts_home_layout_home_layout_component__WEBPACK_IMPORTED_MODULE_18__["HomeLayoutComponent"],
                 _user_profile_user_profile_component__WEBPACK_IMPORTED_MODULE_8__["UserProfileComponent"],
-                _carritocompras_carritocompras_component__WEBPACK_IMPORTED_MODULE_19__["CarritocomprasComponent"],
+                _carritocompras_carritocompras_component__WEBPACK_IMPORTED_MODULE_20__["CarritocomprasComponent"],
+                //LogoutComponent,
+                _checkout_checkout_component__WEBPACK_IMPORTED_MODULE_21__["CheckoutDialog"],
             ],
             providers: [],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]],
+            entryComponents: [_checkout_checkout_component__WEBPACK_IMPORTED_MODULE_21__["CheckoutDialog"]]
         })
     ], AppModule);
     return AppModule;
@@ -926,6 +1744,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _sidebar_sidebar_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../sidebar/sidebar.component */ "zBoC");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ "ofXK");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "tyNb");
+/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material/dialog */ "0IaG");
+/* harmony import */ var _checkout_checkout_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../checkout/checkout.component */ "IiZn");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -941,10 +1761,13 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
 var HomeNavbarComponent = /** @class */ (function () {
-    function HomeNavbarComponent(location, element, router) {
+    function HomeNavbarComponent(location, element, router, dialog) {
         this.element = element;
         this.router = router;
+        this.dialog = dialog;
         this.mobile_menu_visible = 0;
         this.location = location;
         this.sidebarVisible = false;
@@ -961,6 +1784,14 @@ var HomeNavbarComponent = /** @class */ (function () {
                 $layer.remove();
                 _this.mobile_menu_visible = 0;
             }
+        });
+    };
+    HomeNavbarComponent.prototype.checkout = function () {
+        // this.shoppingCartService.checkout();
+        var dialogRef = this.dialog.open(_checkout_checkout_component__WEBPACK_IMPORTED_MODULE_7__["CheckoutDialog"], {
+            // data: { state: this.state }, // now uses the observable
+            height: '400px',
+            width: '600px',
         });
     };
     HomeNavbarComponent.prototype.sidebarOpen = function () {
@@ -1046,7 +1877,8 @@ var HomeNavbarComponent = /** @class */ (function () {
     HomeNavbarComponent.ctorParameters = function () { return [
         { type: _angular_common__WEBPACK_IMPORTED_MODULE_4__["Location"] },
         { type: _angular_core__WEBPACK_IMPORTED_MODULE_2__["ElementRef"] },
-        { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] }
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] },
+        { type: _angular_material_dialog__WEBPACK_IMPORTED_MODULE_6__["MatDialog"] }
     ]; };
     HomeNavbarComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Component"])({
@@ -1054,7 +1886,10 @@ var HomeNavbarComponent = /** @class */ (function () {
             template: _raw_loader_home_navbar_component_html__WEBPACK_IMPORTED_MODULE_0__["default"],
             styles: [_home_navbar_component_css__WEBPACK_IMPORTED_MODULE_1__["default"]]
         }),
-        __metadata("design:paramtypes", [_angular_common__WEBPACK_IMPORTED_MODULE_4__["Location"], _angular_core__WEBPACK_IMPORTED_MODULE_2__["ElementRef"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]])
+        __metadata("design:paramtypes", [_angular_common__WEBPACK_IMPORTED_MODULE_4__["Location"],
+            _angular_core__WEBPACK_IMPORTED_MODULE_2__["ElementRef"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"],
+            _angular_material_dialog__WEBPACK_IMPORTED_MODULE_6__["MatDialog"]])
     ], HomeNavbarComponent);
     return HomeNavbarComponent;
 }());
@@ -1079,6 +1914,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _sidebar_sidebar_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../sidebar/sidebar.component */ "zBoC");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ "ofXK");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "tyNb");
+/* harmony import */ var _services_storage_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../services/storage.service */ "61FP");
+/* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/dialog */ "0IaG");
+/* harmony import */ var _logout_logout_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../logout/logout.component */ "n1B2");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1094,16 +1932,22 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
+
 var NavbarComponent = /** @class */ (function () {
-    function NavbarComponent(location, element, router) {
+    function NavbarComponent(location, element, router, storageService, dialog) {
         this.element = element;
         this.router = router;
+        this.storageService = storageService;
+        this.dialog = dialog;
         this.mobile_menu_visible = 0;
         this.location = location;
         this.sidebarVisible = false;
     }
     NavbarComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.user = this.storageService.getSession("user");
         this.listTitles = _sidebar_sidebar_component__WEBPACK_IMPORTED_MODULE_3__["ROUTES"].filter(function (listTitle) { return listTitle; });
         var navbar = this.element.nativeElement;
         this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
@@ -1114,6 +1958,14 @@ var NavbarComponent = /** @class */ (function () {
                 $layer.remove();
                 _this.mobile_menu_visible = 0;
             }
+        });
+    };
+    NavbarComponent.prototype.logout = function () {
+        // this.shoppingCartService.checkout();
+        var dialogRef = this.dialog.open(_logout_logout_component__WEBPACK_IMPORTED_MODULE_8__["LogoutComponent"], {
+            // data: { state: this.state }, // now uses the observable
+            height: '400px',
+            width: '400px',
         });
     };
     NavbarComponent.prototype.sidebarOpen = function () {
@@ -1199,7 +2051,9 @@ var NavbarComponent = /** @class */ (function () {
     NavbarComponent.ctorParameters = function () { return [
         { type: _angular_common__WEBPACK_IMPORTED_MODULE_4__["Location"] },
         { type: _angular_core__WEBPACK_IMPORTED_MODULE_2__["ElementRef"] },
-        { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] }
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] },
+        { type: _services_storage_service__WEBPACK_IMPORTED_MODULE_6__["StorageService"] },
+        { type: _angular_material_dialog__WEBPACK_IMPORTED_MODULE_7__["MatDialog"] }
     ]; };
     NavbarComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Component"])({
@@ -1207,7 +2061,11 @@ var NavbarComponent = /** @class */ (function () {
             template: _raw_loader_navbar_component_html__WEBPACK_IMPORTED_MODULE_0__["default"],
             styles: [_navbar_component_css__WEBPACK_IMPORTED_MODULE_1__["default"]]
         }),
-        __metadata("design:paramtypes", [_angular_common__WEBPACK_IMPORTED_MODULE_4__["Location"], _angular_core__WEBPACK_IMPORTED_MODULE_2__["ElementRef"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]])
+        __metadata("design:paramtypes", [_angular_common__WEBPACK_IMPORTED_MODULE_4__["Location"],
+            _angular_core__WEBPACK_IMPORTED_MODULE_2__["ElementRef"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"],
+            _services_storage_service__WEBPACK_IMPORTED_MODULE_6__["StorageService"],
+            _angular_material_dialog__WEBPACK_IMPORTED_MODULE_7__["MatDialog"]])
     ], NavbarComponent);
     return NavbarComponent;
 }());
@@ -1233,6 +2091,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _navbar_navbar_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./navbar/navbar.component */ "hrlM");
 /* harmony import */ var _sidebar_sidebar_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./sidebar/sidebar.component */ "zBoC");
 /* harmony import */ var _home_navbar_home_navbar_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./home-navbar/home-navbar.component */ "d+Iq");
+/* harmony import */ var services_storage_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! services/storage.service */ "61FP");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1246,6 +2105,8 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
+//import { CheckoutDialog } from '../checkout/checkout.component';
 var ComponentsModule = /** @class */ (function () {
     function ComponentsModule() {
     }
@@ -1259,14 +2120,15 @@ var ComponentsModule = /** @class */ (function () {
                 _footer_footer_component__WEBPACK_IMPORTED_MODULE_3__["FooterComponent"],
                 _navbar_navbar_component__WEBPACK_IMPORTED_MODULE_4__["NavbarComponent"],
                 _sidebar_sidebar_component__WEBPACK_IMPORTED_MODULE_5__["SidebarComponent"],
-                _home_navbar_home_navbar_component__WEBPACK_IMPORTED_MODULE_6__["HomeNavbarComponent"]
+                _home_navbar_home_navbar_component__WEBPACK_IMPORTED_MODULE_6__["HomeNavbarComponent"],
             ],
             exports: [
                 _footer_footer_component__WEBPACK_IMPORTED_MODULE_3__["FooterComponent"],
                 _navbar_navbar_component__WEBPACK_IMPORTED_MODULE_4__["NavbarComponent"],
                 _sidebar_sidebar_component__WEBPACK_IMPORTED_MODULE_5__["SidebarComponent"],
                 _home_navbar_home_navbar_component__WEBPACK_IMPORTED_MODULE_6__["HomeNavbarComponent"]
-            ]
+            ],
+            providers: [services_storage_service__WEBPACK_IMPORTED_MODULE_7__["StorageService"]]
         })
     ], ComponentsModule);
     return ComponentsModule;
@@ -1285,7 +2147,90 @@ var ComponentsModule = /** @class */ (function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<nav class=\"navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top\">\n    <div class=\"container-fluid\">\n        <div class=\"navbar-wrapper\">\n          <a class=\"navbar-brand\" href=\"javascript:void(0)\">{{getTitle()}}</a>\n        </div>\n        <button mat-raised-button class=\"navbar-toggler\" type=\"button\" (click)=\"sidebarToggle()\">\n            <span class=\"sr-only\">Toggle navigation</span>\n            <span class=\"navbar-toggler-icon icon-bar\"></span>\n            <span class=\"navbar-toggler-icon icon-bar\"></span>\n            <span class=\"navbar-toggler-icon icon-bar\"></span>\n        </button>\n        <div class=\"collapse navbar-collapse justify-content-end\" id=\"navigation\">\n            <form class=\"navbar-form\">\n                <div class=\"input-group no-border\">\n                    <input type=\"text\" value=\"\" class=\"form-control\" placeholder=\"Search...\">\n                    <button mat-raised-button type=\"submit\" class=\"btn btn-white btn-round btn-just-icon\">\n                        <i class=\"material-icons\">search</i>\n                        <div class=\"ripple-container\"></div>\n                    </button>\n                </div>\n            </form>\n            <ul class=\"navbar-nav\">\n                <li class=\"nav-item\">\n                  <!--  <a class=\"nav-link\" href=\"javascript:void(0)\"> -->\n                    <a class=\"nav-link\" [routerLink]=\"['/admin']\">\n\n                        <i class=\"material-icons\">dashboard</i>\n                        <p>\n                            <span class=\"d-lg-none d-md-block\">Stats</span>\n                        </p>\n                    </a>\n                </li>\n                <!--\n                <li class=\"nav-item dropdown\">\n                    <a class=\"nav-link\" href=\"javascript:void(0)\" id=\"navbarDropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                        <i class=\"material-icons\">notifications</i>\n                        <span class=\"notification\">5</span>\n                        <p>\n                            <span class=\"d-lg-none d-md-block\">Some Actions</span>\n                        </p>\n                    </a>\n                    <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"navbarDropdownMenuLink\">\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\">Mike John responded to your email</a>\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\">You have 5 new tasks</a>\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\">You're now friend with Andrew</a>\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\">Another Notification</a>\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\">Another One</a>\n                    </div>\n                </li>\n            -->\n                <li class=\"nav-item\">\n                    \n                                        <a class=\"nav-link\" [routerLink]=\"['/login']\">\n                                            <i class=\"material-icons\">login</i>\n                                            <p>\n                                                <span class=\"d-lg-none d-md-block\">Account</span>\n                                            </p>\n                                        </a>\n                                    </li>\n                <li class=\"nav-item\">\n<!--\n                    <a class=\"nav-link\" [routerLink]=\"[menuItem.path]\">\n                        <i class=\"material-icons\">{{menuItem.icon}}</i>\n                        <p>{{menuItem.title}}</p>\n                    </a>\n                -->\n\n                    <a class=\"nav-link\" [routerLink]=\"['/new-user']\">\n                        <i class=\"material-icons\">person</i>\n                        <p>\n                            <span class=\"d-lg-none d-md-block\">Account</span>\n                        </p>\n                    </a>\n                </li>\n            </ul>\n        </div>\n    </div>\n</nav>\n\n<!--\n\n<nav class=\"navbar navbar-transparent navbar-absolute\">\n    <div class=\"container-fluid\">\n        <div class=\"navbar-header\">\n            <button mat-raised-button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" (click)=\"sidebarToggle()\">\n                <span class=\"sr-only\">Toggle navigation</span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand\" href=\"javascript:void(0)\">{{getTitle()}}</a>\n        </div>\n        <div class=\"collapse navbar-collapse\">\n            <ul class=\"nav navbar-nav navbar-right\">\n                <li>\n                    <a href=\"javascript:void(0)\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n                        <i class=\"material-icons\">dashboard</i>\n                        <p class=\"hidden-lg hidden-md\">Dashboard</p>\n                    </a>\n                </li>\n                <li class=\"dropdown\">\n                    <a href=\"javascript:void(0)\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n                        <i class=\"material-icons\">notifications</i>\n                        <span class=\"notification\">5</span>\n                        <p class=\"hidden-lg hidden-md\">Notifications</p>\n                    </a>\n                    <ul class=\"dropdown-menu\">\n                        <li><a href=\"javascript:void(0)\">Mike John responded to your email</a></li>\n                        <li><a href=\"javascript:void(0)\">You have 5 new tasks</a></li>\n                        <li><a href=\"javascript:void(0)\">You're now friend with Andrew</a></li>\n                        <li><a href=\"javascript:void(0)\">Another Notification</a></li>\n                        <li><a href=\"javascript:void(0)\">Another One</a></li>\n                    </ul>\n                </li>\n                <li>\n                    <a href=\"javascript:void(0)\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n                       <i class=\"material-icons\">person</i>\n                       <p class=\"hidden-lg hidden-md\">Profile</p>\n                    </a>\n                </li>\n            </ul>\n\n            <form class=\"navbar-form navbar-right\" role=\"search\">\n                <div class=\"form-group form-black is-empty\">\n                    <input type=\"text\" class=\"form-control\" placeholder=\"Search\">\n                    <span class=\"material-input\"></span>\n                </div>\n                <button mat-raised-button type=\"submit\" class=\"btn btn-white btn-round btn-just-icon\">\n                    <i class=\"material-icons\">search</i><div class=\"ripple-container\"></div>\n                </button>\n            </form>\n        </div>\n    </div>\n</nav> -->\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<nav class=\"navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top\">\n    <div class=\"container-fluid\">\n        <div class=\"navbar-wrapper\">\n            \n          <a class=\"navbar-brand\" href=\"javascript:void(0)\">{{getTitle()}}</a>\n        </div>\n        <button mat-raised-button class=\"navbar-toggler\" type=\"button\" (click)=\"sidebarToggle()\">\n            <span class=\"sr-only\">Toggle navigation</span>\n            <span class=\"navbar-toggler-icon icon-bar\"></span>\n            <span class=\"navbar-toggler-icon icon-bar\"></span>\n            <span class=\"navbar-toggler-icon icon-bar\"></span>\n        </button>\n        <div class=\"collapse navbar-collapse justify-content-end\" id=\"navigation\">\n        <!--    <form class=\"navbar-form\">\n                <div class=\"input-group no-border\">\n                    <input type=\"text\" value=\"\" class=\"form-control\" placeholder=\"Search...\">\n                    <button mat-raised-button type=\"submit\" class=\"btn btn-white btn-round btn-just-icon\">\n                        <i class=\"material-icons\">search</i>\n                        <div class=\"ripple-container\"></div>\n                    </button>\n                </div>\n            </form>\n        -->\n            <ul class=\"navbar-nav\">\n                <li class=\"nav-item\">\n                  <!--  <a class=\"nav-link\" href=\"javascript:void(0)\"> -->\n                    <a class=\"nav-link\" [routerLink]=\"['/admin']\">\n\n                        <i class=\"material-icons\">dashboard</i>\n                        <p>\n                            <span class=\"d-lg-none d-md-block\">Stats</span>\n                        </p>\n                    </a>\n                </li>\n                <!--\n                <li class=\"nav-item dropdown\">\n                    <a class=\"nav-link\" href=\"javascript:void(0)\" id=\"navbarDropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n                        <i class=\"material-icons\">notifications</i>\n                        <span class=\"notification\">5</span>\n                        <p>\n                            <span class=\"d-lg-none d-md-block\">Some Actions</span>\n                        </p>\n                    </a>\n                    <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"navbarDropdownMenuLink\">\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\">Mike John responded to your email</a>\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\">You have 5 new tasks</a>\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\">You're now friend with Andrew</a>\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\">Another Notification</a>\n                        <a class=\"dropdown-item\" href=\"javascript:void(0)\">Another One</a>\n                    </div>\n                </li>\n            -->\n                <li class=\"nav-item\">\n                    \n                                        <a class=\"nav-link\" (onclick)=\"checkout()\">\n                                            <i class=\"material-icons\">login</i>\n                                            <p>\n                                                <span class=\"d-lg-none d-md-block\">Account</span>\n                                            </p>\n                                        </a>\n                                    <!--\n                                    <button mat-raised-button (click)=\"checkout()\" class=\"btn btn-white btn-round btn-just-icon\">\n                                        <i class=\"material-icons\">login</i>\n                                        <div class=\"ripple-container\"></div>\n                                    </button>\n                                -->\n                </li>\n                <li class=\"nav-item\">\n<!--\n                    <a class=\"nav-link\" [routerLink]=\"[menuItem.path]\">\n                        <i class=\"material-icons\">{{menuItem.icon}}</i>\n                        <p>{{menuItem.title}}</p>\n                    </a>\n                -->\n\n                    <a class=\"nav-link\" [routerLink]=\"['/new-user']\">\n                        <i class=\"material-icons\">person</i>\n                        <p>\n                            <span class=\"d-lg-none d-md-block\">Account</span>\n                        </p>\n                    </a>\n                </li>\n            </ul>\n        </div>\n    </div>\n</nav>\n\n<!--\n\n<nav class=\"navbar navbar-transparent navbar-absolute\">\n    <div class=\"container-fluid\">\n        <div class=\"navbar-header\">\n            <button mat-raised-button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" (click)=\"sidebarToggle()\">\n                <span class=\"sr-only\">Toggle navigation</span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand\" href=\"javascript:void(0)\">{{getTitle()}}</a>\n        </div>\n        <div class=\"collapse navbar-collapse\">\n            <ul class=\"nav navbar-nav navbar-right\">\n                <li>\n                    <a href=\"javascript:void(0)\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n                        <i class=\"material-icons\">dashboard</i>\n                        <p class=\"hidden-lg hidden-md\">Dashboard</p>\n                    </a>\n                </li>\n                <li class=\"dropdown\">\n                    <a href=\"javascript:void(0)\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n                        <i class=\"material-icons\">notifications</i>\n                        <span class=\"notification\">5</span>\n                        <p class=\"hidden-lg hidden-md\">Notifications</p>\n                    </a>\n                    <ul class=\"dropdown-menu\">\n                        <li><a href=\"javascript:void(0)\">Mike John responded to your email</a></li>\n                        <li><a href=\"javascript:void(0)\">You have 5 new tasks</a></li>\n                        <li><a href=\"javascript:void(0)\">You're now friend with Andrew</a></li>\n                        <li><a href=\"javascript:void(0)\">Another Notification</a></li>\n                        <li><a href=\"javascript:void(0)\">Another One</a></li>\n                    </ul>\n                </li>\n                <li>\n                    <a href=\"javascript:void(0)\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n                       <i class=\"material-icons\">person</i>\n                       <p class=\"hidden-lg hidden-md\">Profile</p>\n                    </a>\n                </li>\n            </ul>\n\n            <form class=\"navbar-form navbar-right\" role=\"search\">\n                <div class=\"form-group form-black is-empty\">\n                    <input type=\"text\" class=\"form-control\" placeholder=\"Search\">\n                    <span class=\"material-input\"></span>\n                </div>\n                <button mat-raised-button type=\"submit\" class=\"btn btn-white btn-round btn-just-icon\">\n                    <i class=\"material-icons\">search</i><div class=\"ripple-container\"></div>\n                </button>\n            </form>\n        </div>\n    </div>\n</nav> -->\n");
+
+/***/ }),
+
+/***/ "n1B2":
+/*!********************************************!*\
+  !*** ./src/app/logout/logout.component.ts ***!
+  \********************************************/
+/*! exports provided: LogoutComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LogoutComponent", function() { return LogoutComponent; });
+/* harmony import */ var _raw_loader_logout_component_html__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! raw-loader!./logout.component.html */ "r6bu");
+/* harmony import */ var _logout_component_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./logout.component.css */ "vd7c");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _models_usersapi__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../models/usersapi */ "D/Am");
+/* harmony import */ var _services_graphql_users_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/graphql.users.service */ "vb23");
+/* harmony import */ var _services_storage_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../services/storage.service */ "61FP");
+/* harmony import */ var _services_login_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../services/login.service */ "6Cq0");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ "tyNb");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+
+
+var LogoutComponent = /** @class */ (function () {
+    function LogoutComponent(graphqlService, storageService, loginService, router) {
+        this.graphqlService = graphqlService;
+        this.storageService = storageService;
+        this.loginService = loginService;
+        this.router = router;
+        this.myUser = new _models_usersapi__WEBPACK_IMPORTED_MODULE_3__["UserApi"];
+    }
+    LogoutComponent.prototype.ngOnInit = function () {
+    };
+    LogoutComponent.prototype.logoutUser = function () {
+        console.log(' user : ' + this.storageService.getSession("user"));
+        console.log(' token : ' + this.storageService.getSession("token"));
+        this.storageService.sessionDeleteAll();
+        //this.storageService.setSession("user", null);
+        console.log(' user : ' + this.storageService.getSession("user"));
+        console.log(' token : ' + this.storageService.getSession("token"));
+        var mydata = {
+            user: "",
+            token: ""
+        };
+        this.loginService.showData(mydata);
+        this.router.navigate(['/']);
+    };
+    LogoutComponent.ctorParameters = function () { return [
+        { type: _services_graphql_users_service__WEBPACK_IMPORTED_MODULE_4__["GraphqlUsersService"] },
+        { type: _services_storage_service__WEBPACK_IMPORTED_MODULE_5__["StorageService"] },
+        { type: _services_login_service__WEBPACK_IMPORTED_MODULE_6__["LoginService"] },
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_7__["Router"] }
+    ]; };
+    LogoutComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Component"])({
+            selector: 'app-logout',
+            template: _raw_loader_logout_component_html__WEBPACK_IMPORTED_MODULE_0__["default"],
+            styles: [_logout_component_css__WEBPACK_IMPORTED_MODULE_1__["default"]]
+        }),
+        __metadata("design:paramtypes", [_services_graphql_users_service__WEBPACK_IMPORTED_MODULE_4__["GraphqlUsersService"],
+            _services_storage_service__WEBPACK_IMPORTED_MODULE_5__["StorageService"],
+            _services_login_service__WEBPACK_IMPORTED_MODULE_6__["LoginService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_7__["Router"]])
+    ], LogoutComponent);
+    return LogoutComponent;
+}());
+
+
 
 /***/ }),
 
@@ -1298,7 +2243,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"wrapper\">\n<!--\n    <div class=\"sidebar\" data-color=\"danger\" data-background-color=\"white\" data-image=\"./assets/img/sidebar-1.jpg\">\n        <app-sidebar></app-sidebar>\n        <div class=\"sidebar-background\" style=\"background-image: url(./assets/img/sidebar-4.jpg)\"></div>\n    </div>\n-->\n    <div class=\"main-panel\">\n        <app-home-navbar></app-home-navbar>\n        <router-outlet></router-outlet>\n        <div *ngIf=\"isMaps('maps')\">\n            <app-footer></app-footer>\n        </div>\n    </div>\n<!--\n    <div class=\"fixed-plugin\">\n        <div class=\"dropdown show-dropdown open show\">\n            <a href=\"#\" data-toggle=\"dropdown\" aria-expanded=\"true\">\n                <i class=\"fa fa-cog fa-2x\"> </i>\n            </a>\n            <ul class=\"dropdown-menu show\" x-placement=\"bottom-start\" style=\"position: absolute; top: 41px; left: -231px; will-change: top, left;\">\n                <li class=\"header-title\"> Sidebar Filters</li>\n                <li class=\"adjustments-line\">\n                    <a href=\"javascript:void(0)\" class=\"switch-trigger active-color\">\n                        <div class=\"ml-auto mr-auto\">\n                            <span class=\"badge filter badge-purple\" data-color=\"purple\"></span>\n                            <span class=\"badge filter badge-azure\" data-color=\"azure\"></span>\n                            <span class=\"badge filter badge-green\" data-color=\"green\"></span>\n                            <span class=\"badge filter badge-orange\" data-color=\"orange\"></span>\n                            <span class=\"badge filter badge-danger active\" data-color=\"danger\"></span>\n                        </div>\n                        <div class=\"clearfix\"></div>\n                    <div class=\"ripple-container\"></div></a>\n                </li>\n                <li class=\"header-title\">Images</li>\n                <li>\n                    <a class=\"img-holder switch-trigger\" href=\"javascript:void(0)\">\n                        <img src=\"./assets/img/sidebar-1.jpg\" alt=\"\">\n                    </a>\n                </li>\n                <li>\n                    <a class=\"img-holder switch-trigger\" href=\"javascript:void(0)\">\n                        <img src=\"./assets/img/sidebar-2.jpg\" alt=\"\">\n                    <div class=\"ripple-container\"></div></a>\n                </li>\n                <li>\n                    <a class=\"img-holder switch-trigger\" href=\"javascript:void(0)\">\n                        <img src=\"./assets/img/sidebar-3.jpg\" alt=\"\">\n                    </a>\n                </li>\n                <li class=\"active\">\n                    <a class=\"img-holder switch-trigger\" href=\"javascript:void(0)\">\n                        <img src=\"./assets/img/sidebar-4.jpg\" alt=\"\">\n                    </a>\n                </li>\n                <li class=\"button-container\">\n                    <div>\n                        <button class=\"btn btn-info btn-block btn-fill\" data-toggle=\"modal\" data-target=\"#buy\">\n                            Download Free\n                        </button>\n                    </div>\n                </li>\n                <li class=\"button-container\">\n                    <div>\n                        <button class=\"btn btn-warning btn-block btn-fill\" data-toggle=\"modal\" data-target=\"#buy\">\n                            Buy Pro\n                        </button>\n                    </div>\n                </li>\n                <li class=\"button-container text-center\" routerLinkActive=\"active\">\n                  <div>\n                    <a class=\"btn btn-default btn-block\" href=\"https://demos.creative-tim.com/material-dashboard-angular2/#/documentation/tutorial\">\n                        View Documentation\n                    </a>\n                  </div>\n                </li>\n            </ul>\n        </div>\n    </div>\n-->\n</div>\n<!-- Buy-Modal-angular -->\n<div class=\"modal modal-angular fade\" id=\"buy\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\">\n<div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n        <div class=\"modal-body text-center\">\n            <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\n            <h4 class=\"margin-top\">\n                Free Version\n            </h4>\n            <div class=\"separator\"></div>\n            <a href=\"https://www.creative-tim.com/product/material-dashboard\" class=\"modal-button\" target=\"_blank\">\n                <div class=\"wrapper-card\">\n                    <div class=\"image-container\">\n                        <img src=\"./assets/img/html.png\" alt=\"unloaded\">\n                    </div>\n                    Html5\n                    <div class=\"separator\"></div>\n                    <div class=\"product-type\">\n                        FREE\n                    </div>\n                </div>\n            </a>\n            <a href=\"https://www.creative-tim.com/product/material-dashboard-angular2\" class=\"modal-button\" target=\"_blank\">\n                <div class=\"wrapper-card\">\n                    <div class=\"image-container image-angular-cli\">\n                        <img src=\"./assets/img/angular.png\" alt=\"unloaded\">\n                    </div>\n                    Angular\n                    <div class=\"separator\"></div>\n                    <div class=\"product-type\">\n                        FREE\n                    </div>\n                </div>\n            </a>\n            <h4>\n                PRO Version\n            </h4>\n            <div class=\"separator\"></div>\n            <a href=\"https://www.creative-tim.com/product/material-dashboard-pro\" class=\"modal-button\" target=\"_blank\">\n                <div class=\"image-container\">\n                    <img src=\"./assets/img/html.png\" alt=\"unloaded\">\n                </div>\n                Html5\n                <div class=\"separator\"></div>\n                <div class=\"price\">\n                    from\n                    <span>\n                        49\n                        <i class=\"fa fa-usd\" aria-hidden=\"true\"></i>\n                    </span>\n                </div>\n            </a>\n            <a href=\"https://www.creative-tim.com/product/material-dashboard-pro-angular2\" class=\"modal-button\" target=\"_blank\">\n                <div class=\"image-container image-angular-cli\">\n                    <img src=\"./assets/img/angular.png\" alt=\"unloaded\">\n                </div>\n                Angular\n                <div class=\"separator\"></div>\n                <div class=\"price\">\n                    from\n                    <span>\n                        59\n                        <i class=\"fa fa-usd\" aria-hidden=\"true\"></i>\n                    </span>\n                </div>\n            </a>\n        </div>\n    </div>\n</div>\n\n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"wrapper\">\n<!--\n    <div class=\"sidebar\" data-color=\"danger\" data-background-color=\"white\" data-image=\"./assets/img/sidebar-1.jpg\">\n        <app-sidebar></app-sidebar>\n        <div class=\"sidebar-background\" style=\"background-image: url(./assets/img/sidebar-4.jpg)\"></div>\n    </div>\n-->\n    <div class=\"main-panel-home\">\n       <!-- <app-home-navbar></app-home-navbar> -->\n        <router-outlet></router-outlet>\n        <div *ngIf=\"isMaps('maps')\">\n            <app-footer></app-footer>\n        </div>\n    </div>\n<!--\n    <div class=\"fixed-plugin\">\n        <div class=\"dropdown show-dropdown open show\">\n            <a href=\"#\" data-toggle=\"dropdown\" aria-expanded=\"true\">\n                <i class=\"fa fa-cog fa-2x\"> </i>\n            </a>\n            <ul class=\"dropdown-menu show\" x-placement=\"bottom-start\" style=\"position: absolute; top: 41px; left: -231px; will-change: top, left;\">\n                <li class=\"header-title\"> Sidebar Filters</li>\n                <li class=\"adjustments-line\">\n                    <a href=\"javascript:void(0)\" class=\"switch-trigger active-color\">\n                        <div class=\"ml-auto mr-auto\">\n                            <span class=\"badge filter badge-purple\" data-color=\"purple\"></span>\n                            <span class=\"badge filter badge-azure\" data-color=\"azure\"></span>\n                            <span class=\"badge filter badge-green\" data-color=\"green\"></span>\n                            <span class=\"badge filter badge-orange\" data-color=\"orange\"></span>\n                            <span class=\"badge filter badge-danger active\" data-color=\"danger\"></span>\n                        </div>\n                        <div class=\"clearfix\"></div>\n                    <div class=\"ripple-container\"></div></a>\n                </li>\n                <li class=\"header-title\">Images</li>\n                <li>\n                    <a class=\"img-holder switch-trigger\" href=\"javascript:void(0)\">\n                        <img src=\"./assets/img/sidebar-1.jpg\" alt=\"\">\n                    </a>\n                </li>\n                <li>\n                    <a class=\"img-holder switch-trigger\" href=\"javascript:void(0)\">\n                        <img src=\"./assets/img/sidebar-2.jpg\" alt=\"\">\n                    <div class=\"ripple-container\"></div></a>\n                </li>\n                <li>\n                    <a class=\"img-holder switch-trigger\" href=\"javascript:void(0)\">\n                        <img src=\"./assets/img/sidebar-3.jpg\" alt=\"\">\n                    </a>\n                </li>\n                <li class=\"active\">\n                    <a class=\"img-holder switch-trigger\" href=\"javascript:void(0)\">\n                        <img src=\"./assets/img/sidebar-4.jpg\" alt=\"\">\n                    </a>\n                </li>\n                <li class=\"button-container\">\n                    <div>\n                        <button class=\"btn btn-info btn-block btn-fill\" data-toggle=\"modal\" data-target=\"#buy\">\n                            Download Free\n                        </button>\n                    </div>\n                </li>\n                <li class=\"button-container\">\n                    <div>\n                        <button class=\"btn btn-warning btn-block btn-fill\" data-toggle=\"modal\" data-target=\"#buy\">\n                            Buy Pro\n                        </button>\n                    </div>\n                </li>\n                <li class=\"button-container text-center\" routerLinkActive=\"active\">\n                  <div>\n                    <a class=\"btn btn-default btn-block\" href=\"https://demos.creative-tim.com/material-dashboard-angular2/#/documentation/tutorial\">\n                        View Documentation\n                    </a>\n                  </div>\n                </li>\n            </ul>\n        </div>\n    </div>\n-->\n</div>\n<!-- Buy-Modal-angular -->\n<div class=\"modal modal-angular fade\" id=\"buy\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\">\n<div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n        <div class=\"modal-body text-center\">\n            <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\n            <h4 class=\"margin-top\">\n                Free Version\n            </h4>\n            <div class=\"separator\"></div>\n            <a href=\"https://www.creative-tim.com/product/material-dashboard\" class=\"modal-button\" target=\"_blank\">\n                <div class=\"wrapper-card\">\n                    <div class=\"image-container\">\n                        <img src=\"./assets/img/html.png\" alt=\"unloaded\">\n                    </div>\n                    Html5\n                    <div class=\"separator\"></div>\n                    <div class=\"product-type\">\n                        FREE\n                    </div>\n                </div>\n            </a>\n            <a href=\"https://www.creative-tim.com/product/material-dashboard-angular2\" class=\"modal-button\" target=\"_blank\">\n                <div class=\"wrapper-card\">\n                    <div class=\"image-container image-angular-cli\">\n                        <img src=\"./assets/img/angular.png\" alt=\"unloaded\">\n                    </div>\n                    Angular\n                    <div class=\"separator\"></div>\n                    <div class=\"product-type\">\n                        FREE\n                    </div>\n                </div>\n            </a>\n            <h4>\n                PRO Version\n            </h4>\n            <div class=\"separator\"></div>\n            <a href=\"https://www.creative-tim.com/product/material-dashboard-pro\" class=\"modal-button\" target=\"_blank\">\n                <div class=\"image-container\">\n                    <img src=\"./assets/img/html.png\" alt=\"unloaded\">\n                </div>\n                Html5\n                <div class=\"separator\"></div>\n                <div class=\"price\">\n                    from\n                    <span>\n                        49\n                        <i class=\"fa fa-usd\" aria-hidden=\"true\"></i>\n                    </span>\n                </div>\n            </a>\n            <a href=\"https://www.creative-tim.com/product/material-dashboard-pro-angular2\" class=\"modal-button\" target=\"_blank\">\n                <div class=\"image-container image-angular-cli\">\n                    <img src=\"./assets/img/angular.png\" alt=\"unloaded\">\n                </div>\n                Angular\n                <div class=\"separator\"></div>\n                <div class=\"price\">\n                    from\n                    <span>\n                        59\n                        <i class=\"fa fa-usd\" aria-hidden=\"true\"></i>\n                    </span>\n                </div>\n            </a>\n        </div>\n    </div>\n</div>\n\n</div>\n");
 
 /***/ }),
 
@@ -1312,6 +2257,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("<div class=\"main-content\">\n    <div class=\"container-fluid\">\n        <a class=\"nav-link\" [routerLink]=\"['/new-product']\">\n            <i class=\"material-icons\">login</i>\n            <p>\n                <span class=\"d-lg-none d-md-block\">Account</span>\n            </p>\n        </a>\n        <div class=\"row\">\n       \n            <div class=\"col-lg-12 col-md-12\">\n                <div class=\"card\">\n                    <div class=\"card-header card-header-warning\">\n                        <h4 class=\"card-title\">Carrito de Compras</h4>\n                        <p class=\"card-category\"> - </p>\n                    </div>\n                    <div class=\"card-body table-responsive\">\n                        <table class=\"table table-hover\">\n                            <thead class=\"text-warning\">\n                                <th>Clave</th>\n                                <th>Url</th>\n                                <th>Descripcion</th>\n                            </thead>\n                            <tbody>\n                                <tr *ngFor=\"let product of posts\" >\n                                    <td>{{ product.id }}</td>\n                                    <td>{{ product.url }}</td>\n                                    <td>{{ product.description }}</td>\n                                </tr>\n                              \n                            </tbody>\n                        </table>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n  </div>\n  ");
+
+/***/ }),
+
+/***/ "r6bu":
+/*!************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/logout/logout.component.html ***!
+  \************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"main-content\">\n    <div class=\"container-fluid\">\n        <div class=\"row\">\n            <div class=\"col-md-12\">\n                <div class=\"card\">\n                    <div class=\"card-header card-header-danger\">\n                        <h4 class=\"card-title\">Logout</h4>\n                        <p class=\"card-category\">Cerrar sesion</p>\n                    </div>\n                    <div class=\"card-body\">\n                        <form>\n                            <div class=\"row\">\n\n                                <div class=\"col-md-12\">\n                                    Esta seguro de cerrar sesion ?\n                                </div>\n                            </div>\n                               \n                               \n                            \n                            <button mat-raised-button type=\"button\" class=\"btn btn-danger pull-right\" (click)=\"logoutUser()\">Cerrar sesion</button>\n\n                            <div class=\"clearfix\"></div>\n                        </form>\n                    </div>\n                </div>\n            </div>\n                 </div>\n    </div>\n  </div>\n  ");
 
 /***/ }),
 
@@ -1495,6 +2453,88 @@ var HomeLayoutComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "vb23":
+/*!***********************************************!*\
+  !*** ./src/services/graphql.users.service.ts ***!
+  \***********************************************/
+/*! exports provided: GraphqlUsersService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GraphqlUsersService", function() { return GraphqlUsersService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var apollo_angular__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! apollo-angular */ "/IUn");
+var __makeTemplateObject = (undefined && undefined.__makeTemplateObject) || function (cooked, raw) {
+    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+    return cooked;
+};
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var TOKENAUTH = Object(apollo_angular__WEBPACK_IMPORTED_MODULE_1__["gql"])(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  mutation TokenAuth($username: String!, $password: String!) {\n    tokenAuth(username: $username, password: $password) {\n      token\n    }\n  }\n"], ["\n  mutation TokenAuth($username: String!, $password: String!) {\n    tokenAuth(username: $username, password: $password) {\n      token\n    }\n  }\n"])));
+var CREATEUSER = Object(apollo_angular__WEBPACK_IMPORTED_MODULE_1__["gql"])(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  mutation CreateUser($username: String!, $email: String!, $password: String!) {\n    createUser(username: $username, email: $email, password: $password) {\n      user { \n        id\n        username\n        email\n      }\n    }\n  }\n  "], ["\n  mutation CreateUser($username: String!, $email: String!, $password: String!) {\n    createUser(username: $username, email: $email, password: $password) {\n      user { \n        id\n        username\n        email\n      }\n    }\n  }\n  "])));
+var GraphqlUsersService = /** @class */ (function () {
+    function GraphqlUsersService(apollo) {
+        this.apollo = apollo;
+    }
+    GraphqlUsersService.prototype.tokenAuth = function (username, password) {
+        return this.apollo.mutate({
+            mutation: TOKENAUTH,
+            variables: {
+                username: username,
+                password: password
+            }
+        });
+    };
+    GraphqlUsersService.prototype.createUser = function (username, email, password) {
+        return this.apollo.mutate({
+            mutation: CREATEUSER,
+            variables: {
+                username: username,
+                email: email,
+                password: password
+            }
+        });
+    };
+    GraphqlUsersService.ctorParameters = function () { return [
+        { type: apollo_angular__WEBPACK_IMPORTED_MODULE_1__["Apollo"] }
+    ]; };
+    GraphqlUsersService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [apollo_angular__WEBPACK_IMPORTED_MODULE_1__["Apollo"]])
+    ], GraphqlUsersService);
+    return GraphqlUsersService;
+}());
+
+var templateObject_1, templateObject_2;
+
+
+/***/ }),
+
+/***/ "vd7c":
+/*!*********************************************!*\
+  !*** ./src/app/logout/logout.component.css ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2xvZ291dC9sb2dvdXQuY29tcG9uZW50LmNzcyJ9 */");
+
+/***/ }),
+
 /***/ "vtrx":
 /*!******************************************************************!*\
   !*** ./src/app/layouts/admin-layout/admin-layout.component.scss ***!
@@ -1535,8 +2575,11 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 var ROUTES = [
-    { path: 'admin/dashboard', title: 'Dashboard', icon: 'dashboard', class: '' },
+    { path: 'admin/dashboard', title: 'Ventas', icon: 'dashboard', class: '' },
+    { path: 'admin/facturacion', title: 'Facturacion', icon: 'dashboard', class: '' },
     { path: 'admin/productos', title: 'Productos', icon: 'dashboard', class: '' },
+    { path: 'admin/clientes', title: 'Clientes', icon: 'dashboard', class: '' },
+    { path: 'admin/configuracion', title: 'Configuracion', icon: 'dashboard', class: '' },
 ];
 var SidebarComponent = /** @class */ (function () {
     function SidebarComponent() {
