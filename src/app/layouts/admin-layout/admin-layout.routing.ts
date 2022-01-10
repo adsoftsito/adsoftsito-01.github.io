@@ -18,6 +18,7 @@ import { ClientesComponent } from '../../clientes/clientes.component';
 import { ConfiguracionComponent } from '../../configuracion/configuracion.component';
 import { NewClientComponent } from '../../new-client/new-client.component';
 import { LogoutComponent } from '../../logout/logout.component';
+import { CfdiComponent } from '../../cfdi/cfdi.component';
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -70,6 +71,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'admin/new-product',   component: NewProductComponent },
     { path: 'admin/new-client',    component: NewClientComponent },
     { path: 'admin/logout',        component: LogoutComponent },
+    { path: 'admin/cfdi/:id',          component: CfdiComponent },
 
 
 

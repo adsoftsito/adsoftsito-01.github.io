@@ -1,0 +1,125 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Timbrado de CFDi - <b>Serie/Folio A100 - Importe: 100.00</b></h4>
+                        <p class="card-category">Datos del <b>RECEPTOR</b></p>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-2">
+                                  <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="RFC">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-2">
+                                    <button mat-raised-button type="submit" class="btn btn-warning pull-right">Buscar</button>
+
+                                  </div>
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Nombre">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-2">
+                                    <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Email" type="email">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-2">
+                                    <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Uso CFDi" type="email">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                           
+                            <div class="row">
+                                <div class="col-md-2">
+                                  <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Codigo Postal">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-2">
+                                    <button mat-raised-button type="submit" class="btn btn-warning pull-right">Buscar</button>
+
+                                  </div>
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Colonia">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-2">
+                                    <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Estado" type="email">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-2">
+                                    <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Municipio" type="email">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                           
+                            <button mat-raised-button type="submit" class="btn btn-info pull-right">Actualizar Receptor</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title">CFDi - Complementos <b>(Opcional)</b></h4>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-5">
+                                  <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Seleccione complemento" >
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3">
+                                    <button mat-raised-button type="button" class="btn btn-info pull-right" (click)="getCfdi()">Configurar Complemento</button>
+
+                                </div>
+                                
+                            </div>
+                            
+                            
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+  
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title"><b>Confirma timbrado de CFDi</b></h4>
+                    </div>
+                
+                    <div class="card-body">
+                        <button mat-raised-button type="submit" class="btn btn-danger pull-right" (click)="getCfdi()">Timbrar CFDi</button>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+  
+</div>
