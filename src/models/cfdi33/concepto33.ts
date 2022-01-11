@@ -1,3 +1,5 @@
+import { ConceptoImpuestos33 } from "./conceptoimpuestos33";
+
 export class Concepto33 {
     claveprodserv : string;
     noidentificacion: string;
@@ -8,4 +10,5 @@ export class Concepto33 {
     valorunitario: string;
     importe: string;
     descuento: string;
+    impuestos : ConceptoImpuestos33
 }

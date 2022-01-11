@@ -7,6 +7,10 @@ import { Cfdi33 } from "../../models/cfdi33/cfdi33";
 import { Emisor33 } from "../../models/cfdi33/emisor33";
 import { Receptor33 } from "../../models/cfdi33/receptor33";
 import { Concepto33 } from "../../models/cfdi33/concepto33";
+import { ConceptoImpuestos33 } from "../../models/cfdi33/conceptoimpuestos33";
+import { Traslado33 } from 'models/cfdi33/traslado33';
+import { Retencion33 } from 'models/cfdi33/retencion33';
+import { CfdiImpuestos33 } from 'models/cfdi33/cfdiimpuestos33';
 
 @Component({
   selector: 'app-cfdi',
@@ -24,11 +28,20 @@ export class CfdiComponent implements OnInit {
   emisor33 = new Emisor33;
   receptor33 = new Receptor33;
   concepto33 : Concepto33;
+  conceptoimpuestos33 = new ConceptoImpuestos33;
+  cfdiimpuestos33 : CfdiImpuestos33;
 
   conceptos33 = [];
+  traslados = [];
+  retenciones = [];
+  traslado : Traslado33;
+  retencion : Retencion33;
+  totaltraslado : number;
+  totalretenciones : number;
+  totalbaseimpuesto : number;
 
   saleid : number;
-
+  
   constructor(
     private cfdiService: CfdiService,
     private graphqlSalesService: GraphqlSalesService,
@@ -82,9 +95,14 @@ export class CfdiComponent implements OnInit {
       console.log('emisorme : ');
       console.log(JSON.stringify(this.emisor));
 
-      this.fillCfdi33();
+      //this.fillCfdi33();
     });
   }
+
+  roundTo = function(num: number, places: number) {
+    const factor = 10 ** places;
+    return Math.round(num * factor) / factor;
+  };
 
   fillCfdi33()
   {
@@ -99,13 +117,13 @@ export class CfdiComponent implements OnInit {
     this.cfdi33.moneda = this.sale.sale.moneda; 
     this.cfdi33.total = this.sale.sale.total; 
     this.cfdi33.tipodecomprobante = this.sale.sale.tipodecomprobante;
-    this.cfdi33.metodopago = this.sale.sale.total.metodopago;
+    this.cfdi33.metodopago = this.sale.sale.metodopago;
     this.cfdi33.lugarexpedicion = this.sale.sale.lugarexpedicion;
 
     // emisor
     this.emisor33.rfc = this.emisor.rfc;
     this.emisor33.nombre = this.emisor.nombre;
-    this.emisor33.regimenfiscal = this.emisor.regimenfiscal;
+    this.emisor33.regimenfiscal = "601"; //this.emisor.regimenfiscal;
     this.cfdi33.emisor = this.emisor33;
 
     // receptor
@@ -115,25 +133,88 @@ export class CfdiComponent implements OnInit {
     this.cfdi33.receptor = this.receptor33;
 
     // conceptos
+    this.conceptos33 = [];
+
+    this.totaltraslado = 0;
+    this.totalbaseimpuesto = 0;
 
     this.sale.detail.forEach(item => 
     {
       this.concepto33 = new Concepto33;
-      this.concepto33.claveprodserv = item.codigosat;
+      this.concepto33.claveprodserv = "01010101"; // item.codigosat;
       
       this.concepto33.noidentificacion = item.noidentificacion;
       this.concepto33.cantidad = item.cantidad;
-      this.concepto33.claveunidad = item.claveunidad;
+      this.concepto33.claveunidad = "H87"; //item.claveunidad;
       this.concepto33.unidad = "PZA";
       this.concepto33.descripcion = item.product;
       this.concepto33.valorunitario = item.precio;
-      this.concepto33.importe = item.importe;
+      
+      var importe = item.precio * item.cantidad;
+
+      this.concepto33.importe = "" + importe;
       this.concepto33.descuento = item.descuento;
-      console.log(this.concepto33);
+      
+
+      
+      
+      // traslados del concepto
+      var baseimpuesto = importe / (1 + 0.160000)
+
+      baseimpuesto= this.roundTo(baseimpuesto, 4);
+
+      var impuestotraslado = importe * 0.160000;
+      //impuestotraslado= Math.round( impuestotraslado * 10^6 ) / 10^6;
+
+      console.log("importe " + importe)
+      console.log("base " + baseimpuesto)
+      console.log("impuesto " + impuestotraslado)
+
+      this.conceptoimpuestos33 = new ConceptoImpuestos33;
+
+      this.traslados = [];
+      this.traslado = new Traslado33;
+
+      this.traslado.base = "" + importe;
+      this.traslado.importe = "" + impuestotraslado;
+      this.traslado.impuesto = "002";
+      this.traslado.tasaocuota = "0.160000";
+      this.traslado.tipofactor = "Tasa";
+
+      this.totalbaseimpuesto += importe;
+
+      this.totaltraslado += impuestotraslado;
+      console.log(this.traslado);
+
+      this.traslados.push(this.traslado);
+
+      this.conceptoimpuestos33.traslados = this.traslados;
+      this.conceptoimpuestos33.retenciones = this.retenciones;
+      
+      this.concepto33.impuestos = this.conceptoimpuestos33;
+      
       this.conceptos33.push(this.concepto33);
+      console.log(this.conceptos33);
 
     })
+
     this.cfdi33.conceptos = this.conceptos33;
+
+    this.cfdiimpuestos33 = new CfdiImpuestos33;
+    this.cfdiimpuestos33.totalimpuestostrasladados = "" + this.totaltraslado;
+    // traslados del cfdi
+    this.traslados = [];
+    this.traslado = new Traslado33;
+    this.traslado.base = "" + this.totalbaseimpuesto;
+    this.traslado.importe = "" + this.totaltraslado;
+    this.traslado.impuesto = "002";
+    this.traslado.tasaocuota = "0.160000";
+    this.traslado.tipofactor = "Tasa";
+    this.traslados.push(this.traslado);
+
+    this.cfdiimpuestos33.traslados = this.traslados;
+
+    this.cfdi33.impuestos = this.cfdiimpuestos33;
 
     console.log(JSON.stringify(this.cfdi33));
 
@@ -151,7 +232,7 @@ export class CfdiComponent implements OnInit {
     });
     alert(JSON.stringify(products));
     */
-
+/*
     var mycfdi =
     {
       "serie": "AAA",
@@ -240,12 +321,16 @@ export class CfdiComponent implements OnInit {
       }
       
   }
-    alert("cfdi ...");
-    this.cfdiService.getCfdi(mycfdi)
+  */
+    this.fillCfdi33();
+
+    alert(JSON.stringify(this.cfdi33));
+    this.cfdiService.getCfdi(JSON.stringify(this.cfdi33))
     .subscribe(( data ) => {
        console.log('Cfdi ok :  ', data);
+       console.log('Cfdi json :  ', JSON.stringify(data));
        //this.router.navigate(['/']);
-       alert(JSON.stringify(data));
+       //alert(JSON.stringify(data));
        
     }, (error) => {
        console.log('there was an error in cfdi : ', error);
