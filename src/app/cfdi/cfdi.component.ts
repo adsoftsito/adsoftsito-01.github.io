@@ -39,6 +39,9 @@ export class CfdiComponent implements OnInit {
   totaltraslado : number;
   totalretenciones : number;
   totalbaseimpuesto : number;
+  subtotal : number;
+  total : number;
+  
 
   saleid : number;
   
@@ -109,13 +112,11 @@ export class CfdiComponent implements OnInit {
     
     this.cfdi33.serie = this.sale.sale.serie;
     this.cfdi33.folio = this.sale.sale.folio;
-    this.cfdi33.total = this.sale.sale.total;
     this.cfdi33.formapago = this.sale.sale.formapago; 
     this.cfdi33.condicionesdepago = this.sale.sale.condicionesdepago; 
     this.cfdi33.subtotal = this.sale.sale.subtotal; 
     this.cfdi33.descuento = this.sale.sale.descuento; 
     this.cfdi33.moneda = this.sale.sale.moneda; 
-    this.cfdi33.total = this.sale.sale.total; 
     this.cfdi33.tipodecomprobante = this.sale.sale.tipodecomprobante;
     this.cfdi33.metodopago = this.sale.sale.metodopago;
     this.cfdi33.lugarexpedicion = this.sale.sale.lugarexpedicion;
@@ -137,6 +138,8 @@ export class CfdiComponent implements OnInit {
 
     this.totaltraslado = 0;
     this.totalbaseimpuesto = 0;
+    this.subtotal = 0;
+    this.total = 0;
 
     this.sale.detail.forEach(item => 
     {
@@ -148,26 +151,37 @@ export class CfdiComponent implements OnInit {
       this.concepto33.claveunidad = "H87"; //item.claveunidad;
       this.concepto33.unidad = "PZA";
       this.concepto33.descripcion = item.product;
-      this.concepto33.valorunitario = item.precio;
-      
-      var importe = item.precio * item.cantidad;
 
-      this.concepto33.importe = "" + importe;
+      var precio = item.precio / (1 + 0.160000);
+      
+      this.concepto33.valorunitario = "" + this.roundTo(precio, 4);
+
+      //var otroimporte = precio * item.cantidad;
+
+      var importe = precio * item.cantidad;
+
+      this.concepto33.importe = "" + this.roundTo(importe, 4);
       this.concepto33.descuento = item.descuento;
       
 
       
       
       // traslados del concepto
-      var baseimpuesto = importe / (1 + 0.160000)
+      var subtotalconcepto = importe;  // (1 + 0.160000)
 
-      baseimpuesto= this.roundTo(baseimpuesto, 4);
 
-      var impuestotraslado = importe * 0.160000;
+      var impuestotraslado = subtotalconcepto * 0.160000;
       //impuestotraslado= Math.round( impuestotraslado * 10^6 ) / 10^6;
 
+      subtotalconcepto= this.roundTo(subtotalconcepto, 4);
+      impuestotraslado= this.roundTo(impuestotraslado, 4);
+
+      console.log("otro precio " + precio)
+
+     // console.log("otro importe " + otroimporte)
+
       console.log("importe " + importe)
-      console.log("base " + baseimpuesto)
+      console.log("base " + subtotalconcepto)
       console.log("impuesto " + impuestotraslado)
 
       this.conceptoimpuestos33 = new ConceptoImpuestos33;
@@ -175,15 +189,16 @@ export class CfdiComponent implements OnInit {
       this.traslados = [];
       this.traslado = new Traslado33;
 
-      this.traslado.base = "" + importe;
+      this.traslado.base = "" + subtotalconcepto;
       this.traslado.importe = "" + impuestotraslado;
       this.traslado.impuesto = "002";
       this.traslado.tasaocuota = "0.160000";
       this.traslado.tipofactor = "Tasa";
 
-      this.totalbaseimpuesto += importe;
-
+ 
+      this.totalbaseimpuesto += subtotalconcepto;
       this.totaltraslado += impuestotraslado;
+ 
       console.log(this.traslado);
 
       this.traslados.push(this.traslado);
@@ -198,7 +213,12 @@ export class CfdiComponent implements OnInit {
 
     })
 
+
     this.cfdi33.conceptos = this.conceptos33;
+    
+    this.totaltraslado = this.roundTo(this.totaltraslado, 2)
+    this.totalbaseimpuesto = this.roundTo(this.totalbaseimpuesto,4)
+    this.subtotal = this.totalbaseimpuesto;
 
     this.cfdiimpuestos33 = new CfdiImpuestos33;
     this.cfdiimpuestos33.totalimpuestostrasladados = "" + this.totaltraslado;
@@ -215,6 +235,14 @@ export class CfdiComponent implements OnInit {
     this.cfdiimpuestos33.traslados = this.traslados;
 
     this.cfdi33.impuestos = this.cfdiimpuestos33;
+
+    this.total = this.subtotal + this.totaltraslado;
+
+    this.total = this.roundTo(this.total, 2)
+    this.subtotal = this.roundTo(this.subtotal, 2)
+  
+    this.cfdi33.total = "" + this.total;
+    this.cfdi33.subtotal = "" + this.subtotal;
 
     console.log(JSON.stringify(this.cfdi33));
 
