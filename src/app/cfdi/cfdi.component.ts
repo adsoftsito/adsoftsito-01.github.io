@@ -41,7 +41,8 @@ export class CfdiComponent implements OnInit {
   totalbaseimpuesto : number;
   subtotal : number;
   total : number;
-  
+  xml : string;
+  pdf : string;  
 
   saleid : number;
   
@@ -85,6 +86,8 @@ export class CfdiComponent implements OnInit {
       console.log(this.sale.sale.id);
       this.emisorme();
     });
+  
+  
   }
 
   emisorme() {
@@ -241,7 +244,7 @@ export class CfdiComponent implements OnInit {
     this.total = this.roundTo(this.total, 2)
     this.subtotal = this.roundTo(this.subtotal, 2)
   
-    this.cfdi33.total = "" + this.total;
+    this.cfdi33.total = "" + (this.total);
     this.cfdi33.subtotal = "" + this.subtotal;
 
     console.log(JSON.stringify(this.cfdi33));
@@ -356,7 +359,29 @@ export class CfdiComponent implements OnInit {
     this.cfdiService.getCfdi(JSON.stringify(this.cfdi33))
     .subscribe(( data ) => {
        console.log('Cfdi ok :  ', data);
-       console.log('Cfdi json :  ', JSON.stringify(data));
+
+       console.log('Cfdi ok :  ', data.xml);
+       console.log('Cfdi ok :  ', data.pdf);
+
+       this.xml = data.xml;
+       this.pdf = data.pdf;
+
+       if (this.xml && this.pdf) {
+         console.log("ok")
+
+         this.graphqlSalesService.updateSale(this.token, this.saleid, "A", this.xml, this.pdf)
+         .subscribe(({ data }) => {
+
+           console.log(JSON.stringify(JSON.parse(JSON.stringify(data)).updateSale));
+           
+         });
+       
+
+       }
+       else {
+        console.log("error ")
+       }
+       //console.log('Cfdi json :  ', JSON.stringify(data));
        //this.router.navigate(['/']);
        //alert(JSON.stringify(data));
        
