@@ -50,17 +50,24 @@ query Sale($saleid: Int!) {
     } 
     detail {
       id
-      codigosat
-      noidentificacion
-      claveunidad
-      product
+      product {
+        noidentificacion
+        description
+        codigosat {
+          claveprodserv
+        }
+        noidentificacion
+        claveunidad {
+          descripcion
+        }
+      }
       cantidad
       precio
       importe
       descuento
       trasladoiva
-      retiva
-      ieps
+      retencioniva
+      retencionieps
     }    
   }
 }
