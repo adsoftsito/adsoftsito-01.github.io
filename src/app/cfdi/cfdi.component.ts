@@ -60,6 +60,8 @@ export class CfdiComponent implements OnInit {
   retencion40 : Retencion40;
 
   totaltraslado : number;
+  totalimpuestostrasladados : number;
+
   totalretenciones : number;
   totalbaseimpuesto : number;
   subtotal : number;
@@ -287,7 +289,7 @@ export class CfdiComponent implements OnInit {
     this.cfdi40.tipodecomprobante = this.sale.sale.tipodecomprobante;
     this.cfdi40.metodopago = this.sale.sale.metodopago;
     this.cfdi40.lugarexpedicion = this.sale.sale.lugarexpedicion;
-
+    this.cfdi40.exportacion = "01";
     // emisor
     this.emisor40.rfc = this.emisor.rfc;
     this.emisor40.nombre = this.emisor.nombre;
@@ -298,6 +300,9 @@ export class CfdiComponent implements OnInit {
     this.receptor40.rfc = this.sale.sale.receptor.rfc;
     this.receptor40.nombre = this.sale.sale.receptor.nombre;
     this.receptor40.usocfdi = this.sale.sale.receptor.usocfdi;
+    this.receptor40.domiciliofiscalreceptor = "94740";
+    this.receptor40.regimenfiscalreceptor = "616";
+
     this.cfdi40.receptor = this.receptor40;
 
     // conceptos
@@ -312,7 +317,7 @@ export class CfdiComponent implements OnInit {
     {
       this.concepto40 = new Concepto40;
       this.concepto40.claveprodserv = "01010101"; // item.codigosat;
-      
+      this.concepto40.objetoimp = "02";
       this.concepto40.noidentificacion = "1010"; //item.product.noidentificacion;
       this.concepto40.cantidad = item.cantidad;
       this.concepto40.claveunidad = "H87"; //item.claveunidad;
@@ -383,12 +388,14 @@ export class CfdiComponent implements OnInit {
 
     this.cfdi40.conceptos = this.conceptos40;
     
-    this.totaltraslado = this.roundTo(this.totaltraslado, 2)
-    this.totalbaseimpuesto = this.roundTo(this.totalbaseimpuesto,4)
+    this.totalimpuestostrasladados = this.roundTo(this.totaltraslado, 2)
+    this.totaltraslado = this.roundTo(this.totaltraslado, 4)
+
+    this.totalbaseimpuesto = this.roundTo(this.totalbaseimpuesto,2)
     this.subtotal = this.totalbaseimpuesto;
 
     this.cfdiimpuestos40 = new CfdiImpuestos40;
-    this.cfdiimpuestos40.totalimpuestostrasladados = "" + this.totaltraslado;
+    this.cfdiimpuestos40.totalimpuestostrasladados = "" + this.totalimpuestostrasladados;
     // traslados del cfdi
     this.traslados = [];
     this.traslado40 = new Traslado40;
