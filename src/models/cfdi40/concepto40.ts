@@ -10,5 +10,6 @@ export class Concepto40 {
     valorunitario: string;
     importe: string;
     descuento: string;
+    objetoimp : string;
     impuestos : ConceptoImpuestos40
 }

@@ -13,6 +13,7 @@ export class Cfdi40 {
     moneda : string; 
     total : string; 
     tipodecomprobante : string;
+    exportacion : string;
     metodopago : string;
     lugarexpedicion : string;
     emisor: Emisor40;
