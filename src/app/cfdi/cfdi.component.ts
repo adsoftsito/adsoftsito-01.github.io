@@ -108,7 +108,7 @@ export class CfdiComponent implements OnInit {
       //this.conceptos = JSON.parse(JSON.stringify(data)).detail;
       
       console.log(JSON.stringify(this.sale));
-      console.log(this.sale.sale.id);
+      console.log(this.sale.id);
       this.emisorme();
     });
   
@@ -279,16 +279,16 @@ export class CfdiComponent implements OnInit {
   fillCfdi40()
   {
     
-    this.cfdi40.serie = this.sale.sale.serie;
-    this.cfdi40.folio = this.sale.sale.folio;
-    this.cfdi40.formapago = this.sale.sale.formapago; 
-    this.cfdi40.condicionesdepago = this.sale.sale.condicionesdepago; 
-    this.cfdi40.subtotal = this.sale.sale.subtotal; 
-    this.cfdi40.descuento = this.sale.sale.descuento; 
-    this.cfdi40.moneda = this.sale.sale.moneda; 
-    this.cfdi40.tipodecomprobante = this.sale.sale.tipodecomprobante;
-    this.cfdi40.metodopago = this.sale.sale.metodopago;
-    this.cfdi40.lugarexpedicion = this.sale.sale.lugarexpedicion;
+    this.cfdi40.serie = this.sale.serie;
+    this.cfdi40.folio = this.sale.folio;
+    this.cfdi40.formapago = this.sale.formapago; 
+    this.cfdi40.condicionesdepago = this.sale.condicionesdepago; 
+    this.cfdi40.subtotal = this.sale.subtotal; 
+    this.cfdi40.descuento = this.sale.descuento; 
+    this.cfdi40.moneda = this.sale.moneda; 
+    this.cfdi40.tipodecomprobante = this.sale.tipodecomprobante;
+    this.cfdi40.metodopago = this.sale.metodopago;
+    this.cfdi40.lugarexpedicion = this.sale.lugarexpedicion;
     this.cfdi40.exportacion = "01";
     // emisor
     this.emisor40.rfc = this.emisor.rfc;
@@ -297,9 +297,9 @@ export class CfdiComponent implements OnInit {
     this.cfdi40.emisor = this.emisor40;
 
     // receptor
-    this.receptor40.rfc = this.sale.sale.receptor.rfc;
-    this.receptor40.nombre = this.sale.sale.receptor.nombre;
-    this.receptor40.usocfdi = this.sale.sale.receptor.usocfdi;
+    this.receptor40.rfc = this.sale.receptor.rfc;
+    this.receptor40.nombre = this.sale.receptor.nombre;
+    this.receptor40.usocfdi = this.sale.receptor.usocfdi;
     this.receptor40.domiciliofiscalreceptor = "94740";
     this.receptor40.regimenfiscalreceptor = "616";
 
@@ -313,7 +313,7 @@ export class CfdiComponent implements OnInit {
     this.subtotal = 0;
     this.total = 0;
 
-    this.sale.detail.forEach(item => 
+    this.sale.details.forEach(item => 
     {
       this.concepto40 = new Concepto40;
       this.concepto40.claveprodserv = "01010101"; // item.codigosat;

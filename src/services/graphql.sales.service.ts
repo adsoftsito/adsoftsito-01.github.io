@@ -26,7 +26,6 @@ const EMISORME = gql`
 const SALE = gql`
 query Sale($saleid: Int!) {
   sale(saleid: $saleid) {
-    sale {
       id
       serie
       folio
@@ -47,8 +46,8 @@ query Sale($saleid: Int!) {
         usocfdi
         
       }
-    } 
-    detail {
+     
+      details {
       id
       product {
         noidentificacion
