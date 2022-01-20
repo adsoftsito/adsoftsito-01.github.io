@@ -1,1 +1,49 @@
-<p>proveedores works!</p>
+<div class="main-content">
+    <div class="container-fluid">
+        
+        <div class="input-group no-border">
+            <input type="text" [(ngModel)]="valor" name="valor" class="form-control" placeholder="Buscar cliente, serie, folio, importe ...">
+            <button mat-raised-button (click)="search()" class="btn btn-white btn-round btn-just-icon">
+                <i class="material-icons">search</i>
+                <div class="ripple-container"></div>
+            </button>
+            
+        </div>
+        <div class="row">
+       
+            <div class="col-lg-12 col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-warning">
+                        <h4 class="card-title">Proveedores - 
+                        
+                        <a  [routerLink]="['/admin/admin/new-product']">
+                           <b> Crear proveedor nuevo  </b>
+                        <i class="material-icons">login</i>
+                           
+                        </a>
+                        </h4>
+                        
+                    </div>
+                    <div class="card-body table-responsive">
+                        <table class="table table-hover">
+                            <thead class="text-warning">
+                                <th>Clave</th>
+                                <th>Url</th>
+                                <th>Descripcion</th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let product of posts" >
+                                    <td>{{ product.id }}</td>
+                                    <td>{{ product.url }}</td>
+                                    <td>{{ product.description }}</td>
+                                </tr>
+                              
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  

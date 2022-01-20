@@ -43,6 +43,30 @@ const LINKSPARAM = gql`
   }
 `;
 
+const MARCAS = gql`
+  query Marcas($search: String!) {
+    marcas(search: $search) {
+      id
+      description
+      postedBy {
+        username
+      }
+    }
+  }
+`;
+
+const LINEAS = gql`
+  query Lineas($search: String!) {
+    lineas(search: $search) {
+      id
+      description
+      postedBy {
+        username
+      }
+    }
+  }
+`;
+
 // 'idprod', 'codigosat', 'noidentificacion', 'claveunidad', 'descuento', 'trasladoiva', 'retiva', and 'ieps'
 
 const CREATELINK = gql`
@@ -67,6 +91,40 @@ export class GraphqlProductsService  {
   //private querySubscription: Subscription;
 
   constructor(private apollo: Apollo) {}
+
+
+  marcas(mytoken: string, valor : string) {
+    
+    return this.apollo.query({
+      query: MARCAS,
+      variables: {
+        search: valor
+      }, 
+      context: {
+        // example of setting the headers with context per operation
+        headers: new HttpHeaders().set('Authorization', 'JWT ' + mytoken),
+      },
+    });
+  //}
+
+  }
+  
+
+  lineas(mytoken: string, valor : string) {
+    
+    return this.apollo.query({
+      query: LINEAS,
+      variables: {
+        search: valor
+      }, 
+      context: {
+        // example of setting the headers with context per operation
+        headers: new HttpHeaders().set('Authorization', 'JWT ' + mytoken),
+      },
+    });
+  //}
+
+  }
 
   links(mytoken: string, valor : string) {
     

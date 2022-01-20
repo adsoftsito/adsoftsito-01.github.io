@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { GraphqlProductsService} from '../../services/graphql.products.service';
+import { GraphqlClientsService} from '../../services/graphql.clients.service';
+import { StorageService } from "../../services/storage.service";
 
 
 @Component({
@@ -13,16 +14,26 @@ export class ClientesComponent implements OnInit {
 
   loading: boolean;
   posts: any;
+  user: string;
+  token: string;
+
   private querySubscription: Subscription;
 
-  constructor(private graphqlProductsService: GraphqlProductsService) {}
+  constructor(private graphqlClientsService: GraphqlClientsService,
+              private storageService : StorageService
+    ) {
+  
+    this.user = this.storageService.getSession("user");
+    this.token = this.storageService.getSession("token");
+  
+  }
 
   ngOnInit() {
-    this.querySubscription = this.graphqlProductsService.links("token", "-")
+    this.querySubscription = this.graphqlClientsService.receptor(this.token, "-")
       //.valueChanges
       .subscribe(({ data, loading }) => {
         this.loading = loading;
-        this.posts = JSON.parse(JSON.stringify(data)).links;
+        this.posts = JSON.parse(JSON.stringify(data)).receptor;
         console.log(JSON.stringify(this.posts))
       });
   }

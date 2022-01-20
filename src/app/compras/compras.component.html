@@ -1,1 +1,152 @@
-<p>compras works!</p>
+
+
+<div class="main-content">
+
+   
+    <div class="container-fluid">
+  
+      <ng-container *ngIf="cartState$ | async as state">
+       <!--
+        <form class="navbar-form"> 
+          <ng-container *ngIf="user">
+  
+          Bienvenido: <b>{{user}}</b> 
+  
+          Cerrar Sesion
+  
+          <button mat-raised-button (click)="logout()" class="btn btn-white btn-round btn-just-icon">
+             <i class="material-icons">login</i>
+             <div class="ripple-container"></div>
+          </button>
+  
+  
+          </ng-container>
+          
+          
+        </form> 
+      -->
+        <ng-container *ngIf="user">
+  
+          <app-cart [state]="state"></app-cart> 
+        </ng-container>
+  <!--
+        <ng-container *ngIf="!user"> 
+          Login para Comprar
+          <button mat-raised-button (click)="checkout()" class="btn btn-white btn-round btn-just-icon">
+             <i class="material-icons">login</i>
+             <div class="ripple-container"></div>
+          </button>
+  
+          o crear Nuevo usuario
+          <button mat-raised-button (click)="newuser()" class="btn btn-white btn-round btn-just-icon">
+             <i class="material-icons">login</i>
+             <div class="ripple-container"></div>
+          </button>
+        </ng-container>
+      -->
+      <mat-card>
+        <mat-card-header>
+            <mat-card-title>Total: {{ state.tot.subTot | currency:'USD':'symbol':'1.2-2' }}</mat-card-title>
+  
+            <mat-card-subtitle>
+                tax: {{ state.tot.tax | currency:'USD':'symbol':'1.2-2' }}
+                <br />
+          at checkout: {{ state.tot.grandTot | currency:'USD':'symbol':'1.2-2' }}
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-actions>
+        <mat-chip-list>
+          <mat-chip *ngFor="let item of state.cart" [removable]="true" (removed)="remove(item)">{{ item.name }}
+            <mat-icon matChipRemove>cancel</mat-icon>
+          </mat-chip>
+        </mat-chip-list>
+      </mat-card-actions>
+    </mat-card>
+      <hr />
+  <!--
+      <mat-card *ngFor="let item of state.store">
+            <mat-card-header>
+                {{ item.name }}
+            </mat-card-header>		
+        <mat-card-subtitle>
+          
+          <ul>
+            <li>{{ item.details }}</li>
+            <li>{{ item.price | currency:'USD':'symbol':'1.2-2' }}</li>
+          </ul>
+        </mat-card-subtitle>
+        <mat-card-actions>
+    
+            <button mat-flat-button color="primary" role="button" (click)="addItemToCart(item)">
+          <mat-icon>add_shopping_cart</mat-icon>
+          Add to cart
+        </button>
+        </mat-card-actions>
+      </mat-card>
+    -->
+    </ng-container>
+    
+    <div class="input-group no-border">
+      <input type="text" [(ngModel)]="valor" name="valor" class="form-control" placeholder="Buscar Producto o Codigo de Barras...">
+      <button mat-raised-button (click)="search()" class="btn btn-white btn-round btn-just-icon">
+          <i class="material-icons">search</i>
+          <div class="ripple-container"></div>
+      </button>
+      
+    </div>
+    
+    <div class="row"> 
+    
+       
+              
+      <div class="col-md-2" *ngFor="let product of posts">
+      <div class="card card-chart">
+          <!--     
+             <div class="card-header card-header-success">
+                <img  width="50" height="50" src={{product.url}}>
+            Vendedor: {{product.postedBy.username}}
+  
+          </div>
+           -->
+          <div class="card-body">
+  
+            <p class="card-category">
+  
+                <span class="text-success">
+                    <img  width="120" height="120" src={{product.url}}>
+                </span> 
+            </p>    
+                <h4 class="card-title">{{product.id}} - {{product.description}}</h4>
+  
+            
+            
+  
+              <p class="card-category">
+                  <span class="text-success"><i class="fa fa-long-arrow-up"></i>  
+                  </span> Precio: ${{product.precio}} 
+              </p>
+          </div>
+          <div class="card-footer">
+            
+            <div class="stats">
+  
+                <button mat-flat-button color="primary" role="button" (click)="addItemToCart(product)">
+                    <mat-icon>add_shopping_cart</mat-icon>
+                    Add to cart
+                  </button>
+                <!--
+                <i class="material-icons text-danger">warning</i>
+                <a href="javascript:void(0)"> Comprar </a>
+            -->
+            </div>
+          </div>
+      </div>
+      </div>
+    
+  </div> 
+     
+     
+      
+  </div>
+  </div>
+  
