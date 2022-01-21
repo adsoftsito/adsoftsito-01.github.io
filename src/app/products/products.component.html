@@ -28,14 +28,27 @@
                         <table class="table table-hover">
                             <thead class="text-warning">
                                 <th>Clave</th>
-                                <th>Url</th>
-                                <th>Descripcion</th>
+                                <!-- <th>Url</th>-->
+                                <th>Descripción</th>
+                                <th>Precio</th>
+                                <th>Existencia</th>
+                                <th>Acción</th>
+
                             </thead>
                             <tbody>
                                 <tr *ngFor="let product of posts" >
+                                    
                                     <td>{{ product.id }}</td>
-                                    <td>{{ product.url }}</td>
+                                    <!-- <td>{{ product.url }}</td> -->
                                     <td>{{ product.description }}</td>
+                                    <td>{{ product.precio }}</td>
+                                    <td>{{ product.existencias }}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-warning btn-sm" (click)="updateThisProduct()">Actualizar</button>
+                                        <button type="button" class="btn btn-danger btn-sm" (click)="deleteThisProduct()">Eliminar</button>
+                                    </td>
+
+                            
                                 </tr>
                               
                             </tbody>

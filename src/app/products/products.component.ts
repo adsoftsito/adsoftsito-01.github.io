@@ -46,6 +46,14 @@ export class ProductsComponent implements OnInit, OnDestroy {
     });
   }
 
+  deleteThisProduct(){
+   
+  }
+
+  updateThisProduct(){
+
+  }
+
   ngOnDestroy() {
 
   }
