@@ -29,7 +29,7 @@ export class ClientesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.querySubscription = this.graphqlClientsService.receptor(this.token, "-")
+    this.querySubscription = this.graphqlClientsService.receptor(this.token, "*")
       //.valueChanges
       .subscribe(({ data, loading }) => {
         this.loading = loading;

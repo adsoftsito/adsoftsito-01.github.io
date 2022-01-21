@@ -4,8 +4,8 @@ import { HttpHeaders } from '@angular/common/http';
 
 
 const LISTAS = gql`
-query Listas($search: String!) {
-    listas(search: $search) {
+query Listas($search: String!, $tipolista: Int!) {
+    listas(search: $search, tipolista: $tipolista) {
         id
         descripcion
         descuento
@@ -42,12 +42,13 @@ export class GraphqlListasService  {
   constructor(private apollo: Apollo) {}
 
 
-  listas(mytoken: string, valor : string) {
+  listas(mytoken: string, valor : string, tipolista : number) {
     
       return this.apollo.query({
         query: LISTAS,
         variables: {
-          search: valor
+          search: valor,
+          tipolista: tipolista
         }, 
         context: {
           // example of setting the headers with context per operation

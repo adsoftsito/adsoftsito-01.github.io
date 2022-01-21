@@ -4,8 +4,8 @@ import { HttpHeaders } from '@angular/common/http';
 
 
 const RECEPTOR = gql`
-  query Receptor {
-    receptor {
+  query Receptor ($search: String!) {
+    receptor(search: $search) {
         id
         rfc
         nombre

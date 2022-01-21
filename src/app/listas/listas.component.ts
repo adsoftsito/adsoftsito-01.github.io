@@ -38,7 +38,7 @@ export class ListasComponent implements OnInit {
       console.log(this.token);
       console.log(valor);
   
-      this.graphqlListasService.listas(this.token, valor)
+      this.graphqlListasService.listas(this.token, valor, 0)
       .subscribe(({ data, loading }) => {
         this.loading = loading;
         this.posts = JSON.parse(JSON.stringify(data)).listas;
