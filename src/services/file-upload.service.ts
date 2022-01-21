@@ -11,6 +11,8 @@ import { FileUpload } from '../models/file-upload';
 })
 export class FileUploadService {
 private basePath = '/uploads';
+downloadURL: Observable<string>;
+
 
   constructor(private db: AngularFireDatabase, private storage: AngularFireStorage) { }
 
@@ -19,16 +21,27 @@ private basePath = '/uploads';
     const storageRef = this.storage.ref(filePath);
     const uploadTask = this.storage.upload(filePath, fileUpload.file);
 
+   
+/*
+    uploadTask.snapshotChanges().pipe(
+      finalize(() => this.downloadURL = storageRef.getDownloadURL() )
+   )
+  .subscribe();
+*/
+  
     uploadTask.snapshotChanges().pipe(
       finalize(() => {
         storageRef.getDownloadURL().subscribe(downloadURL => {
           fileUpload.url = downloadURL;
+          
           fileUpload.name = fileUpload.file.name;
           this.saveFileData(fileUpload);
+          console.log(fileUpload.url);
         });
       })
     ).subscribe();
 
+    
     return uploadTask.percentageChanges();
   }
 
