@@ -48,7 +48,8 @@ const CREATESALE = gql`
                 subtotal: $subtotal, 
                 total: $total, 
                 receptorId: 1,
-                products : $products) {
+                products : $products
+              ){
       id
       total
       postedBy {
