@@ -37,6 +37,11 @@ import { LoginService } from "../../../services/login.service";
 import { CartComponent } from '../../cart/cart.component';
 import { LogoutComponent } from '../../logout/logout.component';
 import { CfdiComponent } from '../../cfdi/cfdi.component';
+import { MarcasComponent } from '../../marcas/marcas.component';
+import { LineasComponent } from '../../lineas/lineas.component';
+import { ListasComponent } from '../../listas/listas.component';
+import { ProveedoresComponent } from '../../proveedores/proveedores.component';
+import { ComprasComponent } from '../../compras/compras.component';
 
 @NgModule({
   imports: [
@@ -73,7 +78,12 @@ import { CfdiComponent } from '../../cfdi/cfdi.component';
     ConfiguracionComponent,
     NewClientComponent,
     LogoutComponent,
-    CfdiComponent
+    CfdiComponent,
+    MarcasComponent,
+    LineasComponent,
+    ListasComponent,
+    ProveedoresComponent,
+    ComprasComponent
     
   ], 
   

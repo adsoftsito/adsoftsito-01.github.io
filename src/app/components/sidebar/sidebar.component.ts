@@ -11,8 +11,14 @@ export const ROUTES: RouteInfo[] = [
     { path: 'admin/dashboard', title: 'Ventas',  icon: 'dashboard', class: '' },
     { path: 'admin/facturacion', title: 'Facturacion',  icon: 'dashboard', class: '' },
     { path: 'admin/productos', title: 'Productos',  icon: 'dashboard', class: '' },
+    { path: 'admin/marcas', title: 'Marcas',  icon: 'dashboard', class: '' },
+    { path: 'admin/lineas', title: 'Lineas',  icon: 'dashboard', class: '' },
     { path: 'admin/clientes', title: 'Clientes',  icon: 'dashboard', class: '' },
+    { path: 'admin/listas', title: 'Listas Precio',  icon: 'dashboard', class: '' },
+    { path: 'admin/proveedores', title: 'Proveedores',  icon: 'dashboard', class: '' },
+    { path: 'admin/compras', title: 'Compras',  icon: 'dashboard', class: '' },
     { path: 'admin/configuracion', title: 'Configuracion',  icon: 'dashboard', class: '' },
+    { path: 'admin/logout', title: 'Cerrar sesion',  icon: 'dashboard', class: '' },
 
     /*{ path: '/carrito', title: 'Carrito',  icon: 'dashboard', class: '' },
     { path: '/clientes', title: 'Clientes',  icon: 'dashboard', class: '' },*/
@@ -49,6 +55,7 @@ export class SidebarComponent implements OnInit {
       if ($(window).width() > 991) {
           return false;
       }
+
       return true;
   };
 }
