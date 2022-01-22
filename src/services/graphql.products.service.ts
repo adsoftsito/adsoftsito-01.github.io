@@ -192,7 +192,7 @@ const MARCASPARAM = gql`
   `;
 
 
-@Injectable({
+Injectable({
   providedIn: 'root'
 })
 
