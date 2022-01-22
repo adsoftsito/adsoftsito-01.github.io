@@ -225,7 +225,7 @@ export class GraphqlProductsService {
 
   constructor(private apollo: Apollo) {}
 
-
+/*
   marcas(mytoken: string, valor : string) {
     
     return this.apollo.query({
@@ -241,8 +241,9 @@ export class GraphqlProductsService {
   //}
 
   }
-  
+*/  
 
+/*
   lineas(mytoken: string, valor : string) {
     
     return this.apollo.query({
@@ -258,6 +259,8 @@ export class GraphqlProductsService {
   //}
 
   }
+
+*/
 
   links(mytoken: string, valor: string) {
     return this.apollo.query({
