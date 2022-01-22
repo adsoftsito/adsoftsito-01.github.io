@@ -192,10 +192,6 @@ const MARCASPARAM = gql`
   `;
 
 
-@Injectable({
-  providedIn: 'root'
-})
-
 const CLAVES_PRO_SER_PARAM = gql`
   query ClaveProdServ($search: String!) {
     claveprodserv(search: $search) {
