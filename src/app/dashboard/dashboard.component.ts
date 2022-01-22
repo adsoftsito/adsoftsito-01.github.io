@@ -123,7 +123,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.token = this.storageService.getSession("token");
    this.buscar("*");
    this.QueryListProduct("*");
-   this.QueryListFilter(1);
 
   }
 
@@ -196,8 +195,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.ListProducts = JSON.parse(JSON.stringify(data)).listas;
       console.log(JSON.stringify(this.ListProducts))
 
-
-
       //  this.querySubscription.unsubscribe();
       });
   }
@@ -211,6 +208,20 @@ export class DashboardComponent implements OnInit, OnDestroy {
       // console.log(JSON.stringify(this.ListProducts))
 
       });
+  }
+
+  changeClient(value) {
+    console.log(value);
+
+    var myValue = value;
+    for (var i = 0; i < myValue.length; i++) {
+      console.log(myValue[i].lista.id)
+    }
+
+    //this.QueryListFilter(1)
+
+
+    // console.log(this.selectedList)
   }
 
   }

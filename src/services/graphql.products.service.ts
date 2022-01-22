@@ -43,24 +43,24 @@ const CREATELINK = gql`
 
   const Listas = gql`
   query{
-    listas(search: "*"){
+    listas(search: "*" tipolista:0) {
       id
       descripcion
-    }
-  }`;
+ }
+}`;
 
   const ListasFilter = gql`
   query {
-    lista(listaid: 1) {
-        precios {
-          precio
-          producto {
-            description
-            url
-          }
+    lista(listaid: 1, tipolista:0) {
+      id
+      descripcion
+      precios {
+        producto {
+          description
         }
       }
-    }
+ }
+}
   `;
 
 
