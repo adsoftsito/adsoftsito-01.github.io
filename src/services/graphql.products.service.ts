@@ -13,22 +13,6 @@ const TOKENAUTH = gql`
   }
 `;
 
-/*
-const LINKS = gql`
-  query Links {
-    links {
-      id
-      url
-      description
-      precio
-      postedBy {
-        username
-      }
-    }
-  }
-`;
-*/
-
 const LINKSPARAM = gql`
   query Links($search: String!) {
     links(search: $search) {
@@ -184,6 +168,34 @@ const MARCASPARAM = gql`
   }
 `;
 
+
+  const Listas = gql`
+  query{
+    listas(search: "*" tipolista:0) {
+      id
+      descripcion
+ }
+}`;
+
+  const ListasFilter = gql`
+  query {
+    lista(listaid: 1, tipolista:0) {
+      id
+      descripcion
+      precios {
+        producto {
+          description
+        }
+      }
+ }
+}
+  `;
+
+
+@Injectable({
+  providedIn: 'root'
+})
+
 const CLAVES_PRO_SER_PARAM = gql`
   query ClaveProdServ($search: String!) {
     claveprodserv(search: $search) {
@@ -275,6 +287,37 @@ export class GraphqlProductsService {
     });
   }
 
+
+  QueryListProduct(mytoken: string, valor : string) {
+    return this.apollo.query({
+      query: Listas,
+      variables: {
+        search: valor
+      }, 
+      context: {
+        // example of setting the headers with context per operation
+        headers: new HttpHeaders().set('Authorization', 'JWT ' + mytoken),
+      },
+    });
+  //}
+
+  }
+
+  QueryListFilter(mytoken: string, id : number) {
+    return this.apollo.query({
+      query: ListasFilter,
+      variables: {
+        listaid: id
+      }, 
+      context: {
+        // example of setting the headers with context per operation
+        headers: new HttpHeaders().set('Authorization', 'JWT ' + mytoken),
+      },
+    });
+  //}
+
+  }
+   
   createLink(
     mytoken: string,
     url: string,

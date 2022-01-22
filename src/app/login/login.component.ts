@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
     //alert(JSON.stringify(this.myUser));
     this.graphqlService.tokenAuth(this.myUser.username, this.myUser.password)
     .subscribe(({ data }) => {
-       console.log('user logged: ', JSON.stringify(data));
+       //console.log('user logged: ', JSON.stringify(data));
        this.storageService.setSession("user", this.myUser.username);
        this.storageService.setSession("token", JSON.parse(JSON.stringify(data)).tokenAuth.token);
       //this.storageService.setLocal("token", JSON.parse(JSON.stringify(data)).tokenAuth.token);
