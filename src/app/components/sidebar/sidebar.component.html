@@ -1,14 +1,16 @@
 <div class="logo">
     <a href="https://www.creative-tim.com" class="simple-text">
         <div class="logo-img">
-            <img src="/assets/img/mandadero1.png"/>
+            <img src="/assets/img/waveslogo.jpg" height="50" width="70"/>
         </div>
        <!--BioUV {{version}} -->
-       El mandadero
+       <b>waves</b> ERP
     </a>
 </div>
 <div class="sidebar-wrapper">
   <div *ngIf="isMobileMenu()">
+
+    <!--
     <form class="navbar-form">
       <span class="bmd-form-group">
         <div class="input-group no-border">
@@ -20,6 +22,8 @@
         </div>
       </span>
     </form>
+-->
+<!--
     <ul class="nav navbar-nav nav-mobile-menu">
         <li class="nav-item">
             <a class="nav-link" href="javascript:void(0)">
@@ -54,7 +58,11 @@
             </a>
         </li>
     </ul>
+-->
+
   </div>
+
+
     <ul class="nav">
         <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
             <a class="nav-link" [routerLink]="[menuItem.path]">

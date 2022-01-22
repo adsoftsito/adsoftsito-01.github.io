@@ -29,20 +29,36 @@
                         <table class="table table-hover">
                             <thead class="text-warning">
                                 
-                                <th>Serie</th>
-                                <th>Folio</th>
+                                <th>Id</th>
+                                <th>Ser/Folio</th>
                                 <th>Importe</th>
                                 <th>RFC</th>
                                 <th>Cliente</th>
+                                <th>Status</th>
+                                <th>Xml</th>
+                                <th>Pdf</th>
+
+                                <th>Actions</th>
+                                
                             </thead>
                             <tbody>
                                 <tr *ngFor="let product of posts" >
-                                    <td>{{ product.serie }}</td>
-                                    <td>{{ product.folio }}</td>
+                                    <td>{{ product.id }}</td>
+                                    <td>{{ product.folio }}/{{ product.folio }}</td>
                                     <td>{{ product.total }}</td>
                                     <td>{{ product.receptor.rfc }}</td>
                                     <td>{{ product.receptor.nombre }}</td>
-                                
+                                    <td>{{ product.statuscfdi }}</td>
+                                    <td> <a href={{product.xml}} target="_blank"> ver xml</a></td>
+                                    <td> <a href={{product.pdf}} target="_blank"> ver pdf</a></td>
+                                    <td>
+
+                                        <a class="nav-link" [routerLink]="['/admin/admin/cfdi/' + product.id]">
+                                            <i class="material-icons">login</i>
+                                            
+                                        </a>
+
+                                    </td>
                                 </tr>
                               
                             </tbody>

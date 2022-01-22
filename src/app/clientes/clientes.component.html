@@ -18,14 +18,14 @@
                         <table class="table table-hover">
                             <thead class="text-warning">
                                 <th>Clave</th>
-                                <th>Url</th>
-                                <th>Descripcion</th>
+                                <th>rfc</th>
+                                <th>nombre</th>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let product of posts" >
                                     <td>{{ product.id }}</td>
-                                    <td>{{ product.url }}</td>
-                                    <td>{{ product.description }}</td>
+                                    <td>{{ product.rfc }}</td>
+                                    <td>{{ product.nombre }}</td>
                                 </tr>
                               
                             </tbody>
