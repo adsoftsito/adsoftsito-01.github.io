@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { GraphqlProveedoresService} from '../../services/graphql.proveedores.service';
+import { GraphqlListasService } from '../../services/graphql.listas.service';
 import { StorageService } from "../../services/storage.service";
 
 @Component({
-  selector: 'app-proveedores',
-  templateUrl: './proveedores.component.html',
-  styleUrls: ['./proveedores.component.css']
+  selector: 'app-listascompra',
+  templateUrl: './listascompra.component.html',
+  styleUrls: ['./listascompra.component.css']
 })
-export class ProveedoresComponent implements OnInit {
-
+export class ListascompraComponent implements OnInit {
       loading: boolean;
       posts: any;
       //private querySubscription: Subscription;
@@ -16,7 +15,7 @@ export class ProveedoresComponent implements OnInit {
       token: string;
       valor: string;
     
-      constructor(private graphqlProveedoresService: GraphqlProveedoresService,
+      constructor(private graphqlListasService: GraphqlListasService,
                   private storageService : StorageService
                   ) 
                  {}
@@ -38,10 +37,10 @@ export class ProveedoresComponent implements OnInit {
         console.log(this.token);
         console.log(valor);
     
-        this.graphqlProveedoresService.proveedores(this.token, valor)
+        this.graphqlListasService.listas(this.token, valor, 1)
         .subscribe(({ data, loading }) => {
           this.loading = loading;
-          this.posts = JSON.parse(JSON.stringify(data)).proveedores;
+          this.posts = JSON.parse(JSON.stringify(data)).listas;
           console.log(JSON.stringify(this.posts))
         });
       }

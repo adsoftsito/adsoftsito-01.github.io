@@ -57,7 +57,8 @@ query Sale($saleid: Int!) {
         }
         noidentificacion
         claveunidad {
-          descripcion
+          claveunidad
+          nombre
         }
       }
       cantidad
