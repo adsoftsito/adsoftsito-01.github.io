@@ -52,10 +52,15 @@ query Sale($saleid: Int!) {
       product {
         noidentificacion
         description
+        trasladoiva
+        trasladoieps
+        retencioniva
+        retencionisr
+        retencionieps
+
         codigosat {
           claveprodserv
         }
-        noidentificacion
         claveunidad {
           claveunidad
           nombre

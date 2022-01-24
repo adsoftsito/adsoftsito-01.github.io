@@ -318,18 +318,22 @@ export class CfdiComponent implements OnInit {
       this.concepto40 = new Concepto40;
       this.concepto40.claveprodserv = item.product.codigosat.claveprodserv;//"01010101"; // item.codigosat;
       this.concepto40.objetoimp = "02";
-      this.concepto40.noidentificacion = "1010"; //item.product.noidentificacion;
+      this.concepto40.noidentificacion = item.product.noidentificacion;
       this.concepto40.cantidad = item.cantidad;
       this.concepto40.claveunidad = item.product.claveunidad.claveunidad;
-      this.concepto40.unidad = item.product.claveunidad.nombre.substring(0, 20);
+      this.concepto40.unidad = item.product.claveunidad.nombre;
+
+      if (this.concepto40.unidad.length > 20)
+        this.concepto40.unidad = this.concepto40.unidad.substring(0, 10);
+     
       this.concepto40.descripcion = item.product.description;
 
-      var precio = item.precio / (1 + 0.160000);
+      // Calculo traslado iva
+      var porctrasladoiva = item.product.trasladoiva;
+      var precio = item.precio / (1 + porctrasladoiva);
+      // Calculo traslado iva
       
       this.concepto40.valorunitario = "" + this.roundTo(precio, 4);
-
-      //var otroimporte = precio * item.cantidad;
-
       var importe = precio * item.cantidad;
 
       this.concepto40.importe = "" + this.roundTo(importe, 4);
