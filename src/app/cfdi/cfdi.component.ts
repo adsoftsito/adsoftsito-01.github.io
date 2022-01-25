@@ -3,6 +3,8 @@ import { CfdiService } from '../../services/cfdi.service';
 import { ActivatedRoute } from '@angular/router';
 import { GraphqlSalesService } from '../../services/graphql.sales.service';
 import { StorageService } from "../../services/storage.service";
+import { GraphqlCatalogosService } from '../../services/graphql.catalogos.service';
+import { GraphqlClientsService } from '../../services/graphql.clients.service';
 
 import { Cfdi33 } from "../../models/cfdi33/cfdi33";
 import { Emisor33 } from "../../models/cfdi33/emisor33";
@@ -33,6 +35,17 @@ export class CfdiComponent implements OnInit {
   token : string;
   sale : any;
   emisor : any;
+  receptor : any;
+  usocfdi : any;
+  metodopago : any;
+  formapago : any;
+  condicionespago : any;
+  conceptos : any;
+
+  myusocfdi : string;
+  mymetodopago : string;
+  myformapago : string;
+  mycondicionespago : string;
 
   // cfdi 33
   cfdi33 = new Cfdi33;
@@ -74,7 +87,9 @@ export class CfdiComponent implements OnInit {
   constructor(
     private cfdiService: CfdiService,
     private graphqlSalesService: GraphqlSalesService,
-    private storageService: StorageService,
+    private graphqlCatalogosService: GraphqlCatalogosService,
+    private graphqlClientsService: GraphqlClientsService,
+        private storageService: StorageService,
     private route: ActivatedRoute, 
     )
     {
@@ -92,7 +107,68 @@ export class CfdiComponent implements OnInit {
   ngOnInit(): void {
     this.token = this.storageService.getSession("token");
     this.buscarSale(this.saleid);
+    this.getUsocfdi("");
+    this.getFormapago("");
+    this.getMetodopago("");
+  }
+
+  getReceptor(/*search: string*/) {
+    console.log(this.token);
+    alert("receptor")
+    this.graphqlClientsService.receptor(this.token, "CETA")
+    .subscribe(({ data, loading }) => {
+      this.loading = loading;
+      this.receptor = JSON.parse(JSON.stringify(data)).receptor;
+      //this.conceptos = JSON.parse(JSON.stringify(data)).detail;
+      console.log('receptor : ');
+      console.log(JSON.stringify(this.receptor));
+
+      //this.fillCfdi33();
+    });
+  }
+
+  getUsocfdi(search : string) {
     
+    console.log(this.token);
+    //alert(valor);
+
+    this.graphqlCatalogosService.usocfdi(this.token, search)
+    .subscribe(({ data, loading }) => {
+      this.loading = loading;
+      this.usocfdi = JSON.parse(JSON.stringify(data)).usocfdi;
+      
+      console.log(JSON.stringify(this.usocfdi));
+    });
+  }
+
+
+  getMetodopago(search : string) {
+    
+    console.log(this.token);
+    //alert(valor);
+
+    this.graphqlCatalogosService.metodopago(this.token, search)
+    .subscribe(({ data, loading }) => {
+      this.loading = loading;
+      this.metodopago = JSON.parse(JSON.stringify(data)).metodopago;
+      
+      console.log(JSON.stringify(this.metodopago));
+    });
+  }
+
+
+  getFormapago(search : string) {
+    
+    console.log(this.token);
+    //alert(valor);
+
+    this.graphqlCatalogosService.formapago(this.token, search)
+    .subscribe(({ data, loading }) => {
+      this.loading = loading;
+      this.formapago = JSON.parse(JSON.stringify(data)).formapago;
+      
+      console.log(JSON.stringify(this.formapago));
+    });
   }
 
   buscarSale(valor : number) {
@@ -106,9 +182,11 @@ export class CfdiComponent implements OnInit {
       this.loading = loading;
       this.sale = JSON.parse(JSON.stringify(data)).sale;
       //this.conceptos = JSON.parse(JSON.stringify(data)).detail;
-      
+      this.conceptos = this.sale.details;
+
       console.log(JSON.stringify(this.sale));
-      console.log(this.sale.id);
+      console.log("productos :");
+      console.log(this.conceptos);
       this.emisorme();
     });
   
