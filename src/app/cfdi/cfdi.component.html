@@ -46,19 +46,17 @@
                             </div>
                             <div class="col-md-3">
                                 Condiciones pago
-                                  <select
-                                    class="form-select form-select-sm form-control"
-                                    name="codigoSatSeleccionado"
-                                    [(ngModel)]="codigoSatSeleccionado"
-                                  >
-                                  <option value="G03">Gastos en General</option>
-                                    <option
-                                      [value]="codigoSat.id"
-                                      *ngFor="let codigoSat of resultQueryClaveProdServ"
-                                    >
-                                      {{ codigoSat.descripcion }}
-                                    </option>
-                                  </select>
+                                  
+                                <mat-form-field class="example-full-width">
+                                  <input
+                                    matInput
+                                    placeholder="Condiciones de pago"
+                                    type="text"
+                                    [(ngModel)]="condicionespago"
+                                    name="condicionespago"
+                                  />
+                                </mat-form-field>
+                                  
               
                         </div>
                         <div class="col-md-3">
@@ -173,11 +171,38 @@
                                       <input matInput placeholder="RFC">
                                     </mat-form-field>
                                 </div>
-                                <div class="col-md-2">
-                                    <button mat-raised-button type="submit" class="btn btn-warning pull-right" (click)="getReceptor()">Buscar</button>
+                                <div class="col-md-1">
+                                  
+                                  <button
+                                  mat-raised-button
+                                  type="button"
+                                  style="float: right"
+                                  class="btn btn-sm bg-primary"
+                                  (click)="searchCodigoSat()"
+                                >
+                                  <i class="material-icons">search</i>
+                                </button>
+                                </div>
+                                <div class="col-md-3">
+                                  <select
+                                    class="form-select form-select-sm form-control"
+                                    name="codigoSatSeleccionado"
+                                    [(ngModel)]="codigoSatSeleccionado"
+                                  >
+                                  <option value="01010101">Elija un código</option>
+                                    <option
+                                      [value]="codigoSat.id"
+                                      *ngFor="let codigoSat of resultQueryClaveProdServ"
+                                    >
+                                      {{ codigoSat.descripcion }}
+                                    </option>
+                                  </select>
+                                
+
+
 
                                   </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <mat-form-field class="example-full-width">
                                       <input matInput placeholder="Nombre">
                                     </mat-form-field>
@@ -187,7 +212,7 @@
                                       <input matInput placeholder="Email" type="email">
                                     </mat-form-field>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-1">
                                     <mat-form-field class="example-full-width">
                                       <input matInput placeholder="Uso CFDi" type="email">
                                     </mat-form-field>
@@ -195,16 +220,44 @@
                             </div>
                            
                             <div class="row">
-                                <div class="col-md-2">
-                                  <mat-form-field class="example-full-width">
-                                      <input matInput placeholder="Codigo Postal">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-md-2">
-                                    <button mat-raised-button type="submit" class="btn btn-warning pull-right">Buscar</button>
+                                
+                              <div class="col-md-2">
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Codigo Postal">
+                                  </mat-form-field>
+                              </div>
+                              <div class="col-md-1">
+                                
+                                <button
+                                mat-raised-button
+                                type="button"
+                                style="float: right"
+                                class="btn btn-sm bg-primary"
+                                (click)="searchCodigoSat()"
+                              >
+                                <i class="material-icons">search</i>
+                              </button>
+                              </div>
+                              <div class="col-md-3">
+                                <select
+                                  class="form-select form-select-sm form-control"
+                                  name="codigoSatSeleccionado"
+                                  [(ngModel)]="codigoSatSeleccionado"
+                                >
+                                <option value="01010101">Elija un código</option>
+                                  <option
+                                    [value]="codigoSat.id"
+                                    *ngFor="let codigoSat of resultQueryClaveProdServ"
+                                  >
+                                    {{ codigoSat.descripcion }}
+                                  </option>
+                                </select>
+                              
 
-                                  </div>
-                                <div class="col-md-4">
+
+
+                                </div>
+                                <div class="col-md-3">
                                     <mat-form-field class="example-full-width">
                                       <input matInput placeholder="Colonia">
                                     </mat-form-field>
@@ -214,7 +267,7 @@
                                       <input matInput placeholder="Estado" type="email">
                                     </mat-form-field>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-1">
                                     <mat-form-field class="example-full-width">
                                       <input matInput placeholder="Municipio" type="email">
                                     </mat-form-field>
