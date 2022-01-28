@@ -68,31 +68,11 @@
                   </div>
                 </div>
 
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xs-12">
-                  <mat-form-field class="example-full-width">
-                    <input
-                      matInput
-                      placeholder="url imagen"
-                      type="text"
-                      [(ngModel)]="myProduct.url"
-                      name="url"
-                    />
-                  </mat-form-field>
+                <div>
+                  <input type="hidden" name="id" value="{{ myProduct.id }}" [(ngModel)]="myProduct.id" />
                 </div>
 
-                <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xs-3">
-                  <mat-form-field class="example-full-width">
-                    <input
-                      matInput
-                      placeholder="Id producto"
-                      type="number"
-                      [(ngModel)]="myProduct.id"
-                      name="id"
-                    />
-                  </mat-form-field>
-                </div>
-
-                <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xs-3">
+                <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xs-6">
                   <mat-form-field class="example-full-width">
                     <input
                       matInput
@@ -105,7 +85,44 @@
                   </mat-form-field>
                 </div>
 
-                <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xs-3">
+                <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      placeholder="Código de barras"
+                      type="text"
+                      [(ngModel)]="myProduct.codigobarras"
+                      name="codigobarras"
+                    />
+                  </mat-form-field>
+                </div>
+
+                <div class="col-12 col-sm-6 col-md-6 col-lg-12 col-xs-12">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      placeholder="Descripción"
+                      type="text"
+                      maxlength="200"
+                      [(ngModel)]="myProduct.description"
+                      name="description"
+                    />
+                  </mat-form-field>
+                </div>
+
+                <div class="col-12 col-sm-6 col-md-6 col-lg-12 col-xs-12">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      placeholder="url imagen"
+                      type="url"
+                      [(ngModel)]="myProduct.url"
+                      name="url"
+                    />
+                  </mat-form-field>
+                </div>
+
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xs-4">
                   <mat-form-field class="example-full-width">
                     <input
                       matInput
@@ -116,8 +133,7 @@
                     />
                   </mat-form-field>
                 </div>
-
-                <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xs-3">
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xs-4">
                   <mat-form-field class="example-full-width">
                     <input
                       matInput
@@ -133,72 +149,110 @@
                   <mat-form-field class="example-full-width">
                     <input
                       matInput
-                      placeholder="Retención IEPS"
-                      type="number"
-                      [(ngModel)]="myProduct.retencionieps"
-                      name="retencionieps"
+                      placeholder="Modelo"
+                      typo="text"
+                      [(ngModel)]="myProduct.modelo"
+                      name="modelo"
                     />
                   </mat-form-field>
                 </div>
 
-                <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xs-4">
+                <!--============= Marcas ============ -->
+
+                <div class="col-10 col-sm-5 col-md-5 col-lg-5 col-xs-5">
                   <mat-form-field class="example-full-width">
                     <input
                       matInput
-                      placeholder="Retención IVA"
-                      type="number"
-                      [(ngModel)]="myProduct.retencioniva"
-                      name="retencioniva"
+                      type="search"
+                      placeholder="Buscar marca."
+                      [(ngModel)]="inputMarca"
+                      name="inputMarca"
                     />
                   </mat-form-field>
                 </div>
+                <div class="col-2 col-sm-1 col-md-1 col-lg-1 col-xs-1">
+                  <button
+                    mat-raised-button
+                    type="button"
+                    style="float: right"
+                    class="btn btn-sm bg-primary"
+                    (click)="searchMarcas()"
+                  >
+                    <i class="material-icons">search</i>
+                  </button>
+                </div>
 
-                <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xs-4">
+                <div class="col-8 col-sm-4 col-md-4 col-lg-4 col-xs-4">
+                  <p>
+                    <select
+                      class="form-select form-select-sm form-control"
+                      name="marcaSeleccionada"
+                      [(ngModel)]="marcaSeleccionada"
+                    >
+                      <option value="">Elija una Marca</option>
+                      <option
+                        [value]="marca.id"
+                        *ngFor="let marca of resultQueryMarca"
+                      >
+                        {{ marca.description }}
+                      </option>
+                    </select>
+                  </p>
+                </div>
+
+                <div class="col-4 col-sm-2 col-md-2 col-lg-2 col-xs-2">
+                  <label class="form-control labelMarca">{{
+                    marcaSeleccionada
+                  }}</label>
+                </div>
+
+                <!--============= Linea ============   -->
+
+                <div class="col-10 col-sm-5 col-md-5 col-lg-5 col-xs-5">
                   <mat-form-field class="example-full-width">
                     <input
                       matInput
-                      placeholder="Retención ISR"
-                      type="number"
-                      [(ngModel)]="myProduct.retencionisr"
-                      name="retencionisr"
+                      placeholder="Buscar linea."
+                      type="search"
+                      [(ngModel)]="inputLinea"
+                      name="inputLinea"
                     />
                   </mat-form-field>
                 </div>
-
-                <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xs-4">
-                  <mat-form-field class="example-full-width">
-                    <input
-                      matInput
-                      placeholder="Traslado IVA"
-                      type="number"
-                      [(ngModel)]="myProduct.trasladoiva"
-                      name="trasladoiva"
-                    />
-                  </mat-form-field>
+                <div class="col-2 col-sm-1 col-md-1 col-lg-1 col-xs-1">
+                  <button
+                    mat-raised-button
+                    type="button"
+                    style="float: right"
+                    class="btn btn-sm bg-primary"
+                    (click)="SearchLineas()"
+                  >
+                    <i class="material-icons">search</i>
+                  </button>
                 </div>
 
-                <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xs-4">
-                  <mat-form-field class="example-full-width">
-                    <input
-                      matInput
-                      placeholder="Traslado IEPS"
-                      type="number"
-                      [(ngModel)]="myProduct.trasladoieps"
-                      name="trasladoieps"
-                    />
-                  </mat-form-field>
+                <div class="col-8 col-sm-4 col-md-4 col-lg-4 col-xs-4">
+                  <p>
+                    <select
+                      class="form-select form-select-sm form-control"
+                      name="lineaSeleccionada"
+                      [(ngModel)]="lineaSeleccionada"
+                    >
+                      <option value="">Elija una Linea</option>
+                      <option
+                        [value]="linea.id"
+                        *ngFor="let linea of resultQueryLinea"
+                      >
+                        {{ linea.description }}
+                      </option>
+                    </select>
+                  </p>
                 </div>
 
-                <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xs-4">
-                  <mat-form-field class="example-full-width">
-                    <input
-                      matInput
-                      placeholder="Código de barras"
-                      type="text"
-                      [(ngModel)]="myProduct.codigobarras"
-                      name="codigobarras"
-                    />
-                  </mat-form-field>
+                <div class="col-4 col-sm-2 col-md-2 col-lg-2 col-xs-2">
+                  <label class="form-control labelLinea">{{
+                    lineaSeleccionada
+                  }}</label>
                 </div>
 
                 <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xs-4">
@@ -236,34 +290,6 @@
                     />
                   </mat-form-field>
                 </div>
-
-                <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xs-3">
-                  <mat-form-field class="example-full-width">
-                    <input
-                      matInput
-                      placeholder="Modelo"
-                      typo="text"
-                      [(ngModel)]="myProduct.modelo"
-                      name="modelo"
-                    />
-                  </mat-form-field>
-                </div>
-
-                <div class="col-12 col-sm-6 col-md-6 col-lg-9 col-xs-9">
-                  <mat-form-field class="example-full-width">
-                    <input
-                      matInput
-                      placeholder="Descripcón"
-                      type="text"
-                      maxlength="200"
-                      [(ngModel)]="myProduct.description"
-                      name="description"
-                    />
-                  </mat-form-field>
-                </div>
-
-               
-
                 <!--============= Código sat ============ -->
 
                 <div class="col-10 col-sm-5 col-md-5 col-lg-5 col-xs-5">
@@ -271,6 +297,7 @@
                     <input
                       matInput
                       placeholder="Buscar código sat.."
+                      type="search"
                       [(ngModel)]="inputCodigoSat"
                       name="inputCodigoSat"
                     />
@@ -295,7 +322,7 @@
                       name="codigoSatSeleccionado"
                       [(ngModel)]="codigoSatSeleccionado"
                     >
-                    <option value="01010101">Elija un código</option>
+                      <option value="">Elija un código</option>
                       <option
                         [value]="codigoSat.id"
                         *ngFor="let codigoSat of resultQueryClaveProdServ"
@@ -319,6 +346,7 @@
                     <input
                       matInput
                       placeholder="Buscar clave, Ej;Pieza,Litros,etc."
+                      type="search"
                       [(ngModel)]="inputClaveUnidad"
                       name="inputClaveUnidad"
                     />
@@ -343,7 +371,7 @@
                       name="claveUnidadSeleccionado"
                       [(ngModel)]="claveUnidadSeleccionado"
                     >
-                    <option value="">Elija una clave</option>
+                      <option value="">Elija una clave</option>
                       <option
                         [value]="claveUnidad.id"
                         *ngFor="let claveUnidad of resultQueryClaveUnidad"
@@ -358,111 +386,66 @@
                   <label class="form-control labelClaveUnidad">{{
                     claveUnidadSeleccionado
                   }}</label>
-   
+                </div>
+
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xs-4">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      placeholder="Traslado IVA"
+                      type="number"
+                      [(ngModel)]="myProduct.trasladoiva"
+                      name="trasladoiva"
+                    />
+                  </mat-form-field>
+                </div>
+
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xs-4">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      placeholder="Traslado IEPS"
+                      type="number"
+                      [(ngModel)]="myProduct.trasladoieps"
+                      name="trasladoieps"
+                    />
+                  </mat-form-field>
+                </div>
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xs-4">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      placeholder="Retención IVA"
+                      type="number"
+                      [(ngModel)]="myProduct.retencioniva"
+                      name="retencioniva"
+                    />
+                  </mat-form-field>
+                </div>
+
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xs-4">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      placeholder="Retención ISR"
+                      type="number"
+                      [(ngModel)]="myProduct.retencionisr"
+                      name="retencionisr"
+                    />
+                  </mat-form-field>
+                </div>
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xs-4">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      placeholder="Retención IEPS"
+                      type="number"
+                      [(ngModel)]="myProduct.retencionieps"
+                      name="retencionieps"
+                    />
+                  </mat-form-field>
+                </div>
               </div>
-
-            <!--============= Marcas ============ -->
-
-              <div class="col-10 col-sm-5 col-md-5 col-lg-5 col-xs-5">
-                <mat-form-field class="example-full-width">
-                  <input
-                    matInput
-                    placeholder="Buscar marca."
-                    [(ngModel)]="inputMarca"
-                    name="inputMarca"
-                  />
-                </mat-form-field>
-              </div>
-              <div class="col-2 col-sm-1 col-md-1 col-lg-1 col-xs-1">
-                <button
-                  mat-raised-button
-                  type="button"
-                  style="float: right"
-                  class="btn btn-sm bg-primary"
-                  (click)="searchMarcas()"
-                >
-                  <i class="material-icons">search</i>
-                </button>
-              </div>
-
-              <div class="col-8 col-sm-4 col-md-4 col-lg-4 col-xs-4">
-                <p>
-                  <select
-                    class="form-select form-select-sm form-control"
-                    name="marcaSeleccionada"
-                    [(ngModel)]="marcaSeleccionada"
-                  >
-                  <option value="">Elija una Marca</option>
-                    <option
-                      [value]="marca.id"
-                      *ngFor="let marca of resultQueryMarca"
-                    >
-                      {{ marca.description }}
-                    </option>
-                  </select>
-                </p>
-              </div>
-
-              <div class="col-4 col-sm-2 col-md-2 col-lg-2 col-xs-2">
-                <label class="form-control labelMarca">{{
-                  marcaSeleccionada
-                }}</label>
-             
-            </div>
-
-
-           <!--============= Linea ============   --> 
-
-            <div class="col-10 col-sm-5 col-md-5 col-lg-5 col-xs-5">
-              <mat-form-field class="example-full-width">
-                <input
-                  matInput
-                  placeholder="Buscar linea."
-                  [(ngModel)]="inputLinea"
-                  name="inputLinea"
-                />
-              </mat-form-field>
-            </div>
-            <div class="col-2 col-sm-1 col-md-1 col-lg-1 col-xs-1">
-              <button
-                mat-raised-button
-                type="button"
-                style="float: right"
-                class="btn btn-sm bg-primary"
-                (click)="SearchLineas()"
-              >
-                <i class="material-icons">search</i>
-              </button>
-            </div>
-
-            <div class="col-8 col-sm-4 col-md-4 col-lg-4 col-xs-4">
-              <p>
-                <select
-                  class="form-select form-select-sm form-control"
-                  name="lineaSeleccionada"
-                  [(ngModel)]="lineaSeleccionada"
-                >
-                <option value="">Elija una Linea</option>
-                  <option
-                    [value]="linea.id"
-                    *ngFor="let linea of resultQueryLinea"
-                  >
-                    {{ linea.description }}
-                  </option>
-                </select>
-              </p>
-            </div>
-
-            <div class="col-4 col-sm-2 col-md-2 col-lg-2 col-xs-2">
-              <label class="form-control labelLinea">{{
-                lineaSeleccionada
-              }}</label>
-            </div>
-          </div>
-
-      
-
-
               <div class="clearfix"></div>
             </form>
           </div>
