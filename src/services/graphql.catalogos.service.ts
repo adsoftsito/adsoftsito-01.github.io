@@ -3,6 +3,17 @@ import {Apollo, gql} from 'apollo-angular';
 import { HttpHeaders } from '@angular/common/http';
 
 
+const COLONIAS = gql`
+  query Colonias ($codigopostal: String!) {
+    colonias(codigopostal: $codigopostal) {
+      id
+      codigopostal
+      colonia
+      nombreAsentamiento
+    }
+  }
+`;
+
 const USOCFDI = gql`
   query Usocfdi ($search: String!) {
     usocfdi(search: $search) {
@@ -76,6 +87,7 @@ export class GraphqlCatalogosService  {
   //}
 
 }
+
   usocfdi(mytoken: string, valor : string) {
     
       return this.apollo.query({
@@ -91,6 +103,22 @@ export class GraphqlCatalogosService  {
     //}
   
   }
-  
+
+  colonias(mytoken: string, codigopostal : string) {
+    
+    return this.apollo.query({
+      query: COLONIAS,
+      variables: {
+        codigopostal: codigopostal
+      }, 
+      context: {
+        // example of setting the headers with context per operation
+        headers: new HttpHeaders().set('Authorization', 'JWT ' + mytoken),
+      },
+    });
+  //}
+
+}
+
    
 }

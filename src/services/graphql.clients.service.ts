@@ -9,10 +9,8 @@ const RECEPTOR = gql`
         id
         rfc
         nombre
-        postedBy {
-          username
-        }
-        
+        direccion
+        usocfdi
       }
   }
 `;

@@ -41,6 +41,7 @@ export class CfdiComponent implements OnInit {
   formapago : any;
   condicionespago : any;
   conceptos : any;
+  colonias : any;
 
   myusocfdi : string;
   mymetodopago : string;
@@ -48,6 +49,12 @@ export class CfdiComponent implements OnInit {
   mycondicionespago : string;
 
   rfc : string;
+  nombre : string;
+  direccion : string;
+
+  email : string;
+  usocfdireceptor : string;
+  codigopostal : string;
 
   // cfdi 33
   cfdi33 = new Cfdi33;
@@ -114,9 +121,15 @@ export class CfdiComponent implements OnInit {
     this.getMetodopago("");
   }
 
-  setReceptor(event) {
-    alert("receptor " + event);
-  
+  setReceptor(idreceptor) {
+    var myreceptor = this.receptor.find(e => e.id === idreceptor); // { name: 'apples', quantity: 2 }    
+    this.rfc = myreceptor.rfc;
+    this.nombre = myreceptor.nombre;
+    this.direccion = myreceptor.direccion;
+
+//    this.email = myreceptor.email;
+    this.usocfdireceptor = myreceptor.usocfdi;
+
   }
 
   searchReceptor() {
@@ -128,6 +141,21 @@ export class CfdiComponent implements OnInit {
       //this.conceptos = JSON.parse(JSON.stringify(data)).detail;
       console.log('receptor : ');
       console.log(JSON.stringify(this.receptor));
+
+      //this.fillCfdi33();
+    });
+  }
+
+
+  searchCodigoPostal() {
+    console.log(this.token);
+    this.graphqlCatalogosService.colonias(this.token, this.codigopostal)
+    .subscribe(({ data, loading }) => {
+      this.loading = loading;
+      this.colonias = JSON.parse(JSON.stringify(data)).colonias;
+      //this.conceptos = JSON.parse(JSON.stringify(data)).detail;
+      console.log('colonias : ');
+      console.log(JSON.stringify(this.colonias));
 
       //this.fillCfdi33();
     });

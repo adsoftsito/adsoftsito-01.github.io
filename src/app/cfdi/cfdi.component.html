@@ -168,7 +168,8 @@
                             <div class="row">
                                 <div class="col-md-2">
                                   <mat-form-field class="example-full-width">
-                                      <input matInput placeholder="RFC" name="rfc"
+                                      <input matInput placeholder="RFC" 
+                                      name="rfc"
                                       [(ngModel)]="rfc">
                                     </mat-form-field>
                                 </div>
@@ -206,17 +207,26 @@
                                   </div>
                                 <div class="col-md-3">
                                     <mat-form-field class="example-full-width">
-                                      <input matInput placeholder="Nombre">
+                                      <input matInput placeholder="Nombre"
+                                      name="nombre"
+                                      [(ngModel)]="nombre"
+                                      >
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-2">
                                     <mat-form-field class="example-full-width">
-                                      <input matInput placeholder="Email" type="email">
+                                      <input matInput placeholder="Direccion" type="text"
+                                      name="direccion"
+                                      [(ngModel)]="direccion"
+                                      >
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-1">
                                     <mat-form-field class="example-full-width">
-                                      <input matInput placeholder="Uso CFDi" type="email">
+                                      <input matInput placeholder="Uso CFDi" type="text"
+                                      name="usocfdireceptor"
+                                      [(ngModel)]="usocfdireceptor"
+                                      >
                                     </mat-form-field>
                                 </div>
                             </div>
@@ -225,7 +235,10 @@
                                 
                               <div class="col-md-2">
                                 <mat-form-field class="example-full-width">
-                                    <input matInput placeholder="Codigo Postal">
+                                    <input matInput placeholder="Codigo Postal"
+                                    name="codigopostal"
+                                    [(ngModel)]="codigopostal"
+                                    >
                                   </mat-form-field>
                               </div>
                               <div class="col-md-1">
@@ -235,7 +248,7 @@
                                 type="button"
                                 style="float: right"
                                 class="btn btn-sm bg-primary"
-                                (click)="searchCodigoSat()"
+                                (click)="searchCodigoPostal()"
                               >
                                 <i class="material-icons">search</i>
                               </button>
@@ -249,9 +262,9 @@
                                 <option value="01010101">Elija un código</option>
                                   <option
                                     [value]="codigoSat.id"
-                                    *ngFor="let codigoSat of resultQueryClaveProdServ"
+                                    *ngFor="let codigoSat of colonias"
                                   >
-                                    {{ codigoSat.descripcion }}
+                                    {{ codigoSat.nombreAsentamiento }}
                                   </option>
                                 </select>
                               
