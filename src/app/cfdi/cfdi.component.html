@@ -4,29 +4,13 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-danger">
-                        <h4 class="card-title">Timbrado de CFDi - <b>Serie/Folio A100 - Importe: 100.00</b></h4>
+                        <h4 class="card-title">Timbrado de CFDi - <b>Serie/Folio {{ sale.serie}}{{ sale.folio}}  - Importe: {{ sale.total}} </b></h4>
                     </div>
                     <div class="card-body">
                         <form>
                             <div class="row">
-                                <div class="col-md-3">
-                                        Uso CFDi
-                                          <select
-                                            class="form-select form-select-sm form-control"
-                                            name="myusocfdi"
-                                            [(ngModel)]="myusocfdi"
-                                          >
-                                          <option value="G03">G03 - Gastos en General</option>
-                                            <option
-                                              [value]="cfdi.usocfdi"
-                                              *ngFor="let cfdi of usocfdi"
-                                            >
-                                            {{ cfdi.usocfdi }} - {{ cfdi.descripcion }}
-                                            </option>
-                                          </select>
-                      
-                                </div>
-                                <div class="col-md-3">
+                                
+                                <div class="col-md-4">
                                     Forma de pago
                                       <select
                                         class="form-select form-select-sm form-control"
@@ -44,7 +28,7 @@
                                       </select>
                   
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 Condiciones pago
                                   
                                 <mat-form-field class="example-full-width">
@@ -52,14 +36,14 @@
                                     matInput
                                     placeholder="Condiciones de pago"
                                     type="text"
-                                    [(ngModel)]="condicionespago"
-                                    name="condicionespago"
+                                    [(ngModel)]="mycondicionespago"
+                                    name="mycondicionespago"
                                   />
                                 </mat-form-field>
                                   
               
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             Metodo pago
                               <select
                                 class="form-select form-select-sm form-control"
@@ -205,7 +189,7 @@
 
 
                                   </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <mat-form-field class="example-full-width">
                                       <input matInput placeholder="Nombre"
                                       name="nombre"
@@ -213,22 +197,30 @@
                                       >
                                     </mat-form-field>
                                 </div>
-                                <div class="col-md-2">
-                                    <mat-form-field class="example-full-width">
-                                      <input matInput placeholder="Direccion" type="text"
-                                      name="direccion"
-                                      [(ngModel)]="direccion"
-                                      >
-                                    </mat-form-field>
-                                </div>
                                 <div class="col-md-1">
                                     <mat-form-field class="example-full-width">
-                                      <input matInput placeholder="Uso CFDi" type="text"
-                                      name="usocfdireceptor"
-                                      [(ngModel)]="usocfdireceptor"
+                                      <input matInput placeholder="Email" type="email"
+                                      name="email"
+                                      [(ngModel)]="email"
                                       >
                                     </mat-form-field>
                                 </div>
+                                <div class="col-md-3">
+                                    <select
+                                      class="form-select form-select-sm form-control"
+                                      name="myusocfdi"
+                                      [(ngModel)]="myusocfdi"
+                                    >
+                                    <option value="G03">Uso CFDi</option>
+                                      <option
+                                        [value]="cfdi.usocfdi"
+                                        *ngFor="let cfdi of usocfdi"
+                                      >
+                                      {{ cfdi.usocfdi }} - {{ cfdi.descripcion }}
+                                      </option>
+                                    </select>
+                
+                          </div>
                             </div>
                            
                             <div class="row">
@@ -274,7 +266,12 @@
                                 </div>
                                 <div class="col-md-3">
                                     <mat-form-field class="example-full-width">
-                                      <input matInput placeholder="Colonia">
+                                      <input matInput placeholder="Direccion" 
+                                      name="direccion"
+                                      [(ngModel)]="direccion"
+                                    
+                                      >
+
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-2">

@@ -127,7 +127,7 @@ export class CfdiComponent implements OnInit {
     this.nombre = myreceptor.nombre;
     this.direccion = myreceptor.direccion;
 
-//    this.email = myreceptor.email;
+    this.email = myreceptor.email;
     this.usocfdireceptor = myreceptor.usocfdi;
 
   }
@@ -393,13 +393,13 @@ export class CfdiComponent implements OnInit {
     
     this.cfdi40.serie = this.sale.serie;
     this.cfdi40.folio = this.sale.folio;
-    this.cfdi40.formapago = this.sale.formapago; 
-    this.cfdi40.condicionesdepago = this.sale.condicionesdepago; 
+    this.cfdi40.formapago = this.myformapago; //this.sale.formapago; 
+    this.cfdi40.condicionesdepago = this.mycondicionespago; //this.sale.condicionesdepago; 
     this.cfdi40.subtotal = this.sale.subtotal; 
     this.cfdi40.descuento = this.sale.descuento; 
     this.cfdi40.moneda = this.sale.moneda; 
     this.cfdi40.tipodecomprobante = this.sale.tipodecomprobante;
-    this.cfdi40.metodopago = this.sale.metodopago;
+    this.cfdi40.metodopago = this.mymetodopago; //this.sale.metodopago;
     this.cfdi40.lugarexpedicion = this.sale.lugarexpedicion;
     this.cfdi40.exportacion = "01";
     // emisor
@@ -409,10 +409,10 @@ export class CfdiComponent implements OnInit {
     this.cfdi40.emisor = this.emisor40;
 
     // receptor
-    this.receptor40.rfc = this.sale.receptor.rfc;
-    this.receptor40.nombre = this.sale.receptor.nombre;
-    this.receptor40.usocfdi = this.sale.receptor.usocfdi;
-    this.receptor40.domiciliofiscalreceptor = "94740";
+    this.receptor40.rfc = this.rfc; //this.sale.receptor.rfc;
+    this.receptor40.nombre = this.nombre; //this.sale.receptor.nombre;
+    this.receptor40.usocfdi = this.myusocfdi; //this.sale.receptor.usocfdi;
+    this.receptor40.domiciliofiscalreceptor = this.codigopostal;
     this.receptor40.regimenfiscalreceptor = "616";
 
     this.cfdi40.receptor = this.receptor40;
@@ -643,7 +643,7 @@ export class CfdiComponent implements OnInit {
   */
     this.fillCfdi40();
 
-    //alert(JSON.stringify(this.cfdi33));
+    console.log(JSON.stringify(this.cfdi40));
     this.cfdiService.getCfdi(JSON.stringify(this.cfdi40))
     .subscribe(( data ) => {
        console.log('Cfdi ok :  ', data);

@@ -10,6 +10,7 @@ const RECEPTOR = gql`
         rfc
         nombre
         direccion
+        email
         usocfdi
       }
   }
