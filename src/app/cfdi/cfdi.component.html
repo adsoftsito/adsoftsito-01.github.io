@@ -168,7 +168,8 @@
                             <div class="row">
                                 <div class="col-md-2">
                                   <mat-form-field class="example-full-width">
-                                      <input matInput placeholder="RFC">
+                                      <input matInput placeholder="RFC" name="rfc"
+                                      [(ngModel)]="rfc">
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-1">
@@ -178,7 +179,7 @@
                                   type="button"
                                   style="float: right"
                                   class="btn btn-sm bg-primary"
-                                  (click)="searchCodigoSat()"
+                                  (click)="searchReceptor()"
                                 >
                                   <i class="material-icons">search</i>
                                 </button>
@@ -188,13 +189,14 @@
                                     class="form-select form-select-sm form-control"
                                     name="codigoSatSeleccionado"
                                     [(ngModel)]="codigoSatSeleccionado"
+                                    (ngModelChange)="setReceptor($event)"
                                   >
-                                  <option value="01010101">Elija un código</option>
+                                  <option value="01010101">Elija un receptor</option>
                                     <option
-                                      [value]="codigoSat.id"
-                                      *ngFor="let codigoSat of resultQueryClaveProdServ"
+                                      [value]="myreceptor.id"
+                                      *ngFor="let myreceptor of receptor"
                                     >
-                                      {{ codigoSat.descripcion }}
+                                      {{ myreceptor.nombre }}
                                     </option>
                                   </select>
                                 

@@ -47,6 +47,8 @@ export class CfdiComponent implements OnInit {
   myformapago : string;
   mycondicionespago : string;
 
+  rfc : string;
+
   // cfdi 33
   cfdi33 = new Cfdi33;
   emisor33 = new Emisor33;
@@ -112,10 +114,14 @@ export class CfdiComponent implements OnInit {
     this.getMetodopago("");
   }
 
-  getReceptor(/*search: string*/) {
+  setReceptor(event) {
+    alert("receptor " + event);
+  
+  }
+
+  searchReceptor() {
     console.log(this.token);
-    alert("receptor")
-    this.graphqlClientsService.receptor(this.token, "CETA")
+    this.graphqlClientsService.receptor(this.token, this.rfc)
     .subscribe(({ data, loading }) => {
       this.loading = loading;
       this.receptor = JSON.parse(JSON.stringify(data)).receptor;
