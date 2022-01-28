@@ -46,10 +46,10 @@ export class NewProductComponent implements OnInit {
     private uploadService: FileUploadService,
   ) {}
 
-  ngOnInit(
-     
-  ){
+  ngOnInit(){
     this.mytoken = this.storageService.getSession("token");
+    this.myProduct.id = 0;
+    this.myProduct.codigosat = 2;
   }
 
   selectFile(event): void {
@@ -68,34 +68,45 @@ export class NewProductComponent implements OnInit {
     this.event = event;
   }
 
-  upload(): void {
+  uploadImage(){
     const file = this.selectedFiles.item(0);
     this.selectedFiles = undefined;
 
-    
     this.currentFileUpload = new FileUpload(file);
     
     this.uploadService.pushFileToStorage(this.currentFileUpload).subscribe(
       (percentage) => {
-        this.percentage = Math.round(percentage);
-      
-        //console.log("Objeto file",this.currentFileUpload);        
+        this.percentage = Math.round(percentage);      
       },
       (error) => {
         console.log(error);
+       
       },
-    );
+    ); 
   }
 
+  
+
+ upload(): void{
+  (()=>{
+ 
+    this.uploadImage();
+
+    setTimeout(()=>{
+      this.myProduct.url = this.uploadService.downloadURL;
+      console.log("despues 1",this.uploadService.downloadURL);
+    },1000);
+})();
+ }
+
   addProduct() {
-    
-    
-     
-      this.myProduct.codigosat = parseInt(this.codigoSatSeleccionado);
+  
+     // this.myProduct.codigosat = parseInt(this.codigoSatSeleccionado);
       this.myProduct.claveunidad = parseInt(this.claveUnidadSeleccionado);
       this.myProduct.marca = parseInt(this.marcaSeleccionada);
       this.myProduct.linea = parseInt(this.lineaSeleccionada);
       
+      console.log(this.myProduct.codigosat);
       this.dataConversion();
         /*************************************************
          * Validar si estan llenos los campos
@@ -283,7 +294,7 @@ export class NewProductComponent implements OnInit {
     this.myProduct.existencias = 0;
     this.myProduct.stockmin = 0;
     this.myProduct.stockmax = 0;
-    this.myProduct.codigosat = 0;
+    this.myProduct.codigosat = 2;
     this.myProduct.claveunidad = 0;
     this.myProduct.modelo = "";
     this.myProduct.description = "";
@@ -347,4 +358,5 @@ export class NewProductComponent implements OnInit {
       },
     },
   };
+
 }

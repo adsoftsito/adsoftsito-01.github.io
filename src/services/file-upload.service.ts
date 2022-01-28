@@ -11,7 +11,7 @@ import { FileUpload } from '../models/file-upload';
 })
 export class FileUploadService {
 private basePath = '/uploads';
-downloadURL: Observable<string>;
+downloadURL : string ;
 
 
   constructor(private db: AngularFireDatabase, private storage: AngularFireStorage) { }
@@ -21,14 +21,6 @@ downloadURL: Observable<string>;
     const storageRef = this.storage.ref(filePath);
     const uploadTask = this.storage.upload(filePath, fileUpload.file);
 
-   
-/*
-    uploadTask.snapshotChanges().pipe(
-      finalize(() => this.downloadURL = storageRef.getDownloadURL() )
-   )
-  .subscribe();
-*/
-  
     uploadTask.snapshotChanges().pipe(
       finalize(() => {
         storageRef.getDownloadURL().subscribe(downloadURL => {
@@ -36,12 +28,16 @@ downloadURL: Observable<string>;
           
           fileUpload.name = fileUpload.file.name;
           this.saveFileData(fileUpload);
-          console.log(fileUpload.url);
+          
+          console.log("valor del file upload url",fileUpload.url);
+
+         this.downloadURL = fileUpload.url;
+          console.log("Valor del downloadURL en service", this.downloadURL);
+
         });
       })
     ).subscribe();
 
-    
     return uploadTask.percentageChanges();
   }
 
