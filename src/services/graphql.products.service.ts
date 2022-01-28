@@ -177,19 +177,6 @@ const MARCASPARAM = gql`
  }
 }`;
 
-  const ListasFilter = gql`
-  query {
-    lista(listaid: 1, tipolista:0) {
-      id
-      descripcion
-      precios {
-        producto {
-          description
-        }
-      }
- }
-}
-  `;
 
 
 Injectable({
@@ -293,21 +280,6 @@ export class GraphqlProductsService {
       query: Listas,
       variables: {
         search: valor
-      }, 
-      context: {
-        // example of setting the headers with context per operation
-        headers: new HttpHeaders().set('Authorization', 'JWT ' + mytoken),
-      },
-    });
-  //}
-
-  }
-
-  QueryListFilter(mytoken: string, id : number) {
-    return this.apollo.query({
-      query: ListasFilter,
-      variables: {
-        listaid: id
       }, 
       context: {
         // example of setting the headers with context per operation

@@ -99,12 +99,11 @@
     <mat-form-field appearance="fill">
       <mat-label>Seleccione tipo cliente</mat-label>
       <mat-select [(ngModel)]="selectedList" name="food" #client (selectionChange)="changeClient($event.value)">
-        <mat-option *ngFor="let list of ListProducts" [value]="list?.descripcion">
+        <mat-option *ngFor="let list of ListProducts" [value]="list?.id">
           {{list?.descripcion}}
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <p> Tipo cliente Seleccionado: {{selectedList}} </p>
   </div>
 
   <div class="row"> 
@@ -122,14 +121,15 @@
 
           <p class="card-category">
 
-              <span class="text-success">
+              <span class="text-success" *ngIf="priceList !== true">
                   <img  width="120" height="120" src={{product.url}}>
               </span> 
+              <span class="text-success" *ngIf="priceList === true">
+                <img  width="120" height="120" src={{product.producto?.url}}>
+            </span> 
           </p>    
-              <h4 class="card-title">{{product.id}} - {{product.description}}</h4>
-
-          
-          
+              <h4 *ngIf="priceList !== true" class="card-title">{{product.id}} - {{product.description}}</h4>
+              <h4 *ngIf="priceList === true" class="card-title"> {{product.producto?.description}}</h4>
 
             <p class="card-category">
                 <span class="text-success"><i class="fa fa-long-arrow-up"></i>  

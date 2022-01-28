@@ -13,6 +13,7 @@ import { NewUserComponent } from '../new-user/new-user.component';
 import { LogoutComponent } from '../logout/logout.component';
 import { StorageService } from "../../services/storage.service";
 import { ListProduct } from 'models/listproduct';
+import { GraphqlSalesService } from 'services/graphql.sales.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -30,23 +31,41 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ListProducts: ListProduct;
   private querySubscription: Subscription;
 
-  constructor(private graphqlProductsService: GraphqlProductsService,
+  priceList: boolean;
+
+  constructor(
+    private graphqlProductsService: GraphqlProductsService,
     private shoppingCartService: ShoppingCartService,
     private loginService : LoginService,
     private dialog : MatDialog,
-    private storageService : StorageService
+    private storageService : StorageService,
+    private graphqlSalesServices: GraphqlSalesService
 
     ) {}
 
   cartState$ = this.shoppingCartService.state$;
   
-  addItemToCart(item: ProductApi) {
+  addItemToCart(item: any/*ProductApi*/) {
     //alert(JSON.stringify(item));
     var myItem = new ShopItem();
-    myItem.id = item.id;
-    myItem.name = item.description;
-    myItem.price = item.precio;
-    this.shoppingCartService.addCartItem(myItem);
+    var myItemTest: any;
+    if(this.priceList != true){
+      alert("normal")
+      myItem.id = item.id;
+      myItem.name = item.description;
+      myItem.price = item.precio;
+      this.shoppingCartService.addCartItem(myItem);
+      console.log(myItem)
+    }else if(this.priceList == true){
+      alert("filtro")
+      //myItem.id = item.id;
+      myItem.name = item.producto.description;
+      myItem.price = item.precio;
+      console.log(myItem)
+      this.shoppingCartService.addCartItem(myItem);
+    }
+
+
   }
   
   checkout(): void {
@@ -189,23 +208,22 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   QueryListProduct(valor: string){
     this.graphqlProductsService.QueryListProduct(this.token, valor).subscribe(({ data, loading }) => {
-      console.log(data)
-      
       this.loading = loading;
       this.ListProducts = JSON.parse(JSON.stringify(data)).listas;
-      console.log(JSON.stringify(this.ListProducts))
-
       //  this.querySubscription.unsubscribe();
       });
   }
 
-  QueryListFilter(valor: number){
-    this.graphqlProductsService.QueryListFilter(this.token, valor).subscribe(({ data, loading }) => {
+  QueryListFilter(id: number){
+    this.graphqlSalesServices.sale(this.token, id).subscribe(({ data, loading }) => {
       console.log(data)
       
       this.loading = loading;
-      // this.ListProducts = JSON.parse(JSON.stringify(data)).listas;
-      // console.log(JSON.stringify(this.ListProducts))
+
+      // var myData = JSON.parse(JSON.stringify(data)).lista.precios
+      // console.log(myData)
+      this.posts = JSON.parse(JSON.stringify(data)).lista.precios;
+      console.log(JSON.stringify(this.posts))
 
       });
   }
@@ -213,14 +231,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   changeClient(value) {
     console.log(value);
 
-    var myValue = value;
-    for (var i = 0; i < myValue.length; i++) {
-      console.log(myValue[i].lista.id)
-    }
+    this.QueryListFilter(value)
 
-    //this.QueryListFilter(1)
-
-
+    this.priceList = true;
     // console.log(this.selectedList)
   }
 

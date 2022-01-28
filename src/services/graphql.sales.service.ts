@@ -25,49 +25,17 @@ const EMISORME = gql`
 
 const SALE = gql`
 query Sale($saleid: Int!) {
-  sale(saleid: $saleid) {
-      id
-      serie
-      folio
-      formapago
-      condicionesdepago
-      subtotal
-      descuento
-      moneda
-      tipodecomprobante
-      metodopago
-      lugarexpedicion
-      totalimpuestostrasladados
-      totalimpuestosretenidos
-      total
-      receptor {
-        rfc
-        nombre
-        usocfdi
-        
-      }
-     
-      details {
-      id
-      product {
-        noidentificacion
-        description
-        codigosat {
-          claveprodserv
+  lista(listaid: $saleid, tipolista:0) {
+    id
+    	descripcion
+      precios {
+        precio
+        producto {
+          description
+          url
+          
         }
-        noidentificacion
-        claveunidad {
-          descripcion
-        }
-      }
-      cantidad
-      precio
-      importe
-      descuento
-      trasladoiva
-      retencioniva
-      retencionieps
-    }    
+      }    
   }
 }
 `;
