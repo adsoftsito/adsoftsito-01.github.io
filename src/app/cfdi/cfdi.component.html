@@ -4,38 +4,66 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-danger">
-                        <h4 class="card-title">Timbrado de CFDi - <b>Serie/Folio A100 - Importe: 100.00</b></h4>
-                        <p class="card-category">Datos del <b>RECEPTOR</b></p>
+                        <h4 class="card-title">Timbrado de CFDi - <b>Serie/Folio {{ sale.serie}}{{ sale.folio}}  - Importe: {{ sale.total}} </b></h4>
                     </div>
                     <div class="card-body">
                         <form>
                             <div class="row">
-                                <div class="col-md-2">
-                                  <mat-form-field class="example-full-width">
-                                      <input matInput placeholder="RFC">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-md-2">
-                                    <button mat-raised-button type="submit" class="btn btn-warning pull-right">Buscar</button>
-
-                                  </div>
+                                
                                 <div class="col-md-4">
-                                    <mat-form-field class="example-full-width">
-                                      <input matInput placeholder="Nombre">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-md-2">
-                                    <mat-form-field class="example-full-width">
-                                      <input matInput placeholder="Email" type="email">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-md-2">
-                                    <mat-form-field class="example-full-width">
-                                      <input matInput placeholder="Uso CFDi" type="email">
-                                    </mat-form-field>
-                                </div>
+                                    Forma de pago
+                                      <select
+                                        class="form-select form-select-sm form-control"
+                                        name="myformapago"
+                                        [(ngModel)]="myformapago"
+                                      >
+                                      <option value="01">01 - Efectivo</option>
+                                        <option
+                                          [value]="codigoSat.formapago"
+                                          *ngFor="let codigoSat of formapago"
+                                        >
+                                        {{ codigoSat.formapago }} -
+                                        {{ codigoSat.descripcion }}
+                                        </option>
+                                      </select>
+                  
+                            </div>
+                            <div class="col-md-4">
+                                Condiciones pago
+                                  
+                                <mat-form-field class="example-full-width">
+                                  <input
+                                    matInput
+                                    placeholder="Condiciones de pago"
+                                    type="text"
+                                    [(ngModel)]="mycondicionespago"
+                                    name="mycondicionespago"
+                                  />
+                                </mat-form-field>
+                                  
+              
+                        </div>
+                        <div class="col-md-4">
+                            Metodo pago
+                              <select
+                                class="form-select form-select-sm form-control"
+                                name="mymetodopago"
+                                [(ngModel)]="mymetodopago"
+                              >
+                              <option value="PUE">PUE - Pago en una sola exhibicion</option>
+                                <option
+                                  [value]="codigoSat.metodopago"
+                                  *ngFor="let codigoSat of metodopago"
+                                >
+                                {{ codigoSat.metodopago }} - {{ codigoSat.descripcion }}
+                                </option>
+                              </select>
+          
+                    </div>
+                   
                             </div>
                            
+                            <!--
                             <div class="row">
                                 <div class="col-md-2">
                                   <mat-form-field class="example-full-width">
@@ -65,6 +93,201 @@
                            
                             <button mat-raised-button type="submit" class="btn btn-info pull-right">Actualizar Receptor</button>
                             <div class="clearfix"></div>
+                        -->
+                        </form>
+
+                        <div class="card-body table-responsive">
+                          <table class="table table-hover">
+                              <thead class="text-warning">
+                                  
+                                  <th>No Ident</th>
+                                  <th>Clave Sat</th>
+                                  <th>Cantidad</th>
+                                  <th>Unidad</th>
+                                  <th>Descripcion</th>
+                                  <th>Precio</th>
+                                  <th>Importe</th>
+                                  
+                                  
+                              </thead>
+                              <tbody>
+                                  <tr *ngFor="let product of conceptos" >
+                                      <td>{{ product.product.noidentificacion }}</td>
+                                      <td>{{ product.product.codigosat.claveprodserv }}</td>
+                                      <td>{{ product.cantidad }}</td>
+                                      <td>{{ product.product.claveunidad.nombre }}</td>
+                                      <td>{{ product.product.description }}</td>
+                                      
+                                      <td>{{ product.precio }}</td>
+                                      <td>{{ product.importe }}</td>
+                                     <!-- <td>
+  
+                                          <a class="nav-link" [routerLink]="['/admin/admin/cfdi/' + product.id]">
+                                              <i class="material-icons">login</i>
+                                              
+                                          </a>
+  
+                                      </td> -->
+                                  </tr>
+                                
+                              </tbody>
+                          </table>
+                      </div>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+ 
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-warning">
+                        <h4 class="card-title"> Datos del <b>RECEPTOR</b></h4>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-2">
+                                  <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="RFC" 
+                                      name="rfc"
+                                      [(ngModel)]="rfc">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-1">
+                                  
+                                  <button
+                                  mat-raised-button
+                                  type="button"
+                                  style="float: right"
+                                  class="btn btn-sm bg-primary"
+                                  (click)="searchReceptor()"
+                                >
+                                  <i class="material-icons">search</i>
+                                </button>
+                                </div>
+                                <div class="col-md-3">
+                                  <select
+                                    class="form-select form-select-sm form-control"
+                                    name="codigoSatSeleccionado"
+                                    [(ngModel)]="codigoSatSeleccionado"
+                                    (ngModelChange)="setReceptor($event)"
+                                  >
+                                  <option value="01010101">Elija un receptor</option>
+                                    <option
+                                      [value]="myreceptor.id"
+                                      *ngFor="let myreceptor of receptor"
+                                    >
+                                      {{ myreceptor.nombre }}
+                                    </option>
+                                  </select>
+                                
+
+
+
+                                  </div>
+                                <div class="col-md-2">
+                                    <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Nombre"
+                                      name="nombre"
+                                      [(ngModel)]="nombre"
+                                      >
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-1">
+                                    <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Email" type="email"
+                                      name="email"
+                                      [(ngModel)]="email"
+                                      >
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3">
+                                    <select
+                                      class="form-select form-select-sm form-control"
+                                      name="myusocfdi"
+                                      [(ngModel)]="myusocfdi"
+                                    >
+                                    <option value="G03">Uso CFDi</option>
+                                      <option
+                                        [value]="cfdi.usocfdi"
+                                        *ngFor="let cfdi of usocfdi"
+                                      >
+                                      {{ cfdi.usocfdi }} - {{ cfdi.descripcion }}
+                                      </option>
+                                    </select>
+                
+                          </div>
+                            </div>
+                           
+                            <div class="row">
+                                
+                              <div class="col-md-2">
+                                <mat-form-field class="example-full-width">
+                                    <input matInput placeholder="Codigo Postal"
+                                    name="codigopostal"
+                                    [(ngModel)]="codigopostal"
+                                    >
+                                  </mat-form-field>
+                              </div>
+                              <div class="col-md-1">
+                                
+                                <button
+                                mat-raised-button
+                                type="button"
+                                style="float: right"
+                                class="btn btn-sm bg-primary"
+                                (click)="searchCodigoPostal()"
+                              >
+                                <i class="material-icons">search</i>
+                              </button>
+                              </div>
+                              <div class="col-md-3">
+                                <select
+                                  class="form-select form-select-sm form-control"
+                                  name="codigoSatSeleccionado"
+                                  [(ngModel)]="codigoSatSeleccionado"
+                                >
+                                <option value="01010101">Elija un código</option>
+                                  <option
+                                    [value]="codigoSat.id"
+                                    *ngFor="let codigoSat of colonias"
+                                  >
+                                    {{ codigoSat.nombreAsentamiento }}
+                                  </option>
+                                </select>
+                              
+
+
+
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Direccion" 
+                                      name="direccion"
+                                      [(ngModel)]="direccion"
+                                    
+                                      >
+
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-2">
+                                    <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Estado" type="email">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-1">
+                                    <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Municipio" type="email">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                           
+                            <button mat-raised-button type="submit" class="btn btn-info pull-right">Actualizar Receptor</button>
+                            <div class="clearfix"></div>
                         </form>
                     </div>
                 </div>
@@ -72,6 +295,7 @@
            
         </div>
     </div>
+    <!--
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
@@ -103,18 +327,18 @@
            
         </div>
     </div>
-  
+-->
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                
+                <!--
                     <div class="card-header card-header-info">
                         <h4 class="card-title"><b>Confirma timbrado de CFDi</b></h4>
                     </div>
-                
+                -->
                     <div class="card-body">
-                        <button mat-raised-button type="submit" class="btn btn-danger pull-right" (click)="getCfdi()">Timbrar CFDi</button>
+                        <b>Confirma timbrado de CFDi</b> <button mat-raised-button type="submit" class="btn btn-danger pull-right" (click)="getCfdi()">Timbrar CFDi</button>
                     </div>
                 </div>
             </div>

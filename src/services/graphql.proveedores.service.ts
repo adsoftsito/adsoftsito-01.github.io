@@ -3,24 +3,22 @@ import {Apollo, gql} from 'apollo-angular';
 import { HttpHeaders } from '@angular/common/http';
 
 
-const RECEPTOR = gql`
-  query Receptor ($search: String!) {
-    receptor(search: $search) {
+const PROVEEDORES = gql`
+  query Proveedores ($search: String!) {
+    proveedores(search: $search) {
         id
         rfc
         nombre
-        direccion
-        email
-        usocfdi
+        postedBy {
+          username
+        }
+        
       }
   }
 `;
 
 
-
-// 'idprod', 'codigosat', 'noidentificacion', 'claveunidad', 'descuento', 'trasladoiva', 'retiva', and 'ieps'
-
-const CREATELINK = gql`
+const CREATEPROVEEDOR = gql`
   mutation CreateLink($url: String!, $description: String!, $precio: Float!) {
     createLink(url: $url, description: $description, precio: $precio, idprod:"", codigosat: "", noidentificacion: "", claveunidad: "", descuento: 0.00, trasladoiva: 0.00, retiva: 0.00, ieps: 0.00) {
       id
@@ -35,7 +33,7 @@ const CREATELINK = gql`
   providedIn: 'root'
 })
 
-export class GraphqlClientsService  {
+export class GraphqlProveedoresService  {
 
   loading: boolean;
   posts: any;
@@ -44,10 +42,10 @@ export class GraphqlClientsService  {
   constructor(private apollo: Apollo) {}
 
 
-  receptor(mytoken: string, valor : string) {
+  proveedores(mytoken: string, valor : string) {
     
       return this.apollo.query({
-        query: RECEPTOR,
+        query: PROVEEDORES,
         variables: {
           search: valor
         }, 
@@ -60,10 +58,10 @@ export class GraphqlClientsService  {
   
   }
   
-  createLink(mytoken: string, url: string, description: string, precio: number) {
+  createProveedor(mytoken: string, url: string, description: string, precio: number) {
        console.log("token auth = " + mytoken);
       return this.apollo.mutate({
-        mutation: CREATELINK,
+        mutation: CREATEPROVEEDOR,
         variables: {
           url: url,
           description: description,
