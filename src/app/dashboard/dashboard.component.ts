@@ -50,14 +50,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
     var myItem = new ShopItem();
     var myItemTest: any;
     if(this.priceList != true){
-      alert("normal")
+      //alert("normal")
       myItem.id = item.id;
       myItem.name = item.description;
       myItem.price = item.precio;
       this.shoppingCartService.addCartItem(myItem);
       console.log(myItem)
     }else if(this.priceList == true){
-      alert("filtro")
+      //alert("filtro")
       //myItem.id = item.id;
       myItem.name = item.producto.description;
       myItem.price = item.precio;
