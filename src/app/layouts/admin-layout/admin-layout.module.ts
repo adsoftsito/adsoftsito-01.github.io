@@ -43,6 +43,7 @@ import { ListasComponent } from '../../listas/listas.component';
 import { ProveedoresComponent } from '../../proveedores/proveedores.component';
 import { ComprasComponent } from '../../compras/compras.component';
 import { ListascompraComponent } from '../../listascompra/listascompra.component';
+import { NewMarcaComponent } from '../../new-marca/new-marca.component';
 
 @NgModule({
   imports: [
@@ -85,7 +86,8 @@ import { ListascompraComponent } from '../../listascompra/listascompra.component
     ListasComponent,
     ListascompraComponent,
     ProveedoresComponent,
-    ComprasComponent
+    ComprasComponent,
+    NewMarcaComponent
     
   ], 
   

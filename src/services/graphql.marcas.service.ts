@@ -49,7 +49,6 @@ export class GraphqlMarcasService {
   createMarca(
     mytoken: string,
     description: string,
-    marca: number,
     
   ) {
     //console.log("token auth = " + mytoken);
@@ -57,7 +56,6 @@ export class GraphqlMarcasService {
       mutation: CREATEMARCA,
       variables: {
         description: description,
-        marca : marca,
         
       },
       context: {
