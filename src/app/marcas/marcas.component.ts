@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GraphqlProductsService} from '../../services/graphql.products.service';
+import { GraphqlMarcasService} from '../../services/graphql.marcas.service';
 import { StorageService } from "../../services/storage.service";
 
 @Component({
@@ -7,6 +7,7 @@ import { StorageService } from "../../services/storage.service";
   templateUrl: './marcas.component.html',
   styleUrls: ['./marcas.component.css']
 })
+
 export class MarcasComponent implements OnInit {
 
   loading: boolean;
@@ -16,7 +17,7 @@ export class MarcasComponent implements OnInit {
   token: string;
   valor: string;
 
-  constructor(private graphqlProductsService: GraphqlProductsService,
+  constructor(private graphqlMarcasService: GraphqlMarcasService,
               private storageService : StorageService
               ) 
              {}
@@ -38,7 +39,7 @@ export class MarcasComponent implements OnInit {
     console.log(this.token);
     console.log(valor);
 
-    this.graphqlProductsService.marcas(this.token, valor)
+    this.graphqlMarcasService.marcas(this.token, valor)
     .subscribe(({ data, loading }) => {
       this.loading = loading;
       this.posts = JSON.parse(JSON.stringify(data)).marcas;
