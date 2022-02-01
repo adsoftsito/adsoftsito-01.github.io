@@ -16,22 +16,12 @@ const MARCAS = gql`
 `;
 
 const CREATEMARCA = gql`
-  mutation CreateMarca(
-    $marca: String!,
-    $description: String!,
-    ) {
-    createMarca(
-      marca: $marca,
-      description: $description,
-
-      
-    )   {
-      id
-      description
-      
-      
-      }
+mutation CreateMarca($idmarca: Int!, $description: String!) {
+  createMarca(idmarca: $idmarca, description: $description){
+    id
+    description
   }
+}
 `;
 
 
@@ -49,12 +39,14 @@ export class GraphqlMarcasService {
   createMarca(
     mytoken: string,
     description: string,
+    idmarca: number,
     
   ) {
     //console.log("token auth = " + mytoken);
     return this.apollo.mutate({
       mutation: CREATEMARCA,
       variables: {
+        idmarca: idmarca,
         description: description,
         
       },

@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit,ApplicationRef } from "@angular/core";
 import { MarcaApi } from "../../models/marcaapi";
 import { GraphqlMarcasService } from "../../services/graphql.marcas.service";
 import { Router } from "@angular/router";
@@ -19,7 +19,8 @@ export class NewMarcaComponent  {
     constructor(
       private graphqlMarca: GraphqlMarcasService,
       private router: Router,
-      private storageService: StorageService
+      private storageService: StorageService,
+      private appRef: ApplicationRef
     ) {}
   
     ngOnInit(){
@@ -64,8 +65,11 @@ export class NewMarcaComponent  {
   
    
     addMarca() {
-    
-      //this.dataConversion();
+     this.myMarca.description = (this.myMarca.description);
+     this.myMarca.id=(0)
+
+    console.log(this.myMarca.description)
+    this.dataConversion();
           /*************************************************
            * Validar si estan llenos los campos
            * ***********************************************
@@ -74,17 +78,20 @@ export class NewMarcaComponent  {
         this.check.isValidText(this.myMarca.description)
         ) 
       {
-          alert(JSON.stringify(this.myMarca));
+          
           this.graphqlMarca
             .createMarca(
               this.mytoken,
-              this.myMarca.description
+              this.myMarca.description,
+              this.myMarca.id
              
             )
             .subscribe(
               ({ data }) => {
+                alert(JSON.stringify(data));
                 console.info("marca created :  ", data);
                 this.router.navigate(["/admin/admin/marcas"]);
+                this.appRef.tick();
               },
               (error) => {
                 console.error("there was an error sending the query", error);
