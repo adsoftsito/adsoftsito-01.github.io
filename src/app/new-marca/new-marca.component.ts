@@ -3,6 +3,7 @@ import { MarcaApi } from "../../models/marcaapi";
 import { GraphqlMarcasService } from "../../services/graphql.marcas.service";
 import { Router } from "@angular/router";
 import { StorageService } from "../../services/storage.service";
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-new-marca',
@@ -20,8 +21,22 @@ export class NewMarcaComponent  {
       private graphqlMarca: GraphqlMarcasService,
       private router: Router,
       private storageService: StorageService,
-      private appRef: ApplicationRef
-    ) {}
+      private appRef: ApplicationRef,
+      private route: ActivatedRoute
+    ) {
+      this.route.params.subscribe( 
+        res => {
+
+        console.log(res.id)
+        this.myMarca.id = res.id;
+
+        if (this.myMarca.id > 0)  // is update option
+        {
+          this.getMarcaById(this.myMarca.id);
+        }
+        }
+      ); 
+    }
   
     ngOnInit(){
       this.mytoken = this.storageService.getSession("token");
@@ -63,6 +78,12 @@ export class NewMarcaComponent  {
       },
     };
   
+    getMarcaById(idMarca)
+    {
+      // get marca by id 
+      // idMarca
+
+    }
    
     addMarca() {
      this.myMarca.description = (this.myMarca.description);

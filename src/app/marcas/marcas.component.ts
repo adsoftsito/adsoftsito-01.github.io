@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { GraphqlMarcasService} from '../../services/graphql.marcas.service';
+import Swal from 'sweetalert2';
 import { StorageService } from "../../services/storage.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-marcas',
@@ -18,7 +20,8 @@ export class MarcasComponent implements OnInit {
   valor: string;
 
   constructor(private graphqlMarcasService: GraphqlMarcasService,
-              private storageService : StorageService
+              private storageService : StorageService,
+              private router : Router
               ) 
              {}
 
@@ -45,6 +48,53 @@ export class MarcasComponent implements OnInit {
       this.posts = JSON.parse(JSON.stringify(data)).marcas;
       console.log(JSON.stringify(this.posts))
     });
+  }
+
+
+  deleteThisMarca(){
+
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+    
+    swalWithBootstrapButtons.fire({
+      title: '¿Estas seguro que quieres eliminar esta Marca?',
+      text: "No podrás deshacer los cambios.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Si, eliminar',
+      cancelButtonText: 'No, cancelar',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        swalWithBootstrapButtons.fire(
+          'Eliminado',
+          'Producto eliminado correctamente',
+          'success'
+        )
+
+        
+
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Cancelado',
+          'Operración cancelada',
+          'error'
+        )
+      }
+    })
+  }
+
+  updateThisMarca(idMarca){
+    console.log('redireccionado a edicion de marcas');
+    this.router.navigate(["/admin/admin/new-marca/" + idMarca]);
   }
 
   ngOnDestroy() {

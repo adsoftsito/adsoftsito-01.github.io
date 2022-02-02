@@ -16,7 +16,7 @@
                     <div class="card-header card-header-warning">
                         <h4 class="card-title">Marcas - 
                         
-                        <a  [routerLink]="['/admin/admin/new-marca']">
+                        <a  [routerLink]="['/admin/admin/new-marca/0']">
                            <b> Crear marca nuevo  </b>
                         <i class="material-icons">login</i>
                            
@@ -29,11 +29,16 @@
                             <thead class="text-warning">
                                 <th>Clave</th>
                                 <th>Descripcion</th>
+                                <th>Acciones</th>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let product of posts" >
                                     <td>{{ product.id }}</td>
                                     <td>{{ product.description }}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-warning btn-sm" (click)="updateThisMarca(product.id)">Actualizar</button>
+                                        <button type="button" class="btn btn-danger btn-sm" (click)="deleteThisMarca()">Eliminar</button>
+                                    </td>
                                 </tr>
                               
                             </tbody>
