@@ -1,4 +1,4 @@
-import { Component, OnInit,ApplicationRef } from "@angular/core";
+import { Component, OnInit, ApplicationRef } from "@angular/core";
 import { MarcaApi } from "../../models/marcaapi";
 import { GraphqlMarcasService } from "../../services/graphql.marcas.service";
 import { Router } from "@angular/router";
@@ -11,21 +11,23 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./new-marca.component.css']
 })
 
-export class NewMarcaComponent  {
-    myMarca = new MarcaApi();
-    mytoken: any;
+export class NewMarcaComponent {
+  myMarca = new MarcaApi();
+  mytoken: any;
+
+  event;
+
+  constructor(
+    private graphqlMarca: GraphqlMarcasService,
+    private router: Router,
+    private storageService: StorageService,
+    private appRef: ApplicationRef,
+    private route: ActivatedRoute
+  ) 
   
-    event;
-  
-    constructor(
-      private graphqlMarca: GraphqlMarcasService,
-      private router: Router,
-      private storageService: StorageService,
-      private appRef: ApplicationRef,
-      private route: ActivatedRoute
-    ) {
-      this.route.params.subscribe( 
-        res => {
+  {
+    this.route.params.subscribe(    //se implementara query
+      res => {
 
         console.log(res.id)
         this.myMarca.id = res.id;
@@ -34,112 +36,106 @@ export class NewMarcaComponent  {
         {
           this.getMarcaById(this.myMarca.id);
         }
-        }
-      ); 
-    }
-  
-    ngOnInit(){
-      this.mytoken = this.storageService.getSession("token");
-      this.myMarca.id = 0;
-    }
-  
-   
-    check = {
-      isValidText: (text) => {
-        if (toString().trim().length === 0) return false;
-       // if (typeof text !== "string") return false;
-  
-        return true;
-      },
-  
-      isValidNumber: (num) => {
-       // if (decimal == parseFloat(decimal)) decimal = parseFloat(decimal);
-        if (num === undefined || num === null) return false;
-        if (typeof num !== "number") return false;
-        if (Math.sign(num) === -1) return false;
-  
-        return true;
-      },
-  
-      tax: {
-        isFixed: (value, fixedValue: number) => {
-         // if (value == parseFloat(value)) value = parseFloat(value);
-          if (value === fixedValue) return false;
-  
-          return true;
-        },
-  
-        isRange: (value, min: number, max: number) => {
-         // if (value == parseFloat(value)) value = parseFloat(value);
-          if (value < min || value > max) return false;
-  
-          return true;
-        },
-      },
-    };
-  
-    getMarcaById(idMarca)
-    {
-      // get marca by id 
-      // idMarca
+      }
+    );
+  }
 
-    }
-   
-    addMarca() {
-     this.myMarca.description = (this.myMarca.description);
-     this.myMarca.id=(0)
+  ngOnInit() {
+    this.mytoken = this.storageService.getSession("token");
+    //this.myMarca.id = 0;
+  }
+
+
+  check = {
+    isValidText: (text) => {
+      if (toString().trim().length === 0) return false;
+      // if (typeof text !== "string") return false;
+
+      return true;
+    },
+
+    isValidNumber: (num) => {
+      // if (decimal == parseFloat(decimal)) decimal = parseFloat(decimal);
+      if (num === undefined || num === null) return false;
+      if (typeof num !== "number") return false;
+      if (Math.sign(num) === -1) return false;
+
+      return true;
+    },
+
+    tax: {
+      isFixed: (value, fixedValue: number) => {
+        // if (value == parseFloat(value)) value = parseFloat(value);
+        if (value === fixedValue) return false;
+
+        return true;
+      },
+
+      isRange: (value, min: number, max: number) => {
+        // if (value == parseFloat(value)) value = parseFloat(value);
+        if (value < min || value > max) return false;
+
+        return true;
+      },
+    },
+  };
+//redireccionamiento
+  getMarcaById(idMarca) {
+    // get marca by id 
+    // idMarca
+    
+
+  }
+
+  Marca() {
+    this.myMarca.description = (this.myMarca.description);
+    this.myMarca.id = (this.myMarca.id)
 
     console.log(this.myMarca.description)
     this.dataConversion();
-          /*************************************************
-           * Validar si estan llenos los campos
-           * ***********************************************
-           */
-      if (
-        this.check.isValidText(this.myMarca.description)
-        ) 
-      {
-          
-          this.graphqlMarca
-            .createMarca(
-              this.mytoken,
-              this.myMarca.description,
-              this.myMarca.id
-             
-            )
-            .subscribe(
-              ({ data }) => {
-                alert(JSON.stringify(data));
-                console.info("marca created :  ", data);
-                this.router.navigate(["/admin/admin/marcas"]);
-                this.appRef.tick();
-              },
-              (error) => {
-                console.error("there was an error sending the query", error);
-              },
-            );
-        
-      }else {
-          alert("Debe LLenar todos los campos");
-      }
-    }
-  
+    /*************************************************
+     * Validar si estan llenos los campos
+     * ***********************************************
+     */
+    if (
+      this.check.isValidText(this.myMarca.description)
+    ) {
 
-  
-  
-  
+      this.graphqlMarca
+        .createMarca(
+          this.mytoken,
+          this.myMarca.description,
+          this.myMarca.id
 
-    clearFieldsMarca() {
-      this.event.srcElement.value = null;
-      this.myMarca.description = "";
+        )
+        .subscribe(
+          ({ data }) => {
+            alert(JSON.stringify(data));
+            console.info("marca created :  ", data);
+            this.router.navigate(["/admin/admin/marcas"]);
+            this.appRef.tick();
+          },
+          (error) => {
+            console.error("there was an error sending the query", error);
+          },
+        );
+
+    } else {
+      alert("Debe LLenar todos los campos");
     }
-  
-    dataConversion(){
-      if ( this.myMarca.description ==  this.myMarca.description.toString() ) 
-       this.myMarca.description =  this.myMarca.description.toString();
-      
-    }
-  
-      
   }
+
   
+  clearFieldsMarca() {
+    this.event.srcElement.value = null;
+    this.myMarca.description = "";
+  }
+
+  dataConversion() {
+    if (this.myMarca.description == this.myMarca.description.toString())
+      this.myMarca.description = this.myMarca.description.toString();
+
+  }
+
+
+}

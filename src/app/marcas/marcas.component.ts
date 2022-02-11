@@ -73,7 +73,7 @@ export class MarcasComponent implements OnInit {
       if (result.isConfirmed) {
         swalWithBootstrapButtons.fire(
           'Eliminado',
-          'Producto eliminado correctamente',
+          'Marca eliminada correctamente',
           'success'
         )
 
