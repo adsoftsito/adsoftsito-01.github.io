@@ -38,6 +38,7 @@ import { CartComponent } from '../../cart/cart.component';
 import { LogoutComponent } from '../../logout/logout.component';
 import { CfdiComponent } from '../../cfdi/cfdi.component';
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -50,7 +51,10 @@ import { CfdiComponent } from '../../cfdi/cfdi.component';
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
-    MaterialModule
+    MaterialModule,
+ 
+    
+  
   ],
   declarations: [
     DashboardComponent,
@@ -77,8 +81,7 @@ import { CfdiComponent } from '../../cfdi/cfdi.component';
     
   ], 
   
-  providers: [StorageService, ShoppingCartService, LoginService]
-
+  providers: [StorageService, ShoppingCartService, LoginService],
 
 })
 

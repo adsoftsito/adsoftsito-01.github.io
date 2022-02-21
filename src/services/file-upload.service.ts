@@ -28,12 +28,7 @@ downloadURL : string ;
           
           fileUpload.name = fileUpload.file.name;
           this.saveFileData(fileUpload);
-          
-          console.log("valor del file upload url",fileUpload.url);
-
          this.downloadURL = fileUpload.url;
-          console.log("Valor del downloadURL en service", this.downloadURL);
-
         });
       })
     ).subscribe();
