@@ -12,6 +12,8 @@ import { LoginComponent } from '../login/login.component';
 import { NewUserComponent } from '../new-user/new-user.component';
 import { LogoutComponent } from '../logout/logout.component';
 import { StorageService } from "../../services/storage.service";
+import { ListProduct } from 'models/listproduct';
+import { GraphqlSalesService } from 'services/graphql.sales.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -24,25 +26,46 @@ export class DashboardComponent implements OnInit, OnDestroy {
   user : string;
   loading: boolean;
   posts: any;
+
+  selectedList: string;
+  ListProducts: ListProduct;
   private querySubscription: Subscription;
 
-  constructor(private graphqlProductsService: GraphqlProductsService,
+  priceList: boolean;
+
+  constructor(
+    private graphqlProductsService: GraphqlProductsService,
     private shoppingCartService: ShoppingCartService,
     private loginService : LoginService,
     private dialog : MatDialog,
-    private storageService : StorageService
+    private storageService : StorageService,
+    private graphqlSalesServices: GraphqlSalesService
 
     ) {}
 
   cartState$ = this.shoppingCartService.state$;
   
-  addItemToCart(item: ProductApi) {
+  addItemToCart(item: any/*ProductApi*/) {
     //alert(JSON.stringify(item));
     var myItem = new ShopItem();
-    myItem.id = item.id;
-    myItem.name = item.description;
-    myItem.price = item.precio;
-    this.shoppingCartService.addCartItem(myItem);
+    var myItemTest: any;
+    if(this.priceList != true){
+      //alert("normal")
+      myItem.id = item.id;
+      myItem.name = item.description;
+      myItem.price = item.precio;
+      this.shoppingCartService.addCartItem(myItem);
+      console.log(myItem)
+    }else if(this.priceList == true){
+      //alert("filtro")
+      //myItem.id = item.id;
+      myItem.name = item.producto.description;
+      myItem.price = item.precio;
+      console.log(myItem)
+      this.shoppingCartService.addCartItem(myItem);
+    }
+
+
   }
   
   checkout(): void {
@@ -83,7 +106,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   buscar(valor :string) {
     //this.posts = [];
-    console.log(this.token);
+    //console.log(this.token);
     console.log(valor);
     
    // alert(this.user + " : " +  valor + "- " + this.token);
@@ -94,7 +117,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       .subscribe(({ data, loading }) => {
         this.loading = loading;
         this.posts = JSON.parse(JSON.stringify(data)).links;
-        console.log(JSON.stringify(this.posts))
+        //console.log(JSON.stringify(this.posts))
 
       //  this.querySubscription.unsubscribe();
       });
@@ -118,6 +141,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.user = this.storageService.getSession("user");
     this.token = this.storageService.getSession("token");
    this.buscar("*");
+   this.QueryListProduct("*");
+
   }
 
   ngOnDestroy() {
@@ -180,5 +205,36 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
       seq2 = 0;
   };
+
+  QueryListProduct(valor: string){
+    this.graphqlProductsService.QueryListProduct(this.token, valor).subscribe(({ data, loading }) => {
+      this.loading = loading;
+      this.ListProducts = JSON.parse(JSON.stringify(data)).listas;
+      //  this.querySubscription.unsubscribe();
+      });
+  }
+
+  QueryListFilter(id: number){
+    this.graphqlSalesServices.sale(this.token, id).subscribe(({ data, loading }) => {
+      console.log(data)
+      
+      this.loading = loading;
+
+      // var myData = JSON.parse(JSON.stringify(data)).lista.precios
+      // console.log(myData)
+      this.posts = JSON.parse(JSON.stringify(data)).lista.precios;
+      console.log(JSON.stringify(this.posts))
+
+      });
+  }
+
+  changeClient(value) {
+    console.log(value);
+
+    this.QueryListFilter(value)
+
+    this.priceList = true;
+    // console.log(this.selectedList)
+  }
 
   }

@@ -41,6 +41,10 @@ import { CheckoutDialog } from './checkout/checkout.component';
 //import { LogoutComponent } from './logout/logout.component';
 
 import { NgxSpinnerModule } from "ngx-spinner";
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatCardModule} from '@angular/material/card';
 //CarritocomprasComponent,
     //CartComponent,
     //CheckoutDialog
@@ -59,6 +63,10 @@ import { NgxSpinnerModule } from "ngx-spinner";
     ComponentsModule,
     RouterModule,
     AppRoutingModule,
+    MatButtonModule,
+    MatIconModule,
+    MatGridListModule,
+    MatCardModule,
     AgmCoreModule.forRoot({
       apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
     }),

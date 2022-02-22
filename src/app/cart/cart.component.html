@@ -1,5 +1,5 @@
 <p>
-	Shopping Cart: <button mat-flat-button color="accent" role="button" [disabled]="state.cart.length < 1" (click)="checkout()">
+	Carrito de Compras: <button mat-flat-button style="background-color: #33a339; color: #ececec;" role="button" [disabled]="state.cart.length < 1" (click)="checkout()">
     <mat-icon>shopping_cart</mat-icon>
-     Checkout {{ state.cart.length }} Item{{ state.cart.length > 1 ? 's' : '' }}</button>
+    Pagar {{ state.cart.length }} Artículo{{ state.cart.length > 1 ? 's' : '' }}</button>
 </p>

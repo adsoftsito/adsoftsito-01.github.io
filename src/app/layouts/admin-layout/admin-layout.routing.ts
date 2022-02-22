@@ -19,6 +19,13 @@ import { ConfiguracionComponent } from '../../configuracion/configuracion.compon
 import { NewClientComponent } from '../../new-client/new-client.component';
 import { LogoutComponent } from '../../logout/logout.component';
 import { CfdiComponent } from '../../cfdi/cfdi.component';
+import { MarcasComponent } from '../../marcas/marcas.component';
+import { LineasComponent } from '../../lineas/lineas.component';
+import { ListasComponent } from '../../listas/listas.component';
+import { ListascompraComponent } from '../../listascompra/listascompra.component';
+
+import { ProveedoresComponent } from '../../proveedores/proveedores.component';
+import { ComprasComponent } from '../../compras/compras.component';
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -67,10 +74,18 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'admin/facturacion',   component: FacturacionComponent },
     { path: 'admin/productos',     component: ProductsComponent },
     { path: 'admin/clientes',      component: ClientesComponent },
+    { path: 'admin/marcas',      component: MarcasComponent },
+    { path: 'admin/lineas',      component: LineasComponent },
+    { path: 'admin/listas',      component: ListasComponent },
+    { path: 'admin/listascompra',      component: ListascompraComponent },
+
+    { path: 'admin/proveedores',      component: ProveedoresComponent },
+    { path: 'admin/compras',      component: ComprasComponent },
     { path: 'admin/configuracion', component: ConfiguracionComponent },
     { path: 'admin/new-product',   component: NewProductComponent },
     { path: 'admin/new-product/:id',   component: NewProductComponent },
     { path: 'admin/new-client',    component: NewClientComponent },
+    
     { path: 'admin/logout',        component: LogoutComponent },
     { path: 'admin/cfdi/:id',          component: CfdiComponent },
 

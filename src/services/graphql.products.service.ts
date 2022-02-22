@@ -13,22 +13,6 @@ const TOKENAUTH = gql`
   }
 `;
 
-/*
-const LINKS = gql`
-  query Links {
-    links {
-      id
-      url
-      description
-      precio
-      postedBy {
-        username
-      }
-    }
-  }
-`;
-*/
-
 const LINKSPARAM = gql`
   query Links($search: String!) {
     links(search: $search) {
@@ -85,6 +69,32 @@ const LINKSPARAM = gql`
     }
   }
 `;
+
+const MARCAS = gql`
+  query Marcas($search: String!) {
+    marcas(search: $search) {
+      id
+      description
+      postedBy {
+        username
+      }
+    }
+  }
+`;
+
+const LINEAS = gql`
+  query Lineas($search: String!) {
+    lineas(search: $search) {
+      id
+      description
+      postedBy {
+        username
+      }
+    }
+  }
+`;
+
+// 'idprod', 'codigosat', 'noidentificacion', 'claveunidad', 'descuento', 'trasladoiva', 'retiva', and 'ieps'
 
 const CREATELINK = gql`
   mutation CreateLink(
@@ -157,6 +167,21 @@ const MARCASPARAM = gql`
     }
   }
 `;
+
+
+  const Listas = gql`
+  query{
+    listas(search: "*" tipolista:0) {
+      id
+      descripcion
+ }
+}`;
+
+
+
+Injectable({
+  providedIn: 'root'
+})
 
 const CLAVES_PRO_SER_PARAM = gql`
   query ClaveProdServ($search: String!) {
@@ -267,6 +292,43 @@ export class GraphqlProductsService {
 
   constructor(private apollo: Apollo) {}
 
+/*
+  marcas(mytoken: string, valor : string) {
+    
+    return this.apollo.query({
+      query: MARCAS,
+      variables: {
+        search: valor
+      }, 
+      context: {
+        // example of setting the headers with context per operation
+        headers: new HttpHeaders().set('Authorization', 'JWT ' + mytoken),
+      },
+    });
+  //}
+
+  }
+*/  
+
+/*
+  lineas(mytoken: string, valor : string) {
+    
+    return this.apollo.query({
+      query: LINEAS,
+      variables: {
+        search: valor
+      }, 
+      context: {
+        // example of setting the headers with context per operation
+        headers: new HttpHeaders().set('Authorization', 'JWT ' + mytoken),
+      },
+    });
+  //}
+
+  }
+
+*/
+
   links(mytoken: string, valor: string) {
     return this.apollo.query({
       query: LINKSPARAM,
@@ -280,6 +342,22 @@ export class GraphqlProductsService {
     });
   }
 
+
+  QueryListProduct(mytoken: string, valor : string) {
+    return this.apollo.query({
+      query: Listas,
+      variables: {
+        search: valor
+      }, 
+      context: {
+        // example of setting the headers with context per operation
+        headers: new HttpHeaders().set('Authorization', 'JWT ' + mytoken),
+      },
+    });
+  //}
+
+  }
+   
   createLink(
     mytoken: string,
     url: string,

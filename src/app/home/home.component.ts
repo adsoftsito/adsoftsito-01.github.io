@@ -101,7 +101,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.user = data.user;
 
       this.token = data.token;
-      console.log("token: " + this.token);
+      //console.log("token: " + this.token);
     });
 
    this.buscar("-");
