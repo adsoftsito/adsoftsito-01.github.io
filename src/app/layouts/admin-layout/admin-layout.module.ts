@@ -44,6 +44,7 @@ import { ProveedoresComponent } from '../../proveedores/proveedores.component';
 import { ComprasComponent } from '../../compras/compras.component';
 import { ListascompraComponent } from '../../listascompra/listascompra.component';
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -56,7 +57,10 @@ import { ListascompraComponent } from '../../listascompra/listascompra.component
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
-    MaterialModule
+    MaterialModule,
+ 
+    
+  
   ],
   declarations: [
     DashboardComponent,
@@ -89,8 +93,7 @@ import { ListascompraComponent } from '../../listascompra/listascompra.component
     
   ], 
   
-  providers: [StorageService, ShoppingCartService, LoginService]
-
+  providers: [StorageService, ShoppingCartService, LoginService],
 
 })
 

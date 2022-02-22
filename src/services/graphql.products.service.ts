@@ -213,6 +213,74 @@ const CLAVE_UNIDADES_PARAM = gql`
     }
   }
 `;
+const DELETE = gql`
+mutation DeleteLink($idprod: Int!) {
+  deleteLink(idprod: $idprod)   {
+    id
+    status
+    }
+    }
+`;
+
+
+const LINK_GET_BY_ID = gql`
+  query Link($idprod: Int!) {
+    link(idprod: $idprod) {
+      url
+      id
+      noidentificacion
+      precio
+      descuento
+
+      retencionieps
+      retencioniva
+      retencionisr
+
+      trasladoiva
+      trasladoieps
+      codigobarras
+
+      existencias
+      stockmin
+      stockmax
+
+      codigosat {
+        id
+        claveprodserv
+        descripcion
+        sinonimos
+      }
+
+      claveunidad {
+        id
+        claveunidad
+        nombre
+        descripcion
+        simbolo
+      }
+
+      modelo
+      description
+
+      marca{
+        id
+        description
+      }
+    
+      linea{
+        id
+        description
+      }
+      
+
+      postedBy {
+        username
+      }
+
+      status
+    }
+  }
+`;
 
 @Injectable({
   providedIn: "root",
@@ -400,4 +468,38 @@ export class GraphqlProductsService {
     });
   }
 
+
+  delete(
+    mytoken: string,
+    idprod: number
+  ) {
+    //console.log("token auth = " + mytoken);
+    return this.apollo.mutate({
+      mutation: DELETE,
+      variables: {
+        idprod: idprod
+      },
+      context: {
+        // example of setting the headers with context per operation
+        headers: new HttpHeaders().set("Authorization", "JWT " + mytoken),
+      },
+    });
+  }
+
+  link_getById(mytoken: string, id: number) {
+    return this.apollo.query({
+      query: LINK_GET_BY_ID,
+      variables: {
+        idprod: id,
+      },
+      context: {
+        // example of setting the headers with context per operation
+        headers: new HttpHeaders().set("Authorization", "JWT " + mytoken),
+      },
+    });
+  }
+
+
 }
+
+

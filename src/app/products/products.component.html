@@ -44,8 +44,9 @@
                                     <td>{{ product.precio }}</td>
                                     <td>{{ product.existencias }}</td>
                                     <td>
-                                        <button type="button" class="btn btn-warning btn-sm" (click)="updateThisProduct()">Actualizar</button>
-                                        <button type="button" class="btn btn-danger btn-sm" (click)="deleteThisProduct()">Eliminar</button>
+                                        <button type="button" class="btn btn-warning btn-sm"  [routerLink]="['/admin/admin/new-product/',product.id]">
+                                        Actualizar</button>
+                                        <button type="button" class="btn btn-danger btn-sm" (click)="deleteThisProduct(product.id)" >Eliminar</button>
                                     </td>
 
                             

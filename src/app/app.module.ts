@@ -1,5 +1,5 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -40,11 +40,11 @@ import { CarritocomprasComponent } from './carritocompras/carritocompras.compone
 import { CheckoutDialog } from './checkout/checkout.component';
 //import { LogoutComponent } from './logout/logout.component';
 
+import { NgxSpinnerModule } from "ngx-spinner";
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCardModule} from '@angular/material/card';
-
 //CarritocomprasComponent,
     //CartComponent,
     //CheckoutDialog
@@ -71,7 +71,10 @@ import {MatCardModule} from '@angular/material/card';
       apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
     }),
     GraphQLModule,
-    MatDialogModule
+    MatDialogModule,
+    NgxSpinnerModule
+
+
   ],
   declarations: [
     AppComponent,
@@ -88,7 +91,9 @@ import {MatCardModule} from '@angular/material/card';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [CheckoutDialog]
+  entryComponents: [CheckoutDialog],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+
 
 })
 export class AppModule { }
