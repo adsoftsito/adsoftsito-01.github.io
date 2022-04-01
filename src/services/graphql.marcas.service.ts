@@ -24,6 +24,26 @@ mutation CreateMarca($idmarca: Int!, $description: String!) {
 }
 `;
 
+const DELETEMARCA = gql`
+mutation DeleteMarca($idmarca: Int!){
+  deleteMarca(idmarca: $idmarca) {
+    id
+  }
+}`;
+
+const MARCA = gql`
+  query Marca($idmarca: Int!) {
+    marca(idmarca: $idmarca) {
+      id
+      description
+      postedBy {
+        username
+      }
+    }
+  }
+`;
+
+
 
 @Injectable({
   providedIn: "root",
@@ -52,6 +72,24 @@ export class GraphqlMarcasService {
       },
       context: {
         // example of setting the headers with context per operation
+        headers: new HttpHeaders().set("Authorization", "JWT " + mytoken)
+      },
+    });
+  }
+
+  deleteMarca(
+    mytoken: string,
+    idmarca: number,
+  ){
+    console.log("token: "+mytoken+" id a rematar: "+idmarca);
+
+    return this.apollo.mutate({
+      mutation: DELETEMARCA,
+      variables: {
+        idmarca: idmarca,
+      },
+      context: {
+        // example of setting the headers with context per operation
         headers: new HttpHeaders().set("Authorization", "JWT " + mytoken),
       },
     });
@@ -62,6 +100,19 @@ export class GraphqlMarcasService {
       query: MARCAS,
       variables: {
         search: valor,
+      },
+      context: {
+        // example of setting the headers with context per operation
+        headers: new HttpHeaders().set("Authorization", "JWT " + mytoken),
+      },
+    });
+  }
+
+  marca(mytoken: string, valor: number) {
+    return this.apollo.query({
+      query: MARCA,
+      variables: {
+        idmarca: valor,
       },
       context: {
         // example of setting the headers with context per operation

@@ -36,8 +36,8 @@
                                     <td>{{ product.id }}</td>
                                     <td>{{ product.description }}</td>
                                     <td>
-                                        <button type="button" class="btn btn-warning btn-sm" (click)="updateThisMarca(product.id)">Actualizar</button>
-                                        <button type="button" class="btn btn-danger btn-sm" (click)="deleteThisMarca()">Eliminar</button>
+                                        <button type="button" class="btn btn-warning btn-sm" (click)="updateThisMarca(product.id,product.description)">Actualizar</button>
+                                        <button type="button" class="btn btn-danger btn-sm" (click)="deleteThisMarca(product.id)">Eliminar</button>
                                     </td>
                                 </tr>
                               
