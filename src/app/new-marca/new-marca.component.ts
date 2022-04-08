@@ -4,11 +4,9 @@ import { GraphqlMarcasService } from "../../services/graphql.marcas.service";
 import { Router } from "@angular/router";
 import { StorageService } from "../../services/storage.service";
 import { ActivatedRoute } from '@angular/router';
-import { ComponentsModule } from "app/components/components.module";
 import { FormBuilder, FormGroup, Validators, FormArray, AbstractControl } from '@angular/forms';
-import { Console } from "console";
-import { threadId } from "worker_threads";
-import { valueToObjectRepresentation } from "@apollo/client/utilities";
+import Swal from "sweetalert2";
+
 
 @Component({
   selector: 'app-new-marca',
@@ -46,13 +44,9 @@ export class NewMarcaComponent {
 
         if(res.id == 0){
           this.mode = 'create';
-          alert(this.mode)
         }else if(res.id != 0){
           this.mode = 'update';
-          alert(this.mode)
         }
-
-
 
         console.log(res);
         this.myMarca.id = res.id;
@@ -86,17 +80,12 @@ export class NewMarcaComponent {
   //redireccionamiento
   getMarcaById(id) {
     
-    console.log("id a receuperar: ",id);
-
     this.graphqlMarcasService.marca(this.mytoken, id)
     .subscribe(({ data, loading }) => {
-      console.log(data);
       
       this.loading = loading;
       this.posts = JSON.parse(JSON.stringify(data)).marca;
       console.log("Recuperado: ",JSON.stringify(this.posts))
-      console.log("this.posts.description",this.posts.description)
-      //this.myMarca.description = this.posts.description;
 
       //***Actualiza y llena los campos de id y descripcion con el patch***** */
       this.validation.patchValue({
@@ -116,14 +105,14 @@ export class NewMarcaComponent {
        * Validar si estan llenos los campos
        * ***********************************************
        */
-      console.log("llegue")
+
+      const Swal = require('sweetalert2')
+
       if (this.validation.valid) {
-        console.log("entre crear")
+
         let saveValue;
         saveValue = new MarcaApi(this.validation.value);
         saveValue.id = 0
-        
-        console.log(saveValue);
   
         this.graphqlMarca
           .createMarca(
@@ -133,9 +122,15 @@ export class NewMarcaComponent {
           )
           .subscribe(
             ({ data }) => {
-              alert(JSON.stringify(data));
               
-              console.info("marca created :  ", data);
+              Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Nueva marca creada!',
+                showConfirmButton: false,
+                timer: 1500
+              })
+
               this.router.navigate(["/admin/admin/marcas"]);
               this.appRef.tick();
               //this.posts = undefined;
@@ -146,7 +141,11 @@ export class NewMarcaComponent {
           );
   
       } else {
-        console.info("No se pudo guardar");
+        Swal.fire({
+          icon: 'error',
+          title: 'Campo vacio!',
+          text: 'Introduzca una marca',
+        })
       }
   
     }else if(this.mode == 'update'){
@@ -166,7 +165,6 @@ export class NewMarcaComponent {
         let saveValue;
         saveValue = new MarcaApi(this.validation.value);//Probablemente aqui este el error
         saveValue.id = this.posts.id;
-        console.log(saveValue.id);
   
         this.graphqlMarca
           .createMarca(
@@ -176,20 +174,30 @@ export class NewMarcaComponent {
           )
           .subscribe(
             ({ data }) => {
-              alert(JSON.stringify(data));
               
-              console.info("marca created :  ", data);
+              Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Marca modificada!',
+                showConfirmButton: false,
+                timer: 1500
+              })
+
               this.router.navigate(["/admin/admin/marcas"]);
               this.appRef.tick();
               //this.posts = undefined;
             },
             (error) => {
-              console.error("there was an error sending the query", error);
+              
             },
           );
   
       } else {
-        alert("Debe LLenar todos los campos");
+        Swal.fire({
+          icon: 'error',
+          title: 'Campo vacio!',
+          text: 'Introduzca dato valido!',
+        })
       }
   
     }
