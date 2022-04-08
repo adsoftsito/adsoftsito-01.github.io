@@ -98,101 +98,70 @@ export class NewMarcaComponent {
   }
 
   Marca() {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+
     if(this.mode == 'create'){
-
-      //this.dataConversion();
-      /*************************************************
-       * Validar si estan llenos los campos
-       * ***********************************************
-       */
-
-      const Swal = require('sweetalert2')
 
       if (this.validation.valid) {
 
-        let saveValue;
-        saveValue = new MarcaApi(this.validation.value);
-        saveValue.id = 0
-  
-        this.graphqlMarca
-          .createMarca(
-            this.mytoken,
-            saveValue.description,
-            saveValue.id
-          )
-          .subscribe(
-            ({ data }) => {
-              
-              Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'Nueva marca creada!',
-                showConfirmButton: false,
-                timer: 1500
-              })
+        swalWithBootstrapButtons.fire({
+          title: '¿Estas seguro de crear esta Marca?',
+          text: "No podrás deshacer los cambios.",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Si, crear',
+          cancelButtonText: 'No, cancelar',
+          reverseButtons: true
+        }).then((result) => {
 
-              this.router.navigate(["/admin/admin/marcas"]);
-              this.appRef.tick();
-              //this.posts = undefined;
-            },
-            (error) => {
-              console.error("there was an error sending the query", error);
-            },
-          );
-  
-      } else {
-        Swal.fire({
-          icon: 'error',
-          title: 'Campo vacio!',
-          text: 'Introduzca una marca',
+          if(result.isConfirmed){
+            /**Implemente code here */
+
+            let saveValue;
+            saveValue = new MarcaApi(this.validation.value);
+            saveValue.id = 0
+      
+            this.graphqlMarca
+              .createMarca(
+                this.mytoken,
+                saveValue.description,
+                saveValue.id
+              )
+              .subscribe(
+                ({ data }) => {
+    
+                  this.router.navigate(["/admin/admin/marcas"]);
+                  this.appRef.tick();
+                  //this.posts = undefined;
+                },
+                (error) => {
+                  console.error("there was an error sending the query", error);
+                },
+              );
+
+            swalWithBootstrapButtons.fire(
+              'Nueva marca creada!',
+              'Marca creada correctamente',
+              'success'
+            )
+          }else if (
+            result.dismiss === Swal.DismissReason.cancel
+          ){
+            swalWithBootstrapButtons.fire(
+              'Cancelado',
+              'Operración cancelada',
+              'error'
+            )
+          }
+
         })
-      }
-  
-    }else if(this.mode == 'update'){
-      this.posts.description = (this.posts.description);
-      this.posts.id = (this.posts.id);
-  
-      console.log(this.posts.description)
-      //this.dataConversion();
-      /*************************************************
-       * Validar si estan llenos los campos
-       * ***********************************************
-       */
-      if (
-        this.validation.valid
-      ) {
-  
-        let saveValue;
-        saveValue = new MarcaApi(this.validation.value);//Probablemente aqui este el error
-        saveValue.id = this.posts.id;
-  
-        this.graphqlMarca
-          .createMarca(
-            this.mytoken,
-            saveValue.description,
-            saveValue.id
-          )
-          .subscribe(
-            ({ data }) => {
-              
-              Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'Marca modificada!',
-                showConfirmButton: false,
-                timer: 1500
-              })
-
-              this.router.navigate(["/admin/admin/marcas"]);
-              this.appRef.tick();
-              //this.posts = undefined;
-            },
-            (error) => {
-              
-            },
-          );
-  
-      } else {
+      }else{
         Swal.fire({
           icon: 'error',
           title: 'Campo vacio!',
@@ -200,8 +169,63 @@ export class NewMarcaComponent {
         })
       }
   
+    }else if(this.mode == 'update'){
+      this.posts.description = (this.posts.description);
+      this.posts.id = (this.posts.id);
+  
+
+      if (
+        this.validation.valid
+      ) {
+        /**implement here swet alert */
+        swalWithBootstrapButtons.fire({
+          title: '¿Estas seguro de actualizar esta Marca?',
+          text: "No podrás deshacer los cambios.",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Si, actualizar',
+          cancelButtonText: 'No, cancelar',
+          reverseButtons: true
+        }).then((result) => {
+          if(result.isConfirmed){
+            let saveValue;
+            saveValue = new MarcaApi(this.validation.value);
+            saveValue.id = this.posts.id;
+      
+            this.graphqlMarca
+              .createMarca(
+                this.mytoken,
+                saveValue.description,
+                saveValue.id
+              )
+              .subscribe(
+                ({ data }) => {
+                  this.router.navigate(["/admin/admin/marcas"]);
+                  this.appRef.tick();
+                },
+                (error) => {  
+              },
+            );
+          }else if(
+            result.dismiss === Swal.DismissReason.cancel
+          ) {
+            swalWithBootstrapButtons.fire(
+              'Cancelado',
+              'Operración cancelada',
+              'error'
+            )
+          }
+        })
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Campo vacio!',
+          text: 'Introduzca dato válido!',
+        })
+      }
+  
     }
-     }
+  }
 
   
   clearFieldsMarca() {
