@@ -16,23 +16,33 @@ const MARCAS = gql`
 `;
 
 const CREATEMARCA = gql`
-  mutation CreateMarca(
-    $marca: String!,
-    $description: String!,
-    ) {
-    createMarca(
-      marca: $marca,
-      description: $description,
+mutation CreateMarca($idmarca: Int!, $description: String!) {
+  createMarca(idmarca: $idmarca, description: $description){
+    id
+    description
+  }
+}
+`;
 
-      
-    )   {
+const DELETEMARCA = gql`
+mutation DeleteMarca($idmarca: Int!){
+  deleteMarca(idmarca: $idmarca) {
+    id
+  }
+}`;
+
+const MARCA = gql`
+  query Marca($idmarca: Int!) {
+    marca(idmarca: $idmarca) {
       id
       description
-      
-      
+      postedBy {
+        username
       }
+    }
   }
 `;
+
 
 
 @Injectable({
@@ -49,16 +59,34 @@ export class GraphqlMarcasService {
   createMarca(
     mytoken: string,
     description: string,
-    marca: number,
+    idmarca: number,
     
   ) {
     //console.log("token auth = " + mytoken);
     return this.apollo.mutate({
       mutation: CREATEMARCA,
       variables: {
+        idmarca: idmarca,
         description: description,
-        marca : marca,
         
+      },
+      context: {
+        // example of setting the headers with context per operation
+        headers: new HttpHeaders().set("Authorization", "JWT " + mytoken)
+      },
+    });
+  }
+
+  deleteMarca(
+    mytoken: string,
+    idmarca: number,
+  ){
+    console.log("token: "+mytoken+" id a rematar: "+idmarca);
+
+    return this.apollo.mutate({
+      mutation: DELETEMARCA,
+      variables: {
+        idmarca: idmarca,
       },
       context: {
         // example of setting the headers with context per operation
@@ -80,4 +108,18 @@ export class GraphqlMarcasService {
     });
   }
 
+  marca(mytoken: string, valor: number) {
+    return this.apollo.query({
+      query: MARCA,
+      variables: {
+        idmarca: valor,
+      },
+      context: {
+        // example of setting the headers with context per operation
+        headers: new HttpHeaders().set("Authorization", "JWT " + mytoken),
+      },
+    });
+  }
+
 }
+
