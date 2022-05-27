@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NewLineaComponent } from './new-linea.component';
 
-describe('NewLineaComponent', () => {
+describe('NewMarcaComponent', () => {
   let component: NewLineaComponent;
   let fixture: ComponentFixture<NewLineaComponent>;
 

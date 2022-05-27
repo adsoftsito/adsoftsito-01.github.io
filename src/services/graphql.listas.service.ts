@@ -17,8 +17,8 @@ query Listas($search: String!, $tipolista: Int!) {
 
 
 // 'idprod', 'codigosat', 'noidentificacion', 'claveunidad', 'descuento', 'trasladoiva', 'retiva', and 'ieps'
-
-const CREATELINK = gql`
+//cambiarlo
+const CREATELINK = gql` 
   mutation CreateLink($url: String!, $description: String!, $precio: Float!) {
     createLink(url: $url, description: $description, precio: $precio, idprod:"", codigosat: "", noidentificacion: "", claveunidad: "", descuento: 0.00, trasladoiva: 0.00, retiva: 0.00, ieps: 0.00) {
       id
@@ -48,7 +48,7 @@ export class GraphqlListasService  {
         query: LISTAS,
         variables: {
           search: valor,
-          tipolista: tipolista
+          tipolista: tipolista// obtirn data
         }, 
         context: {
           // example of setting the headers with context per operation
@@ -59,7 +59,7 @@ export class GraphqlListasService  {
   
   }
   
-  createLink(mytoken: string, url: string, description: string, precio: number) {
+  createLink(mytoken: string, url: string, description: string, precio: number) { //cambiar a create line
        console.log("token auth = " + mytoken);
       return this.apollo.mutate({
         mutation: CREATELINK,

@@ -29,11 +29,16 @@
                             <thead class="text-warning">
                                 <th>Clave</th>
                                 <th>Descripcion</th>
+                                <th>Acciones</th>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let product of posts" >
-                                    <td>{{ product.id }}</td>
-                                    <td>{{ product.description }}</td>
+                                <tr *ngFor="let linea of posts" >
+                                    <td>{{ linea.id }}</td>
+                                    <td>{{ linea.description }}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-warning btn-sm" (click)="updateThisLinea(linea.id,linea.description)">Actualizar</button>
+                                        <button type="button" class="btn btn-danger btn-sm" (click)="deleteThisLinea(linea.id)">Eliminar</button>
+                                    </td>
                                 </tr>
                               
                             </tbody>

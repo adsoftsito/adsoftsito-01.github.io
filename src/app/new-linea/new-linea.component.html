@@ -1,1 +1,82 @@
-<p>new-linea works!</p>
+<div class="main-content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header card-header-danger row">
+              <h4 class="card-title" *ngIf="mode === 'create'">Crear Nueva Línea </h4>
+              <h4 class="card-title" *ngIf="mode === 'update'">Actualizar Línea </h4>
+              <p class="card-category"> - Completa informacion de la línea</p>
+            </div>
+  
+            <div class="d-flex justify-content-end p-2">
+  
+              <button
+                mat-raised-button
+                type="button"
+                style="float: right"
+                class="btn btn-sm bg-danger"
+                *ngIf="mode === 'create'"
+                
+               (click)="Linea()"   
+              >
+                <i class="material-icons">save</i>
+              </button>
+  
+              <button
+                mat-raised-button
+                type="button"
+                style="float: right"
+                class="btn btn-sm bg-danger"
+                *ngIf="mode === 'update'"
+                
+               (click)="Linea()"   
+              >
+                <i class="material-icons">save</i>
+              </button>
+  
+            </div>
+  
+            <div class="card-body">
+  
+              <div [formGroup]="validation" method="POST">
+                <div class="row">
+                 
+                  <!-- *****************INPUT ID***************************-->
+                  <div>
+                    <!---- <input type="" name="id" value="{{ myMarca.id }}" [(ngModel)]="myMarca.id" /> --Intentar con  formControlName-->
+                    <input type="hidden" id="id" formControlName="id">
+                    
+                  </div>
+  
+                  <div class="col-12 col-sm-6 col-md-6 col-lg-12 col-xs-12">
+                    <mat-form-field class="example-full-width">
+                      <!-- *****************INPUT DESCRIPCION***************************-->
+                      <input
+                        matInput
+                        placeholder="Nombre linea"
+                        type="text"
+                        class="form-control"
+                        formControlName="description"
+                      />
+  
+                    </mat-form-field>
+                    <div *ngIf="validation.get('description')?.touched && validation" class="error">
+                      <p>
+                        Introduzca descripción de la línea.
+                        <i class="material-icons" style="float: right">warning</i>
+                      </p>
+                    </div>
+                  </div>
+                  <!-- [(ngModel)]="myMarca.description" -->
+  
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
