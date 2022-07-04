@@ -1,0 +1,9 @@
+name: "Adolfo Centeno"
+output_dir: docs
+navbar:
+  title: "Adolfo Centeno"
+  left:
+    - text: "Mi CV"
+      href: index.html
+    - text: "Acerca de"
+      href: about.html
