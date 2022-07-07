@@ -5,5 +5,15 @@ navbar:
   left:
     - text: "Mi CV"
       href: index.html
+    - text: "markdown-git"
+      href: markdown-git.html
+    - text: "markdown-firebase"
+      href: markdown-firebase.html
+    - text: "shiny"
+      href: shiny.html
+    - text: "hadoop-google"
+      href: hadoop-google.html
+    - text: "hadoop-virtualbox"
+      href: hadoop-virtualbox.html
     - text: "Acerca de"
       href: about.html
