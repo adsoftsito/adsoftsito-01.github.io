@@ -88,7 +88,8 @@ import { NewLineaComponent } from '../../new-linea/new-linea.component'
     ProveedoresComponent,
     ComprasComponent,
     NewMarcaComponent,
-    NewLineaComponent
+    NewLineaComponent,
+    NewMarcaComponent
     
   ], 
   
