@@ -25,10 +25,9 @@ mutation createLinea($description: String!, $idlinea: Int!) {
 `;
 
 const DELETELINEA = gql`
-mutation DeleteL($idlinea: Int!){
-  deletelinea(idlinea: $idlinea) {
+mutation DeleteLinea($idlinea: Int!){
+  deleteLinea(idlinea: $idlinea) {
     id
-    description
   }
 }`;
 
@@ -82,7 +81,7 @@ export class GraphqlLineasService {
     mytoken: string,
     idlinea: number,
   ){
-    console.log("token: "+mytoken+" id a rematar: "+idlinea);
+    //console.log("token: "+mytoken+" id a rematar: "+idlinea);
 
     return this.apollo.mutate({
       mutation: DELETELINEA,
