@@ -70,7 +70,7 @@ export class NewLineaComponent { //hay que importarlo en el admin-layouut.modeil
 
   createForm(){
     this.validation = this.fb.group({
-      id: ["",Validators.required],
+      //id: ["",Validators.required],
       description: ["", Validators.required]
     })
   }
