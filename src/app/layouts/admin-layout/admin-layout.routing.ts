@@ -27,6 +27,7 @@ import { ListascompraComponent } from '../../listascompra/listascompra.component
 import { ProveedoresComponent } from '../../proveedores/proveedores.component';
 import { ComprasComponent } from '../../compras/compras.component';
 import { NewMarcaComponent } from '../../new-marca/new-marca.component';
+import { NewLineaComponent } from '../../new-linea/new-linea.component';
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -83,9 +84,13 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'admin/proveedores',      component: ProveedoresComponent },
     { path: 'admin/compras',      component: ComprasComponent },
     { path: 'admin/configuracion', component: ConfiguracionComponent },
+
     { path: 'admin/new-product',   component: NewProductComponent },
+    { path: 'admin/new-product/:id',   component: NewProductComponent },
+
     { path: 'admin/new-client',    component: NewClientComponent },
     { path: 'admin/new-marca/:id',    component: NewMarcaComponent },
+    { path: 'admin/new-linea/:id',    component: NewLineaComponent },
 
     { path: 'admin/logout',        component: LogoutComponent },
     { path: 'admin/cfdi/:id',          component: CfdiComponent },
