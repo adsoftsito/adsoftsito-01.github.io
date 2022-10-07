@@ -1,6 +1,6 @@
 public class Range {
     public static void main(String[] args) {
-      byte valbyte = 100;
+      byte valbyte = 1;
       short valshort = 1024;     
       int range = -4250000;
       System.out.println("byte :");
