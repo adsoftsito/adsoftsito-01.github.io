@@ -3,7 +3,7 @@
     <div class="container-fluid">
         
       <div class="navbar-wrapper">
-          <a class="navbar-brand" href="javascript:void(0)"> <b>waves</b> cloud ERP</a>
+          <a class="navbar-brand" href="javascript:void(0)"> Bienvenido <b>{{user}}</b></a>
       </div>
     
         <button mat-raised-button class="navbar-toggler" type="button" (click)="sidebarToggle()">
@@ -17,8 +17,8 @@
         <div class="collapse navbar-collapse justify-content-end" id="navigation">
        
             <ul class="navbar-nav">
-                
-                <li class="nav-item">
+             <!--   
+             <li class="nav-item">
                   <a class="nav-link" [routerLink]="['/admin/admin/dashboard']" rel="tooltip" title="Punto de venta" data-placement="bottom">
                       <i class="fa fa-twitter"></i>
                       <p class="d-lg-none">Ventas</p>
@@ -48,6 +48,7 @@
                     <p class="d-lg-none">Configuracion</p>
                 </a>
             </li>
+        -->
             <li class="nav-item" >
                 <a class="nav-link" [routerLink]="['/admin/admin/logout']" rel="tooltip" title="Cerrar sesion del usuario" data-placement="bottom" >
                     <i class="fa fa-github"></i>

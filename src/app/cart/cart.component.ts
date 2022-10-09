@@ -20,8 +20,8 @@ export class CartComponent  {
     // this.shoppingCartService.checkout();
     let dialogRef = this.dialog.open(CheckoutDialog, {
       // data: { state: this.state }, // now uses the observable
-      height: '400px',
-      width: '600px',
+      height: '800px',
+      width: '1200px',
     });
   }
 }

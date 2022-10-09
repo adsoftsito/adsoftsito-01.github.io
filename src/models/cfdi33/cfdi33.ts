@@ -1,6 +1,7 @@
 import { Emisor33 } from "./emisor33";
 import { Receptor33 } from "./receptor33";
 import { Concepto33 } from "./concepto33";
+import { CfdiImpuestos33 } from "./cfdiimpuestos33";
 
 export class Cfdi33 {
     serie : string;
@@ -17,4 +18,5 @@ export class Cfdi33 {
     emisor: Emisor33;
     receptor: Receptor33;
     conceptos: Concepto33[];
+    impuestos: CfdiImpuestos33
 }
