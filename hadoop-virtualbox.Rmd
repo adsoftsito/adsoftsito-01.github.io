@@ -1,7 +1,0 @@
----
-title: "hadoop virtualbox"
-author: "Adolfo Centeno"
-date: "7/7/2022"
-output: html_document
----
-

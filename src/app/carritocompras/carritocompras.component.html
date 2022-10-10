@@ -1,0 +1,39 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <a class="nav-link" [routerLink]="['/new-product']">
+            <i class="material-icons">login</i>
+            <p>
+                <span class="d-lg-none d-md-block">Account</span>
+            </p>
+        </a>
+        <div class="row">
+       
+            <div class="col-lg-12 col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-warning">
+                        <h4 class="card-title">Carrito de Compras</h4>
+                        <p class="card-category"> - </p>
+                    </div>
+                    <div class="card-body table-responsive">
+                        <table class="table table-hover">
+                            <thead class="text-warning">
+                                <th>Clave</th>
+                                <th>Url</th>
+                                <th>Descripcion</th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let product of posts" >
+                                    <td>{{ product.id }}</td>
+                                    <td>{{ product.url }}</td>
+                                    <td>{{ product.description }}</td>
+                                </tr>
+                              
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,60 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                <!--
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title">Usuario Nuevo</h4>
+                        <p class="card-category">Completa tu perfil</p>
+                    </div>
+                -->
+                    <div class="card-body">
+                        <h4 class="card-title">Usuario Nuevo</h4>
+                        <p class="card-category">Completa tu perfil</p>
+
+                        <form>
+                            <div class="row">
+                                
+                                <div class="col-md-12">
+                                    <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Usuario" [(ngModel)]="myUser.username" name="username">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                
+                                <div class="col-md-12">
+                                    <mat-form-field class="example-full-width">
+                                      <input matInput placeholder="Email" type="email" [(ngModel)]="myUser.email" name="email">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                            
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="password " type="password" [(ngModel)]="myUser.password" name="password">
+                                      </mat-form-field>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="retype password " type="password" [(ngModel)]="myUser.password" name="password">
+                                      </mat-form-field>
+                                </div>
+                                  
+                            </div>
+                            
+                            <button mat-raised-button type="button" class="btn btn-info pull-right" (click)="addUser()">Crear usuario</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+          
+        </div>
+    </div>
+  </div>
+  

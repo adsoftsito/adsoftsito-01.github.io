@@ -1,8 +1,0 @@
----
-title: "Acerca de"
----
-
-- Adolfo Centeno
-- Orizaba, Ver. Mexico
-
-[Google](https://google.com)
