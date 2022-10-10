@@ -1,67 +1,1139 @@
 <div class="main-content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header card-header-danger">
-                        <h4 class="card-title">Product Nuevo</h4>
-                        <p class="card-category">Completa informacion del producto</p>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger row">
+            <h4 class="card-title">Product Nuevo</h4>
+            <p class="card-category">Completa informacion del producto</p>
+          </div>
+
+          <div class="card-body">
+            <form novalidate [formGroup]="newProductFG">
+              <div class="d-flex justify-content-end p-2">
+                <button
+                  type="submit"
+                  [disabled]="newProductFG.invalid"
+                  style="float: right"
+                  class="btn btn-sm bg-danger"
+                  (click)="addProduct()"
+                >
+                  <i class="material-icons">save</i>
+                </button>
+              </div>
+
+              <div class="row">
+                <!-- ********** SELECTOR DE IMAGENES ********-->
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xs-6">
+                  <label>
+                    <input
+                      type="file"
+                      class="text-nowrap text-truncate"
+                      (change)="selectFile($event)"
+                    />
+                  </label>
+
+                  <button
+                    class="btn btn-success btn-sm"
+                    [disabled]="!selectedFiles"
+                    (click)="upload()"
+                  >
+                    Upload
+                  </button>
+
+                  <div *ngIf="currentFileUpload" class="progress mt-2">
+                    <div
+                      class="progress-bar progress-bar-info"
+                      role="progressbar"
+                      attr.aria-valuenow="{{ percentage }}"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                      [ngStyle]="{ width: percentage + '%' }"
+                    >
+                      {{ percentage }}%
                     </div>
-                    <div class="card-body">
-                        <form>
-                            <div class="row">
-                                <label>
-                                    <input
-                                      type="file"
-                                      class="text-nowrap text-truncate"
-                                      (change)="selectFile($event)"
-                                    />
-                                  </label>
-                                  
-                                  <button
-                                    class="btn btn-success btn-sm"
-                                    [disabled]="!selectedFiles"
-                                    (click)="upload()"
-                                  >
-                                    Upload
-                                  </button>
-                                  <div *ngIf="currentFileUpload" class="progress mt-2">
-                                    <div
-                                      class="progress-bar progress-bar-info"
-                                      role="progressbar"
-                                      attr.aria-valuenow="{{ percentage }}"
-                                      aria-valuemin="0"
-                                      aria-valuemax="100"
-                                      [ngStyle]="{ width: percentage + '%' }"
-                                    >
-                                      {{ percentage }}%
-                                    </div>
-                                  </div>
-                                <div class="col-md-4">
-                                    <mat-form-field class="example-full-width">
-                                      <input matInput placeholder="url imagen" [(ngModel)]="myProduct.url" name="url">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-md-4">
-                                    <mat-form-field class="example-full-width">
-                                      <input matInput placeholder="Descripcion" [(ngModel)]="myProduct.description" name="description">
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-md-4">
-                                    <mat-form-field class="example-full-width">
-                                      <input matInput placeholder="Precio"  type="number" [(ngModel)]="myProduct.precio" name="precio">
-                                    </mat-form-field>
-                                </div>
-                            </div>
-                            
-                            <button mat-raised-button type="button" class="btn btn-danger pull-right" (click)="addProduct()">Agregar producto</button>
-                            <div class="clearfix"></div>
-                        </form>
-                    </div>
+                  </div>
                 </div>
+
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xs-6">
+                  <div
+                    class="d-flex justify-content-around shadow"
+                    style="max-width: 80%; max-height: 100%"
+                  >
+                    <img
+                      [src]="urlImage"
+                      alt="Vista previa"
+                      width="80%"
+                      height="80%"
+                    />
+                  </div>
+                </div>
+
+                <!--********** Número de identificación ********* -->
+                <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                  <div class="form-group">
+                    <mat-form-field class="example-full-width">
+                      <input
+                        matInput
+                        class="form-control"
+                        type="text"
+                        placeholder="Número de identificación."
+                        formControlName="noidentificacion"
+                    
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div
+                    class="error"
+                    *ngIf="
+                      newProductFG
+                        .get('noidentificacion')
+                        .hasError('required') &&
+                      newProductFG.get('noidentificacion').touched
+                    "
+                  >
+                    <p>
+                      Debe indicar un número de identificación.
+                      <i class="material-icons" style="float: right">warning</i>
+                    </p>
+                  </div>
+                  <div
+                    class="error"
+                    *ngIf="
+                      newProductFG
+                        .get('noidentificacion')
+                        .hasError('maxlength') &&
+                      newProductFG.get('noidentificacion').touched
+                    "
+                  >
+                    <p>
+                      El número maximo de caracteres es 10.<i
+                        class="material-icons"
+                        style="float: right"
+                        >warning</i
+                      >
+                    </p>
+                  </div>
+                  <div
+                    class="error"
+                    *ngIf="
+                      newProductFG
+                        .get('noidentificacion')
+                        .hasError('pattern') &&
+                      newProductFG.get('noidentificacion').touched
+                    "
+                  >
+                    <p>
+                      Solo se permiten números, letras y guiones.<i
+                        class="material-icons"
+                        style="float: right"
+                        >warning</i
+                      >
+                    </p>
+                  </div>
+                </div>
+
+                <!--********** Código de barras ********* -->
+                <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                  <div class="form-group">
+                    <mat-form-field class="example-full-width">
+                      <input
+                        matInput
+                        matInput
+                        matInput
+                        class="form-control"
+                        type="text"
+                        placeholder="Código de barras."
+                        formControlName="codigobarras"
+                      />
+                    </mat-form-field>
+                  </div>
+
+                  <div
+                    class="error"
+                    *ngIf="
+                      newProductFG.get('codigobarras').hasError('required') &&
+                      newProductFG.get('codigobarras').touched
+                    "
+                  >
+                    <p>
+                      Debe indicar un codigo de barras.<i
+                        class="material-icons"
+                        style="float: right"
+                        >warning</i
+                      >
+                    </p>
+                  </div>
+                  <div
+                    class="error"
+                    *ngIf="
+                      newProductFG.get('codigobarras').hasError('pattern') &&
+                      newProductFG.get('codigobarras').touched
+                    "
+                  >
+                    <p>
+                      Solo se permiten números, letras y guiones sin espacio.<i
+                        class="material-icons"
+                        style="float: right"
+                        >warning</i
+                      >
+                    </p>
+                  </div>
+                </div>
+
+                <!--********** Descripción ********* -->
+                <div class="col-12 col-sm-6 col-md-6 col-lg-12 col-xs-12">
+                  <div class="form-group">
+                    <mat-form-field class="example-full-width">
+                      <input
+                        matInput
+                        class="form-control"
+                        type="text"
+                        placeholder="Descripción."
+                        formControlName="description"
+                      />
+                    </mat-form-field>
+                  </div>
+
+                  <div
+                    class="error"
+                    *ngIf="
+                      newProductFG.get('description').hasError('required') &&
+                      newProductFG.get('description').touched
+                    "
+                  >
+                    <p>
+                      Debe colocar una descripción del producto.<i
+                        class="material-icons"
+                        style="float: right"
+                        >warning</i
+                      >
+                    </p>
+                  </div>
+                  <div
+                    class="error"
+                    *ngIf="
+                      newProductFG.get('description').hasError('maxlength') &&
+                      newProductFG.get('description').touched
+                    "
+                  >
+                    <p>
+                      La descripción no puede ser mayor a 200 caracteres.<i
+                        class="material-icons"
+                        style="float: right"
+                        >warning</i
+                      >
+                    </p>
+                  </div>
+                </div>
+
+                <!--********** URL ********* -->
+                <div class="col-12 col-sm-6 col-md-6 col-lg-12 col-xs-12">
+                  <div class="form-group" >
+                    <mat-form-field class="example-full-width " >
+                      <input 
+                        matInput
+                        class="form-control"
+                        type="url"
+                        placeholder="URL de la imagen..."
+
+                        formControlName="url"
+
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div
+                    class="error"
+                    *ngIf="
+                      newProductFG.get('url').hasError('required') &&
+                      newProductFG.get('url').touched
+                    "
+                  >
+                    <p>
+                      Debe indicar una URL de la imagen del producto.<i
+                        class="material-icons"
+                        style="float: right"
+                        >warning</i
+                      >
+                    </p>
+                  </div>
+                </div>
+
+                <!--********** Precio ********* -->
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xs-4">
+                  <div class="form-group">
+                    <mat-form-field class="example-full-width">
+                      <input
+                        matInput
+                        class="form-control"
+                        type="number"
+                        placeholder="Precio."
+                        formControlName="precio"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div
+                    class="error"
+                    *ngIf="
+                      newProductFG.get('precio').hasError('required') &&
+                      newProductFG.get('precio').touched
+                    "
+                  >
+                    <p>
+                      Debe indicar el precio del producto.<i
+                        class="material-icons"
+                        style="float: right"
+                        >warning</i
+                      >
+                    </p>
+                  </div>
+
+                  <div
+                    class="error"
+                    *ngIf="
+                      newProductFG.get('precio').hasError('pattern') &&
+                      newProductFG.get('precio').touched
+                    "
+                  >
+                    <p>
+                      Solo se permiten números positivos, enteros y decimales.<i
+                        class="material-icons"
+                        style="float: right"
+                        >warning</i
+                      >
+                    </p>
+                  </div>
+                </div>
+
+                <!--********** Descuento ********* -->
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xs-4">
+                  <div class="form-group">
+                    <mat-form-field class="example-full-width">
+                      <input
+                        matInput
+                        class="form-control"
+                        type="number"
+                        placeholder="Descuento."
+                        formControlName="descuento"
+                      />
+                    </mat-form-field>
+                  </div>
+
+                  <div
+                    class="error"
+                    *ngIf="
+                      newProductFG.get('descuento').hasError('required') &&
+                      newProductFG.get('descuento').touched
+                    "
+                  >
+                    <p>
+                      Debe indicar una cantidad de descuento.<i
+                        class="material-icons"
+                        style="float: right"
+                        >warning</i
+                      >
+                    </p>
+                  </div>
+                  <div
+                    class="error"
+                    *ngIf="
+                      newProductFG.get('descuento').hasError('pattern') &&
+                      newProductFG.get('descuento').touched
+                    "
+                  >
+                    <p>
+                      Solo se permiten números positivos, enteros y decimales.<i
+                        class="material-icons"
+                        style="float: right"
+                        >warning</i
+                      >
+                    </p>
+                  </div>
+                </div>
+
+                <!--********** Modelo ********* -->
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xs-4">
+                  <div class="form-group">
+                    <mat-form-field class="example-full-width">
+                      <input
+                        matInput
+                        class="form-control"
+                        type="text"
+                        placeholder="Modelo."
+                        formControlName="modelo"
+                      />
+                    </mat-form-field>
+                  </div>
+
+                  <div
+                    class="error"
+                    *ngIf="
+                      newProductFG.get('modelo').hasError('required') &&
+                      newProductFG.get('modelo').touched
+                    "
+                  >
+                    <p>
+                      Debe indicar un modelo.<i
+                        class="material-icons"
+                        style="float: right"
+                        >warning</i
+                      >
+                    </p>
+                  </div>
+                </div>
+
+                <!--============= Marcas ============ -->
+
+                <div class="col-10 col-sm-5 col-md-5 col-lg-5 col-xs-5">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      placeholder="Buscar marca..."
+                      type="search"
+                      formControlName="inputMarca"
+                    />
+                  </mat-form-field>
+                </div>
+                <div class="col-2 col-sm-1 col-md-1 col-lg-1 col-xs-1">
+                  <button
+                    mat-raised-button
+                    type="button"
+                    style="float: right"
+                    class="btn btn-sm bg-primary"
+                    (click)="searchMarcas()"
+                  >
+                    <i class="material-icons">search</i>
+                  </button>
+                </div>
+
+                <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                  <select
+                    class="form-control shadow"
+                    formControlName="marcaSeleccionada"
+                    style="width: 100%"
+                  >
+                    <option
+                      *ngFor="let marca of resultQueryMarca"
+                      [ngValue]="marca.id"
+                    >
+                      {{ marca.description }}
+                    </option>
+                  </select>
+                </div>
+
+                <!-- 
+                <div
+                  class="col-4 col-sm-2 col-md-2 col-lg-2 col-xs-2"
+                  *ngIf="resultQueryMarca"
+                >
+                  <div *ngFor="let marca of resultQueryMarca">
+                    <label
+                      class="form-control labelCodigoSat"
+                      *ngIf="
+                        marca.id == newProductFG.get('marcaSeleccionada').value
+                      "
+                      >{{ marca.id }}</label
+                    >
+                  </div>
+                </div>
+                -->
+
+                <!--============= Linea ============   -->
+
+                <div class="col-10 col-sm-5 col-md-5 col-lg-5 col-xs-5">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      placeholder="Buscar linea..."
+                      type="search"
+                      formControlName="inputLinea"
+                    />
+                  </mat-form-field>
+                </div>
+                <div class="col-2 col-sm-1 col-md-1 col-lg-1 col-xs-1">
+                  <button
+                    mat-raised-button
+                    type="button"
+                    style="float: right"
+                    class="btn btn-sm bg-primary"
+                    (click)="searchLineas()"
+                  >
+                    <i class="material-icons">search</i>
+                  </button>
+                </div>
+
+                <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                  <select
+                    class="form-control shadow"
+                    formControlName="lineaSeleccionada"
+                    style="width: 100%"
+                  >
+                    <option
+                      *ngFor="let linea of resultQueryLinea"
+                      [ngValue]="linea.id"
+                    >
+                      {{ linea.description }}
+                    </option>
+                  </select>
+                </div>
+
+                <!-- 
+                <div
+                  class="col-4 col-sm-2 col-md-2 col-lg-2 col-xs-2"
+                  *ngIf="resultQueryMarca"
+                >
+                  <div *ngFor="let linea of resultQueryLinea">
+                    <label
+                      class="form-control labelCodigoSat"
+                      *ngIf="linea.id == newProductFG.get('lineaSeleccionada').value
+                      "
+                      >{{ marca.id }}</label
+                    >
+                  </div>
+                </div>
+                -->
+
+                <!--********** Existencias ********* -->
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xs-4">
+                  <div class="form-group">
+                    <mat-form-field class="example-full-width">
+                      <input
+                        matInput
+                        class="form-control"
+                        type="number"
+                        placeholder="Existencias."
+                        formControlName="existencias"
+                      />
+                    </mat-form-field>
+                  </div>
+
+                  <div
+                    class="error"
+                    *ngIf="
+                      newProductFG.get('existencias').hasError('required') &&
+                      newProductFG.get('existencias').touched
+                    "
+                  >
+                    <p>
+                      Debe indicar una cantidad de existencias.<i
+                        class="material-icons"
+                        style="float: right"
+                        >warning</i
+                      >
+                    </p>
+                  </div>
+
+                  <div
+                    class="error"
+                    *ngIf="
+                      newProductFG.get('existencias').hasError('pattern') &&
+                      newProductFG.get('existencias').touched
+                    "
+                  >
+                    <p>
+                      Solo se permiten números positivos, enteros y decimales<i
+                        class="material-icons"
+                        style="float: right"
+                        >warning</i
+                      >
+                    </p>
+                  </div>
+                </div>
+
+                <!--********** Stock minimo ********* -->
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xs-4">
+                  <div class="form-group">
+                    <mat-form-field class="example-full-width">
+                      <input
+                        matInput
+                        class="form-control"
+                        type="number"
+                        placeholder="Stock minimo."
+                        formControlName="stockmin"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div
+                    class="error"
+                    *ngIf="
+                      newProductFG.get('stockmin').hasError('required') &&
+                      newProductFG.get('stockmin').touched
+                    "
+                  >
+                    <p>
+                      Debe indicar una cantidad de stock minimo.<i
+                        class="material-icons"
+                        style="float: right"
+                        >warning</i
+                      >
+                    </p>
+                  </div>
+
+                  <div
+                    class="error"
+                    *ngIf="
+                      newProductFG.get('stockmin').hasError('pattern') &&
+                      newProductFG.get('stockmin').touched
+                    "
+                  >
+                    <p>
+                      Solo se permiten números positivos, enteros y decimales<i
+                        class="material-icons"
+                        style="float: right"
+                        >warning</i
+                      >
+                    </p>
+                  </div>
+                </div>
+
+                <!--********** Stock maximo ********* -->
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xs-4">
+                  <div class="form-group">
+                    <mat-form-field class="example-full-width">
+                      <input
+                        matInput
+                        class="form-control"
+                        type="number"
+                        placeholder="Stock maximo."
+                        formControlName="stockmax"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div
+                    class="error"
+                    *ngIf="
+                      newProductFG.get('stockmax').hasError('required') &&
+                      newProductFG.get('stockmax').touched
+                    "
+                  >
+                    <p>
+                      Debe indicar una cantidad de stock maximo.<i
+                        class="material-icons"
+                        style="float: right"
+                        >warning</i
+                      >
+                    </p>
+                  </div>
+                  <div
+                    class="error"
+                    *ngIf="
+                      newProductFG.get('stockmax').hasError('pattern') &&
+                      newProductFG.get('stockmax').touched
+                    "
+                  >
+                    <p>
+                      Solo se permiten números positivos, enteros y decimales<i
+                        class="material-icons"
+                        style="float: right"
+                        >warning</i
+                      >
+                    </p>
+                  </div>
+                </div>
+
+                <!--============= Código sat ============ -->
+
+                <div class="col-10 col-sm-5 col-md-5 col-lg-5 col-xs-5">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      placeholder="Buscar código sat.."
+                      type="search"
+                      formControlName="inputCodigoSat"
+                    />
+                  </mat-form-field>
+                </div>
+                <div class="col-2 col-sm-1 col-md-1 col-lg-1 col-xs-1">
+                  <button
+                    mat-raised-button
+                    type="button"
+                    style="float: right"
+                    class="btn btn-sm bg-primary"
+                    (click)="searchCodigoSat()"
+                  >
+                    <i class="material-icons">search</i>
+                  </button>
+                </div>
+
+                <div class="col-8 col-sm-4 col-md-4 col-lg-4 col-xs-4">
+                  <select
+                    class="form-control shadow"
+                    formControlName="codigoSatSeleccionado"
+                    style="width: 100%"
+                  >
+                    <option
+                      *ngFor="let codigoSat of resultQueryClaveProdServ"
+                      [ngValue]="codigoSat.id"
+                    >
+                      {{ codigoSat.descripcion }}
+                    </option>
+                  </select>
+                </div>
+
+                <div
+                  class="col-4 col-sm-2 col-md-2 col-lg-2 col-xs-2"
+                  *ngIf="resultQueryClaveProdServ"
+                >
+                  <div *ngFor="let codigoSat of resultQueryClaveProdServ">
+                    <label
+                      class="form-control labelCodigoSat"
+                      *ngIf="
+                        codigoSat.id ==
+                        newProductFG.get('codigoSatSeleccionado').value
+                      "
+                      >{{ codigoSat.claveprodserv }}</label
+                    >
+                  </div>
+                </div>
+
+                <!--============= Código de la unidad ============ -->
+                <div class="col-10 col-sm-5 col-md-5 col-lg-5 col-xs-5">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      placeholder="Buscar clave Ej; Pieza, Litro, etc.."
+                      type="search"
+                      formControlName="inputClaveUnidad"
+                    />
+                  </mat-form-field>
+                </div>
+                <div class="col-2 col-sm-1 col-md-1 col-lg-1 col-xs-1">
+                  <button
+                    mat-raised-button
+                    type="button"
+                    style="float: right"
+                    class="btn btn-sm bg-primary"
+                    (click)="searchClaveUnidad()"
+                  >
+                    <i class="material-icons">search</i>
+                  </button>
+                </div>
+
+                <div class="col-8 col-sm-4 col-md-4 col-lg-4 col-xs-4">
+                  <select
+                    class="form-control shadow"
+                    formControlName="claveUnidadSeleccionado"
+                    style="width: 100%"
+                  >
+                    <option
+                      *ngFor="let claveUnidad of resultQueryClaveUnidad"
+                      [ngValue]="claveUnidad.id"
+                    >
+                      {{ claveUnidad.nombre }}
+                    </option>
+                  </select>
+                </div>
+
+                <div
+                  class="col-4 col-sm-2 col-md-2 col-lg-2 col-xs-2"
+                  *ngIf="resultQueryClaveUnidad"
+                >
+                  <div *ngFor="let claveUnidad of resultQueryClaveUnidad">
+                    <label
+                      class="form-control labelCodigoSat"
+                      *ngIf="
+                        claveUnidad.id ==
+                        newProductFG.get('claveUnidadSeleccionado').value
+                      "
+                      >{{ claveUnidad.claveunidad }}</label
+                    >
+                  </div>
+                </div>
+
+                <!--********** Traslado IVA ********* -->
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xs-4">
+                  <div class="form-group">
+                    <mat-form-field class="example-full-width">
+                      <input
+                        matInput
+                        class="form-control"
+                        type="number"
+                        placeholder="Traslado IVA."
+                        formControlName="trasladoiva"
+                      />
+                    </mat-form-field>
+                  </div>
+
+                  <div
+                    class="error"
+                    *ngIf="
+                      newProductFG.get('trasladoiva').hasError('required') &&
+                      newProductFG.get('trasladoiva').touched
+                    "
+                  >
+                    <p>
+                      Debe indicar una cantidad de traslado IVA.<i
+                        class="material-icons"
+                        style="float: right"
+                        >warning</i
+                      >
+                    </p>
+                  </div>
+                  <div
+                    class="error"
+                    *ngIf="
+                      newProductFG.get('trasladoiva').hasError('pattern') &&
+                      newProductFG.get('trasladoiva').touched
+                    "
+                  >
+                    <p>
+                      Solo se permiten números positivos, enteros y decimales.<i
+                        class="material-icons"
+                        style="float: right"
+                        >warning</i
+                      >
+                    </p>
+                  </div>
+
+                  <div
+                    class="error"
+                    *ngIf="
+                      newProductFG.get('trasladoiva').hasError('trasladoiva') &&
+                      !newProductFG.get('trasladoiva').hasError('required') &&
+                      newProductFG.get('trasladoiva').touched
+                    "
+                  >
+                    <p>
+                      Valores validos: 0, 0.16, 0.08<i
+                        class="material-icons"
+                        style="float: right"
+                        >warning</i
+                      >
+                    </p>
+                  </div>
+                </div>
+
+                <!--********** Traslado IEPS ********* -->
+
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xs-4">
+                  <div class="form-group">
+                    <mat-form-field class="example-full-width">
+                      Traslado IEPS
+                      <input
+                        type="radio"
+                        formControlName="RadioButtonTrasladoIEPS"
+                        value="Tasa"
+                      />
+                      
+                      Tasa
+                      <input
+                        type="radio"
+                        formControlName="RadioButtonTrasladoIEPS"
+                        value="Cuota"
+                      />
+                      
+                      Cuota
+
+                      <input
+                        matInput
+                        class="form-control"
+                        type="number"
+                        formControlName="trasladoieps"
+                      />
+                    </mat-form-field>
+                  </div>
+
+                  <div
+                    class="error"
+                    *ngIf="
+                      newProductFG.get('trasladoieps').hasError('required') &&
+                      newProductFG.get('trasladoieps').touched
+                    "
+                  >
+                    <p>
+                      Debe indicar una cantidad de traslado IEPS.<i
+                        class="material-icons"
+                        style="float: right"
+                        >warning</i
+                      >
+                    </p>
+                  </div>
+                  <div
+                    class="error"
+                    *ngIf="
+                      newProductFG.get('trasladoieps').hasError('pattern') &&
+                      newProductFG.get('trasladoieps').touched
+                    "
+                  >
+                    <p>
+                      Solo se permiten números positivos, enteros y decimales.<i
+                        class="material-icons"
+                        style="float: right"
+                        >warning</i
+                      >
+                    </p>
+                  </div>
+
+                
+
+                <div
+                class="error"
+                *ngIf="
+                  newProductFG.get('trasladoieps').hasError('trasladoieps') &&
+                  newProductFG.get('RadioButtonTrasladoIEPS').value.includes('Tasa') &&
+
+                  !newProductFG.get('trasladoieps').hasError('required') &&
+                  newProductFG.get('trasladoieps').touched
+                "
+              >
+                <p>
+                  Valores validos: 0.265, 0.3, 0.53, 0.5, 1.6, 0.304, 0.25, 0.09 0.08, 0.07, 0.06<i
+                    class="material-icons"
+                    style="float: right"
+                    >warning</i
+                  >
+                </p>
+              </div>
+
+
+              <div
+              class="error"
+              *ngIf="
+                newProductFG.get('trasladoieps').hasError('trasladoiepsc') &&
+                newProductFG.get('RadioButtonTrasladoIEPS').value.includes('Cuota') &&
+                !newProductFG.get('trasladoieps').hasError('required') &&
+                newProductFG.get('trasladoieps').touched
+              "
+            >
+              <p>
+                Valores validos: 0 al 59.1449<i
+                  class="material-icons"
+                  style="float: right"
+                  >warning</i
+                >
+              </p>
             </div>
-          
+
+
+                </div>
+
+                <!--********** Reteción IVA ********* -->
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xs-4">
+                  <div class="form-group">
+                    <mat-form-field class="example-full-width">
+                      <input
+                        matInput
+                        class="form-control"
+                        type="number"
+                        placeholder="Retención IVA."
+                        formControlName="retencioniva"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div
+                    class="error"
+                    *ngIf="
+                      newProductFG.get('retencioniva').hasError('required') &&
+                      newProductFG.get('retencioniva').touched
+                    "
+                  >
+                    <p>
+                      Debe indicar una cantidad de retención IVA.<i
+                        class="material-icons"
+                        style="float: right"
+                        >warning</i
+                      >
+                    </p>
+                  </div>
+                  <div
+                    class="error"
+                    *ngIf="
+                      newProductFG.get('retencioniva').hasError('pattern') &&
+                      newProductFG.get('retencioniva').touched
+                    "
+                  >
+                    <p>
+                      Solo se permiten números positivos, enteros y decimales.<i
+                        class="material-icons"
+                        style="float: right"
+                        >warning</i
+                      >
+                    </p>
+                  </div>
+                  <div
+                    class="error"
+                    *ngIf="
+                      newProductFG
+                        .get('retencioniva')
+                        .hasError('retencioniva') &&
+                      !newProductFG.get('retencioniva').hasError('required') &&
+                      newProductFG.get('retencioniva').touched
+                    "
+                  >
+                    <p>
+                      Valores validos: 0 al 0.16<i
+                        class="material-icons"
+                        style="float: right"
+                        >warning</i
+                      >
+                    </p>
+                  </div>
+                </div>
+
+                <!--********** Reteción ISR ********* -->
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xs-4">
+                  <div class="form-group">
+                    <mat-form-field class="example-full-width">
+                      <input
+                        matInput
+                        class="form-control"
+                        type="number"
+                        placeholder="Retención ISR."
+                        formControlName="retencionisr"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div
+                    class="error"
+                    *ngIf="
+                      newProductFG.get('retencionisr').hasError('required') &&
+                      newProductFG.get('retencionisr').touched
+                    "
+                  >
+                    <p>
+                      Debe indicar una cantidad de retención ISR.<i
+                        class="material-icons"
+                        style="float: right"
+                        >warning</i
+                      >
+                    </p>
+                  </div>
+                  <div
+                    class="error"
+                    *ngIf="
+                      newProductFG.get('retencionisr').hasError('pattern') &&
+                      newProductFG.get('retencionisr').touched
+                    "
+                  >
+                    <p>
+                      Solo se permiten números positivos, enteros y decimales.<i
+                        class="material-icons"
+                        style="float: right"
+                        >warning</i
+                      >
+                    </p>
+                  </div>
+                  <div
+                    class="error"
+                    *ngIf="
+                      newProductFG
+                        .get('retencionisr')
+                        .hasError('retencionisr') &&
+                      !newProductFG.get('retencionisr').hasError('required') &&
+                      newProductFG.get('retencionisr').touched
+                    "
+                  >
+                    <p>
+                      Valores validos: 0 al 0.35<i
+                        class="material-icons"
+                        style="float: right"
+                        >warning</i
+                      >
+                    </p>
+                  </div>
+                </div>
+
+                <!--********** Reteción IEPS ********* -->
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xs-4">
+                  <div class="form-group">
+                    <mat-form-field class="example-full-width">
+                      Retención IEPS.
+                      <input
+                        type="radio"
+                        formControlName="RadioButtonRetencionIEPS"
+                        value="Tasa"
+                      />
+                      Tasa
+                      <input
+                        type="radio"
+                        formControlName="RadioButtonRetencionIEPS"
+                        value="Cuota"
+                      />
+                      Cuota
+                      <input
+                        matInput
+                        class="form-control"
+                        type="number"
+                        formControlName="retencionieps"
+                      />
+                    </mat-form-field>
+                  </div>
+                  <div
+                    class="error"
+                    *ngIf="
+                      newProductFG.get('retencionieps').hasError('required') &&
+                      newProductFG.get('retencionieps').touched
+                    "
+                  >
+                    <p>
+                      Debe indicar una cantidad de retención ISR.<i
+                        class="material-icons"
+                        style="float: right"
+                        >warning</i
+                      >
+                    </p>
+                  </div>
+                  <div
+                    class="error"
+                    *ngIf="
+                      newProductFG.get('retencionieps').hasError('pattern') &&
+                      newProductFG.get('retencionieps').touched
+                    "
+                  >
+                    <p>
+                      Solo se permiten números positivos, enteros y decimales.<i
+                        class="material-icons"
+                        style="float: right"
+                        >warning</i
+                      >
+                    </p>
+                  </div>
+                  
+                  <div
+                  class="error"
+                  *ngIf="
+                    newProductFG.get('retencionieps').hasError('retencionieps') &&
+                    newProductFG.get('RadioButtonRetencionIEPS').value.includes('Tasa') &&
+                    !newProductFG.get('retencionieps').hasError('required') &&
+                    newProductFG.get('retencionieps').touched
+                  "
+                >
+                  <p>
+                    Valores validos: 0.265, 0.3, 0.53, 0.5, 1.6, 0.304, 0.25, 0.09 0.08, 0.07, 0.06<i
+                      class="material-icons"
+                      style="float: right"
+                      >warning</i
+                    >
+                  </p>
+                </div>
+
+                <div
+                class="error"
+                *ngIf="
+                  newProductFG.get('retencionieps').hasError('retencioniepsc') &&
+                  newProductFG.get('RadioButtonRetencionIEPS').value.includes('Cuota') &&
+                  !newProductFG.get('retencionieps').hasError('required') &&
+                  newProductFG.get('retencionieps').touched
+                "
+              >
+                <p>
+                  Valores validos: 0 al 59.1449<i
+                    class="material-icons"
+                    style="float: right"
+                    >warning</i
+                  >
+                </p>
+              </div>
+
+                </div>
+
+                <p>Form value: {{ newProductFG.value | json }}</p>
+                <p>Form Status: {{ newProductFG.status | json }}</p>
+              </div>
+            </form>
+          </div>
         </div>
+      </div>
     </div>
   </div>
-  
+</div>

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {  NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -35,6 +35,7 @@ import { ShoppingCartService } from '../../../services/shopping-cart.service';
 import { MaterialModule } from '../../material/material.module';
 import { LoginService } from "../../../services/login.service";
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -47,7 +48,9 @@ import { LoginService } from "../../../services/login.service";
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
-    MaterialModule
+    MaterialModule,
+
+
   ],
   declarations: [
     HomeComponent,
@@ -66,7 +69,8 @@ import { LoginService } from "../../../services/login.service";
     //CartComponent,
    // CheckoutDialog
   ],
-  providers: [StorageService, ShoppingCartService, LoginService]
+  providers: [StorageService, ShoppingCartService, LoginService],
+
 
 
 })

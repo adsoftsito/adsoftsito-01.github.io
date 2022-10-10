@@ -1,0 +1,10 @@
+.error{
+    height: 40px;
+    line-height: 40px;
+    background: #F66060;
+    padding: 0 5px;
+    border-radius: 10px;
+    color: #FFFFFF;
+    box-shadow: 25px;
+}
+

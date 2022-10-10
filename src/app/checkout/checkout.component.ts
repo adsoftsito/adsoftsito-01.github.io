@@ -9,6 +9,7 @@ import { LoginService } from "../../services/login.service";
 import { Router } from '@angular/router';
 import { CfdiService } from '../../services/cfdi.service';
 
+
 //import { Observable, of } from 'rxjs';
 //import { switchMap, shareReplay, share, take } from 'rxjs/operators';
 //import {  map, tap    } from 'rxjs/operators';
@@ -191,21 +192,20 @@ export class CheckoutDialog implements OnInit {
         cantidad : 1,
         precio: element.price,
         importe : 100,
-        url: "--",
-        codigosat: "101010",
-        noidentificacion: "A01",
-        claveunidad: "U01",
+        // url: "--",
+        // codigosat: "101010",
+        // noidentificacion: "A01",
+        // claveunidad: "U01",
         descuento: 0.00,
-        trasladoiva: 16.00,
-        retiva: 0.0,
-        ieps: 0.0
+        // trasladoiva: 16.00,
+        // retiva: 0.0,
+        // ieps: 0.0
       })
     });
     alert(JSON.stringify(products));
 
     this.graphqlSalesService.createSale(mytoken, this.myTotal.subTot,
-                  this.myTotal.tax, this.myTotal.grandTot, products)
-    .subscribe(({ data }) => {
+                  this.myTotal.tax, this.myTotal.grandTot, products).subscribe(({ data }) => {
        console.log('Sale created :  ', data);
        alert(JSON.stringify(data));
        //this.router.navigate(['/']);
