@@ -4,16 +4,13 @@
 
    
     <div class="container-fluid">
- 
+       
+<!--
+
       <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top">
         <div class="container-fluid">
             
           <div class="navbar-wrapper">
-<!--
-            <div class="logo-img">
-                <img src="/assets/img/mandadero1.png"/>
-            </div>
-          -->
               <a class="navbar-brand" href="javascript:void(0)"> <b>waves</b> cloud ERP</a>
           </div>
         
@@ -26,50 +23,24 @@
             <div class="collapse navbar-collapse justify-content-end" id="navigation">
            
                 <ul class="navbar-nav">
-                  <!--
-                    <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['/admin']">
-    
-                            <i class="material-icons">dashboard</i>
-                            <p>
-                                <span class="d-lg-none d-md-block">Stats</span>
-                            </p>
-                        </a>
-                    </li>
-                  
-                    <li class="nav-item">
-                        
-                                          
-                                            Login
-                                        
-                                            <button mat-raised-button (click)="login()" class="btn btn-white btn-round btn-just-icon">
-                                              <i class="material-icons">login</i>
-                                              <div class="ripple-container"></div>
-                                          </button>
-                    </li>
-                    -->
-                    <li class="nav-item">
-    <!--
-                        <a class="nav-link" [routerLink]="[menuItem.path]">
-                            <i class="material-icons">{{menuItem.icon}}</i>
-                            <p>{{menuItem.title}}</p>
-                        </a>
                     
-                        <a class="nav-link" [routerLink]="['/new-user']">
-                          Usuario nuevo
-
-                            <i class="material-icons">person</i>
-                            <p>
-                                <span class="d-lg-none d-md-block">Account</span>
-                            </p>
-                        </a> -->
-                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" [routerLink]="['/admin/admin/dashboard']" rel="tooltip" title="Punto de venta" data-placement="bottom">
+                          <i class="fa fa-twitter"></i>
+                          <p class="d-lg-none">Ventas</p>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" [routerLink]="['/admin/admin/facturacion']" rel="tooltip" title="Generacion de CFDi" data-placement="bottom" >
+                          <i class="fa fa-twitter"></i>
+                          <p class="d-lg-none">Facturacion</p>
+                      </a>
+                  </li>
+                 
                 </ul>
             </div>
-        </div>
-    </nav>
-
-      <!--
+            </div>
+         </nav>
       <ng-container *ngIf="cartState$ | async as state">
           <form class="navbar-form"> 
             <ng-container *ngIf="user">
@@ -139,13 +110,19 @@
 
 
       <div class="row"> 
+
         <div class="col-md-3" >
+          <div class="navbar-wrapper">
+            <a class="navbar-brand"> cloud ERP</a>
+          </div>
+      
           <div class="logo-img">
             <img src="/assets/img/waveslogo.jpg" height="200" width="200"/>
         </div>
         
         
         </div>
+
         <div class="col-md-3" >
 
           <app-login></app-login>

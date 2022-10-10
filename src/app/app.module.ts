@@ -1,5 +1,5 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -20,17 +20,14 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { UpgradeComponent } from './upgrade/upgrade.component';
 */
 import { BrowserModule } from '@angular/platform-browser';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from '../environments/environment';
 
-
-import {
-  AgmCoreModule
-} from '@agm/core';
+import {AgmCoreModule} from '@agm/core';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
 
@@ -40,6 +37,11 @@ import { CarritocomprasComponent } from './carritocompras/carritocompras.compone
 import { CheckoutDialog } from './checkout/checkout.component';
 //import { LogoutComponent } from './logout/logout.component';
 
+import { NgxSpinnerModule } from "ngx-spinner";
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatCardModule} from '@angular/material/card';
 //CarritocomprasComponent,
     //CartComponent,
     //CheckoutDialog
@@ -58,11 +60,18 @@ import { CheckoutDialog } from './checkout/checkout.component';
     ComponentsModule,
     RouterModule,
     AppRoutingModule,
+    MatButtonModule,
+    MatIconModule,
+    MatGridListModule,
+    MatCardModule,
     AgmCoreModule.forRoot({
       apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
     }),
     GraphQLModule,
-    MatDialogModule
+    MatDialogModule,
+    NgxSpinnerModule
+
+
   ],
   declarations: [
     AppComponent,
@@ -79,7 +88,9 @@ import { CheckoutDialog } from './checkout/checkout.component';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [CheckoutDialog]
+  entryComponents: [CheckoutDialog],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+
 
 })
 export class AppModule { }

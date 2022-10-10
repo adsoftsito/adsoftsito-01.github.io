@@ -34,6 +34,10 @@
                                 <th>Importe</th>
                                 <th>RFC</th>
                                 <th>Cliente</th>
+                                <th>Status</th>
+                                <th>Xml</th>
+                                <th>Pdf</th>
+
                                 <th>Actions</th>
                                 
                             </thead>
@@ -44,6 +48,9 @@
                                     <td>{{ product.total }}</td>
                                     <td>{{ product.receptor.rfc }}</td>
                                     <td>{{ product.receptor.nombre }}</td>
+                                    <td>{{ product.statuscfdi }}</td>
+                                    <td> <a href={{product.xml}} target="_blank"> ver xml</a></td>
+                                    <td> <a href={{product.pdf}} target="_blank"> ver pdf</a></td>
                                     <td>
 
                                         <a class="nav-link" [routerLink]="['/admin/admin/cfdi/' + product.id]">
